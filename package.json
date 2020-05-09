@@ -1,0 +1,33 @@
+{
+  "name": "efa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fizx26",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "discord.js": "^11.6.4",
+    "google-translate-api": "^2.3.0",
+    "moment": "^2.24.0",
+    "ms": "^2.1.2",
+    "node-fetch": "^2.6.0",
+    "opusscript": "0.0.7",
+    "random-puppy": "^1.1.0",
+    "snekfetch": "^4.0.4",
+    "superagent": "^5.2.2",
+    "weather-js": "^2.0.0",
+    "ytdl-core": "^2.0.1",
+    "express-glitch-keepalive": "^0.2.0",
+    "express": "^4.17.1",
+    "novelcovid": "^1.2.7",
+    "fs": "^0.0.2",
+    "better-sqlite3": "^7.0.1",
+    "enmap": "^5.2.4"
+  },
+  "devDependencies": {},
+  "description": ""
+}
