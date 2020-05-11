@@ -16,7 +16,7 @@ setInterval(() => {
 const bot = new Discord.Client({ disableEveryone: true });
 const token = "Njk4NTI5MTYwOTM4NzgyNzIw.XpHNig.pRCnuawqLABbhGAevwPMjwzyOd0";
 const PREFIX = "l.";
-
+const db = require('quick.db')
 //For command handling chosen commands
 const fs = require("fs");
 bot.commands = new Discord.Collection();
@@ -38,8 +38,9 @@ bot.on("guildCreate", guild => {
   bot.user
     .setActivity(`${bot.guilds.size} servers | ${PREFIX}help`, {
       type: "WATCHING"
-    })
+  })
     .catch(console.error);
+  bot.user.setStatus(`dnd`)
 });
 
 bot.on("guildDelete", guild => {
@@ -50,6 +51,7 @@ bot.on("guildDelete", guild => {
       type: "WATCHING"
     })
     .catch(console.error);
+  bot.user.setStatus(`dnd`)
 });
 
 bot.on("ready", () => {
@@ -60,27 +62,42 @@ bot.on("ready", () => {
       type: "WATCHING"
     })
     .catch(console.error);
+  bot.user.setStatus(`dnd`)
 });
 
 // Regular Commands
 bot.on("message", async message => {
-  const args = message.content
-    .slice(PREFIX.length)
-    .trim()
-    .split(/ +/g);
-
+  
   //Fixes the bot bug
   if (message.author.bot) return;
 
-  //Fixes the prefix bug
-  if (!message.content.startsWith(PREFIX)) return;
-
   //Fixes DM bugs
-  if (message.channel.type == "dm") {
-    message.author.send("Commands are disabled in DMs!");
-    return;
-  }
+  if (message.channel.type == "dm"){
+  if (message.content.startsWith(PREFIX)){
+      message.author.send("You dared to try!")
+  	 	return;
+    }
+    	}
+  
+  let prefix;
+  
+    let prefixes = await db.fetch(`prefix_${message.guild.id}`)
+    
+    if(prefixes == null){
+      prefix = 'l.';
+    } else {
+      prefix = prefixes;
+    }
+  
+  if(message.content.startsWith(`<@${bot.user.id}>`)){
+    	    message.channel.send(`My prefix here is \`${prefix}\`\nChange my prefix using \`${prefix}setprefix\`.`)
+    	}
+  
+  //Fixes the prefix bug
+  if (!message.content.startsWith(prefix)) return;
 
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    
   switch (args[0]) {
     //l.info
     case "info":
@@ -113,13 +130,14 @@ bot.on("message", async message => {
 
     //l.ping
     case "ping":
-      message.channel.send(`Pong! -${Math.round(bot.ping)}ms-`);
+     // message.channel.send(`Pong! -${Math.round(bot.ping)}ms-`);
+      bot.commands.get('ping').run(bot, message, args);
       break;
 
     //l.prefix
     case "prefix":
       message.channel.send(
-        "You cannot change my prefix yet! My default prefix is `l.` (letter L)"
+        `My prefix in this server is ${prefix}\nUse  \`setprefix\` command to change my prefix.`
       );
       break;
 
@@ -160,6 +178,15 @@ bot.on("message", async message => {
       bot.commands.get("poll").run(message, args);
       break;
 
+    case 'fox':
+    case 'kitsune':
+      bot.commands.get("fox").run(bot, message, args);
+    break;
+      
+    case 'bird':
+    case 'birb':
+      bot.commands.get('bird').run(bot, message, args);
+    break;
     //l.dog
     case "dog":
     case 'doggo':
@@ -192,7 +219,11 @@ bot.on("message", async message => {
     case "hug":
       bot.commands.get("hug").run(message, args);
       break;
-
+      
+    case 'pat':
+      bot.commands.get('pat').run(message, args);
+      break;
+    
     //l.weather
     case "weather":
       bot.commands.get("weather").run(message, args);
@@ -218,8 +249,36 @@ bot.on("message", async message => {
     case "redditfetch":
       bot.commands.get("redditfetch").run(bot, message, args);
     break;
+      
+    case 'urban':
+    case 'urbandict':
+      bot.commands.get('urban').run(bot, message, args);
+    break;
+    
+      case 'setprefix':
+        if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to change my prefix!");
+        if(!args[1]) return message.reply("please define the new prefix you desire to set!");
+        if(args[2]) return message.reply("prefixes with spaces are not allowed!")
+        if(args[1].length > 3) return message.channel.send("No prefixes more than 3 characters!")
+
+        await db.set(`prefix_${message.guild.id}`, args[1])
+        var embedp = new Discord.RichEmbed()
+        .setDescription(`My prefix for this guild is now changed to \`${args[1]}\` successfully.`)
+        .setColor("#3654ff")
+        .setFooter("You can mention me for me to send my prefix in this server.")
+        message.channel.send(embedp).then (message.channel.send(`Due to Leuxitai's music module in another project, you need to change the music module's prefix too!\nType \`${prefix}musicprefix\` to change the prefix for the music module.`))
+      break;
+      
+    case 'wallpaper':
+    case 'randomimage':
+    case 'images':
+    case 'unsplash':
+      bot.commands.get('wallpaper').run(bot, message, args)
+    break;
   }
 });
+
+
   const Enmap = require("enmap");
   bot.points = new Enmap({name: "points"});
 bot.on('message', async message => {
@@ -235,16 +294,31 @@ bot.on('message', async message => {
     bot.points.inc(key, "points");
     const curLevel = Math.floor(0.1 * Math.sqrt(bot.points.get(key, "points")));
     if (bot.points.get(key, "level") < curLevel) {
-    message.reply(`You've leveled up to level **${curLevel}**! GG!`);
+    message.reply(`you've leveled up to level **${curLevel}**! GG!`);
       bot.points.set(key, curLevel, "level");
 }
   }
- const args = message.content.slice(PREFIX.length).trim().split(/ +/g);
+  let prefix;
+  
+    let prefixes = await db.fetch(`prefix_${message.guild.id}`)
+    
+    if(prefixes == null){
+      prefix = 'l.';
+    } else {
+      prefix = prefixes;
+    }
+  //Fixes the bot bug
+    if(message.author.bot) return;
+
+    //Fixes the prefix bug
+    if (!message.content.startsWith(prefix)) return;
+    
+ const args = message.content.slice(prefix.length).trim().split(/ +/g);
  const command = args.shift().toLowerCase();
   if (command === 'points'){
     const key = `${message.guild.id}-${message.author.id}`;
     const points = new Discord.RichEmbed()
-    .setAuthor(`${message.author.tag}`, message.guild.iconURL)
+    .setAuthor(`${message.author.username}'s profile`, message.guild.iconURL)
     .addField(`XP / Points`, bot.points.get(key, "points"))
     .addField(`Level`, bot.points.get(key, "level"))
     .setColor("#ff6352")
@@ -263,17 +337,39 @@ bot.on('message', async message => {
 
   // Slice it, dice it, get the top 10 of it!
   const top10 = sorted.splice(0, 10);
-
+  const top20 = sorted.splice(0, 20);
+  const top30 = sorted.splice(0, 30);
+  let index = 0;
+  let indexx = 10;
+  let indexxx = 20;
+    if(args[0] === "2"){
+      const topp = new Discord.RichEmbed()
+      .setAuthor("Leaderboard - 11 ~ 20", message.guild.iconURL)
+      .setColor(0x1b03a3)
+      for(const data of top20){
+        topp.addField(`\`${++indexx})\` ${bot.users.get(data.user).tag}`, `~ has ${data.points} points (currently level ${data.level})`)
+      }
+      message.channel.send(topp)
+    } else 
+  if(args[0] === "3"){
+    const toppp = new Discord.RichEmbed()
+    .setAuthor("Leaderboard - 21 ~ 30", message.guild.iconURL)
+    .setColor(0x1b03a3)
+    for(const data of top30){
+      toppp.addField(`\`${++indexxx}\` ${bot.users.get(data.user).tag}`, `~ has ${data.points} points (currently level ${data.level})`)
+    }
+    message.channel.send(toppp);
+  } else
+  if(!args[0]){
   // Now shake it and show it! (as a nice embed, too!)
   const embed = new Discord.RichEmbed()
-    .setAuthor("Leaderboard", message.author.displayAvatarURL)
-    .setDescription("Our top 10 points leaders!")
-    .setColor(0x00AE86);
+    .setAuthor("Leaderboard - Top 10", message.guild.iconURL)
+    .setColor(0x1b03a3);
   for(const data of top10) {
-    embed.addField(`${bot.users.get(data.user).tag}`, `${data.points} points (level ${data.level})`);
+    embed.addField(`\`${++index})\` ${bot.users.get(data.user).tag}`, `~ has ${data.points} points (currently level ${data.level})`)
   }
   message.channel.send(embed);
-  }
+  }} 
        
     if(command === "give") {
     // Limited to guild owner - adjust to your own preference!

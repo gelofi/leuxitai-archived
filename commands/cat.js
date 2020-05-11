@@ -15,7 +15,7 @@ module.exports = {
             .setAuthor('Cats!', message.guild.iconURL)
             .setImage(body.file)
             .setTimestamp()
-            .setFooter('l.cat', bot.user.displayAvatarURL)
+            .setFooter('Cat lovers are called Ailurophiles.', bot.user.displayAvatarURL)
             .setTimestamp()
             message.channel.send(cEmbed)
     }
