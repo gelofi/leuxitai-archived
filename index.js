@@ -18,8 +18,6 @@ const token = "Njk4NTI5MTYwOTM4NzgyNzIw.XpHNig.pRCnuawqLABbhGAevwPMjwzyOd0";
 const PREFIX = "l.";
 const db = require('quick.db')
 
-const talkedRecently = new Set();
-
 // Collections
 bot.commands = new Collection();
 bot.aliases = new Collection();
@@ -71,17 +69,6 @@ bot.on("message", async message => {
   
   if (message.guild) {
     // We'll use the key often enough that simplifying it is worth the trouble.
-    
-    if (talkedRecently.has(message.author.id))
-    return;
-
-    // Adds the user to the set so that they can't talk for 2.5 seconds
-      talkedRecently.add(message.author.id);
-      setTimeout(() => {
-    // Removes the user from the set after 2.5 seconds
-      talkedRecently.delete(message.author.id);
-        }, 15000);
-    
     const key = `${message.guild.id}-${message.author.id}`;
     if (message.author.bot) return;
     // Triggers on new users we haven't seen before.
@@ -98,7 +85,7 @@ bot.on("message", async message => {
     
     // Act upon level up by sending a message and updating the user's level in enmap.
     if (bot.points.get(key, "level") < curLevel) {
-      message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
+      message.reply(`You've leveled up to level **${curLevel}**! GG!`);
       bot.points.set(key, curLevel, "level");
     }
   }

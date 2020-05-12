@@ -3,6 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
     name: 'wallpaper',
+    aliases: ["unsplash", "images", "randomimage"],
     description: "Sends a random wallpaper image",
     run: async (bot, message, args) => {
             let cEmbed = new Discord.RichEmbed()

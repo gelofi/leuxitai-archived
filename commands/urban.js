@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'urban',
+    aliases: ["urbandict"],
     desciprtion: 'gives urban dictionary definiton of a random word',
     run: async (bot, message, args) => {
         urban.random().first(json => {

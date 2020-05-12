@@ -4,6 +4,7 @@ const superagent = require('superagent');
 
 module.exports = {
     name: 'bird',
+    aliases: ["birb"],
     description: "Sends a random bird image",
     run: async (bot, message, args) => {
       let {body} = await superagent

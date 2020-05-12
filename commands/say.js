@@ -3,6 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
     name: 'say',
+    aliases: ["msg"],
     description: "Repeats what the user said.",
     run: async (message, args) => {
         if(!args.slice(0).join(" ")) return message.channel.send("Say something!")
