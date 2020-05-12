@@ -6,10 +6,10 @@ module.exports = {
     name: 'redditfetch',
     description: "Fetches a random post from a desired subreddit.",
     run: async (bot, message, args) => {
-      if (!args[1]) {
+      if (!args[0]) {
         return message.channel.send("Search for a subreddit to fetch a random post!")
       }
-      var subReddits = [`${args[1]}`];
+      var subReddits = [`${args[0]}`];
       var random = subReddits[Math.floor(Math.random() * subReddits.length)];
 
       const img = await randomPuppy(random)

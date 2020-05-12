@@ -3,9 +3,10 @@ const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
     name: 'avatar',
+    aliases: ["av"],
     description: "Sends the desired avatar.",
     run: async (bot, message, args) => {
-        if(args[1] === "me"){
+        if(args[0]=== "me"){
         let avatar = new Discord.RichEmbed()
         .setTitle('Your avatar and URL:')
         .setDescription(message.author.avatarURL)
@@ -15,7 +16,7 @@ module.exports = {
         .setColor(0x18adba);
         message.channel.sendEmbed(avatar);
         } else
-        if(args[1] === `${message.mentions.users.first()}`) {
+        if(args[0] === `${message.mentions.users.first()}`) {
         const membere = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member;
         let target = message.mentions.users.first() || message.author
 

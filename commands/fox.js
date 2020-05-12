@@ -9,7 +9,7 @@ module.exports = {
         let dEmbed = new Discord.RichEmbed()
         .setColor(0x5893ea)
         .setAuthor('Foxes!', message.guild.iconURL)
-        .setImage(`http://randomfox.ca/images/${Math.floor(Math.random() * 120) + 1}.jpg`)
+        .setImage(`http://randomfox.ca/images/${Math.floor(Math.random() * 122) * 1}.jpg`)
         .setTimestamp()
         .setFooter('Kitsune?\nPowered by some-random-api.ml', bot.user.displayAvatarURL)
         .setTimestamp()

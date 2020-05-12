@@ -5,7 +5,7 @@ module.exports = {
     name: 'info',
     description: "Gives info for the server or you",
     run: async (bot, message, args) => {
-        if(args[1] === 'server'){
+        if(args[0] === 'server'){
         const serverembed = new Discord.RichEmbed()
         .setTitle('Info for ' + message.guild.name)
         .setThumbnail(message.guild.iconURL)
@@ -19,7 +19,7 @@ module.exports = {
         .setColor(0x3654ff);
         message.channel.send(serverembed);
     }else
-    if(args[1] === `${message.mentions.users.first()}`) {
+    if(args[0] === `${message.mentions.users.first()}`) {
       let inline = true
       const userstatus = {
         online: "Online",
@@ -46,7 +46,7 @@ module.exports = {
     
             message.channel.send(userembed);
     }else
-    if(args[1] === 'me'){
+    if(args[0] === 'me'){
       let inlineme = true
       const status = {
         online: "Online",

@@ -1,4 +1,5 @@
 dependencies:
+  ascii-table: 0.0.9
   better-sqlite3: 7.0.1
   cheerio: 1.0.0-rc.3
   discord.js: 11.6.4
@@ -7,7 +8,7 @@ dependencies:
   express-glitch-keepalive: 0.2.0
   fs: 0.0.2
   google-translate-api: 2.3.0
-  moment: 2.24.0
+  moment: 2.25.3
   ms: 2.1.2
   node-fetch: 2.6.0
   novelcovid: 1.2.7
@@ -18,7 +19,6 @@ dependencies:
   superagent: 5.2.2
   urban: 0.3.2
   weather-js: 2.0.0
-  ytdl-core: 2.1.0
 packages:
   /@types/node/13.13.2:
     dev: false
@@ -69,6 +69,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /ascii-table/0.0.9:
+    dev: false
+    resolution:
+      integrity: sha1-BqZgTWpV1L9BqaR9mHLXp42jHnM=
   /asn1/0.2.4:
     dependencies:
       safer-buffer: 2.1.2
@@ -723,10 +727,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-4Ob+aijPUROIVeCG0Wkedx3iqLk=
-  /html-entities/1.3.1:
-    dev: false
-    resolution:
-      integrity: sha512-rhE/4Z3hIhzHAUKbW8jVcCyuT5oJCXXqhN/6mXXVCpzTmvJnoH2HL/bt3EZ6p55jbFJBeAe1ZNpL5BugLujxNA==
   /htmlparser2/3.10.1:
     dependencies:
       domelementtype: 1.3.1
@@ -908,15 +908,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-G2Lj61tXDnVFFOi8VZds+SoQjtQC3dgokKdDG2mTm1tx4m50NUHBOZSBwQQHyy0V12A0JTG4icfZQH+xPyh8VA==
-  /m3u8stream/0.6.5:
-    dependencies:
-      miniget: 1.7.0
-      sax: 1.2.4
-    dev: false
-    engines:
-      node: '>=6'
-    resolution:
-      integrity: sha512-QZCzhcfUliZfsOboi68QkNcMejPKTEhxE+s1TApvHubDeR8ythm4ViWuYFqgUwZeoHe8q0nsPxOvA3lQvdSzyg==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -967,12 +958,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-wXqjST+SLt7R009ySCglWBCFpjUygmCIfD790/kVbiGmUgfYGuB14PiTd5DwVxSV4NcYHjzMkoj5LjQZwTQLEA==
-  /miniget/1.7.0:
-    dev: false
-    engines:
-      node: '>=10'
-    resolution:
-      integrity: sha512-yrgaDSMRzrfYTkudB4Y6xK8pCb7oAH2bvfv6iPY2m6CedZfs9yK4b/ofh0Vzv08hCYXH/HHkoS8an6fkWtOAQA==
   /minimist/1.2.5:
     dev: false
     resolution:
@@ -1001,10 +986,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
-  /moment/2.24.0:
+  /moment/2.25.3:
     dev: false
     resolution:
-      integrity: sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+      integrity: sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -1728,21 +1713,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
-  /ytdl-core/2.1.0:
-    dependencies:
-      html-entities: 1.3.1
-      m3u8stream: 0.6.5
-      miniget: 1.7.0
-      sax: 1.2.4
-    dev: false
-    engines:
-      node: '>=10'
-    resolution:
-      integrity: sha512-UmblkTLSV0v3y9I3oqrZkllyT0FnK1Owm7WftEkcTIlqnjip1mnyaLICz0P6+W3Ji/AtBFSwy/mLG2dlEvP6Vw==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  ascii-table: ^0.0.9
   better-sqlite3: ^7.0.1
   cheerio: ^1.0.0-rc.3
   discord.js: ^11.6.4
@@ -1751,7 +1726,7 @@ specifiers:
   express-glitch-keepalive: ^0.2.0
   fs: ^0.0.2
   google-translate-api: ^2.3.0
-  moment: ^2.24.0
+  moment: ^2.25.3
   ms: ^2.1.2
   node-fetch: ^2.6.0
   novelcovid: ^1.2.7
@@ -1762,4 +1737,3 @@ specifiers:
   superagent: ^5.2.2
   urban: ^0.3.2
   weather-js: ^2.0.0
-  ytdl-core: ^2.0.1
