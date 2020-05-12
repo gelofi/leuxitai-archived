@@ -5,7 +5,7 @@ const randomPuppy = require('random-puppy');
 module.exports = {
     name: 'meme',
     description: "Sends a meme from reddit.",
-    run: async (message, args) => {
+    run: async (bot, message, args) => {
       var subReddits = ["dankmemes", "memes", "me_irl"];
       var randommeme = subReddits[Math.floor(Math.random() * subReddits.length)];
 

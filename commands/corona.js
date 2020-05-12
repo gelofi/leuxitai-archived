@@ -6,12 +6,12 @@ const track = new NovelCovid();
 module.exports = {
     name: 'corona',
     description: "Gives corona information",
-    run: async (message, args) => {
-      if(!args[1]) {
+    run: async (bot, message, args) => {
+      if(!args[0]) {
       return message.channel.send("Please give the name of country, or worldwide.")
       }
     
-    if(args[1] === "worldwide") {
+    if(args[0] === "worldwide") {
       let corona = await track.all() //it will give global cases
       
       let corembed = new Discord.RichEmbed()
@@ -30,8 +30,8 @@ module.exports = {
       return message.channel.send(corembed)
   
     } else {
-      let corona = await track.countries(args[1]) //change it to countries
-      
+      let corona = await track.countries(args[0]) //change it to countries
+      if(!corona.country) return message.channel.send("Invalid location! Please put a REAL country.")
       let coronaembed = new Discord.RichEmbed()
       .setTitle(`${corona.country}`)
       .setColor("#f55538")

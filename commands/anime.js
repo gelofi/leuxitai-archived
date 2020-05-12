@@ -5,7 +5,7 @@ const randomPuppy = require('random-puppy');
 module.exports = {
     name: 'anime',
     description: "Sends a random anime gif from reddit.",
-    run: async (message, args) => {
+    run: async (bot, message, args) => {
        var animeSubReddits = ["animegifs"];
       var randomanime = animeSubReddits[Math.floor(Math.random() * animeSubReddits.length)];
 

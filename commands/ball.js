@@ -2,10 +2,11 @@ const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
-    name: 'ball',
+    name: '8ball',
+    aliases: ["8b"],
     description: "Initiates 8ball.",
-    run: async (message, args) => {
-        let question = message.content.split(/\s+/g).slice(1).join(" ");
+    run: async (bot, message, args) => {
+        let question = args[0];
 
         if (!question) {
             return message.channel.send('You must provide a question! **Usage: `l.8ball`<question>**');

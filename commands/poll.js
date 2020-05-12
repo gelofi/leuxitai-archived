@@ -5,10 +5,10 @@ module.exports = {
     name: 'poll',
     description: "Initiates a poll.",
     run: async (message, args) => {
-        if (!args[1]) {
+        if (!args[0]) {
             return message.channel.send('You must provide a question! **Usage: `l.poll` <question>**');
         } else
-      if(args[1] === "ab"){
+      if(args[0] === "ab"){
         message.react("🅰️");
         message.react("🅱️");
       } else {
