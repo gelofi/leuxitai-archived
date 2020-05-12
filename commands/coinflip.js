@@ -4,7 +4,7 @@ const bot = new Discord.Client({disableEveryone: true});
 module.exports = {
     name: 'coinflip',
     description: "Coinflip command, heads or tails!",
-    run: async (message, args) => {
+    run: async (bot, message, args) => {
         //function for l.coinflip
    function getRandomInt(min, max) {
     min = Math.ceil(min);

@@ -5,7 +5,7 @@ const superagent = require('superagent')
 module.exports = {
     name: 'pat',
     description: "Pats a person",
-    run: async (message, args) => {
+    run: async (bot, message, args) => {
       let {body} = await superagent
     .get('https://some-random-api.ml/animu/pat')
       if(!{body}) return message.channel.send('An error occured. Please try again later.')

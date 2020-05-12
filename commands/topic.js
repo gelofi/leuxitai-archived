@@ -4,7 +4,7 @@ const bot = new Discord.Client({disableEveryone: true});
 module.exports = {
     name: 'topic',
     description: "Gives a topic",
-    run: async (message, args) => {
+    run: async (bot, message, args) => {
 
         var topic = ['What was the last funny video you saw?',
                 'What is something that is popular now that annoys you?',

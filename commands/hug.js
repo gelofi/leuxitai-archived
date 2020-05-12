@@ -4,7 +4,7 @@ const bot = new Discord.Client({disableEveryone: true});
 module.exports = {
     name: 'hug',
     description: "Hugs a person",
-    run: async (message, args) => {
+    run: async (bot, message, args) => {
         var hugger = message.mentions.users.first();
 
         var hug = ['wavv u!!! ~//~ :heart: :heart:',
