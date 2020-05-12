@@ -4,7 +4,7 @@ const bot = new Discord.Client({disableEveryone: true});
 module.exports = {
     name: 'wisdom',
     description: "Gives a wisdom from various people",
-    run: async (message, args) => {
+    run: async (bot, message, args) => {
 
         var answer = ['“Nobody can make you feel inferior without your permission.” —Eleanor Roosevelt',
                         '“You can never plan the future by the past.” —Edmund Burke',

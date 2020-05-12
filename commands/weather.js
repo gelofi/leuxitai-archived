@@ -4,7 +4,7 @@ const weather = require('weather-js');
 module.exports = {
     name: 'weather',
     description: "Gives weather info on a location",
-    run: async (message, args) => {
+    run: async (bot, message, args) => {
         const skies = {
         Clear: ":sun_with_face: Clear Skies",
         'Mostly Sunny': ":white_sun_small_cloud: Mostly Sunny",
