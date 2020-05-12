@@ -5,6 +5,7 @@ const track = new NovelCovid();
 
 module.exports = {
     name: 'corona',
+    aliases: ["covid", "covid19"],
     description: "Gives corona information",
     run: async (bot, message, args) => {
       if(!args[0]) {

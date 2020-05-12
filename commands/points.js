@@ -3,7 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
     name: 'points',
-    aliases: ["rank"],
+    aliases: ["rank", "profile"],
     description: "Points system for Leuxitai",
     run: async (bot, message, args) => {
       

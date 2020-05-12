@@ -3,6 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
     name: 'fox',
+    aliases: ["kitsune"],
     description: "Sends a random fox image",
     run: async (bot, message, args) => {
     

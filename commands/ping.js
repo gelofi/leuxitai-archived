@@ -3,6 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
     name: 'ping',
+    aliases: ["p", "pong"],
     description: "sends the API latency of the bot.",
     run: async (bot, message, args) => {
         message.channel.send("Pinging...").then(m => {

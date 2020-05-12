@@ -3,6 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
     name: 'info',
+    aliases: ["information"],
     description: "Gives info for the server or you",
     run: async (bot, message, args) => {
         if(args[0] === 'server'){

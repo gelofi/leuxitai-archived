@@ -1,8 +1,9 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
-const prefix = 'l.';
+
 module.exports = {
     name: 'help',
+    aliases: ["manual", "h", "commands"],
     description: "Sends all commands in the channel.",
     run: async (bot, message, args) => {
       if (args[0] === "support") {
@@ -173,6 +174,7 @@ module.exports = {
         var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `points`")
        .setDescription("sends the statistics of your points/XP and level.")
+      .addField("Aliases", "`rank`  `profile`")
        message.channel.send(cmd)
       } else
       if (args[0] === "leaderboard"){
@@ -242,15 +244,15 @@ module.exports = {
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Music Commands")
        .setDescription("All of music commands are here.")
-       .addField(`${prefix}play`, "When initiated, will play a song on a voice channel. You must join a channel first.")
-       .addField(`${prefix}skip`, "Will skip the current song playing.")
-       .addField(`${prefix}pause`, "Will pause the current song playing.")
-       .addField(`${prefix}resume`, "Will resume the current song playing, if paused.")
-       .addField(`${prefix}np`, "Checks the current song playing.")
-       .addField(`${prefix}volume`, "Will check the volume of the song, increase or decrease it.")
-       .addField(`${prefix}queue`, "Checks the current song playing, and the next songs that will play.")
-       .addField(`${prefix}disconnect`, "Will stop the all songs in the queue and disconnects from the voice channel.")
-       .addField(`${prefix}lyrics`, "Sends the lyrics of the current song playing, if there is one. This command is still buggy.")
+       .addField(`play`, "When initiated, will play a song on a voice channel. You must join a channel first.")
+       .addField(`skip`, "Will skip the current song playing.")
+       .addField(`pause`, "Will pause the current song playing.")
+       .addField(`resume`, "Will resume the current song playing, if paused.")
+       .addField(`np`, "Checks the current song playing.")
+       .addField(`volume`, "Will check the volume of the song, increase or decrease it.")
+       .addField(`queue`, "Checks the current song playing, and the next songs that will play.")
+       .addField(`disconnect`, "Will stop the all songs in the queue and disconnects from the voice channel.")
+       .addField(`lyrics`, "Sends the lyrics of the current song playing, if there is one. This command is still buggy.")
        message.channel.send(cmd)
       } else {
         const help = new Discord.RichEmbed()

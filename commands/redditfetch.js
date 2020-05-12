@@ -4,6 +4,7 @@ const randomPuppy = require('random-puppy')
 
 module.exports = {
     name: 'redditfetch',
+    aliases: ["reddit"],
     description: "Fetches a random post from a desired subreddit.",
     run: async (bot, message, args) => {
       if (!args[0]) {
