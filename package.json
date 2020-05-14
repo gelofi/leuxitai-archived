@@ -28,7 +28,8 @@
     "enmap": "^5.2.4",
     "urban": "^0.3.2",
     "quick.db": "^7.1.1",
-    "ascii-table": "^0.0.9"
+    "ascii-table": "^0.0.9",
+    "@vitalets/google-translate-api": "^3.0.0"
   },
   "devDependencies": {},
   "description": ""

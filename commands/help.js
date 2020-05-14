@@ -1,11 +1,23 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
+const db = require("quick.db");
 
 module.exports = {
     name: 'help',
     aliases: ["manual", "h", "commands"],
     description: "Sends all commands in the channel.",
     run: async (bot, message, args) => {
+      
+      let prefix;
+  
+    let prefixes = await db.fetch(`prefix_${message.guild.id}`)
+    
+    if(prefixes == null){
+      prefix = 'l.';
+    } else {
+      prefix = prefixes;
+    }
+      
       if (args[0] === "support") {
         const support = new Discord.RichEmbed()
        .setAuthor("❓ Command: `support`")
@@ -19,12 +31,6 @@ module.exports = {
        .addField("Aliases", "`p`  `pong`")
        return message.channel.send(ping)
        } else
-      if (args[0] === "prefix"){
-        const prefix = new Discord.RichEmbed()
-       .setAuthor("❓ Command: `prefix`")
-       .setDescription("shows you the prefix of the bot.")
-       return message.channel.send(prefix)
-       } else
       if (args[0] === "invite"){
         const invite = new Discord.RichEmbed()
        .setAuthor("❓ Command: `invite`")
@@ -34,7 +40,7 @@ module.exports = {
       if (args[0] === "weather"){
         const weather = new Discord.RichEmbed()
        .setAuthor("❓ Command: `weather`")
-       .setDescription("shows a weather on a desired location.\nUsage: `l.weather <location>`")
+       .setDescription(`shows a weather on a desired location.\nUsage: \`${prefix}weather <location>\``)
        return message.channel.send(weather)
        } else
       if (args[0] === "changelogs"){
@@ -47,13 +53,13 @@ module.exports = {
       if (args[0] === "coinflip"){
         const coinflip = new Discord.RichEmbed()
        .setAuthor("❓ Command: `coinflip`")
-       .setDescription("shows you the prefix of the bot. Not replacable yet.")
+       .setDescription("flips a coin and sends the results.")
       return message.channel.send(coinflip)
       } else
       if (args[0] === "say"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `say`")
-       .setDescription("will repeat what you said.\nUsage: `l.say <message>`")
+       .setDescription(`will repeat what you said.\nUsage: \`${prefix}say <message>\``)
        .addField("Aliases", "`msg`")
       return message.channel.send(cmd)
       } else
@@ -67,7 +73,7 @@ module.exports = {
       if (args[1] === "8ball"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `8ball`")
-       .setDescription("ask something, then it responds with it's wisdom.\nUsage: `l.8ball <question>`")
+       .setDescription(`ask something, then it responds with it's wisdom.\nUsage: \`${prefix}8ball <question>\``)
        .addField("Aliases", "`8b`")
       return message.channel.send(cmd)
       } else
@@ -113,60 +119,60 @@ module.exports = {
       if (args[0] === "reddit"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `reddit`")
-       .setDescription("will send a random image post from a subreddit.\nUsage: `l.reddit <subreddit>`")
+       .setDescription(`will send a random image post from a subreddit.\nUsage: \`${prefix}reddit <subreddit>\``)
        .addField("Aliases", "`redditfetch`")
        return message.channel.send(cmd)
       } else
       if (args[0] === "hug"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `hug`")
-       .setDescription("ping someone to hug them! \nUsage: `l.hug <pinged_user>`")
+       .setDescription(`ping someone to hug them! \nUsage: \`${prefix}hug <pinged_user>\``)
       return message.channel.send(cmd)
       } else
       if (args[0] === "info"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `info`")
-       .setDescription("will send an information of the server, yourself, or someone by pingin them.\nUsage: `l.info server | me | pinged user`")
+       .setDescription(`will send an information of the server, yourself, or someone by pingin them.\nUsage: \`${prefix}info server | me | pinged user\``)
        .addField("Aliases", "`information`")
       return message.channel.send(cmd)
       } else
       if (args[0] === "purge"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `purge`")
-       .setDescription("will delete a number of messages.\nUsage: `l.purge <number of messages to be purged>`")
+       .setDescription(`will delete a number of messages.\nUsage: \`${prefix}purge <number of messages to be purged>\``)
        .addField("Aliases", "`delete`  `prune`")
       return message.channel.send(cmd)
       } else
       if (args[0] === "avatar"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `avatar`")
-       .setDescription("will send the avatar of a user.\nUsage: `l.avatar <me | pinged user>`")
+       .setDescription(`will send the avatar of a user.\nUsage: \`${prefix}avatar <me | pinged user>\``)
        .addField("Aliases", "`av`")
       return message.channel.send(cmd)
       } else
       if (args[0] === "kick"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `kick`")
-       .setDescription("will kick a mentioned user.\nUsage: `l.kick <user>`")
+       .setDescription(`will kick a mentioned user.\nUsage: \`${prefix}kick <user>\``)
        return message.channel.send(cmd)
       } else
       if (args[0] === "ban"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `ban`")
-       .setDescription("will ban a mentioned user.\nUsage: `l.ban <user>`")
+       .setDescription(`will ban a mentioned user.\nUsage: \`${prefix}ban <user>\``)
        .addField("Aliases", "`wee`")
       return message.channel.send(cmd)
       } else
       if (args[0] === "poll"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `poll`")
-       .setDescription("will initiate poll. Will react to your message.\nUsage: `l.poll <message>`")
+       .setDescription(`will initiate poll. Will react to your message.\nUsage: \`${prefix}poll <message>\``)
        return message.channel.send(cmd)
       } else
       if (args[0] === "coronavirus"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `coronavirus`")
-       .setDescription("sends the COVID-19 statistics. Stats may vary. Powered by NovelCovid.\nUsage: `l.coronavirus <country | worldwide>`")
+       .setDescription(`sends the COVID-19 statistics. Stats may vary. Powered by NovelCovid.\nUsage: \`${prefix}coronavirus <country | worldwide>\``)
        .addField("Aliases", "`covid`  `covid19`")
       return message.channel.send(cmd)
       } else
@@ -180,7 +186,7 @@ module.exports = {
       if (args[0] === "leaderboard"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `leaderboard`")
-       .setDescription("sends the Top 10 leaderboard of the points system.\nUsage: `l.leaderboard <page>`")
+       .setDescription(`sends the Top 10 leaderboard of the points system.\nUsage: \`${prefix}leaderboard <page>\``)
        message.channel.send(cmd)
       } else
       if (args[0] === 'urban'){
@@ -193,19 +199,20 @@ module.exports = {
       if (args[0] === "give"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `give`")
-       .setDescription("is used to give someone points or XP.\nUsage: `l.give <@user> <no. of XP>`")
+       .setDescription(`is used to give someone points or XP.\nUsage: \`${prefix}give <@user> <no. of XP>\``)
        message.channel.send(cmd)
       } else
-      if (args[0] === "setprefix"){
+      if (args[0] === "prefix"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `setprefix`")
-       .setDescription("is used to change Leuxitai's prefix in your guild.\nUsage: `l.setprefix <new_prefix>`")
+       .setDescription(`is used to change Leuxitai's prefix in your guild.\nUsage: \`${prefix}setprefix <new_prefix>\``)
+       .addField("Aliases", "`setprefix`  `sp`")
        message.channel.send(cmd)
       } else
       if (args[0] === "musicprefix"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `musicprefix`")
-       .setDescription("is used to change the prefix of Leuxitai's music module.\nUsage: `l.musicprefix <new_prefix>`")
+       .setDescription(`is used to change the prefix of Leuxitai's music module.\nUsage: \`${prefix}musicprefix <new_prefix>\``)
        message.channel.send(cmd)
       } else
       if (args[0] === "wallpaper"){
@@ -225,7 +232,7 @@ module.exports = {
       if (args[0] === "pat"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `pat`")
-       .setDescription("ping someone to pat them!\nUsage: `l.pat <@user>`")
+       .setDescription(`ping someone to pat them!\nUsage: \`${prefix}pat <@user>\``)
        message.channel.send(cmd)
       } else
       if (args[0] === "bird"){
@@ -238,6 +245,67 @@ module.exports = {
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `sync`")
        .setDescription("syncs the level system, and prunes users without an activity for a month.")
+       message.channel.send(cmd)
+      } else
+      if (args[0] === "translate"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `translate`")
+       .setDescription(`translate the given text to a desired language\nUsage: \`${prefix}translate <language> <text>\``)
+       .addField("Aliases", "`tl`")
+      return message.channel.send(cmd)
+      } else
+      if (args[0] === "percent"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `percent`")
+       .setDescription(`rates you by the given argument in percentile.\nUsage: \`${prefix}percent <@user> <adj.>\``)
+       .addField("Aliases", "`%`  `percentile`")
+       message.channel.send(cmd)
+      } else
+      if (args[0] === "logchannel"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `logchannel`")
+       .setDescription(`changes your logging channel for kick, ban, or prefix logs.\nUsage: \`${prefix}logchannel <channel> (Specify channels without #)\``)
+       message.channel.send(cmd)
+      } else
+      if (args[0] === "setmuterole"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `setmuterole`")
+       .setDescription(`is used to change the mute role of the server.\nUsage: \`${prefix}setmuterole <role> (Do not mention the role!)\``)
+       message.channel.send(cmd)
+      } else
+      if (args[0] === "setmainrole"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `setmainrole`")
+       .setDescription(`is used to change the main role of the server. ( [!] The main role is the role you give out to new members.)\nUsage: \`${prefix}setmainrole <role>\``)
+       message.channel.send(cmd)
+      } else
+      if (args[0] === "mute"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `mute`")
+       .setDescription(`mutes a mentioned/specified user.\nUsage: \`${prefix}mute <@user> <time>\``)
+       .addField("Aliases", "`shh`  `shutup`")
+       message.channel.send(cmd)
+      } else
+      if (args[0] === "unmute"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `unmute`")
+       .setDescription(`unmutes a muted mentioned/specified user.\nUsage: \`${prefix}unmute <@user>\``)
+       message.channel.send(cmd)
+      } else
+      if (args[0] === "warn"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `warn`")
+       .setDescription(`warns a mentioned/specified user. No roles.\nUsage: \`${prefix}warn <@user>\``)
+       .addField("Tip", "5 warns will grant a ban. 4 and 3 warns will grant a 5 minute mute. 2 warns will grant a 2 minute mute.")
+       .addField("Aliases", "`w`  `punish`")
+       message.channel.send(cmd)
+      } else
+      if (args[0] === "unwarn"){
+         var cmd = new Discord.RichEmbed()
+       .setAuthor("❓ Command: `unwarn`")
+       .setDescription(`unwarns a mentioned/specified user. Removes a warn.\nUsage: \`${prefix}unwarn <@user>\``)
+       .addField("Tip", "5 warns will grant a ban. 4 and 3 warns will grant a 5 minute mute. 2 warns will grant a 2 minute mute.")
+       .addField("Aliases", "`uw`  `pardon`")
        message.channel.send(cmd)
       } else
       if (args[0] === "music"){
@@ -257,41 +325,43 @@ module.exports = {
       } else {
         const help = new Discord.RichEmbed()
        .setAuthor("Command List", bot.user.displayAvatarURL)
-       .setDescription("**Use `l.help <command>` (Letter L) to view the command information.\nClick 🔘 to expand the commands' description.**")
-       .addField(`:dividers:  Information`, '`help`, `support`, `prefix`, `ping`, `invite`, `weather`, `changelogs`')
-       .addField(`:video_game:  Fun and Random`, "`coinflip`, `say`, `8ball`, `topic`, `wisdom`")
+       .setDescription(`**Use \`${prefix}help <command>\` (Letter L) to view the command information.\nClick 🔘 to expand the commands' description.**`)
+       .addField(`:dividers:  Information`, '`help`, `support`, `ping`, `invite`, `weather`, `changelogs`')
+       .addField(`:video_game:  Fun and Random`, "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`")
        .addField(`:frame_photo:  Images`, "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`")
-       .addField(`:tools:  Tools`, "`info`, `purge`, `avatar`, `kick`, `ban`, `poll`, `reddit`, `urban`")
-       .addField(`:gear:  Settings`, "`setprefix`, `musicprefix`")
-       .addField(":tickets:  Levels", "`points`, `leaderboard`, `give`, `sync`")
+       .addField(`:tools:  Tools`, "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`")
+       .addField(`:gear:  Settings`, "`prefix`, `musicprefix`, `logchannel`, `setmainrole`, `setmuterole`")
+       .addField(`:tickets:  Levels`, "`points`, `leaderboard`, `give`, `sync`")
+       .addField(`:shield:  Moderation`, "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `unwarn`")
        .addField(`:musical_note:  Music`, "`play`, `pause`, `resume`, `skip`, `np`, `volume`, `queue`, `lyrics`, `disconnect`")
        .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
-       .addField("Leuxitai - v9.1", `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`)
-       .setFooter("If Leuxitai has a custom prefix in your server, use that one.\nIf you do not know Leuxitai's prefix in this server, mention Leuxitai.")
+       .addField("Leuxitai - v10", `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`)
+       .setFooter("FizxCreations. | twitter.com/Fizx26S")
        .setColor(0x3654ff);
         message.channel.send(help).then(msg => {
   msg.react('🔘').then(r => {
      const homef = (reaction, user) => reaction.emoji.name == '🔘' && user.id === message.author.id;
-    const home = msg.createReactionCollector(homef, { time: '100000' });
+    const home = msg.createReactionCollector(homef, { time: '200000' });
      home.on('collect', r => {
        let i = new Discord.RichEmbed()
        .setAuthor("Expanded Command List", bot.user.displayAvatarURL)
-       .setDescription("**This is the expanded help command. Click ⭕ to collapse this manual.\nUse `l.help` to view a normal, embedded manual.**")
-       .addField(`:dividers:  Information`, "`help` - shows all Leuxitai's commands.\n`support` - sends a server link to Leuxitai's server through DMs.\n`prefix` - will say it's prefix. Unchangeable.\n`ping` - sends the API latency of the bot.\n`invite` - sends an invite to invite Leuxitai to your server through DMs.\n`weather` - sends the weather information at the desired location.\n`changelogs` - sends the latest changelogs through DMs.")
-       .addField(`:video_game:  Fun and Random`, "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.")
+       .setDescription(`**This is the expanded help command. Click ⭕ to collapse this manual.\nUse \`${prefix}help\` to view a normal, embedded manual.**`)
+       .addField(`:dividers:  Information`, "`help` - shows all Leuxitai's commands.\n`support` - sends a server link to Leuxitai's server through DMs.\n`ping` - sends the API latency of the bot.\n`invite` - sends an invite to invite Leuxitai to your server through DMs.\n`weather` - sends the weather information at the desired location.\n`changelogs` - sends the latest changelogs through DMs.")
+       .addField(`:video_game:  Fun and Random`, "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.")
        .addField(`:frame_photo:  Images`, "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image")
-       .addField(`:tools:  Tools`, "`info` - collects the information of the server, you, or mentioned user.\n`purge` - used to bulk delete messages, with the desired amount.\n`avatar` - fetches the avatar of a user.\n`kick` - kicks the mentioned user.\n`ban` - will ban the mentioned user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a random word from Urban Dictionary.")
-       .addField(`:gear:  Settings`, "`setprefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.")
-       .addField(":tickets:  Levels", "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`give` - gives a member a desired amount of points.\n`sync` - syncs the level system, and prunes users without an activity for a month.")
+       .addField(`:tools:  Tools`, "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a random word from Urban Dictionary.\n`translate` - translate the given text to the desired language")
+       .addField(`:gear:  Settings`, "`prefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.")
+       .addField(`:tickets:  Levels`, "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`give` - gives a member a desired amount of points.\n`sync` - syncs the level system, and prunes users without an activity for a month.")
+       .addField(`:shield:  Moderation`, "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - warns a user.\n`unwarn` - removes a warn from a user")
        .addField(`:musical_note:  Music`, "`play`- plays the song you put.\n`pause` - will pause the current song playing\n`resume` - will resume the current song playing if paused.\n`skip` - will skip the current song to the next song.\n`np` - will send the current song playing in queue.\n`volume` - will send the current volume, which you can increase or decrease.\n`queue` - sends the song queue in the server.\n`lyrics` - sends the lyrics of the current song, if there is. Buggy.\n`disconnect` - disconnects from the voice channel and stops music playback.")
        .addField(`:calendar_spiral:  Event Commands`, "`coronavirus` - sends the coronavirus statistics, worldwide or a country.")
-       .addField("Leuxitai - v9.1", `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`)
-       .setFooter("If Leuxitai has a custom prefix in your server, use that one.\nIf you do not know your Leuxitai's prefix in this server, mention Leuxitai.")
+       .addField("Leuxitai - v10", `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`)
+       .setFooter("FizxCreations. | twitter.com/Fizx26S")
        .setColor(0x3654ff);
             msg.edit(i).then(msg => {
             	msg.react('⭕').then(r => {
             		const homex = (reaction, user) => reaction.emoji.name == '⭕' && user.id === message.author.id;
-            		const homeex = msg.createReactionCollector(homex, { time: '100000' });
+            		const homeex = msg.createReactionCollector(homex, { time: '200000' });
             		homeex.on('collect', rr => {
             			msg.edit(help)
               			})
