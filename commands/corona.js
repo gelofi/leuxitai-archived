@@ -4,8 +4,8 @@ const { NovelCovid } = require("novelcovid");
 const track = new NovelCovid();
 
 module.exports = {
-    name: 'corona',
-    aliases: ["covid", "covid19"],
+    name: 'coronavirus',
+    aliases: ["covid", "covid19", "corona"],
     description: "Gives corona information",
     run: async (bot, message, args) => {
       if(!args[0]) {

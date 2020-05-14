@@ -1,10 +1,22 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
+const db = require("quick.db");
 
 module.exports = {
     name: 'kick',
     description: "Kicks a user.",
     run: async (bot, message, args) => {
+      
+        let channel;
+  
+    let channels = await db.fetch(`channel_${message.guild.id}`)
+    
+    if(channels == null){
+      channel = message.channel.name;
+    } else {
+      channel = channels;
+    }
+      
         if(!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send("You don't have enough permissions to do this command!");
         if(!message.guild.me.hasPermission("KICK_MEMBERS")) {
         return message.reply(`I do not have enough permissions to use this command!`)
@@ -21,13 +33,16 @@ module.exports = {
                 if(member){
                     member.kick(reason).then(() => {
                         const embed = new Discord.RichEmbed()
-                        .setAuthor(`Member kicked: ${memberID}`, member.user.displayAvatarURL)
+                        .setAuthor(`Logs | Member kicked: ${memberID}`, message.guild.iconURL)
                         .setColor("RANDOM")
-                        .setThumbnail()
+                        .setThumbnail(member.user.displayAvatarURL)
                         .setDescription(
                          `Reason: ${reason}\nModerator: ${message.member}`)
+                        .setFooter(`ID: ${user.id}`)
                         .setTimestamp();
-                         message.channel.send(embed);
+                        var set = message.guild.channels.find(`name`, `${channel}`)
+                         set.send(embed)
+                         message.channel.send(`${memberID} has been kicked! ✅`);
                     }).catch(err => {
                         message.reply('I cannot kick this member!');
                         console.log(err);

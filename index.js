@@ -13,10 +13,10 @@ setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 270000);
 
-const bot = new Discord.Client({ disableEveryone: true });
-const token = "Njk4NTI5MTYwOTM4NzgyNzIw.XpHNig.pRCnuawqLABbhGAevwPMjwzyOd0";
+const bot = new Discord.Client({ disableEveryone: true, disableMentions: true });
+const token = process.env.TOKEN
 const PREFIX = "l.";
-const db = require('quick.db')
+const db = require('quick.db');
 
 // Collections
 bot.commands = new Collection();
@@ -100,13 +100,23 @@ bot.on("message", async message => {
     }
     	}
   
-const { default_prefix } = require("./config.js")
+  const { default_prefix } = require("./config.js")
   let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`)
     if(prefixes == null){
       prefix = default_prefix;
     } else {
       prefix = prefixes;
+    }
+  //log channel
+  let channel;
+  
+    let channels = await db.fetch(`channel_${message.guild.id}`)
+    
+    if(channels == null){
+      channel = message.channel.name;
+    } else {
+      channel = channels;
     }
   
   if(message.content.startsWith(`<@698529160938782720>`)){
@@ -118,8 +128,6 @@ const { default_prefix } = require("./config.js")
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
  
-    if (!message.content.startsWith(prefix)) return;
-
     // If message.member is uncached, cache it.
     if (!message.member) message.member = await message.guild.fetchMember(message);
 
