@@ -14,7 +14,7 @@ setInterval(() => {
 }, 270000);
 
 const bot = new Discord.Client({ disableEveryone: true, disableMentions: true });
-const token = process.env.TOKEN
+const { token } = require ("./config.js")
 const PREFIX = "l.";
 const db = require('quick.db');
 
