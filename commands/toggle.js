@@ -24,7 +24,7 @@ module.exports = {
         
         if(args[0] === "xp"){
         if(!args[1]) return message.reply("toggle what? On or Off?")
-        if(!args[1] == 'on' || !args[1] == 'off') return message.reply("wat? Toggle it on, or off!")
+        if(!args[1] === 'on' || !args[1] === 'off') return message.reply("wat? Toggle it on, or off!")
         await db.set(`togglexp_${message.guild.id}`, args[1])
         var embedp = new Discord.RichEmbed()
         .setDescription(`Toggled XP System \`${args[1]}\` successfully.`)

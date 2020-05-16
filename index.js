@@ -158,4 +158,4 @@ bot.on("message", async message => {
         command.run(bot, message, args);
 });
 
-bot.login(token);
+//bot.login(token);
