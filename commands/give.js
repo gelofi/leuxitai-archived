@@ -1,12 +1,27 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
+const db = require("quick.db");
 
 module.exports = {
     name: 'give',
     aliases: ["g"],
     description: "Points system for Leuxitai - Give",
     run: async (bot, message, args) => {
-    // Limited to guild owner - adjust to your own preference!
+      
+    let togglexp;
+  
+    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
+    
+    if(togglesxp == null){
+      togglexp = 'on';
+      //return message.channel.send("That command is not enabled!");
+    } else {
+      togglexp = togglesxp;
+    }
+   
+  // if(togglexp !== 'on' || 'off') return
+   if(togglexp === 'off') return message.channel.send("This command is not toggled on!");
+      
     if(!message.member.hasPermission("ADMINISTRATOR"))
       return message.reply("you do not have enough permissions to do this command!");
 
