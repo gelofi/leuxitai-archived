@@ -35,7 +35,7 @@ module.exports = {
   let indexxx = 20;
     if(args[0] === "2"){
      // if(togglexp !== 'on' || 'off') return
-      if(togglexp === 'off') return message.channel.send("This command is not toggled on!");
+      if(!togglexp === 'on') return message.channel.send("This command is not toggled on!");
       const topp = new Discord.RichEmbed()
       .setAuthor("Leaderboard - 11 ~ 20", message.guild.iconURL)
       .setColor(0x1b03a3)
@@ -46,7 +46,7 @@ module.exports = {
     } else 
   if(args[0] === "3"){
     //if(togglexp !== 'on' || 'off') return
-    if(togglexp === 'off') return message.channel.send("This command is not toggled on!");
+    if(!togglexp === 'on') return message.channel.send("This command is not toggled on!");
     const toppp = new Discord.RichEmbed()
     .setAuthor("Leaderboard - 21 ~ 30", message.guild.iconURL)
     .setColor(0x1b03a3)
@@ -57,7 +57,7 @@ module.exports = {
   } else
   if(!args[0]){
     //if(togglexp !== 'on' || 'off') return
-    if(togglexp === 'off') return message.channel.send("This command is not toggled on!");
+    if(!togglexp === 'on') return message.channel.send("This command is not toggled on!");
   // Now shake it and show it! (as a nice embed, too!)
   const embed = new Discord.RichEmbed()
     .setAuthor("Leaderboard - Top 10", message.guild.iconURL)
