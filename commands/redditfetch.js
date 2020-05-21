@@ -13,6 +13,7 @@ module.exports = {
         
         musakui(`${args[0]}`)
          .then(result => {
+          if(result.nsfw == true) return message.channel.send("The post that was fetched was NSFW! No NSFW posts!")
                const reddit = new Discord.RichEmbed()
                .setDescription(`**[r/${subr}](https://reddit.com/r/${subr})** • [u/${result.author}](https://reddit.com/u/${result.author}) | [Post~link](${result.reddit_url})`)
                .addField(`${result.title}`, `_ _`)
