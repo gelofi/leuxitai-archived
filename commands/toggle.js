@@ -39,7 +39,7 @@ module.exports = {
         if(!args[1]) return message.reply("toggle what? On or Off?")[1] 
         if(args[1] !== 'on' && args[1] !== 'off') return message.reply("wat? Toggle it ON, or OFF !")
         await db.set(`togglexp_${message.guild.id}`, args[1])
-        /*var embedp = new Discord.RichEmbed()
+        /*Version 9 - var embedp = new Discord.RichEmbed()
         .setDescription(`Toggled XP System \`${args[1]}\` successfully.`)
         .setColor("#3654ff")
         message.channel.send(embedp)*/

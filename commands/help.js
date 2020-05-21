@@ -317,6 +317,17 @@ module.exports = {
        .addField("Aliases", "`uw`  `pardon`")
        message.channel.send(cmd)
       } else
+      if (args[0] === "embed"){
+        	    let embed = new Discord.RichEmbed()
+        	    .setTitle("Embedding messages")
+        	    .setDescription("Embed messages based on your desired template.")
+        	    .addField("colored", `Sets a full template of an embed.\nExample:\n\`${prefix}embed colored Title Footer #color Description here!\``)
+              .addField("footer", `A full template of an embed. No colors.\nExample:\n\`${prefix}embed footer Title Footer Description right here.\``)
+              .addField("titled", `An embed without colors or footer. Just title.\nExample\n\`${prefix}embed titled Title Description here.\``)
+              .setColor("#3654ff")
+              .setFooter("You can also create a simple embed without these modifications.")
+              message.channel.send(embed)
+        	} else
       if (args[0] === "music"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Music Commands")
@@ -338,13 +349,13 @@ module.exports = {
        .addField(`:dividers:  Information`, '`help`, `support`, `ping`, `invite`, `weather`, `changelogs`')
        .addField(`:video_game:  Fun and Random`, "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`")
        .addField(`:frame_photo:  Images`, "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`")
-       .addField(`:tools:  Tools`, "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`")
+       .addField(`:tools:  Tools`, "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`")
        .addField(`:gear:  Settings`, "`prefix`, `musicprefix`, `logchannel`, `setmainrole`, `setmuterole`, `toggle`")
        .addField(`:tickets:  Levels`, "`points`, `leaderboard`, `give`, `sync`")
        .addField(`:shield:  Moderation`, "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `unwarn`")
        .addField(`:musical_note:  Music`, "`play`, `pause`, `resume`, `skip`, `np`, `volume`, `queue`, `lyrics`, `disconnect`")
        .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
-       .addField("Leuxitai - v10.1", `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`)
+       .addField("Leuxitai - v10.3", `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`)
        .setFooter("FizxCreations. | twitter.com/Fizx26S")
        .setColor(0x3654ff);
         message.channel.send(help).then(msg => {
@@ -358,13 +369,13 @@ module.exports = {
        .addField(`:dividers:  Information`, "`help` - shows all Leuxitai's commands.\n`support` - sends a server link to Leuxitai's server through DMs.\n`ping` - sends the API latency of the bot.\n`invite` - sends an invite to invite Leuxitai to your server through DMs.\n`weather` - sends the weather information at the desired location.\n`changelogs` - sends the latest changelogs through DMs.")
        .addField(`:video_game:  Fun and Random`, "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.")
        .addField(`:frame_photo:  Images`, "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image")
-       .addField(`:tools:  Tools`, "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a random word from Urban Dictionary.\n`translate` - translate the given text to the desired language")
+       .addField(`:tools:  Tools`, "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a random word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!")
        .addField(`:gear:  Settings`, "`prefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.\n`toggle` - toggles commands on or off")
        .addField(`:tickets:  Levels`, "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`give` - gives a member a desired amount of points.\n`sync` - syncs the level system, and prunes users without an activity for a month.")
        .addField(`:shield:  Moderation`, "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - warns a user.\n`unwarn` - removes a warn from a user")
        .addField(`:musical_note:  Music`, "`play`- plays the song you put.\n`pause` - will pause the current song playing\n`resume` - will resume the current song playing if paused.\n`skip` - will skip the current song to the next song.\n`np` - will send the current song playing in queue.\n`volume` - will send the current volume, which you can increase or decrease.\n`queue` - sends the song queue in the server.\n`lyrics` - sends the lyrics of the current song, if there is. Buggy.\n`disconnect` - disconnects from the voice channel and stops music playback.")
        .addField(`:calendar_spiral:  Event Commands`, "`coronavirus` - sends the coronavirus statistics, worldwide or a country.")
-       .addField("Leuxitai - v10.1", `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`)
+       .addField("Leuxitai - v10.3", `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`)
        .setFooter("FizxCreations. | twitter.com/Fizx26S")
        .setColor(0x3654ff);
             msg.edit(i).then(msg => {

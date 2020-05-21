@@ -7,8 +7,7 @@ module.exports = {
     aliases: ["wee"],
     description: "Bans a user.",
     run: async (bot, message, args) => {
-        
-    let channel;
+        let channel;
   
     let channels = await db.fetch(`channel_${message.guild.id}`)
     

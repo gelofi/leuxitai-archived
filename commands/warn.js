@@ -10,7 +10,7 @@ module.exports = {
     description: "warns a user",
     run: async (bot, message, args) => {
       
-        let channel;
+    let channel;
   
     let channels = await db.fetch(`channel_${message.guild.id}`)
     
@@ -134,23 +134,5 @@ module.exports = {
          member.addRole(muterole.id)
          message.guild.member(user).ban(reason)
       }
-      
-            /*if(user){
-                
-                
-                
-                if(member){
-                    member.kick(reason).then(() => {
-                        
-                        
-                         message.channel.send(`${memberID} has been kicked! ✅`);
-                    }).catch(err => {
-                        message.reply('I cannot kick this member!');
-                        console.log(err);
-                    });
-                }
-            } else {
-                    message.reply('Please specify a member / person to be kicked! ');
-                }*/
             }
 }

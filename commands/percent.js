@@ -20,15 +20,20 @@ module.exports = {
                     "Yes!",]
         var number = Math.floor(Math.random() * 100)
         
+        if(args[0] === `${user}`) {
+          if(!args[1]) return message.reply(`what am I gonna test ${user.tag} on?`);
+          if(args[2]) return message.channel.send(`${reply[Math.round(Math.random() * (reply.length - 1))]} **${user}** is ${hund}% **${args[1]}** and ${fif * 1}% **${args[2]}**.`)
+        
+          return message.channel.send(`${reply[Math.round(Math.random() * (reply.length - 1))]} ${user} is ${hund}% ${args[1]}.`);
+        
+        }
+      
+     if(args[0] !== `${user}`) {
         if(!args[0]) return message.reply("what am I gonna test you on? (Use commas to seperate)");
-        if(!args[1]) return message.channel.send(`${reply[Math.round(Math.random() * (reply.length - 1))]} **${me}** is ${hund}% **${args[0]}**.`)
-        if(!args[2]) return message.channel.send(`${reply[Math.round(Math.random() * (reply.length - 1))]} **${me}** is ${hund}% **${args[0]}** and ${fif * 1}% **${args[1]}**.`)
- 
-        if(args[0] === user) {
-          if(!args[1]) return message.reply(`what am I gonna test ${user.tag} on?`)
-          return message.channel.send(`${reply[Math.round(Math.random() * (reply.length - 1))]} ${user} is ${hund}% ${args[2]}`);
-        } else
-          if(!args[2]) return message.channel.send(`${reply[Math.round(Math.random() * (reply.length - 1))]} **${me}** is ${hund}% **${args[0]}** and ${fif * 1}% **${args[1]}**.`)
+        if(args[1]) return message.channel.send(`${reply[Math.round(Math.random() * (reply.length - 1))]} **${me}** is ${hund}% **${args[0]}** and ${fif * 1}% **${args[1]}**.`);
 
+        return message.channel.send(`${reply[Math.round(Math.random() * (reply.length - 1))]} **${me}** is ${hund}% **${args[0]}**.`);
+     }
+      
     }
 }
