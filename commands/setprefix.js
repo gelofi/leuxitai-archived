@@ -9,7 +9,7 @@ module.exports = {
     description: "Changes the prefix of the bot",
     run: async (bot, message, args) => {
       
-      let channel;
+    let channel;
   
     let channels = await db.fetch(`channel_${message.guild.id}`)
     
@@ -19,6 +19,13 @@ module.exports = {
       channel = channels;
     }
       
+    let prefix;
+    let prefixes = await db.fetch(`prefix_${message.guild.id}`)
+    if(prefixes == null){
+      prefix = 'l.';
+    } else {
+      prefix = prefixes;
+    }
       if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to change my prefix!");
         if(!args[0]) return message.reply("please define the new prefix you desire to set!");
         if(args[1]) return message.reply("prefixes with spaces are not allowed!")
@@ -34,7 +41,9 @@ module.exports = {
         .setDescription(`My prefix for this guild is now changed to \`${args[0]}\` successfully.`)
         .setColor("#3654ff")
         .setFooter("You can mention me for me to send my prefix in this server.")
-        message.channel.send(embedp).then (message.channel.send(`Due to Leuxitai's music module in another project, you need to change the music module's prefix too!\nType \`${prefix}musicprefix\` to change the prefix for the music module.`))
+        message.channel.send(embedp).then (message.channel.send(
+          `Due to Leuxitai's music module in another project, you need to change the music module's prefix too!\nType \`${prefix}musicprefix\` to change the prefix for the music module.`
+        ))
         var log = new Discord.RichEmbed()
         .setTitle("Logs | Settings updated ✓")
         .setDescription(`New guild prefix is now \`${args[0]}\``)
