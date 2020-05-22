@@ -19,7 +19,7 @@ module.exports = {
       togglexp = togglesxp;
     }
   //if(togglexp !== 'on' || 'off') return
-  if(togglexp === 'off') return message.channel.send("This command is not toggled on!");
+  if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
       
       if(!message.member.hasPermission("MANAGE_GUILD"))
       return message.reply("you do not have enough permissions to do this command!");

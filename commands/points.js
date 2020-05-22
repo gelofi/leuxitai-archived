@@ -20,7 +20,8 @@ module.exports = {
     }
       
     //if(togglexp !== 'on' || 'off') return
-    if(togglexp === 'off') return message.channel.send("This command is not toggled on!");
+    if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
+      
     const key = `${message.guild.id}-${message.author.id}`;
     const points = new Discord.RichEmbed()
     .setAuthor(`${message.author.username}'s profile`, message.guild.iconURL)
