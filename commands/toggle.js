@@ -30,7 +30,19 @@ module.exports = {
       togglexp = togglesxp;
     }
       
-    if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to change my prefix!");
+    let nsfw;
+  
+    let nsfws = await db.fetch(`nsfw_${message.guild.id}`)
+    
+    if(nsfws == null){
+      nsfw = 'off';
+      //return message.channel.send("That command is not enabled!");
+    } else {
+      nsfw = nsfws;
+    }
+      
+      
+    if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to toggle commands!");
         if(!args[0]) return message.reply("please specify a command to turn on/off!");
         //if(!args[1].content.startsWith("o")) return message.reply("turn commands on or off!")
         if(args[1].length > 3) return message.reply(`really? Setting it to ${args[1]}?`)
@@ -54,8 +66,6 @@ module.exports = {
           log.send(embed)
   //end of XP
         }
-      
-      
-      
+    
     }
 }
