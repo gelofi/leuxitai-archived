@@ -57,7 +57,7 @@ module.exports = {
 	}
 }
 
-    if(!args[0]) return message.reply("please specify a member/user to warn! (Do not ping them!)")
+    if(!args[0]) return message.reply("please specify a member/user to warn!")
       
     let user = getUserFromMention(args[0]) || bot.users.find("username", args[0]);
         

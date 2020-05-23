@@ -326,7 +326,7 @@ module.exports = {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `warn`")
         .setDescription(
-          `edits the warn profile of a specified user. No roles. No bans or kicks.\nUsage: \`${prefix}warn <user> (Don't mention!) <warn level> <reason>\``
+          `edits the warn profile of a specified user. No roles. No bans or kicks.\nUsage: \`${prefix}warn <user> <warn level> <reason>\``
         )
         .addField("Aliases", "`w`  `punish`  `rewarn`");
       message.channel.send(cmd);
