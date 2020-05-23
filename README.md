@@ -26,4 +26,4 @@ If you need support, just join our server, click [here](https://discord.gg/4VXEX
 If you want to support me, and support Leuxitai's further development, do `l.support`
 on your server.
 
-#### Copyright © Fizx 2020
+# Copyright © Fizx 2020

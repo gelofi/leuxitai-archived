@@ -8,13 +8,10 @@ dependencies:
   express: 4.17.1
   express-glitch-keepalive: 0.2.0
   fs: 0.0.2
-  google-translate-api: 2.3.0
-  moment: 2.25.3
   ms: 2.1.2
   musakui: 1.0.0
   node-fetch: 2.6.0
   novelcovid: 1.2.7
-  opusscript: 0.0.7
   quick.db: 7.1.1
   random-puppy: 1.1.0
   snekfetch: 4.0.4
@@ -838,22 +835,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MJTUg1kjuLeQCJ+ccE4Vpa6kKVXkPYJ2mOCQyUuKLcLQsdrMCpBPUi8qVE6+YuaJkozeA9NusTAw3hLr8Xe5EQ==
-  /google-translate-api/2.3.0:
-    dependencies:
-      configstore: 2.1.0
-      google-translate-token: 1.0.0
-      got: 6.7.1
-      safe-eval: 0.3.0
-    dev: false
-    resolution:
-      integrity: sha1-YmcwoSPaDVevNzXdcHzacc7pGcc=
-  /google-translate-token/1.0.0:
-    dependencies:
-      configstore: 2.1.0
-      got: 6.7.1
-    dev: false
-    resolution:
-      integrity: sha1-vpQ0RXhvAMN2Xewx9JDawhIo0/g=
   /got/6.7.1:
     dependencies:
       create-error-class: 3.0.2
@@ -1259,10 +1240,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-2IUgKDhc3J7Uug+FxMXuqIyYzH7gJjXECKe/w43IGgQHTSj3InJi+yAA7T24L9bQMRKiUEHxEX37G5JpVUGLcQ==
-  /moment/2.25.3:
-    dev: false
-    resolution:
-      integrity: sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -1366,10 +1343,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
-  /opusscript/0.0.7:
-    dev: false
-    resolution:
-      integrity: sha512-DcBadTdYTUuH9zQtepsLjQn4Ll6rs3dmeFvN+SD0ThPnxRBRm/WC1zXWPg+wgAJimB784gdZvUMA57gDP7FdVg==
   /os-homedir/1.0.2:
     dev: false
     engines:
@@ -1620,10 +1593,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-fZEwUGbVl7kouZs1jCdMLdt95hdIv0ZeHg6L7qPeciMZhZ+/gdesW4wgTARkrFWEpspjEATAzUGPG8N2jJiwbg==
-  /safe-eval/0.3.0:
-    dev: false
-    resolution:
-      integrity: sha1-Bs4RHuvZwYWrr/AI7A/P/Fxb4Aw=
   /safer-buffer/2.1.2:
     dev: false
     resolution:
@@ -2069,13 +2038,10 @@ specifiers:
   express: ^4.17.1
   express-glitch-keepalive: ^0.2.0
   fs: ^0.0.2
-  google-translate-api: ^2.3.0
-  moment: ^2.25.3
   ms: ^2.1.2
   musakui: ^1.0.0
   node-fetch: ^2.6.0
   novelcovid: ^1.2.7
-  opusscript: 0.0.7
   quick.db: ^7.1.1
   random-puppy: ^1.1.0
   snekfetch: ^4.0.4
