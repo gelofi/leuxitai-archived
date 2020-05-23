@@ -42,14 +42,28 @@ module.exports = {
          } else {
             mainRole = mainRoles;
          }
-        
+       
+      function getUserFromMention(mention) {
+	if (!mention) return;
+
+	if (mention.startsWith('<@') && mention.endsWith('>')) {
+		mention = mention.slice(2, -1);
+
+		if (mention.startsWith('!')) {
+			mention = mention.slice(1);
+		}
+
+		return bot.users.get(mention);
+	}
+}
+
     if(!args[0]) return message.reply("please specify a member/user to warn! (Do not ping them!)")
       
-    let user = bot.users.find("username", args[0]) || bot.users.find("id", `${args[0]}`);
+    let user = getUserFromMention(args[0]) || bot.users.find("username", args[0]);
         
     let warn;
 
-    let warns = await db.fetch(`warn_${message.guild.id}_${user.id}`)
+    let warns = await db.fetch(`warn_${message.guild.id}_${user.id}`);
     
     if(warns == null){
       warn = 0;
@@ -57,7 +71,7 @@ module.exports = {
       warn = warns;
     }
         
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to change my prefix!");
+        if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to warn members!");
         if(!user) return message.reply("please specify a member/user to warn!");
         let reason = args.slice(2).join(" ");
           if (!reason) reason = "No reason provided.";
@@ -88,7 +102,7 @@ module.exports = {
       let muterole = message.guild.roles.find(role => role.name === `${muteRole}`)
       let newarno = args[1]
       
-      if(newarno == "2"){
+      if(newarno === "2"){
          member.removeRole(mainrole.id)
          member.addRole(muterole.id)
         
@@ -104,7 +118,7 @@ module.exports = {
          }, ms('2m'));
       }
       
-      if(newarno == "3"){
+      if(newarno === "3"){
          member.removeRole(mainrole.id)
          member.addRole(muterole.id)
         
@@ -120,7 +134,7 @@ module.exports = {
            set.send(embed)
          }, ms('5m'));
       }
-      if(newarno == "4"){
+      if(newarno === "4"){
          member.removeRole(mainrole.id)
          member.addRole(muterole.id)
         
@@ -137,7 +151,7 @@ module.exports = {
          }, ms('5m'));
       }
       
-      if(newarno == "5"){
+      if(newarno === "5"){
          member.removeRole(mainrole.id)
          member.addRole(muterole.id)
          message.guild.member(user).ban(reason)

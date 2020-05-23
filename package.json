@@ -11,11 +11,8 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.6.4",
-    "google-translate-api": "^2.3.0",
-    "moment": "^2.25.3",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
-    "opusscript": "0.0.7",
     "random-puppy": "^1.1.0",
     "snekfetch": "^4.0.4",
     "superagent": "^5.2.2",
