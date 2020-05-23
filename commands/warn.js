@@ -42,14 +42,28 @@ module.exports = {
          } else {
             mainRole = mainRoles;
          }
-        
+       
+      function getUserFromMention(mention) {
+	if (!mention) return;
+
+	if (mention.startsWith('<@') && mention.endsWith('>')) {
+		mention = mention.slice(2, -1);
+
+		if (mention.startsWith('!')) {
+			mention = mention.slice(1);
+		}
+
+		return bot.users.get(mention);
+	}
+}
+
     if(!args[0]) return message.reply("please specify a member/user to warn! (Do not ping them!)")
       
-    let user = bot.users.find("username", args[0]);
+    let user = getUserFromMention(args[0]) || bot.users.find("username", args[0]);
         
     let warn;
 
-    let warns = await db.fetch(`warn_${message.guild.id}_${user.id}`)
+    let warns = await db.fetch(`warn_${message.guild.id}_${user.id}`);
     
     if(warns == null){
       warn = 0;
