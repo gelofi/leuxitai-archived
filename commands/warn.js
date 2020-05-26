@@ -3,7 +3,6 @@ const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
 const fs = require("fs");
 const ms = require("ms");
-let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 module.exports = {
     name: 'warn',
@@ -57,7 +56,7 @@ module.exports = {
 	}
 }
 
-    if(!args[0]) return message.reply("please specify a member/user to warn!")
+    if(!args[0]) return message.reply("please specify a member/user to warn! (Do not ping them!)")
       
     let user = getUserFromMention(args[0]) || bot.users.find("username", args[0]);
         

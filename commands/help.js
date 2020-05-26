@@ -326,7 +326,7 @@ module.exports = {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `warn`")
         .setDescription(
-          `edits the warn profile of a specified user. No roles. No bans or kicks.\nUsage: \`${prefix}warn <user> <warn level> <reason>\``
+          `edits the warn profile of a specified user. No roles. No bans or kicks.\nUsage: \`${prefix}warn <user> (Don't mention!) <warn level> <reason>\``
         )
         .addField("Aliases", "`w`  `punish`  `rewarn`");
       message.channel.send(cmd);
@@ -429,7 +429,7 @@ module.exports = {
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
           "Leuxitai - v10.4",
-          `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`
+          `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
         .setColor(0x3654ff);
@@ -482,7 +482,7 @@ module.exports = {
               )
               .addField(
                 "Leuxitai - v10.4",
-                `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)`
+                `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
               .setColor(0x3654ff);
