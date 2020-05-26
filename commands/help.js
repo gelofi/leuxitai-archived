@@ -322,6 +322,11 @@ module.exports = {
           `unmutes a muted mentioned/specified user.\nUsage: \`${prefix}unmute <@user>\``
         );
       message.channel.send(cmd);
+    } else if (args[0] === "role") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `role`")
+        .setDescription(`adds a role to the specified user.\nUsage: \`${prefix}role [add | remove] [@user] [role] (Do not mention!)\``);
+      return message.channel.send(cmd);
     } else if (args[0] === "warn") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `warn`")
@@ -408,7 +413,7 @@ module.exports = {
         )
         .addField(
           `:tools:  Tools`,
-          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`"
+          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`"
         )
         .addField(
           `:gear:  Settings`,
@@ -428,7 +433,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v10.4",
+          "Leuxitai - v10.5",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -458,7 +463,7 @@ module.exports = {
               )
               .addField(
                 `:tools:  Tools`,
-                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do."
+                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user."
               )
               .addField(
                 `:gear:  Settings`,
@@ -481,7 +486,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v10.4",
+                "Leuxitai - v10.5",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
