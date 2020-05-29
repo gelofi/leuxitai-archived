@@ -406,7 +406,7 @@ module.exports = {
         )
         .addField(
           `lyrics`,
-          "Sends the lyrics of the current song playing, if there is one. This command is still buggy."
+          "Sends the lyrics of the current song playing, if there is one."
         );
       message.channel.send(cmd);
     } else {
@@ -449,7 +449,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v10.5",
+          "Leuxitai - v10.5.2",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -475,7 +475,7 @@ module.exports = {
               )
               .addField(
                 `:frame_photo:  Images`,
-                "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image"
+                "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image\n`shiba` - sends a random shiba image."
               )
               .addField(
                 `:tools:  Tools`,
@@ -502,7 +502,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v10.5",
+                "Leuxitai - v10.5.1",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
