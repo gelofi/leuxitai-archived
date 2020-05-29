@@ -105,6 +105,22 @@ module.exports = {
         .setAuthor("❓ Command: `meme`")
         .setDescription("will send a meme from subreddits");
       return message.channel.send(cmd);
+    } else if (args[0] === "shiba") {
+      const weather = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `shiba`")
+        .setDescription(
+          "sends a random shiba photo."
+        )
+        .addField("Aliases", "`shibe`")
+      return message.channel.send(weather);
+    } else if (args[0] === "cumberbatch") {
+      const weather = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `cumberbatch`")
+        .setDescription(
+          "returns a random cumberbatch name"
+        )
+        .addField("Aliases", "`cb`")
+      return message.channel.send(weather);
     } else if (args[0] === "anime") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `anime`")
@@ -405,11 +421,11 @@ module.exports = {
         )
         .addField(
           `:video_game:  Fun and Random`,
-          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`"
+          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`"
         )
         .addField(
           `:frame_photo:  Images`,
-          "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`"
+          "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`, `shiba`"
         )
         .addField(
           `:tools:  Tools`,
@@ -455,7 +471,7 @@ module.exports = {
               )
               .addField(
                 `:video_game:  Fun and Random`,
-                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile."
+                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name."
               )
               .addField(
                 `:frame_photo:  Images`,

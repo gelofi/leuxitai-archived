@@ -67,18 +67,10 @@ bot.on("ready", () => {
 // Regular Commands
 bot.on("message", async message => {
   
-  let togglexp;
-  
-    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
-    
-    if(togglesxp == null){
-      togglexp = 'on';
-      //return message.channel.send("That command is not enabled!");
-    } else {
-      togglexp = togglesxp;
-    }
+ 
   
   if (message.guild) {
+    
     //if(togglexp === 'off') return
     // We'll use the key often enough that simplifying it is worth the trouble.
     const key = `${message.guild.id}-${message.author.id}`;
@@ -97,6 +89,17 @@ bot.on("message", async message => {
     
     // Act upon level up by sending a message and updating the user's level in enmap.
     if (bot.points.get(key, "level") < curLevel) {
+      let togglexp;
+  
+    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
+    
+    if(togglesxp == null){
+      togglexp = 'on';
+      //return message.channel.send("That command is not enabled!");
+    } else {
+      togglexp = togglesxp;
+    }
+      
       if(togglexp !== 'on') return
       message.reply(`You've leveled up to level **${curLevel}**! GG!`);
       bot.points.set(key, curLevel, "level");
@@ -108,10 +111,10 @@ bot.on("message", async message => {
 
   //Fixes DM bugs
   if (message.channel.type == "dm"){
-  if (message.content.startsWith(PREFIX)){ message.author.send("You dared to try!")
-  	 	return;
+    
+  if (message.content.startsWith(PREFIX)) return message.author.send("You dared to try!")
+      
     }
-    	}
   
   const { default_prefix } = require("./config.js")
   let prefix;

@@ -27,7 +27,10 @@
     "quick.db": "^7.1.1",
     "ascii-table": "^0.0.9",
     "@vitalets/google-translate-api": "^3.0.0",
-    "musakui": "^1.0.0"
+    "musakui": "^1.0.0",
+    "cumberbatch-name": "^1.5.1",
+    "random-animals-api": "^1.2.0",
+    "alexa-bot-api": "^0.1.2"
   },
   "devDependencies": {},
   "description": ""
