@@ -24,21 +24,21 @@ module.exports = {
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
     
     if(togglesxp == null){
-      togglexp = 'on';
+      togglexp = 'off';
       //return message.channel.send("That command is not enabled!");
     } else {
       togglexp = togglesxp;
     }
       
-    let nsfw;
+    let eco;
   
-    let nsfws = await db.fetch(`nsfw_${message.guild.id}`)
+    let econ = await db.fetch(`eco_${message.guild.id}`)
     
-    if(nsfws == null){
-      nsfw = 'off';
+    if(econ == null){
+      eco = 'off';
       //return message.channel.send("That command is not enabled!");
     } else {
-      nsfw = nsfws;
+      eco = econ;
     }
       
       
@@ -66,6 +66,23 @@ module.exports = {
           log.send(embed)
   //end of XP
         }
-    
+        
+        if(args[0] === "eco"){
+        if(!args[1]) return message.reply("toggle what? On or Off?")[1] 
+        if(args[1] !== 'on' && args[1] !== 'off') return message.reply("wat? Toggle it ON, or OFF !")
+        await db.set(`eco_${message.guild.id}`, args[1])
+        
+        message.channel.send(`Toggled the **Economy System**  \`${args[1]}\`  successfully.`)
+          var log = message.guild.channels.find(`name`, `${channel}`)
+          var embed = new Discord.RichEmbed()
+          .setAuthor(`Logs | Toggle`, message.guild.iconURL)
+          .setDescription(`${message.author.tag} turned ${args[1]} the Economy System.`)
+          .setFooter(`Author ID: ${message.author.id}`)
+          .setTimestamp()
+          .setColor("#7289da")
+          log.send(embed)
+  //end of ECO
+        }
+
     }
 }

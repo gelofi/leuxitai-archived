@@ -108,18 +108,14 @@ module.exports = {
     } else if (args[0] === "shiba") {
       const weather = new Discord.RichEmbed()
         .setAuthor("❓ Command: `shiba`")
-        .setDescription(
-          "sends a random shiba photo."
-        )
-        .addField("Aliases", "`shibe`")
+        .setDescription("sends a random shiba photo.")
+        .addField("Aliases", "`shibe`");
       return message.channel.send(weather);
     } else if (args[0] === "cumberbatch") {
       const weather = new Discord.RichEmbed()
         .setAuthor("❓ Command: `cumberbatch`")
-        .setDescription(
-          "returns a random cumberbatch name"
-        )
-        .addField("Aliases", "`cb`")
+        .setDescription("returns a random cumberbatch name")
+        .addField("Aliases", "`cb`");
       return message.channel.send(weather);
     } else if (args[0] === "anime") {
       var cmd = new Discord.RichEmbed()
@@ -168,8 +164,9 @@ module.exports = {
     } else if (args[0] === "toggle") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("Toggling Commands ON / OFF", message.guild.iconURL)
-        .setDescription("You can toggle commands below on or off.")
-        .addField("• XP System", "Toggle the whole level system on or off.")
+        .setDescription("You can toggle commands below on or off.\nDefault settings for all toggles are off.")
+        .addField("• XP System (xp)", "Toggle the whole level system on or off.")
+        .addField("• Economy System (eco)", "Disable or enable the economy system.")
         .setFooter("More commands to come!")
         .setColor("#3654ff");
       message.channel.send(cmd);
@@ -224,13 +221,36 @@ module.exports = {
         )
         .addField("Aliases", "`urbandict`");
       message.channel.send(cmd);
-    } else if (args[0] === "give") {
+    } else if (args[0] === "addxp") {
       var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `give`")
+        .setAuthor("❓ Command: `addxp`")
         .setDescription(
           `is used to give someone points or XP.\nUsage: \`${prefix}give <@user> <no. of XP>\``
-        );
+        )
+        .addField("Aliases", "`xpadd`  `xp+`");
       message.channel.send(cmd);
+    } else if (args[0] === "setxp") {
+      const changelogs = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `setxp`")
+        .setDescription(
+          "resets the XP of the specified user to the desired amount."
+        )
+        .addField("Aliases", "`xpset`  `xp`");
+      return message.channel.send(changelogs);
+    } else if (args[0] === "setlevel") {
+      const changelogs = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `setlevel`")
+        .setDescription(
+          "resets the level of the specified user to the desired amount."
+        )
+        .addField("Aliases", "`setlvl`  `levelset`");
+      return message.channel.send(changelogs);
+    } else if (args[0] === "xpreset") {
+      const changelogs = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `xpreset`")
+        .setDescription("resets the XP and Level of the specified user to 0.")
+        .addField("Aliases", "`resetpoints`  `resetxp`");
+      return message.channel.send(changelogs);
     } else if (args[0] === "remindme") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `remindme`")
@@ -341,7 +361,9 @@ module.exports = {
     } else if (args[0] === "role") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `role`")
-        .setDescription(`adds a role to the specified user.\nUsage: \`${prefix}role [add | remove] [@user] [role] (Do not mention!)\``);
+        .setDescription(
+          `adds a role to the specified user.\nUsage: \`${prefix}role [add | remove] [@user] [role] (Do not mention!)\``
+        );
       return message.channel.send(cmd);
     } else if (args[0] === "warn") {
       var cmd = new Discord.RichEmbed()
@@ -352,7 +374,7 @@ module.exports = {
         .addField("Aliases", "`w`  `punish`  `rewarn`");
       message.channel.send(cmd);
     } else if (args[0] === "embed") {
-    /* if (args[0] === "unwarn"){
+      /* if (args[0] === "unwarn"){
          var cmd = new Discord.RichEmbed()
        .setAuthor("❓ Command: `unwarn`")
        .setDescription(`unwarns a mentioned/specified user. Removes a warn.\nUsage: \`${prefix}unwarn <@user>\``)
@@ -437,7 +459,7 @@ module.exports = {
         )
         .addField(
           `:tickets:  Levels`,
-          "`points`, `leaderboard`, `give`, `sync`"
+          "`points`, `leaderboard`, `addxp`, `setxp`, `setlevel`, `addlevel`, `xpreset`"
         )
         .addField(
           `:shield:  Moderation`,
@@ -449,7 +471,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v10.5.2",
+          "Leuxitai - v11",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -487,7 +509,7 @@ module.exports = {
               )
               .addField(
                 `:tickets:  Levels`,
-                "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`give` - gives a member a desired amount of points.\n`sync` - syncs the level system, and prunes users without an activity for a month."
+                "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user."
               )
               .addField(
                 `:shield:  Moderation`,
@@ -502,7 +524,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v10.5.1",
+                "Leuxitai - v11",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")

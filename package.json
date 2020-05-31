@@ -22,7 +22,6 @@
     "novelcovid": "^1.2.7",
     "fs": "^0.0.2",
     "better-sqlite3": "^7.0.1",
-    "enmap": "^5.2.4",
     "urban": "^0.3.2",
     "quick.db": "^7.1.1",
     "ascii-table": "^0.0.9",
@@ -30,7 +29,8 @@
     "musakui": "^1.0.0",
     "cumberbatch-name": "^1.5.1",
     "random-animals-api": "^1.2.0",
-    "alexa-bot-api": "^0.1.2"
+    "alexa-bot-api": "^0.1.2",
+    "discord-leveling": "^1.1.0"
   },
   "devDependencies": {},
   "description": ""

@@ -16,7 +16,11 @@ setInterval(() => {
 const bot = new Discord.Client({ disableEveryone: true, disableMentions: true });
 const { token } = require ("./config.js")
 const PREFIX = "l.";
+
 const db = require('quick.db');
+const leveling = require("discord-leveling");
+let cooldown = new Set();
+let cdseconds = 40;
 
 // Collections
 bot.commands = new Collection();
@@ -26,9 +30,6 @@ bot.aliases = new Collection();
 ["command"].forEach(handler => {
     require(`./handlers/${handler}`)(bot);
 });
-
-const Enmap = require("enmap");
-bot.points = new Enmap({name: "points"});
 
 //Leuxitai BOT - by Fizx26
 
@@ -66,45 +67,6 @@ bot.on("ready", () => {
 
 // Regular Commands
 bot.on("message", async message => {
-  
- 
-  
-  if (message.guild) {
-    
-    //if(togglexp === 'off') return
-    // We'll use the key often enough that simplifying it is worth the trouble.
-    const key = `${message.guild.id}-${message.author.id}`;
-    if (message.author.bot) return;
-    // Triggers on new users we haven't seen before.
-    bot.points.ensure(`${message.guild.id}-${message.author.id}`, {
-      user: message.author.id,
-      guild: message.guild.id,
-      points: 0,
-      level: 1
-    });
-  bot.points.inc(key, "points");
-    
-    // Calculate the user's current level
-    const curLevel = Math.floor(0.1 * Math.sqrt(bot.points.get(key, "points")));
-    
-    // Act upon level up by sending a message and updating the user's level in enmap.
-    if (bot.points.get(key, "level") < curLevel) {
-      let togglexp;
-  
-    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
-    
-    if(togglesxp == null){
-      togglexp = 'on';
-      //return message.channel.send("That command is not enabled!");
-    } else {
-      togglexp = togglesxp;
-    }
-      
-      if(togglexp !== 'on') return
-      message.reply(`You've leveled up to level **${curLevel}**! GG!`);
-      bot.points.set(key, curLevel, "level");
-    }
-  }
   
   //Fixes the bot bug
   if (message.author.bot) return;
@@ -159,6 +121,47 @@ bot.on("message", async message => {
     // If a command is finally found, run the command
     if (command) 
         command.run(bot, message, args);
+  
+  // Leveling
+  if (message.guild) {
+  
+  const ranXp = Math.floor(Math.random() * 14) + 1;
+    
+  var profile = await leveling.Fetch(message.author.id)
+  
+  if(cooldown.has(message.author.id)) return
+  if(message.author.bot) return
+  leveling.AddXp(message.author.id, ranXp)
+    
+  //if(!message.member.hasPermission("ADMINISTRATOR")){
+  cooldown.add(message.author.id)
+    
+  if (profile.xp + 10 > 500) {
+  
+    let togglexp;
+  
+    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
+    
+    if(togglesxp == null){
+      togglexp = 'on';
+      //return message.channel.send("That command is not enabled!");
+    } else {
+      togglexp = togglesxp;
+    }
+      
+    if(togglexp !== 'on') return
+    if (profile.xp + 10 > 100) {
+    await leveling.AddLevel(message.author.id, 1)
+    await leveling.SetXp(message.author.id, 0)
+    message.reply(`You just leveled up!! You are now level: ${profile.level + 1}`)
+    }
+    }
+  }
+  
+  setTimeout(() => {
+    cooldown.delete(message.author.id)
+  }, cdseconds * 1000)
+  
 });
 
 bot.login(token);
