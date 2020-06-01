@@ -151,9 +151,15 @@ bot.on("message", async message => {
       
     if(togglexp !== 'on') return
     if (profile.xp + 10 > 100) {
+    let coins = "<:leuxicoin:715493556810416238>";
+  
+    let user = message.author;
+      let amount = 200;
+      
     await leveling.AddLevel(message.author.id, 1)
     await leveling.SetXp(message.author.id, 0)
-    message.reply(`you leveled up to ${profile.level + 1}! GG!`)
+    db.add(`money_${message.guild.id}_${user.id}`, amount)
+    message.reply(`you leveled up to ${profile.level + 1}! GG!\n + ${coins} **200** LeuxiCoins to your wallet.`)
     }
     }
   }

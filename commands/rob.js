@@ -57,12 +57,16 @@ if (targetuser <= 0) {
 
 let dice = Math.floor(Math.random() * 10)
     
-var random = Math.floor(Math.random() * 400) + 1;
+let random = Math.floor(Math.random() * 400) + 1;
+    
+var protection = db.fetch(`inventory_${message.guild.id}_${user.id}`)
 
+if(protection.includes("rob shield")) random = Math.floor(Math.random() * 200) + 1;
+    
 if(dice <= 5) {
 let embed = new Discord.RichEmbed()
 .setAuthor("Robbed!", user.user.displayAvatarURL)
-.setDescription(`${check} You robbed ${user} and got away with ${coins} **${random}** coins`)
+.setDescription(`${check} You robbed ${user} and got away with ${coins} **${random}** coins.`)
 .setColor("#4287f5")
 message.channel.send(embed)
 

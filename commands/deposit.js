@@ -36,7 +36,7 @@ module.exports = {
     let money = await db.fetch(`money_${message.guild.id}_${user.id}`)
     let bank = await db.fetch(`bank_${message.guild.id}_${user.id}`)
 
-    if(money === 0) return message.channel.send("you don't have any money to deposit!")
+    if(money === 0) return message.reply("you don't have any money to deposit!")
 
     db.add(`bank_${message.guild.id}_${user.id}`, money)
     db.subtract(`money_${message.guild.id}_${user.id}`, money)
