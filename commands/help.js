@@ -200,7 +200,7 @@ module.exports = {
       var cmd = new Discord.RichEmbed()
         .setAuthor("Toggling Commands ON / OFF", message.guild.iconURL)
         .setDescription(
-          "You can toggle commands below on or off.\nDefault settings for all toggles are off."
+         ` You can toggle commands below on or off.\nUsage: \`${prefix}toggle xp on\`\nDefault settings for all toggles are off.`
         )
         .addField(
           "• XP System (xp)",
