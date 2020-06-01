@@ -9,19 +9,9 @@ module.exports = {
     description: "Fetches a random post from a desired subreddit.",
     run: async (bot, message, args) => {
       
-    /*let nsfw;
-  
-    let nsfws = await db.fetch(`nsfw_${message.guild.id}`)
-    
-    if(nsfws == null){
-      nsfw = 'off';
-      //return message.channel.send("That command is not enabled!");
-    } else {
-      nsfw = nsfws;
-    }*/
-      
       if(!args[0]) return message.reply("put a subreddit to fetch a post from!");
         const subr = args[0]
+        
         musakui(`${args[0]}`)
          .then(result => {
          //if(nsfw !== "off" && result.nsfw == true) return message.channel.send("")
@@ -34,9 +24,8 @@ module.exports = {
                .setColor("#ff5700")
                .setFooter(`Upvotes: ${result.upvotes} | Downvotes: ${result.downvotes} | Comments: ${result.comments}`)
                message.channel.send(reddit)
-               
+        }).catch(error => {
+           message.channel.send("I can't find that subreddit!");
         })
-        
-         .catch(error => console.log(error));
-    }
+        }
 }

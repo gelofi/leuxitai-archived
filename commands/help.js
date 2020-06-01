@@ -17,11 +17,46 @@ module.exports = {
       prefix = prefixes;
     }
 
+    let check = "<:leuxcheck:716819913901211658>";
+    let no = "<:no:716819317852733480>";
+    let coins = "<:leuxicoin:715493556810416238>";
+
     if (args[0] === "support") {
       const support = new Discord.RichEmbed()
         .setAuthor("❓ Command: `support`")
         .setDescription("will give you a server link through DMs.");
       return message.channel.send(support);
+    } else if (args[0] === "economy") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("Economy System", message.guild.iconURL)
+        .setDescription("Our little economy system can spice up your server.")
+        .addField("balance", "- fetches a user's money and bank information.")
+        .addField("daily", `- collect ${coins} **200** coins everyday!`)
+        .addField("weekly", `- collect ${coins} **500** coins every week!`)
+        .addField("work", `- work and earn ${coins} LeuxiCoins.`)
+        .addField(
+          "deposit",
+          `- deposit your cash to the bank, so you don't get robbed.`
+        )
+        .addField(
+          "withdraw",
+          `- withdraw coins from the bank to gamble or buy your needs`
+        )
+        .addField("beg", `- get small amount of coins in short amount of time.`)
+        .addField("transfer", `- give members money, if you have.`)
+        .addField(
+          "addmoney",
+          `- give members money, without harming your wallet.`
+        )
+        .addField(
+          "removemoney",
+          `- remove money from abusive members, or just because you want to.`
+        )
+        .addField("rob", `- rob members to get money from them. hehe`)
+        .addField("roulette", `- play the roulette, get coins!`)
+        .setFooter("You can toggle the economy system if desired.")
+        .setColor("#3654ff");
+      message.channel.send(cmd);
     } else if (args[0] === "ping") {
       const ping = new Discord.RichEmbed()
         .setAuthor("❓ Command: `ping`")
@@ -164,9 +199,17 @@ module.exports = {
     } else if (args[0] === "toggle") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("Toggling Commands ON / OFF", message.guild.iconURL)
-        .setDescription("You can toggle commands below on or off.\nDefault settings for all toggles are off.")
-        .addField("• XP System (xp)", "Toggle the whole level system on or off.")
-        .addField("• Economy System (eco)", "Disable or enable the economy system.")
+        .setDescription(
+          "You can toggle commands below on or off.\nDefault settings for all toggles are off."
+        )
+        .addField(
+          "• XP System (xp)",
+          "Toggle the whole level system on or off."
+        )
+        .addField(
+          "• Economy System (eco)",
+          "Disable or enable the economy system."
+        )
         .setFooter("More commands to come!")
         .setColor("#3654ff");
       message.channel.send(cmd);
@@ -462,6 +505,10 @@ module.exports = {
           "`points`, `leaderboard`, `addxp`, `setxp`, `setlevel`, `addlevel`, `xpreset`"
         )
         .addField(
+          `${coins}  Economy`,
+          "`work`, `beg`, `daily`, `balance`, `rob`, `roulette`, `weekly`, `deposit`, `withdraw`, `addmoney`, `removemoney`"
+        )
+        .addField(
           `:shield:  Moderation`,
           "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`"
         )
@@ -511,6 +558,10 @@ module.exports = {
                 `:tickets:  Levels`,
                 "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user."
               )
+            .addField(
+              `${coins}  Economy`,
+              "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc."
+            )
               .addField(
                 `:shield:  Moderation`,
                 "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user."

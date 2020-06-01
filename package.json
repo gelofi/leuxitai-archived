@@ -30,7 +30,8 @@
     "cumberbatch-name": "^1.5.1",
     "random-animals-api": "^1.2.0",
     "alexa-bot-api": "^0.1.2",
-    "discord-leveling": "^1.1.0"
+    "discord-leveling": "^1.1.0",
+    "parse-ms": "^2.0.0"
   },
   "devDependencies": {},
   "description": ""

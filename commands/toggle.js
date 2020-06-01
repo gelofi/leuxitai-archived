@@ -42,7 +42,7 @@ module.exports = {
     }
       
       
-    if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to toggle commands!");
+    if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have enough permissions to toggle commands!");
         if(!args[0]) return message.reply("please specify a command to turn on/off!");
         //if(!args[1].content.startsWith("o")) return message.reply("turn commands on or off!")
         if(args[1].length > 3) return message.reply(`really? Setting it to ${args[1]}?`)
