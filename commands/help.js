@@ -75,7 +75,7 @@ module.exports = {
       return message.channel.send(invite);
     } else if (args[0] === "autorole") {
       var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `slowmode`")
+        .setAuthor("❓ Command: `autorole`")
         .setDescription(
           `adds role to the new members that will join.\nUsage:\nAdd autoroles: \`${prefix}autorole add [time] <role>\` (don't mention!)\nRemove autoroles: \`${prefix}autorole delete [role] (don't mention!)\``
         )
