@@ -73,6 +73,14 @@ module.exports = {
           "will give you a link to invite Leuxitai in your server."
         );
       return message.channel.send(invite);
+    } else if (args[0] === "autorole") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `slowmode`")
+        .setDescription(
+          `adds role to the new members that will join.\nUsage:\nAdd autoroles: \`${prefix}autorole add [time] <role>\` (don't mention!)\nRemove autoroles: \`${prefix}autorole delete [role] (don't mention!)\``
+        )
+        .addField("Aliases", "`timedrole`");
+      return message.channel.send(cmd);
     } else if (args[0] === "weather") {
       const weather = new Discord.RichEmbed()
         .setAuthor("❓ Command: `weather`")
@@ -515,7 +523,7 @@ module.exports = {
         )
         .addField(
           `:gear:  Settings`,
-          "`prefix`, `musicprefix`, `logchannel`, `setmainrole`, `setmuterole`, `toggle`"
+          "`prefix`, `musicprefix`, `logchannel`, `setmainrole`, `setmuterole`, `toggle`, `autorole`"
         )
         .addField(
           `:tickets:  Levels`,
@@ -535,7 +543,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v11.5",
+          "Leuxitai - v11.6",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -569,7 +577,7 @@ module.exports = {
               )
               .addField(
                 `:gear:  Settings`,
-                "`prefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.\n`toggle` - toggles commands on or off"
+                "`prefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.\n`toggle` - toggles commands on or off\n`autorole` - automatically adds role when a new user joins."
               )
               .addField(
                 `:tickets:  Levels`,
@@ -592,7 +600,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v11.5",
+                "Leuxitai - v11.6",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
