@@ -115,7 +115,7 @@ module.exports = {
 
       }
     
-    if(item1 !== null && item2 !== null && item3 == !null){
+    if(item1 !== null && item2 !== null && item3 !== null){
         let over = new Discord.RichEmbed()
         .setColor("#3654ff")
         .setAuthor("Storage full!", message.guild.iconURL)
