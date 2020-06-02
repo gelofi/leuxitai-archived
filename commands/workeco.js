@@ -28,8 +28,8 @@ module.exports = {
   
   let user = message.author;
     let author = await db.fetch(`work_${message.guild.id}_${user.id}`)
-    let charm = db.fetch(`inventory_${message.guild.id}_${user.id}`)
-    if(charm == null) charm = "None"
+    let charm = db.fetch(`charm_${message.guild.id}_${user.id}`)
+    if(charm == null) charm = "None";
     let timeout = 600000;
     
     if (author !== null && timeout - (Date.now() - author) > 0) {
@@ -50,7 +50,7 @@ module.exports = {
 
         let result = Math.floor((Math.random() * replies.length));
         let amount = Math.floor(Math.random() * 180) + 1;
-        if(charm.includes("charm")) amount = Math.floor(Math.random() * 250) + 1;
+        if(charm == true) amount = Math.floor(Math.random() * 250) + 1;
         let random = Math.floor(Math.random() * 10)
         
         if(random <= 5) {

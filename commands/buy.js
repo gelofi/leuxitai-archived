@@ -27,17 +27,6 @@ module.exports = {
   let check = "<:leuxcheck:716819913901211658>"
   let no = "<:no:716819317852733480>"
   let coins = "<:leuxicoin:715493556810416238>";
-  
-    let inv;
-  
-    let invt = await db.fetch(`inventory_${message.guild.id}_${message.author.id}`)
-    
-    if(invt == null){
-      inv = 'Empty Inventory';
-      //return message.channel.send("That command is not enabled!");
-    } else {
-      inv = invt;
-    }
 
     let items1 = await db.fetch(`item1_${message.guild.id}`)
 
@@ -81,50 +70,59 @@ module.exports = {
       if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have the Manage Server permission to use this command!")
     if(!args[0]) return message.reply("specify an item to buy!")
 
-     if(args[0] == item1) {
-     if(item1 !== null) return message.reply("that item does not exist!")
-     if(money < item1cost) return message.reply("you don't have enough money to buy that item! :(")
-      db.push(`inventory_${message.guild.id}_${user.id}`, item1)
-      db.subtract(`money_${message.guild.id}_${user.id}`, item1cost)
-      message.channel.send(`${message.author} successfully bought **${item1}** !\n**Cost**: ${coins} **${item1cost}**`)
-     }
-
-    if(args[0] !== item1 && args[1] == item2) {
-     if(item2 !== null) return message.reply("that item does not exist!")
-     if(money < item2cost) return message.reply("you don't have enough money to buy that item! :(")
-      db.push(`inventory_${message.guild.id}_${user.id}`, item2)
-      db.subtract(`money_${message.guild.id}_${user.id}`, item2cost)
-      message.channel.send(`${message.author} successfully bought **${item2}** !\n**Cost**: ${coins} **${item2cost}**`)
-     }
-
-     if(args[0] !== item1 && args[1] !== item2 && args[1] == item3) {
-     if(item3 !== null) return message.reply("that item does not exist!")
-     if(money < item3cost) return message.reply("you don't have enough money to buy that item! :(")
-      db.push(`inventory_${message.guild.id}_${user.id}`, item3)
-      db.subtract(`money_${message.guild.id}_${user.id}`, item3cost)
-      message.channel.send(`${message.author} successfully bought **${item3}** !\n**Cost**: ${coins} **${item3cost}**`)
-     } 
-      
      if(args[0] == "charm") {
       if(money < 10000) return message.reply("you don't have enough money to buy that item! :(")
-      db.push(`inventory_${message.guild.id}_${user.id}`, "charm")
+      db.set(`charm_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 10000)
       message.channel.send(`${message.author} successfully bought **charm** !\n**Cost**: ${coins} **10000**`)
-     } 
+     } else
      
      if(args[0] == "rob shield") {
       if(money < 7000) return message.reply("you don't have enough money to buy that item! :(")
-      db.push(`inventory_${message.guild.id}_${user.id}`, "rob shield")
+      db.set(`robshield_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 7000)
       message.channel.send(`${message.author} successfully bought **rob shield** !\n**Cost**: ${coins} **7000**`)
-     } 
+     } else
     
      if(args[0] == "dm") {
       if(money < 25000) return message.reply("you don't have enough money to buy that item! :(")
-      db.push(`inventory_${message.guild.id}_${user.id}`, "dm")
+      db.set(`dm_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 25000)
       message.channel.send(`${message.author} successfully bought **dm** !\n**Cost**: ${coins} **25000**`)
-     } 
+     } else
+      
+    if(args[0] == "custom"){
+      
+      if(!args[1]) return message.reply("specify a custom item to buy!")
+     if(args[1] == item1) {
+     //if(item1 !== null) return message.reply("that item does not exist!")
+     if(money < item1cost) return message.reply("you don't have enough money to buy that item! :(")
+      db.set(`inventory1_${message.guild.id}_${user.id}`, item1)
+      db.subtract(`money_${message.guild.id}_${user.id}`, item1cost)
+      message.channel.send(`${message.author} successfully bought **${item1}** !\n**Cost**: ${coins} **${item1cost}**`)
+     } else
 
+    if(args[1] !== item1 && args[1] == item2) {
+    // if(item2 !== null) return message.reply("that item does not exist!")
+     if(money < item2cost) return message.reply("you don't have enough money to buy that item! :(")
+      db.set(`inventory2_${message.guild.id}_${user.id}`, item2)
+      db.subtract(`money_${message.guild.id}_${user.id}`, item2cost)
+      message.channel.send(`${message.author} successfully bought **${item2}** !\n**Cost**: ${coins} **${item2cost}**`)
+     } else
+
+     if(args[1] !== item1 && args[1] !== item2 && args[1] == item3) {
+    // if(item3 !== null) return message.reply("that item does not exist!")
+     if(money < item3cost) return message.reply("you don't have enough money to buy that item! :(")
+      db.set(`inventory3_${message.guild.id}_${user.id}`, item3)
+      db.subtract(`money_${message.guild.id}_${user.id}`, item3cost)
+      message.channel.send(`${message.author} successfully bought **${item3}** !\n**Cost**: ${coins} **${item3cost}**`)
+     } else {
+    
+     message.reply("I couldn't find that custom item!")
+     } 
+     
+    } else {
+      message.reply("I couldn't find that item!")
+    }
     }
 }

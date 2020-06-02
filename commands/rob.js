@@ -59,9 +59,9 @@ let dice = Math.floor(Math.random() * 10)
     
 let random = Math.floor(Math.random() * 400) + 1;
     
-var protection = db.fetch(`inventory_${message.guild.id}_${user.id}`)
-
-if(protection.includes("rob shield")) random = Math.floor(Math.random() * 200) + 1;
+var protection = db.fetch(`robshield_${message.guild.id}_${user.id}`)
+if(protection == null) protection == "None";
+if(protection == true) random = Math.floor(Math.random() * 200) + 1;
     
 if(dice <= 5) {
 let embed = new Discord.RichEmbed()

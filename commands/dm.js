@@ -10,9 +10,8 @@ module.exports = {
   
     let user = message.author;
 
-    let dm = db.fetch(`inventory_${message.guild.id}_${user.id}`)
-    if(dm == null) dm = ["None"]
-    if(!dm.includes("dm")) return message.reply("you haven't bought this command yet!\nBuy it using the `buy` command.")
+    let dm = db.fetch(`dm_${message.guild.id}_${user.id}`)
+    if(dm == null) return message.reply("you haven't bought this command yet!\nBuy it using the `buy` command.")
     
   let check = "<:leuxcheck:716819913901211658>"
   let no = "<:no:716819317852733480>"
