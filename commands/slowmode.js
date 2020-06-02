@@ -31,7 +31,7 @@ module.exports = {
       var slowEmb = new Discord.RichEmbed()
         .setTitle("Logs | Slowmode turned on")
         .setThumbnail(message.guild.iconURL)
-        .setDescription(`**Slowmode** has been turned on to ${time} in ${message.guild}`)
+        .setDescription(`**Slowmode** has been turned on to ${time} in ${message.channel}`)
         .setColor("#3654ff")
         .setFooter(`ID: ${message.author.id}`)
         .setTimestamp()
