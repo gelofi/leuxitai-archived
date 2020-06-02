@@ -51,7 +51,7 @@ module.exports = {
                     message.reply("I cannot find this member, or that user isn't in the server!");
                 }
             } else {
-                    message.reply('Please specify a member / person to be banned! ');
+                    message.reply('please specify a member / person to be banned! ');
                 }
             }
 }
