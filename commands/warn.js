@@ -3,7 +3,6 @@ const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
 const fs = require("fs");
 const ms = require("ms");
-let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 module.exports = {
     name: 'warn',

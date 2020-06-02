@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["8b"],
     description: "Initiates 8ball.",
     run: async (bot, message, args) => {
-        let question = args[0];
+        let question = args.join(" ");
 
         if (!question) {
             return message.channel.send('You must provide a question! **Usage: `l.8ball`<question>**');

@@ -1,19 +1,20 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
+const leveling = require("discord-leveling");
 
 module.exports = {
     name: 'points',
-    aliases: ["rank", "profile"],
+    aliases: ["rank", "profile", "rk"],
     description: "Points system for Leuxitai",
     run: async (bot, message, args) => {
     
-      let togglexp;
+    let togglexp;
   
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
     
     if(togglesxp == null){
-      togglexp = 'on';
+      togglexp = 'off';
       //return message.channel.send("That command is not enabled!");
     } else {
       togglexp = togglesxp;
@@ -21,15 +22,17 @@ module.exports = {
       
     //if(togglexp !== 'on' || 'off') return
     if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
-      
-    const key = `${message.guild.id}-${message.author.id}`;
+    
+    var user = message.mentions.users.first() || message.author
+ 
+    var output = await leveling.Fetch(user.id)
+    //message.channel.send(`Hey ${user.tag}! You have ${output.level} level(s)! and ${output.xp} xp!`);
     const points = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username}'s profile`, message.guild.iconURL)
-    .addField(`XP / Points`, bot.points.get(key, "points"))
-    .addField(`Level`, bot.points.get(key, "level"))
+    .setAuthor(`${user.username}'s profile`, user.displayAvatarURL)
+    .addField(`XP / Points`, `${output.xp}/500`)
+    .addField(`Level`, `${output.level}`)
     .setColor("#ff6352")
-    .setThumbnail(message.author.displayAvatarURL)
-    .setFooter("No cooldowns yet.")
+    .setFooter("Cooldown is 40 seconds.")
     .setTimestamp()
     message.channel.send(points);
   }
