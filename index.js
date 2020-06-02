@@ -170,4 +170,68 @@ bot.on("message", async message => {
   
 });
 
+bot.on("guildMemberAdd", async function(member) {
+	
+	   const db = require("quick.db")
+	   const ms = require("ms");
+  
+	  let channel;
+  
+    let channels = await db.fetch(`channel_${member.guild.id}`)
+    
+    if(channels == null){
+      return member.reply("setup a log channel first! Example: `l.logchannel [channel]` (Don't mention!)")
+    } else {
+      channel = channels;
+    }
+	   
+	   let timedrole1;
+  
+    let timedroles1 = await db.fetch(`timedrole1_${member.guild.id}`)
+    
+    if(timedroles1 == null){
+      return
+    } else {
+      timedrole1 = timedroles1;
+    }
+	   
+	   let timedrole1time;
+  
+    let timedroles1time = await db.fetch(`timedrole1time_${member.guild.id}`)
+    
+    if(timedroles1time == null){
+      return
+    } else {
+      timedrole1time = timedroles1time;
+    }
+	   
+    let autorole = member.guild.roles.find(r => r.name === `${timedrole1}`)
+    let mem = member.toString()
+    
+    setTimeout(function(){
+    member.addRole(autorole)
+    
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.guild.iconURL)
+        .setDescription(`${mem} gained the role **${timedrole1}** after **${ms(timedrole1time)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, timedrole1time)
+    
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | New member!")
+        .setThumbnail(member.guild.iconURL)
+        .setDescription(`${mem} just joined our server!`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+    
+});
+
 bot.login(token);
