@@ -43,7 +43,7 @@ if (author !== null && timeout - (Date.now() - author) > 0) {
     message.reply(`you just robbed someone quite recently!\nCheck again after \`${time.minutes}m ${time.seconds}s\`.`)
   } else {
 
-if (author3 <= 200) {
+if (author3 < 200) {
     return message.reply("you need atleast 200 coins in your wallet to rob someone!")
 
 }
