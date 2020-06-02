@@ -99,6 +99,14 @@ module.exports = {
         )
         .addField("Aliases", "`msg`");
       return message.channel.send(cmd);
+    } else if (args[0] === "slowmode") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `slowmode`")
+        .setDescription(
+          `sets a slowmode in the current channel.\nUsage: \`${prefix}slowmode <time>\``
+        )
+        .addField("Aliases", "`slow`");
+      return message.channel.send(cmd);
     } else if (args[0] === "help") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `help`")
@@ -503,7 +511,7 @@ module.exports = {
         )
         .addField(
           `:tools:  Tools`,
-          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`"
+          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`, `slowmode`"
         )
         .addField(
           `:gear:  Settings`,
@@ -557,7 +565,7 @@ module.exports = {
               )
               .addField(
                 `:tools:  Tools`,
-                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user."
+                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user.\n`slowmode` - sets a slowmode in the channel."
               )
               .addField(
                 `:gear:  Settings`,
