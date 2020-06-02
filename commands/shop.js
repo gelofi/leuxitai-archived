@@ -120,6 +120,7 @@ module.exports = {
         .setColor("#3654ff")
         .setAuthor("Storage full!", message.guild.iconURL)
         .setDescription("You have used 3/3 custom items in Leuxitai's shop!\nDelete some items to create more.")
+        message.channel.send(over)
       }
 
     } else
