@@ -19,7 +19,9 @@ module.exports = {
       channel = channels;
     }
     
-      let time = args[1]
+    if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply("you don't have the **Manage Channels** permission to use this command!")
+
+      let time = args[0]
       if(!time) return message.reply("specify an amount of time!")
       if(isNaN(time)) return message.reply("that isn't a number value!")
       
