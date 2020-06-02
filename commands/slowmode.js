@@ -23,15 +23,15 @@ module.exports = {
 
       let time = args[0]
       if(!time) return message.reply("specify an amount of time!")
-      if(isNaN(time)) return message.reply("that isn't a number value!")
+      //if(isNaN(time)) return message.reply("that isn't a number value!")
       
       message.channel.setRateLimitPerUser(ms(time))
-      message.channel.send(`:ballot_box_with_check:  **Slowmode** has been set to **${time}**.`)
+      message.channel.send(`:ballot_box_with_check:  **Slowmode** has been set to **${ms(time)}**.`)
       
       var slowEmb = new Discord.RichEmbed()
         .setTitle("Logs | Slowmode turned on")
         .setThumbnail(message.guild.iconURL)
-        .setDescription(`**Slowmode** has been turned on to ${time} in ${message.channel}`)
+        .setDescription(`**Slowmode** has been turned on to ${ms(time)} in ${message.channel}`)
         .setColor("#3654ff")
         .setFooter(`ID: ${message.author.id}`)
         .setTimestamp()
