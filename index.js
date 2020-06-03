@@ -186,7 +186,7 @@ bot.on("guildMemberAdd", async function(member) {
       channel = channels;
     }
 	   
-    var autoEmb = new Discord.RichEmbed()
+  var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | New member!")
         .setThumbnail(member.user.displayAvatarURL)
         .setDescription(`${mem} just joined our server!`)
@@ -195,16 +195,12 @@ bot.on("guildMemberAdd", async function(member) {
         .setTimestamp()
         var set = member.guild.channels.find(`name`, `${channel}`)
         set.send(autoEmb);
-    
+  
 	   let timedrole1;
   
     let timedroles1 = await db.fetch(`timedrole1_${member.guild.id}`)
     
-    if(timedroles1 == null){
-      return
-    } else {
       timedrole1 = timedroles1;
-    }
 	   
 	   let timedrole1time;
   
@@ -212,8 +208,15 @@ bot.on("guildMemberAdd", async function(member) {
     
       timedrole1time = timedroles1time;
 	   
-    let autorole = member.guild.roles.find(r => r.name === `${timedrole1}`)
+    let tr2 = await db.fetch(`timedrole2_${member.guild.id}`)
+    let tr2t = await db.fetch(`timedrole2time_${member.guild.id}`)
+    
   
+    let autorole = member.guild.roles.find(r => r.name === `${timedrole1}`)
+    let timerole = member.guild.roles.find(r => r.name === `${tr2}`)
+    
+    if(timedrole1 !== null && tr2 == null){
+      
     setTimeout(function(){
     member.addRole(autorole)
     
@@ -227,7 +230,40 @@ bot.on("guildMemberAdd", async function(member) {
         var set = member.guild.channels.find(`name`, `${channel}`)
         set.send(addEmb);
     }, timedrole1time)
-    
+      
+    }
+  
+    if(timedrole1 !== null && tr2 !== null){
+      
+    setTimeout(function(){
+    member.addRole(autorole)
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} gained the role **${timedrole1}** after **${ms(timedrole1time)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, timedrole1time)
+      
+    setTimeout(function(){
+      
+    member.addRole(timerole)
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} gained the role **${tr2}** after **${ms(tr2t)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, tr2t)
+      
+    }
+
 });
 
 bot.on("guildMemberRemove", async function(member) {
@@ -244,7 +280,6 @@ bot.on("guildMemberRemove", async function(member) {
     }
 	   
     let mem = member.toString()
-    
     var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | Member left!")
         .setThumbnail(member.user.displayAvatarURL)

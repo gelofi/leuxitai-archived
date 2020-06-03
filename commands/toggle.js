@@ -7,7 +7,7 @@ module.exports = {
     aliases: ["tg"],
     description: "Changes the prefix of the bot",
     run: async (bot, message, args) => {
-    
+  
     let channel;
   
     let channels = await db.fetch(`channel_${message.guild.id}`)
@@ -56,10 +56,11 @@ module.exports = {
         .setColor("#3654ff")
         message.channel.send(embedp)*/
         message.channel.send(`Toggled the **Level System**  \`${args[1]}\`  successfully.`)
+          
           var log = message.guild.channels.find(`name`, `${channel}`)
           var embed = new Discord.RichEmbed()
           .setAuthor(`Logs | Toggle`, message.guild.iconURL)
-          .setDescription(`${message.author.tag} turned ${args[1]} the Level System.`)
+          .setDescription(`${message.author.tag} turned ${args[1]} the **Level System**.`)
           .setFooter(`Author ID: ${message.author.id}`)
           .setTimestamp()
           .setColor("#7289da")
@@ -73,10 +74,11 @@ module.exports = {
         await db.set(`eco_${message.guild.id}`, args[1])
         
         message.channel.send(`Toggled the **Economy System**  \`${args[1]}\`  successfully.`)
+          
           var log = message.guild.channels.find(`name`, `${channel}`)
           var embed = new Discord.RichEmbed()
           .setAuthor(`Logs | Toggle`, message.guild.iconURL)
-          .setDescription(`${message.author.tag} turned ${args[1]} the Economy System.`)
+          .setDescription(`${message.author.tag} turned ${args[1]} the **Economy System**.`)
           .setFooter(`Author ID: ${message.author.id}`)
           .setTimestamp()
           .setColor("#7289da")

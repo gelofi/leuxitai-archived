@@ -158,7 +158,7 @@ module.exports = {
       .setAuthor(`${message.guild.name}'s Shop`, message.guild.iconURL)
       .setDescription(`Buy items using \`${prefix}buy [item name]\`\nBuy custom items using \`${prefix}buy custom [item]\``)
       .addField(`${item1} - ${coins} ${item1cost}`, `${item1desc}`)
-      .addField("Leuxitai Items", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to dm members using Leuxitai!`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to dm members using Leuxitai!`)
       .setColor("#3654ff")
       message.channel.send(shop1)
 
@@ -170,7 +170,7 @@ module.exports = {
       .setDescription(`Buy items using \`${prefix}buy [item name]\`\nBuy custom items using \`${prefix}buy custom [item]\``)
       .addField(`${item1} - ${coins} ${item1cost}`, `${item1desc}`)
       .addField(`${item2} - ${coins} ${item2cost}`, `${item2desc}`)
-      .addField("Leuxitai Items", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to dm members using Leuxitai!`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to dm members using Leuxitai!`)
       .setColor("#3654ff")
       message.channel.send(shop2)
 
@@ -183,7 +183,7 @@ module.exports = {
       .addField(`${item1} - ${coins} ${item1cost}`, `${item1desc}`)
       .addField(`${item2} - ${coins} ${item2cost}`, `${item2desc}`)
       .addField(`${item3} - ${coins} ${item3cost}`, `${item3desc}`)
-      .addField("Leuxitai Items", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to dm members using Leuxitai!`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to dm members using Leuxitai!`)
       .setColor("#3654ff")
       message.channel.send(shopfull)
 
@@ -192,7 +192,7 @@ module.exports = {
       let noshop = new Discord.RichEmbed()
       .setAuthor(`${message.guild.name}'s Shop`, message.guild.iconURL)
       .setDescription("No custom items!\nAdd items!\n`shop [additem] [itemname] [itemcost] [itemdescription]\nIf you're gonna delete an item, please start on the last item you added.`")
-      .addField("Leuxitai Items", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to dm members using Leuxitai!`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to dm members using Leuxitai!`)
       message.channel.send(noshop)
       }
      }

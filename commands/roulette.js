@@ -50,7 +50,7 @@ let random = Math.floor(Math.random() * 37);
     else if (colour == "i" || colour.includes("indigo")) colour = 2;
     else return message.reply("specify a color to bet on! (red, indigo, cyan)");
     
-    if (random == 0 && colour == 2) { // indigo
+    if (random <= 8 && colour == 2) { // indigo
         money *= 15
         db.add(`money_${message.guild.id}_${user.id}`, money)
         let moneyEmbed1 = new Discord.RichEmbed()
@@ -59,7 +59,7 @@ let random = Math.floor(Math.random() * 37);
         .setDescription(`<:indigo_shard:716890157248151566> You won ${money} coins!\nMultiplier: 15x`);
         message.channel.send(moneyEmbed1)
         //console.log(`${message.author.tag} Won ${money} on green`)
-    } else if (isOdd(random) && colour == 1) { // Red
+    } else if (random < 20 && colour == 1) { // Red
         money = parseInt(money * 1.5)
         db.add(`money_${message.guild.id}_${user.id}`, money)
         let moneyEmbed2 = new Discord.RichEmbed()
@@ -67,7 +67,7 @@ let random = Math.floor(Math.random() * 37);
         .setAuthor(`${message.author.username} won!`, message.author.displayAvatarURL)
         .setDescription(`<:coral_shard:716890226282332210> You won ${money} coins\nMultiplier: 1.5x`);
         message.channel.send(moneyEmbed2)
-    } else if (!isOdd(random) && colour == 0) { // cyan 
+    } else if (random < 15 && colour == 0) { // cyan 
         money = parseInt(money * 2)
         db.add(`money_${message.guild.id}_${user.id}`, money)
         let moneyEmbed3 = new Discord.RichEmbed()
@@ -75,7 +75,8 @@ let random = Math.floor(Math.random() * 37);
         .setAuthor(`${message.author.username} won!`, message.author.displayAvatarURL)
         .setDescription(`<:cyan_shard:716890196838449162> You won ${money} coins\nMultiplier: 2x`);
         message.channel.send(moneyEmbed3)
-    } else { // Wrong
+    } else { 
+      // Wrong
 
         db.subtract(`money_${message.guild.id}_${user.id}`, money)
         let moneyEmbed4 = new Discord.RichEmbed()

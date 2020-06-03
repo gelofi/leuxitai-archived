@@ -23,12 +23,19 @@ module.exports = {
         
         await db.set(`muteRole_${message.guild.id}`, args.join(" "))
         
+        if(args[0] === "reset"){
+          db.delete(`muteRole_${message.guild.id}`)
+          message.channel.send("The mute role has been reset successfully.\nPlease set a new mute role.")
+        }
+      
         var embed = new Discord.RichEmbed()
         .setTitle("Settings updated!")
         .setDescription(`Mute role is now \`${args.join(" ")}\`, changed successfully.`)
         .setColor("#3654ff")
         .setFooter("This role will be used on the mute command.")
         message.channel.send(embed)
+      
+        
         var log = new Discord.RichEmbed()
         .setTitle("Logs | Mute role changed")
         .setDescription(`The mute role for the mute command is now \`${args[0]}\`.`)
@@ -36,10 +43,6 @@ module.exports = {
         .setTimestamp()
         var set = message.guild.channels.find(`name`, `${channel}`)
         set.send(log)
-       if(args[0] === 'reset'){
-         db.delete(`muteRole_${message.guild.id}`)
-         return await message.channel.send("Mute role has been reset.")
-       }
-        
+    
     }
 }

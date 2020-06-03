@@ -28,7 +28,7 @@ module.exports = {
       
       var log = new Discord.RichEmbed()
         .setTitle("Logs | Messages purged")
-        .setDescription(`\`${args[0]}\` message(s) have been purged in #${message.channel.name}`)
+        .setDescription(`\`${args[0]}\` message(s) have been purged in #${message.channel}`)
         .setFooter(`Author ID: ${message.author.id}`)
         .setTimestamp();
        var set = message.guild.channels.find(`name`, `${channel}`)

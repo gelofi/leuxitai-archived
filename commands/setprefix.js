@@ -44,6 +44,7 @@ module.exports = {
         message.channel.send(embedp).then (message.channel.send(
           `Due to Leuxitai's music module in another project, you need to change the music module's prefix too!\nType \`${prefix}musicprefix\` to change the prefix for the music module.`
         ))
+        
         var log = new Discord.RichEmbed()
         .setTitle("Logs | Settings updated ✓")
         .setDescription(`New guild prefix is now \`${args[0]}\``)
