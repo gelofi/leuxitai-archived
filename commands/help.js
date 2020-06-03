@@ -349,6 +349,38 @@ module.exports = {
           `is used to change the prefix of Leuxitai's music module.\nUsage: \`${prefix}musicprefix <new_prefix>\``
         );
       message.channel.send(cmd);
+    } else if (args[0] === "image") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("Manipulating images // Manual", message.author.displayAvatarURL)
+        .setDescription(
+          `Provide an action and an image to edit it.\nYou must buy this command from the shop.`
+          )
+        .addField(
+          "trigger",
+          "edits the image into a wiggling trigger GIF."
+        )
+        .addField(
+          "trash",
+          "idk trash the image maybe? 😳"
+          )
+      .addField(
+      "delete",
+      "put that image in the recycle bin smh"
+      )
+      .addField(
+      "greyscale",
+      "edit the image with a greyscale filter."
+      )
+      .addField("sepia", 
+       "make our photos HOT 🔥\nadds a sepia filter to your image.")
+      .addField("blur", "make your photo blurry. don't forget to specify a blur level!")
+      .addField("invert", "invert all colors from your image.")
+      .addField("gay", "make your photo more colorful like a rainbow.")
+      .addField("beautiful", "what a beautiful image.")
+      .addField("rip", "2020 - 2020\nadd your photo to a tombstone.")
+        .setFooter("More actions to come!")
+        .setColor("#3654ff");
+      message.channel.send(cmd);
     } else if (args[0] === "wallpaper") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `info`")
@@ -434,12 +466,6 @@ module.exports = {
           `unmutes a muted mentioned/specified user.\nUsage: \`${prefix}unmute <@user>\``
         );
       message.channel.send(cmd);
-    } else if (args[0] === "dm") {
-      var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `dm`")
-        .setDescription("messages someone through dms. Buy this command to use it.")
-        .addField("Usage", `${prefix}dm [member's_ID] [text]`);
-      return message.channel.send(cmd);
     } else if (args[0] === "role") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `role`")
@@ -525,11 +551,11 @@ module.exports = {
         )
         .addField(
           `:video_game:  Fun and Random`,
-          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`, `dm`"
+          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`"
         )
         .addField(
           `:frame_photo:  Images`,
-          "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`, `shiba`"
+          "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`, `shiba`, `image`"
         )
         .addField(
           `:tools:  Tools`,
@@ -557,7 +583,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v11.6.7",
+          "Leuxitai - v12",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -579,11 +605,11 @@ module.exports = {
               )
               .addField(
                 `:video_game:  Fun and Random`,
-                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name.\n`dm` - message someone through dms, idk annoy them"
+                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name."
               )
               .addField(
                 `:frame_photo:  Images`,
-                "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image\n`shiba` - sends a random shiba image."
+                "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image\n`shiba` - sends a random shiba image.\n`image` - edit images and manipulate them!"
               )
               .addField(
                 `:tools:  Tools`,
@@ -614,7 +640,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v11.6.7",
+                "Leuxitai - v12",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
