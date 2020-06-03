@@ -27,7 +27,7 @@ module.exports = {
   let coins = "<:leuxicoin:715493556810416238>";
   
   let user = message.author;
-    let author = await db.fetch(`work_${message.guild.id}_${user.id}`)
+    let author = await db.fetch(`crime_${message.guild.id}_${user.id}`)
     let charm = db.fetch(`charm_${message.guild.id}_${user.id}`)
     if(charm == null) charm = "None";
     let timeout = 7200000;
@@ -65,7 +65,7 @@ module.exports = {
         message.channel.send(embed1)
         
         db.add(`money_${message.guild.id}_${user.id}`, amount)
-        db.set(`work_${message.guild.id}_${user.id}`, Date.now())
+        db.set(`crime_${message.guild.id}_${user.id}`, Date.now())
         } else {
           
           let badreply = ["You got caught shoplifting a pack of gum at a store.",
@@ -86,7 +86,7 @@ module.exports = {
           message.channel.send(dec)
           
           db.subtract(`money_${message.guild.id}_${user.id}`, decamount)
-          db.set(`work_${message.guild.id}_${user.id}`, Date.now())
+          db.set(`crime_${message.guild.id}_${user.id}`, Date.now())
         }
         };
       
