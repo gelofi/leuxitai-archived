@@ -56,10 +56,24 @@ module.exports = {
         .addField("roulette", `- play the roulette, get coins!`)
         .addField("shop", `- look at the shop, add items, or delete them.`)
         .addField("buy", `- buy items from the shop!`)
+        .addField("crime", `- commit a crime to earn or lose coins.`)
+        .addField("inventory", `- view your inventory contents.`)
         .addField("_ _", "To add items in the shop, use the shop command.\nExample:\n`l.shop additem Item_Name` (Keep item names 1 word as possible!)\nTo delete items, also use the shop command.\nExample:\n`l.shop delete Item_name`\n(You can only delete custom items!)")
         .setFooter("You can toggle the economy system if desired.")
         .setColor("#3654ff");
       message.channel.send(cmd);
+    } else if (args[0] === "crime") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `crime`")
+        .setDescription("commit a crime. Earn coins or lose money.")
+        .addField("Aliases", "`violate`");
+      return message.channel.send(cmd);
+    } else if (args[0] === "inventory") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `inventory`")
+        .setDescription("view your inventory content.")
+        .addField("Aliases", "`inv`");
+      return message.channel.send(cmd);
     } else if (args[0] === "ping") {
       const ping = new Discord.RichEmbed()
         .setAuthor("❓ Command: `ping`")
@@ -531,7 +545,7 @@ module.exports = {
         )
         .addField(
           `${coins}  Economy`,
-          "`work`, `beg`, `daily`, `balance`, `rob`, `roulette`, `weekly`, `deposit`, `withdraw`, `addmoney`, `removemoney`, `buy`, `shop`"
+          "`work`, `beg`, `daily`, `balance`, `rob`, `roulette`, `weekly`, `deposit`, `withdraw`, `addmoney`, `removemoney`, `buy`, `shop`, `crime`, `inventory`"
         )
         .addField(
           `:shield:  Moderation`,
@@ -543,7 +557,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v11.6",
+          "Leuxitai - v11.6.7",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -585,7 +599,7 @@ module.exports = {
               )
             .addField(
               `${coins}  Economy`,
-              "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them."
+              "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them.\n`crime` - commit a crime to earn or lose coins.\n`inventory` - view your inventory content."
             )
               .addField(
                 `:shield:  Moderation`,
@@ -600,7 +614,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v11.6",
+                "Leuxitai - v11.6.7",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
