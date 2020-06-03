@@ -292,4 +292,28 @@ bot.on("guildMemberRemove", async function(member) {
   
 });
 
+bot.on("messageDelete", async function(message){
+  
+    let channel;
+  
+    let channels = await db.fetch(`channel_${message.guild.id}`)
+    
+    if(channels == null){
+      return// member.reply("setup a log channel first! Example: `l.logchannel [channel]` (Don't mention!)")
+    } else {
+      channel = channels;
+    }
+
+    console.log(`message is deleted -> ${message}`);
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Message deleted!")
+        .setThumbnail(message.author.displayAvatarURL)
+        .setDescription(`**${message.author.tag}**:\n${message}`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${message.author.id}`)
+        .setTimestamp()
+        var set = message.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+});
+
 bot.login(token);
