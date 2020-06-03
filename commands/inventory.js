@@ -91,7 +91,7 @@ module.exports = {
           .setDescription("**N/A** shows up if there are blank storages for custom items.")
           .setThumbnail(invicon)
           .addField(`Custom items`, `- **${itemsname1}** - ${items1}\n- **${itemsname2}** - ${items2}\n- **${itemsname3}** - ${items3}`)
-          .addField("LeuxItems", `**charm** - ${charm}\n**rob shield** - ${rob}\n**dm** - ${dm}`)
+          .addField("LeuxItems", `**charm** - ${charm}\n**rob shield** - ${rob}\n**image** - ${dm}`)
           .setColor(message.member.displayHexColor)
           .setFooter(`Coins: ${moneydb}  | Bank: ${bank}`)
           message.channel.send(inv1)

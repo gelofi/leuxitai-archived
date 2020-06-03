@@ -88,7 +88,7 @@ module.exports = {
       if(money < 25000) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`dm_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 25000)
-      message.channel.send(`${message.author} successfully bought **dm** !\n**Cost**: ${coins} **25000**`)
+      message.channel.send(`${message.author} successfully bought **image** !\n**Cost**: ${coins} **25000**`)
      } else
       
     if(args[0] == "custom"){
