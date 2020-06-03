@@ -192,7 +192,7 @@ module.exports = {
       let noshop = new Discord.RichEmbed()
       .setAuthor(`${message.guild.name}'s Shop`, message.guild.iconURL)
       .setDescription("No custom items!\nAdd items!\n`shop [additem] [itemname] [itemcost] [itemdescription]\nIf you're gonna delete an item, please start on the last item you added.`")
-      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **dm** ${coins} **25000**\n- unlock this command to manipulate images!`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!`)
       message.channel.send(noshop)
       }
      }
