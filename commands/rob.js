@@ -57,11 +57,11 @@ if (targetuser <= 0) {
 
 let dice = Math.floor(Math.random() * 10)
     
-let random = Math.floor(Math.random() * 400) + 1;
+let random = Math.floor(Math.random() * author2) + 1;
     
 var protection = db.fetch(`robshield_${message.guild.id}_${user.id}`)
 if(protection == null) protection == "None";
-if(protection == true) random = Math.floor(Math.random() * 200) + 1;
+if(protection == true) random = Math.floor(Math.random() * author2 / 2) + 1;
     
 if(dice <= 5) {
 let embed = new Discord.RichEmbed()

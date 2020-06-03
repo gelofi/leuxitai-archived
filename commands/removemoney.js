@@ -26,7 +26,7 @@ module.exports = {
   let no = "<:no:716819317852733480>"
   let coins = "<:leuxicoin:715493556810416238>";
   
-  if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have enough permissions to give people money!")
+  if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have enough permissions to remove people's money!")
 
   let user = message.mentions.members.first()
   if(!user) return message.reply("specify a user to give them money!")

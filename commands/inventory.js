@@ -84,7 +84,7 @@ module.exports = {
   let moneydb = await db.fetch(`money_${message.guild.id}_${user.id}`)
   let bank = await db.fetch(`bank_${message.guild.id}_${user.id}`)
   
-  if(message.mentions.users.first()) return message.reply("you can't view other's inventory!")
+  if(message.mentions.users.first()) return message.reply("you can't view others' inventory!")
       
           let inv1 = new Discord.RichEmbed()
           .setAuthor(`${user.username}'s inventory`, user.displayAvatarURL)
