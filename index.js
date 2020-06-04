@@ -22,6 +22,8 @@ const leveling = require("discord-leveling");
 let cooldown = new Set();
 let cdseconds = 40;
 
+    //const channelo = await db.fetch(`channel_${member.guild.id}`)
+    
 // Collections
 bot.commands = new Collection();
 bot.aliases = new Collection();
@@ -303,17 +305,25 @@ bot.on("messageDelete", async function(message){
     } else {
       channel = channels;
     }
-
-    console.log(`message is deleted -> ${message}`);
+    try {
     var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | Message deleted!")
         .setThumbnail(message.author.displayAvatarURL)
         .setDescription(`**${message.author.tag}**:\n${message}`)
         .setColor("#3654ff")
-        .setFooter(`ID: ${message.author.id}`)
+        .setFooter(`Author ID: ${message.author.id}\nMessage ID: ${message.id}`)
         .setTimestamp()
-        var set = message.guild.channels.find(`name`, `${channel}`)
+      var set = message.guild.channels.find(`name`, `${channel}`)
         set.send(autoEmb);
+    } catch (error) {
+      var fail = new Discord.RichEmbed()
+      .setAuthor("Logs | Message deleted!")
+      .setDescription("I cannot find the information on that message!\nThat message is either deleted before I could log it,\nor is 2 weeks old.")
+      .setColor("#ff3636")
+      .setFooter(`ID: ${message.id}`)
+      set.send(fail)
+    }
 });
+
 
 bot.login(token);
