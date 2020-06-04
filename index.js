@@ -105,13 +105,16 @@ bot.on("message", async message => {
   
   if(message.guild){
   let swearWords = await db.fetch(`bannedwords_${message.guild.id}`)
+
   if(swearWords == null) swearWords = ["cunt"]
-  if(swearWords.some(word => message.content.includes(word))){
+  
+  if(swearWords.some(w =>
+    message.content.toLowerCase().includes(w))){
     message.delete()
     message.reply("watch your mouth! You said a banned word!")
-  }
+   }
   };
-  
+       
   //Fixes the prefix bug
   if (!message.content.startsWith(prefix)) return;
 
@@ -333,6 +336,5 @@ bot.on("messageDelete", async function(message){
       set.send(fail)
     }
 });
-
 
 bot.login(token);
