@@ -103,6 +103,15 @@ bot.on("message", async message => {
     	    message.channel.send(`My prefix here is \`${prefix}\`\nChange my prefix using \`${prefix}setprefix\`.`)
     	}
   
+  if(message.guild){
+  let swearWords = await db.fetch(`bannedwords_${message.guild.id}`)
+  if(swearWords == null) swearWords = ["cunt"]
+  if(swearWords.some(word => message.content.includes(word))){
+    message.delete()
+    message.reply("watch your mouth! You said a banned word!")
+  }
+  };
+  
   //Fixes the prefix bug
   if (!message.content.startsWith(prefix)) return;
 

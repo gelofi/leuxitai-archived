@@ -102,6 +102,14 @@ module.exports = {
           `shows a weather on a desired location.\nUsage: \`${prefix}weather <location>\``
         );
       return message.channel.send(weather);
+    } else if (args[0] === "bannedwords") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `bannedwords`")
+        .setDescription(
+          `adds a banned word to your server. Irreversible unless cleared.\nUsage: \`${prefix}bannedwords <add> <word>\``
+        )
+        .addField("Aliases", "`badwords`");
+      return message.channel.send(cmd);
     } else if (args[0] === "changelogs") {
       const changelogs = new Discord.RichEmbed()
         .setAuthor("❓ Command: `changelogs`")
@@ -575,7 +583,7 @@ module.exports = {
         )
         .addField(
           `:shield:  Moderation`,
-          "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`"
+          "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `bannedword`"
         )
         .addField(
           `:musical_note:  Music`,
@@ -629,7 +637,7 @@ module.exports = {
             )
               .addField(
                 `:shield:  Moderation`,
-                "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user."
+                "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server."
               )
               .addField(
                 `:musical_note:  Music`,
