@@ -11,7 +11,7 @@ module.exports = {
       
         let channel;
   
-        let channels = await db.fetch(`channel_${message.guild.id}`)
+        let channels = await db.fetch(`wchannel_${message.guild.id}`)
     
         if(channels == null){
            channel = message.channel.name;
