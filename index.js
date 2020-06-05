@@ -333,8 +333,86 @@ bot.on("messageDelete", async function(message){
       .setDescription("I cannot find the information on that message!\nThat message is either deleted before I could log it,\nor is 2 weeks old.")
       .setColor("#ff3636")
       .setFooter(`ID: ${message.id}`)
-      set.send(fail)
+      set.send(error + fail)
     }
 });
 
+bot.on("emojiCreate", async function(emoji){
+ const db = require("quick.db")
+  
+  let channel;
+  
+    let channels = await db.fetch(`channel_${emoji.guild.id}`)
+    
+    if(channels == null){
+      return// member.reply("setup a log channel first! Example: `l.logchannel [channel]` (Don't mention!)")
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Added emoji!")
+        .setThumbnail(emoji.guild.iconURL)
+        .setDescription(`${emoji} **${emoji.name}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${emoji.id}`)
+        .setTimestamp()
+        var set = emoji.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+    
+});
+
+bot.on("emojiDelete", async function(emoji){
+const db = require("quick.db")
+  
+  let channel;
+  
+    let channels = await db.fetch(`channel_${emoji.guild.id}`)
+    
+    if(channels == null){
+      return// member.reply("setup a log channel first! Example: `l.logchannel [channel]` (Don't mention!)")
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Emoji deleted!")
+        .setThumbnail(emoji.guild.iconURL)
+        .setDescription(`${emoji} **${emoji.name}**`)
+        .setColor("#ff3636")
+        .setFooter(`ID: ${emoji.id}`)
+        .setTimestamp()
+        var set = emoji.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+   
+});
+
+bot.on("emojiUpdate", async function(oldEmoji, newEmoji){
+
+    const db = require("quick.db")
+  
+  let channel;
+  
+    let channels = await db.fetch(`channel_${newEmoji.guild.id}`)
+    
+    if(channels == null){
+      return// member.reply("setup a log channel first! Example: `l.logchannel [channel]` (Don't mention!)")
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Emoji updated!")
+        .setThumbnail(newEmoji.guild.iconURL)
+        .setDescription(`${newEmoji} ~~**${oldEmoji.name}**~~ -> **${newEmoji.name}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${newEmoji.id}`)
+        .setTimestamp()
+        var set = newEmoji.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+    
+});
+
+
 bot.login(token);
+

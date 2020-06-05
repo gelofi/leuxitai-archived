@@ -37,7 +37,7 @@ module.exports = {
 
     let moneyEmbed = new Discord.RichEmbed()
     .setColor("#3654ff")
-    .setDescription(`${check} Added ${coins} **${args[1]}** coins to ${user.user.tag}\nNew Balance: ${bal}`);
+    .setDescription(`${check} Removed ${coins} **${args[1]}** coins to ${user.user.tag}\nNew Balance: ${bal}`);
     message.channel.send(moneyEmbed)
     }
 }
