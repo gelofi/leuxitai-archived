@@ -79,12 +79,13 @@ module.exports = {
         const mod = message.author.tag;
         const member = message.mentions.members.first()
         if(!args[1]) return message.reply("specify a warn level!")
+        if(isNaN(args[1])) return message.reply("that's not a warn level!")
         if(args[1] >= 6) return message.channel.send("No warnings above Level 6! Level 5 will get the warned person banned.")
         if(isNaN(args[1]) == true) return message.reply("that's not a number!")
         
         await db.set(`warn_${message.guild.id}_${user.id}`, args[1])
         
-        let newarn = db.fetch(`warn_${message.guild.id}_${user.id}`)
+        let newarn = parseInt(db.fetch(`warn_${message.guild.id}_${user.id}`))
         message.channel.send(`<@${user.id}>'s warning profile has been updated!\nWarns: \`${newarn}\``)
         
         var warnEmb = new Discord.RichEmbed()
@@ -100,7 +101,7 @@ module.exports = {
       let mainrole = message.guild.roles.find(role => role.name === `${mainRole}`)
       let muterole = message.guild.roles.find(role => role.name === `${muteRole}`)
       
-      if(newarn = "2"){
+      if(newarn === 2){
          member.removeRole(mainrole)
          member.addRole(muterole)
          message.channel.send(":warning: +**2m** mute.")
@@ -116,7 +117,7 @@ module.exports = {
          }, ms('2m'));
       }
       
-      if(newarn = "3"){
+      if(newarn === 3){
          member.removeRole(mainrole)
          member.addRole(muterole)
          message.channel.send(":warning:  +**5m** mute.")
@@ -132,7 +133,7 @@ module.exports = {
            set.send(embed)
          }, ms('5m'));
       }
-      if(newarn = "4"){
+      if(newarn === 4){
          member.removeRole(mainrole)
          member.addRole(muterole)
          message.channel.send(":warning:  +**5m** mute.")
@@ -149,7 +150,7 @@ module.exports = {
          }, ms('5m'));
       }
       
-      if(newarn = "5"){
+      if(newarn === 5){
          member.removeRole(mainrole)
          member.addRole(muterole)
          message.guild.member(user).ban(reason)
