@@ -254,6 +254,10 @@ module.exports = {
           "Toggle the whole level system on or off."
         )
         .addField(
+          "• Level Cards (imagecard)",
+          "Make the XP System have a rank card."
+          )
+        .addField(
           "• Economy System (eco)",
           "Disable or enable the economy system."
         )

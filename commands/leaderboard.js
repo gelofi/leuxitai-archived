@@ -21,12 +21,12 @@ module.exports = {
     }
       
       if(togglexp !== 'on') return message.channel.send("This command is not toggled on!")
-    if (message.mentions.users.first()) {
- 
+    
+      if (message.mentions.users.first()) {
       var output = await leveling.Leaderboard({
-        search: message.mentions.users.first().id
-      })
-      message.channel.send(`The user ${message.mentions.users.first().tag} is number ${output.placement} on my leaderboard!`);
+        search: message.mentions.members.first().id
+      });
+      message.channel.send(`**${message.mentions.users.first().tag}** is No. ${output.placement} on the leaderboards!`);
  
       //Searches for the top 3 and outputs it to the user.
     } else {
