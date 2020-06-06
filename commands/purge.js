@@ -18,20 +18,24 @@ module.exports = {
       channel = channels;
     }
       
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("You don't have enough permissions to do this command!");
+      if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("you don't have **Manage Messages** permission to use this command!");
             
       if(!args[0]) return message.reply('put an amount of messages to delete! Maximum deleted messages are 100.');
-      message.channel.bulkDelete(args[0]).catch(err => {
-      return message.channel.send("An error occured!" + err)
-      }                        
-      );
-      
+      if(isNaN(args[0]) == true) return message.reply("that isn't a number!")
+      let x = parseInt(args[0]) + 1
+      try {
+      message.channel.bulkDelete(x)
       var log = new Discord.RichEmbed()
         .setTitle("Logs | Messages purged")
-        .setDescription(`\`${args[0]}\` message(s) have been purged in #${message.channel.name}`)
+        .setDescription(`\`${args[0]}\` message(s) has been purged in ${message.channel}`)
         .setFooter(`Author ID: ${message.author.id}`)
+        .setColor("#3654ff")
         .setTimestamp();
        var set = message.guild.channels.find(`name`, `${channel}`)
        set.send(log)
+      } catch (error){
+        message.channel.send("An error occurred! Please report this to the bot owner, Fizx26#5360\n if this happens occasionally.")
+      }
+        
     }
 }

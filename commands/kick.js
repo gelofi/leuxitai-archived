@@ -21,7 +21,7 @@ module.exports = {
         if(!message.guild.me.hasPermission("KICK_MEMBERS")) {
         return message.reply(`I do not have enough permissions to use this command!`)
           }
-            const user = message.mentions.users.first();
+          const user = message.mentions.users.first() //|| message.guild.members.get(args[0])
           let reason = args.slice(1).join(" ");
           if (!reason) reason = "No reason provided.";
             if(user){
@@ -51,7 +51,7 @@ module.exports = {
                     message.reply("I cannot find this member, or that user isn't in the server!");
                 }
             } else {
-                    message.reply('Please specify a member / person to be kicked! ');
+                    message.reply('please specify a member / person to be kicked!');
                 }
             }
 }

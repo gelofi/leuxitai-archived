@@ -19,6 +19,7 @@ const PREFIX = "l.";
 
 const db = require('quick.db');
 const leveling = require("discord-leveling");
+
 let cooldown = new Set();
 let cdseconds = 40;
 
@@ -55,7 +56,8 @@ bot.on("guildDelete", guild => {
     .catch(console.error);
 });
 
-bot.on("ready", () => {
+bot.on("ready", async () => {
+  
   // regular activity
   console.log(`${bot.user.username} is now online!`);
   bot.user
@@ -101,6 +103,18 @@ bot.on("message", async message => {
     	    message.channel.send(`My prefix here is \`${prefix}\`\nChange my prefix using \`${prefix}setprefix\`.`)
     	}
   
+  if(message.guild){
+  let swearWords = await db.fetch(`bannedwords_${message.guild.id}`)
+
+  if(swearWords == null) swearWords = ["cunt"]
+  
+  if(swearWords.some(w =>
+    message.content.toLowerCase().includes(w))){
+    message.delete()
+    message.reply("watch your mouth! You said a banned word!")
+   }
+  };
+       
   //Fixes the prefix bug
   if (!message.content.startsWith(prefix)) return;
 
@@ -168,6 +182,401 @@ bot.on("message", async message => {
     cooldown.delete(message.author.id)
   }, cdseconds * 1000)
   
+});
+
+bot.on("guildMemberAdd", async function(member) {
+	
+     let mem = member.toString()
+	   const ms = require("ms");
+
+	  let channel;
+  
+    let channels = await db.fetch(`channel_${member.guild.id}`)
+    
+    if(channels == null){
+      return 
+    } else {
+      channel = channels;
+    }
+	   
+  var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | New member!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} just joined our server!`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+  
+	   let timedrole1;
+  
+    let timedroles1 = await db.fetch(`timedrole1_${member.guild.id}`)
+    
+      timedrole1 = timedroles1;
+	   
+	   let timedrole1time;
+  
+    let timedroles1time = await db.fetch(`timedrole1time_${member.guild.id}`)
+    
+      timedrole1time = timedroles1time;
+	   
+    let tr2 = await db.fetch(`timedrole2_${member.guild.id}`)
+    let tr2t = await db.fetch(`timedrole2time_${member.guild.id}`)
+    
+  
+    let autorole = member.guild.roles.find(r => r.name === `${timedrole1}`)
+    let timerole = member.guild.roles.find(r => r.name === `${tr2}`)
+    
+    if(timedrole1 !== null && tr2 == null){
+      
+    setTimeout(function(){
+    member.addRole(autorole)
+    
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} gained the role **${timedrole1}** after **${ms(timedrole1time)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, timedrole1time)
+      
+    }
+  
+    if(timedrole1 !== null && tr2 !== null){
+      
+    setTimeout(function(){
+    member.addRole(autorole)
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} gained the role **${timedrole1}** after **${ms(timedrole1time)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, timedrole1time)
+      
+    setTimeout(function(){
+      
+    member.addRole(timerole)
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} gained the role **${tr2}** after **${ms(tr2t)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, tr2t)
+      
+    }
+
+});
+
+bot.on("guildMemberRemove", async function(member) {
+  
+  let channel;
+  
+    let channels = await db.fetch(`channel_${member.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+    let mem = member.toString()
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Member left!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} just left our server :(`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+  
+});
+
+bot.on("messageDelete", async function(message){
+  
+    let channel;
+  
+    let channels = await db.fetch(`channel_${message.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+    try {
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Message deleted!")
+        .setThumbnail(message.author.displayAvatarURL)
+        .setDescription(`**${message.author.tag}**:\n${message}`)
+        .setColor("#3654ff")
+        .setFooter(`Author ID: ${message.author.id}\nMessage ID: ${message.id}`)
+        .setTimestamp()
+      var set = message.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+    } catch (error) {
+      var fail = new Discord.RichEmbed()
+      .setAuthor("Logs | Message deleted!")
+      .setDescription("I cannot find the information on that message!\nThat message is either deleted before I could log it,\nor is 2 weeks old.")
+      .setColor("#ff3636")
+      .setFooter(`Message ID: ${message.id}`)
+      set.send(error + fail)
+    }
+});
+
+bot.on("emojiCreate", async function(emoji){
+ 
+  let channel;
+  
+    let channels = await db.fetch(`channel_${emoji.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Added emoji!")
+        .setThumbnail(emoji.guild.iconURL)
+        .setDescription(`${emoji} **${emoji.name}**`)
+        .setColor("#3654ff")
+        .setFooter(`Emoji ID: ${emoji.id}`)
+        .setTimestamp()
+        var set = emoji.guild.channels.find(`name`, `${channel}`)
+        if(!set) return
+        set.send(autoEmb);
+    
+});
+
+bot.on("emojiDelete", async function(emoji){
+
+  let channel;
+  
+    let channels = await db.fetch(`channel_${emoji.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Emoji deleted!")
+        .setThumbnail(emoji.guild.iconURL)
+        .setDescription(`${emoji} **${emoji.name}**`)
+        .setColor("#ff3636")
+        .setFooter(`Emoji ID: ${emoji.id}`)
+        .setTimestamp()
+        var set = emoji.guild.channels.find(`name`, `${channel}`)
+        if(!set)
+        set.send(autoEmb);
+   
+});
+
+bot.on("emojiUpdate", async function(oldEmoji, newEmoji){
+
+  let channel;
+  
+    let channels = await db.fetch(`channel_${newEmoji.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Emoji updated!")
+        .setThumbnail(newEmoji.guild.iconURL)
+        .setDescription(`${newEmoji} ~~**${oldEmoji.name}**~~ -> **${newEmoji.name}**`)
+        .setColor("#3654ff")
+        .setFooter(`Emoji ID: ${newEmoji.id}`)
+        .setTimestamp()
+        var set = newEmoji.guild.channels.find(`name`, `${channel}`)
+        if(!set)
+        set.send(autoEmb);
+    
+});
+
+bot.on("messageUpdate", async function(oldMessage, newMessage){
+
+  if(newMessage.author.bot) return
+  let channel;
+  
+    let channels = await db.fetch(`channel_${newMessage.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setAuthor(`Logs | Message edited!`)
+        .setDescription(`**${newMessage.author.tag}**'s message was edited in ${newMessage.channel}`)
+        .addField(`Old Message`, `${oldMessage}`)
+        .addField(`New Message`, `${newMessage}`)
+        .setColor("#3654ff")
+        .setFooter(`Message ID: ${newMessage.id}`)
+        .setTimestamp()
+        var set = newMessage.guild.channels.find(`name`, `${channel}`)
+        if(!set) return
+        set.send(autoEmb);
+
+});
+
+bot.on("roleCreate", async function(role){
+    let channel;
+  
+    let channels = await db.fetch(`channel_${role.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Role created!")
+        .setDescription(`${role} (${role.name})`)
+        .setColor(role.color)
+        .setFooter(`Role ID: ${role.id}`)
+        .setTimestamp()
+        var set = role.guild.channels.find(`name`, `${channel}`)
+        if(!set) return
+        set.send(autoEmb);
+
+});
+
+bot.on("roleUpdate", async function(oldRole, newRole){
+    let channel;
+  
+    let channels = await db.fetch(`channel_${newRole.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Role edited!")
+        .setDescription(`~~${oldRole.name}~~  ->  ${newRole}\n**Color**:\n~~${oldRole.hexColor}~~ -> **${newRole.hexColor}**`)
+        .setColor(newRole.color)
+        .setFooter(`Role ID: ${newRole.id}`)
+        .setTimestamp()
+        var set = newRole.guild.channels.find(`name`, `${channel}`)
+        if(!set) return
+        set.send(autoEmb);
+
+});
+
+bot.on("roleDelete", async function(role){
+    let channel;
+  
+    let channels = await db.fetch(`channel_${role.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Role deleted!")
+        .setDescription(`${role.name}`)
+        .setColor(role.color)
+        .setFooter(`Role ID: ${role.id}`)
+        .setTimestamp()
+        var set = role.guild.channels.find(`name`, `${channel}`)
+        if(!set) return
+        set.send(autoEmb);
+
+});
+
+bot.on("channelCreate", async function(Channel){
+    
+  let channel;
+  
+    let channels = await db.fetch(`channel_${Channel.guild.id}`)
+    
+    if(channels == null){
+      return// member.reply("setup a log channel first! Example: `l.logchannel [channel]` (Don't mention!)")
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | New channel created!")
+        .setDescription(`${Channel}`)
+        .setColor("#3654ff")
+        .setFooter(`Channel ID: ${Channel.id}`)
+        .setTimestamp()
+        var set = Channel.guild.channels.find(`name`, `${channel}`)
+        if(!set) return
+        set.send(autoEmb);
+
+});
+
+bot.on("channelUpdate", async function(oldChannel, newChannel){
+    let channel;
+  
+    let channels = await db.fetch(`channel_${newChannel.guild.id}`)
+    
+    if(channels == null){
+      return
+    } else {
+      channel = channels;
+    }
+	   
+   if(oldChannel.topic == "") oldChannel.topic = "No topic set."
+   if(newChannel.topic == "") newChannel.topic = "No new topic set."
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Channel update!")
+        .setDescription(`~~**${oldChannel.name}**~~  -> ${newChannel}\n\n**Old Topic**:\n${oldChannel.topic}\n\n**New Topic**:\n${newChannel.topic}`)
+        .setColor("#3654ff")
+        .setFooter(`Channel ID: ${newChannel.id}`)
+        .setTimestamp()
+        var set = newChannel.guild.channels.find(`name`, `${channel}`)
+        if(!set) return
+        set.send(autoEmb);
+
+});
+
+bot.on("channelDelete", async function(Channel){
+    
+  let channel;
+  
+    let channels = await db.fetch(`channel_${Channel.guild.id}`)
+    
+    if(channels == null){
+      return// member.reply("setup a log channel first! Example: `l.logchannel [channel]` (Don't mention!)")
+    } else {
+      channel = channels;
+    }
+	   
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Channel deleted!")
+        .setDescription(`#${Channel.name}`)
+        .setColor("#3654ff")
+        .setFooter(`Channel ID: ${Channel.id}`)
+        .setTimestamp()
+        var set = Channel.guild.channels.find(`name`, `${channel}`)
+        if(!set) return
+        set.send(autoEmb);
+
 });
 
 bot.login(token);

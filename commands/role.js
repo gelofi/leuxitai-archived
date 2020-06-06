@@ -29,6 +29,7 @@ module.exports = {
        if(args[0] === "remove"){
        member.removeRole(role).catch(console.error)
        .then (message.channel.send(`**${roler}** role has been removed from ${member}.`))
+      
        let log = new Discord.RichEmbed()
          .setTitle("Logs | Role taken!")
          .setDescription(`${member.user.tag} lost the role **${roler}**.`)
@@ -38,9 +39,11 @@ module.exports = {
          var set = message.guild.channels.find(`name`, `${channel}`)
          set.send(log)
        }
+       
        if(args[0] === "add") {
         member.addRole(role).catch(console.error)
        .then (message.channel.send(`**${roler}** role has been given to ${member}.`))
+      
        let log = new Discord.RichEmbed()
          .setTitle("Logs | Role given!")
          .setDescription(`${member.user.tag} gained the role **${roler}**.`)
@@ -49,6 +52,7 @@ module.exports = {
          .setTimestamp()
          var set = message.guild.channels.find(`name`, `${channel}`)
          set.send(log)
+       
        }
     }
 }

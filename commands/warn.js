@@ -12,7 +12,7 @@ module.exports = {
       
     let channel;
   
-    let channels = await db.fetch(`channel_${message.guild.id}`)
+    let channels = await db.fetch(`wchannel_${message.guild.id}`)
     
     if(channels == null){
       channel = message.channel.name;
@@ -58,7 +58,7 @@ module.exports = {
 
     if(!args[0]) return message.reply("please specify a member/user to warn! (Do not ping them!)")
       
-    let user = getUserFromMention(args[0]) || bot.users.find("username", args[0]);
+    let user = getUserFromMention(args[0])// || bot.users.find("username", args[0]);
         
     let warn;
 
@@ -77,14 +77,15 @@ module.exports = {
 
         //let user = message.mentions.users.first();
         const mod = message.author.tag;
-        const member = user
+        const member = message.mentions.members.first()
         if(!args[1]) return message.reply("specify a warn level!")
+        if(isNaN(args[1])) return message.reply("that's not a warn level!")
         if(args[1] >= 6) return message.channel.send("No warnings above Level 6! Level 5 will get the warned person banned.")
         if(isNaN(args[1]) == true) return message.reply("that's not a number!")
         
         await db.set(`warn_${message.guild.id}_${user.id}`, args[1])
         
-        let newarn = db.fetch(`warn_${message.guild.id}_${user.id}`)
+        let newarn = parseInt(db.fetch(`warn_${message.guild.id}_${user.id}`))
         message.channel.send(`<@${user.id}>'s warning profile has been updated!\nWarns: \`${newarn}\``)
         
         var warnEmb = new Discord.RichEmbed()
@@ -99,15 +100,14 @@ module.exports = {
       
       let mainrole = message.guild.roles.find(role => role.name === `${mainRole}`)
       let muterole = message.guild.roles.find(role => role.name === `${muteRole}`)
-      let newarno = args[1]
       
-      if(newarno === "2"){
-         member.removeRole(mainrole.id)
-         member.addRole(muterole.id)
-        
+      if(newarn === 2){
+         member.removeRole(mainrole)
+         member.addRole(muterole)
+         message.channel.send(":warning: +**2m** mute.")
         setTimeout(function(){
-           member.addRole(mainrole.id)
-           member.removeRole(muterole.id)
+           member.addRole(mainrole)
+           member.removeRole(muterole)
            var set = message.guild.channels.find(`name`, `${channel}`)
            let embed = new Discord.RichEmbed()
            .setTitle("Logs | Unmuted!")
@@ -117,13 +117,13 @@ module.exports = {
          }, ms('2m'));
       }
       
-      if(newarno === "3"){
-         member.removeRole(mainrole.id)
-         member.addRole(muterole.id)
-        
+      if(newarn === 3){
+         member.removeRole(mainrole)
+         member.addRole(muterole)
+         message.channel.send(":warning:  +**5m** mute.")
         setTimeout(function(){
-           member.addRole(mainrole.id)
-           member.removeRole(muterole.id)
+           member.addRole(mainrole)
+           member.removeRole(muterole)
           
            var set = message.guild.channels.find(`name`, `${channel}`)
            let embed = new Discord.RichEmbed()
@@ -133,13 +133,13 @@ module.exports = {
            set.send(embed)
          }, ms('5m'));
       }
-      if(newarno === "4"){
-         member.removeRole(mainrole.id)
-         member.addRole(muterole.id)
-        
+      if(newarn === 4){
+         member.removeRole(mainrole)
+         member.addRole(muterole)
+         message.channel.send(":warning:  +**5m** mute.")
         setTimeout(function(){
-           member.addRole(mainrole.id)
-           member.removeRole(muterole.id)
+           member.addRole(mainrole)
+           member.removeRole(muterole)
           
            var set = message.guild.channels.find(`name`, `${channel}`)
            let embed = new Discord.RichEmbed()
@@ -150,10 +150,11 @@ module.exports = {
          }, ms('5m'));
       }
       
-      if(newarno === "5"){
-         member.removeRole(mainrole.id)
-         member.addRole(muterole.id)
+      if(newarn === 5){
+         member.removeRole(mainrole)
+         member.addRole(muterole)
          message.guild.member(user).ban(reason)
+         message.channel.send("**Banned**! That user has reached level 5 warnings.")
       }
             }
 }

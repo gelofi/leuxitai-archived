@@ -9,7 +9,7 @@ module.exports = {
     run: async (bot, message, args) => {
         let channel;
   
-    let channels = await db.fetch(`channel_${message.guild.id}`)
+    let channels = await db.fetch(`wchannel_${message.guild.id}`)
     
     if(channels == null){
       channel = message.channel.name;
@@ -51,7 +51,7 @@ module.exports = {
                     message.reply("I cannot find this member, or that user isn't in the server!");
                 }
             } else {
-                    message.reply('Please specify a member / person to be banned! ');
+                    message.reply('please specify a member / person to be banned! ');
                 }
             }
 }

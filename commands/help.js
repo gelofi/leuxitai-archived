@@ -56,10 +56,30 @@ module.exports = {
         .addField("roulette", `- play the roulette, get coins!`)
         .addField("shop", `- look at the shop, add items, or delete them.`)
         .addField("buy", `- buy items from the shop!`)
+        .addField("crime", `- commit a crime to earn or lose coins.`)
+        .addField("inventory", `- view your inventory contents.`)
         .addField("_ _", "To add items in the shop, use the shop command.\nExample:\n`l.shop additem Item_Name` (Keep item names 1 word as possible!)\nTo delete items, also use the shop command.\nExample:\n`l.shop delete Item_name`\n(You can only delete custom items!)")
         .setFooter("You can toggle the economy system if desired.")
         .setColor("#3654ff");
       message.channel.send(cmd);
+    } else if (args[0] === "crime") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `crime`")
+        .setDescription("commit a crime. Earn coins or lose money.")
+        .addField("Aliases", "`violate`");
+      return message.channel.send(cmd);
+    } else if (args[0] === "inventory") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `inventory`")
+        .setDescription("view your inventory content.")
+        .addField("Aliases", "`inv`");
+      return message.channel.send(cmd);
+    } else if (args[0] === "modlog") {
+      const modlog = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `modchannel`")
+        .setDescription("change the moderation logs (warn, kick, ban, etc.)")
+        .addField("Aliases", "`modc`  `setmodchannel`")
+      return message.channel.send(modlog);
     } else if (args[0] === "ping") {
       const ping = new Discord.RichEmbed()
         .setAuthor("❓ Command: `ping`")
@@ -73,6 +93,14 @@ module.exports = {
           "will give you a link to invite Leuxitai in your server."
         );
       return message.channel.send(invite);
+    } else if (args[0] === "autorole") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `autorole`")
+        .setDescription(
+          `adds role to the new members that will join.\nUsage:\nAdd autoroles: \`${prefix}autorole add [time] <role>\` (don't mention!)\nRemove autoroles: \`${prefix}autorole delete [role] (don't mention!)\``
+        )
+        .addField("Aliases", "`timedrole`");
+      return message.channel.send(cmd);
     } else if (args[0] === "weather") {
       const weather = new Discord.RichEmbed()
         .setAuthor("❓ Command: `weather`")
@@ -80,6 +108,14 @@ module.exports = {
           `shows a weather on a desired location.\nUsage: \`${prefix}weather <location>\``
         );
       return message.channel.send(weather);
+    } else if (args[0] === "bannedwords") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `bannedwords`")
+        .setDescription(
+          `adds a banned word to your server. Irreversible unless cleared.\nUsage: \`${prefix}bannedwords <add> <word>\``
+        )
+        .addField("Aliases", "`badwords`");
+      return message.channel.send(cmd);
     } else if (args[0] === "changelogs") {
       const changelogs = new Discord.RichEmbed()
         .setAuthor("❓ Command: `changelogs`")
@@ -327,6 +363,38 @@ module.exports = {
           `is used to change the prefix of Leuxitai's music module.\nUsage: \`${prefix}musicprefix <new_prefix>\``
         );
       message.channel.send(cmd);
+    } else if (args[0] === "image") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("Manipulating images // Manual", message.author.displayAvatarURL)
+        .setDescription(
+          `Provide an action and an image to edit it.\nYou must buy this command from the shop.`
+          )
+        .addField(
+          "trigger",
+          "edits the image into a wiggling trigger GIF."
+        )
+        .addField(
+          "trash",
+          "idk trash the image maybe? 😳"
+          )
+      .addField(
+      "delete",
+      "put that image in the recycle bin smh"
+      )
+      .addField(
+      "greyscale",
+      "edit the image with a greyscale filter."
+      )
+      .addField("sepia", 
+       "make our photos HOT 🔥\nadds a sepia filter to your image.")
+      .addField("blur", "make your photo blurry. don't forget to specify a blur level!")
+      .addField("invert", "invert all colors from your image.")
+      .addField("gay", "make your photo more colorful like a rainbow.")
+      .addField("beautiful", "what a beautiful image.")
+      .addField("rip", "2020 - 2020\nadd your photo to a tombstone.")
+        .setFooter("More actions to come!")
+        .setColor("#3654ff");
+      message.channel.send(cmd);
     } else if (args[0] === "wallpaper") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `info`")
@@ -412,12 +480,6 @@ module.exports = {
           `unmutes a muted mentioned/specified user.\nUsage: \`${prefix}unmute <@user>\``
         );
       message.channel.send(cmd);
-    } else if (args[0] === "dm") {
-      var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `dm`")
-        .setDescription("messages someone through dms. Buy this command to use it.")
-        .addField("Usage", `${prefix}dm [member's_ID] [text]`);
-      return message.channel.send(cmd);
     } else if (args[0] === "role") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `role`")
@@ -503,11 +565,11 @@ module.exports = {
         )
         .addField(
           `:video_game:  Fun and Random`,
-          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`, `dm`"
+          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`"
         )
         .addField(
           `:frame_photo:  Images`,
-          "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`, `shiba`"
+          "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`, `shiba`, `image`"
         )
         .addField(
           `:tools:  Tools`,
@@ -515,7 +577,7 @@ module.exports = {
         )
         .addField(
           `:gear:  Settings`,
-          "`prefix`, `musicprefix`, `logchannel`, `setmainrole`, `setmuterole`, `toggle`"
+          "`prefix`, `musicprefix`, `logchannel`, `setmainrole`, `setmuterole`, `toggle`, `autorole`"
         )
         .addField(
           `:tickets:  Levels`,
@@ -523,11 +585,11 @@ module.exports = {
         )
         .addField(
           `${coins}  Economy`,
-          "`work`, `beg`, `daily`, `balance`, `rob`, `roulette`, `weekly`, `deposit`, `withdraw`, `addmoney`, `removemoney`, `buy`, `shop`"
+          "`work`, `beg`, `daily`, `balance`, `rob`, `roulette`, `weekly`, `deposit`, `withdraw`, `addmoney`, `removemoney`, `buy`, `shop`, `crime`, `inventory`"
         )
         .addField(
           `:shield:  Moderation`,
-          "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`"
+          "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `bannedword`, `modchannel`"
         )
         .addField(
           `:musical_note:  Music`,
@@ -535,7 +597,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v11.5",
+          "Leuxitai - v13",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -557,11 +619,11 @@ module.exports = {
               )
               .addField(
                 `:video_game:  Fun and Random`,
-                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name.\n`dm` - message someone through dms, idk annoy them"
+                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name."
               )
               .addField(
                 `:frame_photo:  Images`,
-                "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image\n`shiba` - sends a random shiba image."
+                "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image\n`shiba` - sends a random shiba image.\n`image` - edit images and manipulate them!"
               )
               .addField(
                 `:tools:  Tools`,
@@ -569,7 +631,7 @@ module.exports = {
               )
               .addField(
                 `:gear:  Settings`,
-                "`prefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.\n`toggle` - toggles commands on or off"
+                "`prefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.\n`toggle` - toggles commands on or off\n`autorole` - automatically adds role when a new user joins."
               )
               .addField(
                 `:tickets:  Levels`,
@@ -577,11 +639,11 @@ module.exports = {
               )
             .addField(
               `${coins}  Economy`,
-              "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them."
+              "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them.\n`crime` - commit a crime to earn or lose coins.\n`inventory` - view your inventory content."
             )
               .addField(
                 `:shield:  Moderation`,
-                "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user."
+                "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server.\n`modchannel` - change the mod log channel for moderation commands."
               )
               .addField(
                 `:musical_note:  Music`,
@@ -592,7 +654,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v11.5",
+                "Leuxitai - v13",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")

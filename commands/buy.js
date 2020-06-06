@@ -84,11 +84,11 @@ module.exports = {
       message.channel.send(`${message.author} successfully bought **rob shield** !\n**Cost**: ${coins} **7000**`)
      } else
     
-     if(args[0] == "dm") {
+     if(args[0] == "image") {
       if(money < 25000) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`dm_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 25000)
-      message.channel.send(`${message.author} successfully bought **dm** !\n**Cost**: ${coins} **25000**`)
+      message.channel.send(`${message.author} successfully bought **image** !\n**Cost**: ${coins} **25000**`)
      } else
       
     if(args[0] == "custom"){
