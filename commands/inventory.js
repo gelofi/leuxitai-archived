@@ -9,7 +9,7 @@ module.exports = {
     description: "Repeats what the user said.",
     run: async (bot, message, args) => {
   
-      let eco;
+    let eco;
   
     let econ = await db.fetch(`eco_${message.guild.id}`)
     
@@ -28,19 +28,19 @@ module.exports = {
   let coins = "<:leuxicoin:715493556810416238>";
 
     let items1 = await db.fetch(`inventory1_${message.guild.id}_${user.id}`)
-    if(items1 == true){
+    if(items1 !== null){
       items1 = "1"
     } else {
       items1 = "0"
     }
     let items2 = await db.fetch(`inventory2_${message.guild.id}_${user.id}`)
-    if(items2 == true){
+    if(items2 !== null){
       items2 = "1"
     } else {
       items2 = "0"
     }
     let items3 = await db.fetch(`inventory3_${message.guild.id}_${user.id}`)
-    if(items3 == true){
+    if(items3 !== null){
       items3 = "1"
     } else {
       items3 = "0"
