@@ -425,7 +425,7 @@ bot.on("messageUpdate", async function(oldMessage, newMessage){
 	   
     var autoEmb = new Discord.RichEmbed()
         .setAuthor(`Logs | Message edited!`)
-        .setDescription(`**${newMessage.author.tag}**'s message was edited in ${newMessage.channel}`)
+        .setDescription(`**${newMessage.author.tag}**'s message was edited in ${newMessage.channel} | [Link](https://discordapp.com/channels/${newMessage.guild.id}/${newMessage.channel.id}/${newMessage.id})`)
         .addField(`Old Message`, `${oldMessage}`)
         .addField(`New Message`, `${newMessage}`)
         .setColor("#3654ff")
@@ -474,6 +474,7 @@ bot.on("roleUpdate", async function(oldRole, newRole){
     var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | Role edited!")
         .setDescription(`~~${oldRole.name}~~  ->  ${newRole}\n**Color**:\n~~${oldRole.hexColor}~~ -> **${newRole.hexColor}**`)
+        .addField("Permissions", `[${oldRole.permissions}](https:\/\/discordapi.com/permissions.html#${oldRole.permissions}) -> [${newRole.permissions}](https://discordapi.com/permissions.html#${newRole.permissions})`)
         .setColor(newRole.color)
         .setFooter(`Role ID: ${newRole.id}`)
         .setTimestamp()
@@ -541,8 +542,8 @@ bot.on("channelUpdate", async function(oldChannel, newChannel){
       channel = channels;
     }
 	   
-   if(oldChannel.topic == "") oldChannel.topic = "No topic set."
-   if(newChannel.topic == "") newChannel.topic = "No new topic set."
+   if(oldChannel.topic == "" || oldChannel.topic == null) oldChannel.topic = "No topic set."
+   if(newChannel.topic == "" || newChannel.topic == null) newChannel.topic = "No topic set."
     var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | Channel update!")
         .setDescription(`~~**${oldChannel.name}**~~  -> ${newChannel}\n\n**Old Topic**:\n${oldChannel.topic}\n\n**New Topic**:\n${newChannel.topic}`)
