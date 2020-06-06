@@ -11,6 +11,7 @@ dependencies:
   express: 4.17.1
   express-glitch-keepalive: 0.2.0
   fs: 0.0.2
+  gd.js: 0.2.1
   ms: 2.1.2
   musakui: 1.0.0
   node-fetch: 2.6.0
@@ -1468,6 +1469,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-LANAXHU4w51+s3sxcCLjJfsBi/c=
+  /gd.js/0.2.1:
+    dependencies:
+      sha1: 1.1.1
+    dev: false
+    resolution:
+      integrity: sha512-uIY4yIiIYWVGeLX96qHOECaqZBxdcFbpVdRnXvD7D+4djjp79gh/Z0V3tTdLS2t7PKwNjI7HqGfnqinWFpdxQA==
   /generic-pool/3.5.0:
     dev: false
     engines:
@@ -2804,6 +2811,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
+  /sha1/1.1.1:
+    dependencies:
+      charenc: 0.0.2
+      crypt: 0.0.2
+    dev: false
+    resolution:
+      integrity: sha1-rdqnqTFo85PxnrKxUJFhjicA+Eg=
   /shimmer/1.2.1:
     dev: false
     resolution:
@@ -3365,6 +3379,7 @@ specifiers:
   express: ^4.17.1
   express-glitch-keepalive: ^0.2.0
   fs: ^0.0.2
+  gd.js: ^0.2.1
   ms: ^2.1.2
   musakui: ^1.0.0
   node-fetch: ^2.6.0

@@ -32,7 +32,8 @@
     "alexa-bot-api": "^0.1.2",
     "discord-leveling": "^1.1.0",
     "parse-ms": "^2.0.0",
-    "canvacord": "^2.0.0"
+    "canvacord": "^2.0.0",
+    "gd.js": "^0.2.1"
   },
   "devDependencies": {},
   "description": ""

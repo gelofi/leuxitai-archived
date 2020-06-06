@@ -25,9 +25,24 @@ module.exports = {
     if (togglexp !== "on")
       return message.channel.send("This command is not toggled on!");
 
-    let user = message.mentions.users.first() || message.author;
-    let output = await leveling.Fetch(user.id);
+    function getUserFromMention(mention) {
+	if (!mention) return;
+
+	if (mention.startsWith('<@') && mention.endsWith('>')) {
+		mention = mention.slice(2, -1);
+
+		if (mention.startsWith('!')) {
+			mention = mention.slice(1);
+		}
+
+		return bot.users.get(mention);
+	}
+}
     
+    let user = getUserFromMention(args[0]) || message.author
+    let author = message.author;
+    let output = await leveling.Fetch(user.id);
+  
     if (rank !== "on") {
       
       const points = new Discord.RichEmbed()
@@ -40,9 +55,13 @@ module.exports = {
       message.channel.send(points);
       
     } else {
-      let avatar = await canva.circle(message.author.avatarURL)
+      let avatar = await canva.circle(user.avatarURL)
+      if(output.xp === 0) output.xp = "0"
+      if(output.level === 0) output.level = "0"
+      
       let card = await canva.rank({
-        username: message.author.tag,
+        username: user.username,
+        discrim: user.discriminator,
         level: output.level,
         rank: "?",
         neededXP: 500,

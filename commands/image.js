@@ -117,6 +117,23 @@ module.exports = {
         }
     }
       
+      if(want === "circle"){
+     try {
+        let image = await canva.circle(img.url);
+        message.channel.sendFile(image,'circled.png');
+      } catch (error) {
+     message.channel.send(":warning: An error occured!\n\n```" + error + "```")
+        }
+    }
+      
+      if(want === "jail"){
+     try {
+        let image = await canva.jail(img.url);
+        message.channel.sendFile(image,'jail.png');
+      } catch (error) {
+     message.channel.send(":warning: An error occured!\n\n```" + error + "```")
+        }
+    }
       
     }
 }

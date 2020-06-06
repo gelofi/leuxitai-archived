@@ -26,6 +26,7 @@ module.exports = {
     let user = message.mentions.users.first()
     let amount = args[0];
       
+      if(isNaN(amount)) return message.reply("that's not a number!")
     if(!user) return message.reply("specify a user to add XP to!")
     try {
       leveling.AddXp(user.id, amount)
