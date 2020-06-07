@@ -160,7 +160,7 @@ module.exports = {
       if(tr1 == null && tr2 == null){
         let nulled = new Discord.RichEmbed()
         .setAuthor("Autoroles list", message.guild.iconURL)
-        .setDescription("There are no autoroles set for this server.\nSet an autorole by using the `autorole` command.\nExample: `l.autorole add [time] [role_name]`")
+        .setDescription("There are no autoroles set for this server.\nSet an autorole by using the `autorole` command.\nExample: `l.autorole add [time] [role_name]`\n\nIf you're going to delete an autorole, please start at the last role you added.")
         message.channel.send(nulled)
       }
     }

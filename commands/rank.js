@@ -21,6 +21,8 @@ module.exports = {
       togglexp = togglesxp;
     }
     let rank = await db.fetch(`rank_${message.guild.id}`);
+    
+    if(rank == null) rank = "on"
     //if(togglexp !== 'on' || 'off') return
     if (togglexp !== "on")
       return message.channel.send("This command is not toggled on!");
