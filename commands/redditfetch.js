@@ -18,8 +18,7 @@ module.exports = {
          if(!message.channel.nsfw && result.nsfw == true) return message.channel.send("Failed! The fetched post was NSFW, this channel isn't an NSFW channel!");
         
           const reddit = new Discord.RichEmbed()
-               .setDescription(`**[r/${subr}](https://reddit.com/r/${subr})** • [u/${result.author}](https://reddit.com/u/${result.author}) | [Post~link](${result.reddit_url})`)
-               .addField(`${result.title}`, `_ _`)
+               .setDescription(`**[r/${subr}](https://reddit.com/r/${subr})** • [u/${result.author}](https://reddit.com/u/${result.author}) | [Post~link](${result.reddit_url})\n\n**${result.title}**\n\n${result.content}`)
                .setImage(result.media_url)
                .setColor("#ff5700")
                .setFooter(`Upvotes: ${result.upvotes} | Downvotes: ${result.downvotes} | Comments: ${result.comments}`)

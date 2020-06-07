@@ -13,7 +13,7 @@ module.exports = {
         });
       
         const sayMsg = args.slice(0).join(" ");
-        message.delete().catch(O_o=>{}); 
+        message.delete(); 
         message.channel.send(sayMsg);
     }
 }

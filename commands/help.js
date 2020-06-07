@@ -404,6 +404,8 @@ module.exports = {
       .addField("gay", "make your photo more colorful like a rainbow.")
       .addField("beautiful", "what a beautiful image.")
       .addField("rip", "2020 - 2020\nadd your photo to a tombstone.")
+      .addField("circle", "crop a photo into a circle.")
+      .addField("jail", "put that image behind bars! (literally)")
         .setFooter("More actions to come!")
         .setColor("#3654ff");
       message.channel.send(cmd);
