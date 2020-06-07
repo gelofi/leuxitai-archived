@@ -29,6 +29,9 @@ module.exports = {
   let timeout = 86400000;
   let amount = 200;
 
+  let booster = await db.fetch(`booster_${message.guild.id}_${message.author.id}`)
+  
+  if(booster !== null) amount = 450;
   let daily = await db.fetch(`daily_${message.guild.id}_${user.id}`);
 
   if (daily !== null && timeout - (Date.now() - daily) > 0) {
@@ -38,7 +41,7 @@ module.exports = {
     
   } else {
     
-  message.channel.send(`${check}  You've collected your daily reward of ${coins} **${amount}** coins`);
+  message.channel.send(`${check}  You've collected your daily reward of ${coins} **${amount}** coins.`);
     
   db.add(`money_${message.guild.id}_${user.id}`, amount)
   db.set(`daily_${message.guild.id}_${user.id}`, Date.now())

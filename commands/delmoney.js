@@ -34,10 +34,10 @@ module.exports = {
     //if (isNaN(args[1])) return message.reply("that is not a number!")
     db.delete(`money_${message.guild.id}_${user.id}`)
     let bal = await db.fetch(`money_${message.guild.id}_${user.id}`)
-
+    if(bal == null) bal = 0;
     let moneyEmbed = new Discord.RichEmbed()
     .setColor("#3654ff")
-    .setDescription(`${check} Added ${coins} **${args[1]}** coins to ${user.user.tag}\nNew Balance: ${bal}`);
+    .setDescription(`${check} ${user.user.tag}'s balance has been reset.\nNew Balance: ${bal}`);
     message.channel.send(moneyEmbed)
     }
 }

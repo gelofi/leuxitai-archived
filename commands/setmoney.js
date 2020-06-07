@@ -32,12 +32,12 @@ module.exports = {
   if(!user) return message.reply("specify a user to give them money!")
   if(!args[1]) return message.reply("please set a desired amount to add!")
     if (isNaN(args[1])) return message.reply("that is not a number!")
-    db.set(`money_${message.guild.id}_${user.id}`, args[1])
+    db.set(`money_${message.guild.id}_${user.id}`, parseInt(args[1]))
     let bal = await db.fetch(`money_${message.guild.id}_${user.id}`)
 
     let moneyEmbed = new Discord.RichEmbed()
     .setColor("#3654ff")
-    .setDescription(`${check} Added ${coins} **${args[1]}** coins to ${user.user.tag}\nNew Balance: ${bal}`);
+    .setDescription(`${check} Set ${coins} **${args[1]}** coins to ${user.user.tag}\nNew Balance: ${bal}`);
     message.channel.send(moneyEmbed)
     }
 }

@@ -101,7 +101,19 @@ module.exports = {
       db.subtract(`money_${message.guild.id}_${user.id}`, item1cost)
       message.channel.send(`${message.author} successfully bought **${item1}** !\n**Cost**: ${coins} **${item1cost}**`)
      } else
-
+     
+     if(args[0] == "booster") {
+      if(money < 1000) return message.reply("you don't have enough money to buy that item! :(")
+      db.set(`booster_${message.guild.id}_${user.id}`, true)
+      db.subtract(`money_${message.guild.id}_${user.id}`, 1000)
+      message.channel.send(`${message.author} successfully bought **booster** !\n**Cost**: ${coins} **1000**`)
+       
+      setTimeout(() => {
+        db.delete(`booster_${message.guild.id}_${user.id}`)
+        user.send(`Your daily booster in **${message.guild.name}** has expired.\nYou can buy again to earn more ${coins} LeuxiCoins!`)
+      }, 604800000)
+     } else
+       
     if(args[1] !== item1 && args[1] == item2) {
     // if(item2 !== null) return message.reply("that item does not exist!")
      if(money < item2cost) return message.reply("you don't have enough money to buy that item! :(")

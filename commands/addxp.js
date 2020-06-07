@@ -24,7 +24,7 @@ module.exports = {
     if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
     
     let user = message.mentions.users.first()
-    let amount = args[0];
+    let amount = parseInt(args[0]);
       
       if(isNaN(amount)) return message.reply("that's not a number!")
     if(!user) return message.reply("specify a user to add XP to!")

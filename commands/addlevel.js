@@ -28,7 +28,7 @@ module.exports = {
       if(isNaN(amount)) return message.reply("that's not a number!")
     if(!user) return message.reply("specify a user to add levels to!")
     try {
-      leveling.AddLevel(user.id, amount)
+      leveling.AddLevel(user.id, parseInt(amount))
       message.channel.send(`:ticket: **${user.tag}** successfully received **${amount}** levels!`)
     }
       catch (error) {
