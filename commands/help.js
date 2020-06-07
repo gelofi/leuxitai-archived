@@ -21,6 +21,14 @@ module.exports = {
     let no = "<:no:716819317852733480>";
     let coins = "<:leuxicoin:715493556810416238>";
 
+    let tools = "<:leuxtools:718999433735307354>"
+    let orbs = "<:orbs:718999124594393168>"
+    let mod = "<:moderation:718998264304762981>"
+    let settings = "<:settings:718996699011481600>"
+    let levels = "<:levels:718996631370072224>"
+    let music = "<:music:718996574797037599>"
+    let info = "<:info:719001493604139009>"
+    
     if (args[0] === "support") {
       const support = new Discord.RichEmbed()
         .setAuthor("❓ Command: `support`")
@@ -531,7 +539,7 @@ module.exports = {
     } else if (args[0] === "music") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Music Commands")
-        .setDescription("All of music commands are here.")
+        .setDescription("${music}  All of music commands are here.")
         .addField(
           `play`,
           "When initiated, will play a song on a voice channel. You must join a channel first."
@@ -564,11 +572,11 @@ module.exports = {
           `**Use \`${prefix}help <command>\` (Letter L) to view the command information.\nClick 🔘 to expand the commands' description.**`
         )
         .addField(
-          `:dividers:  Information`,
+          `${info}  Information`,
           "`help`, `support`, `ping`, `invite`, `weather`, `changelogs`"
         )
         .addField(
-          `:video_game:  Fun and Random`,
+          `${orbs}  Fun and Random`,
           "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`"
         )
         .addField(
@@ -576,15 +584,15 @@ module.exports = {
           "`cat`, `dog`, `meme`, `anime`, `hug`, `wallpaper`, `fox`, `pat`, `bird`, `shiba`, `image`"
         )
         .addField(
-          `:tools:  Tools`,
+          `${tools}  Tools`,
           "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`, `slowmode`"
         )
         .addField(
-          `:gear:  Settings`,
+          `${settings}  Settings`,
           "`prefix`, `musicprefix`, `logchannel`, `setmainrole`, `setmuterole`, `toggle`, `autorole`"
         )
         .addField(
-          `:tickets:  Levels`,
+          `${levels}  Levels`,
           "`points`, `leaderboard`, `addxp`, `setxp`, `setlevel`, `addlevel`, `xpreset`"
         )
         .addField(
@@ -592,16 +600,16 @@ module.exports = {
           "`work`, `beg`, `daily`, `balance`, `rob`, `roulette`, `weekly`, `deposit`, `withdraw`, `addmoney`, `removemoney`, `buy`, `shop`, `crime`, `inventory`"
         )
         .addField(
-          `:shield:  Moderation`,
+          `${mod}  Moderation`,
           "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `bannedword`, `modchannel`"
         )
         .addField(
-          `:musical_note:  Music`,
+          `${music}  Music`,
           "`play`, `pause`, `resume`, `skip`, `np`, `volume`, `queue`, `lyrics`, `disconnect`"
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v13",
+          "Leuxitai - v13.5",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -618,11 +626,11 @@ module.exports = {
                 `**This is the expanded help command. Click ⭕ to collapse this manual.\nUse \`${prefix}help\` to view a normal, embedded manual.**`
               )
               .addField(
-                `:dividers:  Information`,
+                `${info}  Information`,
                 "`help` - shows all Leuxitai's commands.\n`support` - sends a server link to Leuxitai's server through DMs.\n`ping` - sends the API latency of the bot.\n`invite` - sends an invite to invite Leuxitai to your server through DMs.\n`weather` - sends the weather information at the desired location.\n`changelogs` - sends the latest changelogs through DMs."
               )
               .addField(
-                `:video_game:  Fun and Random`,
+                `${orbs}  Fun and Random`,
                 "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name."
               )
               .addField(
@@ -630,15 +638,15 @@ module.exports = {
                 "`cat` - sends a random cat image.\n`dog` - sends a random dog image.\n`meme` - sends a random meme from random meme subreddits.\n`anime` - sends a random anime GIF from r/animegifs\n`hug` - mention someone and hug them!\n`wallpaper` - gets a random image from Unsplash.com\n`fox` - sends a random fox image\n`pat` - mention someone to pat them!\n`bird` - sends a random birbo image\n`shiba` - sends a random shiba image.\n`image` - edit images and manipulate them!"
               )
               .addField(
-                `:tools:  Tools`,
+                `${tools}  Tools`,
                 "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user.\n`slowmode` - sets a slowmode in the channel."
               )
               .addField(
-                `:gear:  Settings`,
+                `:${settings}  Settings`,
                 "`prefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.\n`toggle` - toggles commands on or off\n`autorole` - automatically adds role when a new user joins."
               )
               .addField(
-                `:tickets:  Levels`,
+                `${levels}  Levels`,
                 "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user."
               )
             .addField(
@@ -646,11 +654,11 @@ module.exports = {
               "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them.\n`crime` - commit a crime to earn or lose coins.\n`inventory` - view your inventory content."
             )
               .addField(
-                `:shield:  Moderation`,
+                `${mod}  Moderation`,
                 "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server.\n`modchannel` - change the mod log channel for moderation commands."
               )
               .addField(
-                `:musical_note:  Music`,
+                `${music}  Music`,
                 "`play`- plays the song you put.\n`pause` - will pause the current song playing\n`resume` - will resume the current song playing if paused.\n`skip` - will skip the current song to the next song.\n`np` - will send the current song playing in queue.\n`volume` - will send the current volume, which you can increase or decrease.\n`queue` - sends the song queue in the server.\n`lyrics` - sends the lyrics of the current song, if there is. Buggy.\n`disconnect` - disconnects from the voice channel and stops music playback."
               )
               .addField(
@@ -658,7 +666,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v13",
+                "Leuxitai - v13.5",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")

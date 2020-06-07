@@ -224,10 +224,13 @@ bot.on("guildMemberAdd", async function(member) {
     let tr2 = await db.fetch(`timedrole2_${member.guild.id}`)
     let tr2t = await db.fetch(`timedrole2time_${member.guild.id}`)
     
-  
+    let tr3 = await db.fetch(`timedrole3_${member.guild.id}`)
+    let tr3t = await db.fetch(`timedrole3time_${member.guild.id}`)
+    
     let autorole = member.guild.roles.find(r => r.name === `${timedrole1}`)
     let timerole = member.guild.roles.find(r => r.name === `${tr2}`)
-    
+    let timedrole = member.guild.roles.find(r => r.name === `${tr3}`)
+
     if(timedrole1 !== null && tr2 == null){
       
     setTimeout(function(){
@@ -277,6 +280,50 @@ bot.on("guildMemberAdd", async function(member) {
       
     }
 
+    if(timedrole1 !== null && tr2 !== null && tr3 !== null){
+      
+    setTimeout(function(){
+    member.addRole(autorole)
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} gained the role **${timedrole1}** after **${ms(timedrole1time)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, timedrole1time)
+      
+    setTimeout(function(){
+      
+    member.addRole(timerole)
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} gained the role **${tr2}** after **${ms(tr2t)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, tr2t)
+      
+    setTimeout(function(){
+      
+    member.addRole(timedrole)
+    var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole given!")
+        .setThumbnail(member.user.displayAvatarURL)
+        .setDescription(`${mem} gained the role **${tr3}** after **${ms(tr3t)}**`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${member.id}`)
+        .setTimestamp()
+        var set = member.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
+    }, tr2t)
+
+    }
 });
 
 bot.on("guildMemberRemove", async function(member) {
@@ -355,7 +402,7 @@ bot.on("emojiCreate", async function(emoji){
         .setFooter(`Emoji ID: ${emoji.id}`)
         .setTimestamp()
         var set = emoji.guild.channels.find(`name`, `${channel}`)
-        if(!set) return
+        
         set.send(autoEmb);
     
 });
@@ -380,14 +427,14 @@ bot.on("emojiDelete", async function(emoji){
         .setFooter(`Emoji ID: ${emoji.id}`)
         .setTimestamp()
         var set = emoji.guild.channels.find(`name`, `${channel}`)
-        if(!set)
+      
         set.send(autoEmb);
    
 });
 
-bot.on("emojiUpdate", async function(oldEmoji, newEmoji){
+bot.on("emojiUpdate", async (oldEmoji, newEmoji) => {
 
-  let channel;
+    let channel;
   
     let channels = await db.fetch(`channel_${newEmoji.guild.id}`)
     
@@ -405,7 +452,6 @@ bot.on("emojiUpdate", async function(oldEmoji, newEmoji){
         .setFooter(`Emoji ID: ${newEmoji.id}`)
         .setTimestamp()
         var set = newEmoji.guild.channels.find(`name`, `${channel}`)
-        if(!set)
         set.send(autoEmb);
     
 });
@@ -432,7 +478,7 @@ bot.on("messageUpdate", async function(oldMessage, newMessage){
         .setFooter(`Message ID: ${newMessage.id}`)
         .setTimestamp()
         var set = newMessage.guild.channels.find(`name`, `${channel}`)
-        if(!set) return
+        
         set.send(autoEmb);
 
 });
@@ -455,7 +501,7 @@ bot.on("roleCreate", async function(role){
         .setFooter(`Role ID: ${role.id}`)
         .setTimestamp()
         var set = role.guild.channels.find(`name`, `${channel}`)
-        if(!set) return
+      
         set.send(autoEmb);
 
 });
@@ -479,7 +525,7 @@ bot.on("roleUpdate", async function(oldRole, newRole){
         .setFooter(`Role ID: ${newRole.id}`)
         .setTimestamp()
         var set = newRole.guild.channels.find(`name`, `${channel}`)
-        if(!set) return
+        
         set.send(autoEmb);
 
 });
@@ -502,7 +548,7 @@ bot.on("roleDelete", async function(role){
         .setFooter(`Role ID: ${role.id}`)
         .setTimestamp()
         var set = role.guild.channels.find(`name`, `${channel}`)
-        if(!set) return
+        
         set.send(autoEmb);
 
 });
@@ -526,7 +572,7 @@ bot.on("channelCreate", async function(Channel){
         .setFooter(`Channel ID: ${Channel.id}`)
         .setTimestamp()
         var set = Channel.guild.channels.find(`name`, `${channel}`)
-        if(!set) return
+        
         set.send(autoEmb);
 
 });
@@ -551,7 +597,7 @@ bot.on("channelUpdate", async function(oldChannel, newChannel){
         .setFooter(`Channel ID: ${newChannel.id}`)
         .setTimestamp()
         var set = newChannel.guild.channels.find(`name`, `${channel}`)
-        if(!set) return
+        
         set.send(autoEmb);
 
 });
@@ -575,7 +621,7 @@ bot.on("channelDelete", async function(Channel){
         .setFooter(`Channel ID: ${Channel.id}`)
         .setTimestamp()
         var set = Channel.guild.channels.find(`name`, `${channel}`)
-        if(!set) return
+        
         set.send(autoEmb);
 
 });

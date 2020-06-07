@@ -29,6 +29,9 @@ module.exports = {
     let tr2 = await db.fetch(`timedrole2_${message.guild.id}`)
     let tr2t = await db.fetch(`timedrole2time_${message.guild.id}`)
     
+    let tr3 = await db.fetch(`timedrole3_${message.guild.id}`)
+    let tr3t = await db.fetch(`timedrole3time_${message.guild.id}`)
+
     if(args[0] === "add") {
     if(!message.member.hasPermission("MANAGE_GUILD")) {
       return message.reply("you don't have the **Manage Server** permission to use this command!")
@@ -77,10 +80,30 @@ module.exports = {
         .setTimestamp()
         var set = message.guild.channels.find(`name`, `${channel}`)
         set.send(addEmb);
+
+        } else 
+
+      if(tr1 !== null && tr2 !== null && tr3 == null){
+      await db.set(`timedrole3_${message.guild.id}`, role)
+      await db.set(`timedrole3time_${message.guild.id}`, time)
+      let settr3 = new Discord.RichEmbed()
+      .setColor("#3654ff")
+      .setDescription(`${check} Added **${role}** as an autorole, that will be given in **${ms(time)}**.`)
+      message.channel.send(settr3)
+        
+        var addEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Autorole added!")
+        .setThumbnail(message.guild.iconURL)
+        .setDescription(`**${role}** role has been added to the autorole list.`)
+        .setColor("#3654ff")
+        .setFooter(`ID: ${message.author.id}`)
+        .setTimestamp()
+        var set = message.guild.channels.find(`name`, `${channel}`)
+        set.send(addEmb);
         
       } else {
         
-        message.channel.send("This server's autorole storage (2/2) is **full**!\nDelete some roles to create new ones.")
+        message.channel.send(`${no} This server's autorole storage (3/3) is **full**!\nDelete some roles to create new ones.`)
         
       }
     } else
@@ -99,13 +122,27 @@ module.exports = {
         await db.delete(`timedrole2_${message.guild.id}`)
         await db.delete(`timedrole2time_${message.guild.id}`)
         message.channel.send(`**${therole}** has been deleted from the autoroles list.`)
+      } else
+       
+      if(therole == `${tr3}`) {
+        await db.delete(`timedrole3_${message.guild.id}`)
+        await db.delete(`timedrole3time_${message.guild.id}`)
+        message.channel.send(`**${therole}** has been deleted from the autoroles list.`)
       } else {
-        message.reply("I couldn't find that autorole!")
+        message.reply("I couldn't find that autorole! Define an autorole and be very specific!")
       }
         
     } else {
       
-      if(tr1 !== null && tr2 !== null) {
+      if(tr1 !== null && tr2 !== null && tr3 !== null) {
+      let timeroles = new Discord.RichEmbed()
+      .setAuthor("Autoroles list", message.guild.iconURL)
+      .setDescription(`**${tr1}** - ${ms(tr1t)}\n**${tr2}** - ${ms(tr2t)}\n**${tr3}** - ${ms(tr3t)}`)
+      .setColor("#9feb65")
+      message.channel.send(timeroles)
+      }
+ 
+      if(tr1 !== null && tr2 !== null && tr3 == null) {
       let timeroles = new Discord.RichEmbed()
       .setAuthor("Autoroles list", message.guild.iconURL)
       .setDescription(`**${tr1}** - ${ms(tr1t)}\n**${tr2}** - ${ms(tr2t)}`)
