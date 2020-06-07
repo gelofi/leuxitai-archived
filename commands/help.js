@@ -66,7 +66,7 @@ module.exports = {
         .addField("buy", `- buy items from the shop!`)
         .addField("crime", `- commit a crime to earn or lose coins.`)
         .addField("inventory", `- view your inventory contents.`)
-        .addField("_ _", "To add items in the shop, use the shop command.\nExample:\n`l.shop additem Item_Name` (Keep item names 1 word as possible!)\nTo delete items, also use the shop command.\nExample:\n`l.shop delete Item_name`\n(You can only delete custom items!)")
+        .addField("_ _", "To add items in the shop, use the shop command.\nExample:\n`l.shop additem Item_Name [cost] [description]` (Keep item names 1 word as possible!)\nTo delete items, also use the shop command.\nExample:\n`l.shop delete Item_name`\n(You can only delete custom items!)")
         .setFooter("You can toggle the economy system if desired.")
         .setColor("#3654ff");
       message.channel.send(cmd);
