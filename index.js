@@ -83,9 +83,8 @@ bot.on("message", async message => {
     if(msg == null) msg = LIMIT
     
   let msgSec = await db.fetch(`msgSec_${message.guild.id}`)
+  if(msgSec == null) msgSec = TIME 
   let s = ms(msgSec)
-  if(msgSec == null) s = TIME 
-  
     if(usersMap.has(message.author.id)) {
     const userData = usersMap.get(message.author.id);
     const { lastMessage, timer } = userData;
@@ -107,6 +106,7 @@ bot.on("message", async message => {
       ++msgCount;
       if(parseInt(msgCount) === mCount) {
   let antispam = await db.fetch(`antispam_${message.guild.id}`)
+  if(antispam == null) antispam = "off"
   if(antispam !== "on") return
     
         message.reply("please don't spam!");
