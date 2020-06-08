@@ -18,10 +18,16 @@ const { token } = require ("./config.js")
 const PREFIX = "l.";
 
 const db = require('quick.db');
+const ms = require('ms');
 const leveling = require("discord-leveling");
 
 let cooldown = new Set();
 let cdseconds = 40;
+
+const usersMap = new Map();
+const LIMIT = 5;
+const TIME = 7000;
+const DIFF = 3000;
 
 // Collections
 bot.commands = new Collection();
@@ -70,6 +76,60 @@ bot.on("ready", async () => {
 // Regular Commands
 bot.on("message", async message => {
   
+  if(message.guild){
+    
+  let msg = await db.fetch(`msgCounter_${message.guild.id}`)
+  let mCount = parseInt(msg);
+    if(msg == null) msg = LIMIT
+    
+  let msgSec = await db.fetch(`msgSec_${message.guild.id}`)
+  let s = ms(msgSec)
+  if(msgSec == null) s = TIME 
+  
+    if(usersMap.has(message.author.id)) {
+    const userData = usersMap.get(message.author.id);
+    const { lastMessage, timer } = userData;
+    const difference = message.createdTimestamp - lastMessage.createdTimestamp;
+    let msgCount = userData.msgCount;
+    console.log(difference);
+    if(difference > DIFF) {
+      clearTimeout(timer);
+      console.log('Cleared timeout');
+      userData.msgCount = 1;
+      userData.lastMessage = message;
+      userData.timer = setTimeout(() => {
+        usersMap.delete(message.author.id);
+        console.log('Removed from RESET.');
+      }, s);
+      usersMap.set(message.author.id, userData);
+    }
+    else {
+      ++msgCount;
+      if(parseInt(msgCount) === mCount) {
+  let antispam = await db.fetch(`antispam_${message.guild.id}`)
+  if(antispam !== "on") return
+    
+        message.reply("please don't spam!");
+      } else {
+        userData.msgCount = msgCount;
+        usersMap.set(message.author.id, userData);
+      }
+    }
+  }
+  else {
+    let fn = setTimeout(() => {
+      usersMap.delete(message.author.id);
+      console.log('Removed from map.');
+    }, s);
+    usersMap.set(message.author.id, {
+      msgCount: 1,
+      lastMessage: message,
+      timer: fn
+    });
+  }
+    
+  };
+  
   //Fixes the bot bug
   if (message.author.bot) return;
 
@@ -88,6 +148,7 @@ bot.on("message", async message => {
     } else {
       prefix = prefixes;
     }
+  
   //log channel
   let channel;
   
@@ -626,6 +687,6 @@ bot.on("channelDelete", async function(Channel){
 
 });
 
-//Leuxitai v13.6
+//Leuxitai v14
 
 bot.login(token);

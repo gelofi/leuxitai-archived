@@ -158,7 +158,7 @@ module.exports = {
       .setAuthor(`${message.guild.name}'s Shop`, message.guild.iconURL)
       .setDescription(`Buy items using \`${prefix}buy [item name]\`\nBuy custom items using \`${prefix}buy custom [item]\``)
       .addField(`${item1} - ${coins} ${item1cost}`, `${item1desc}`)
-      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.`)
       .setColor("#3654ff")
       message.channel.send(shop1)
 

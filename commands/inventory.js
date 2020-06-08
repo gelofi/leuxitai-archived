@@ -5,7 +5,7 @@ const ms = require("parse-ms");
 
 module.exports = {
     name: 'inventory',
-    aliases: ["inv", "profile"],
+    aliases: ["inv", "bag"],
     description: "Repeats what the user said.",
     run: async (bot, message, args) => {
   
@@ -80,10 +80,18 @@ module.exports = {
       dm = "0"
     }
     
+    let booster = await db.fetch(`booster_${message.guild.id}_${user.id}`)
+    if(booster !== null){
+      booster = "1"
+    } else {
+      booster = "0"
+    }
+      
   let invicon = "https://cdn.discordapp.com/attachments/717606800198729738/717606940821291058/1591160922175.png"
   let moneydb = await db.fetch(`money_${message.guild.id}_${user.id}`)
+  if(moneydb == null) moneydb = "0"
   let bank = await db.fetch(`bank_${message.guild.id}_${user.id}`)
-  
+  if(bank == null) bank = "0"
   if(message.mentions.users.first()) return message.reply("you can't view others' inventory!")
       
           let inv1 = new Discord.RichEmbed()
@@ -91,7 +99,7 @@ module.exports = {
           .setDescription("**N/A** shows up if there are blank storages for custom items.")
           .setThumbnail(invicon)
           .addField(`Custom items`, `- **${itemsname1}** - ${items1}\n- **${itemsname2}** - ${items2}\n- **${itemsname3}** - ${items3}`)
-          .addField("LeuxItems", `**charm** - ${charm}\n**rob shield** - ${rob}\n**image** - ${dm}`)
+          .addField("LeuxItems", `**charm** - ${charm}\n**rob shield** - ${rob}\n**image** - ${dm}\n**booster** - ${booster}`)
           .setColor(message.member.displayHexColor)
           .setFooter(`Coins: ${moneydb}  | Bank: ${bank}`)
           message.channel.send(inv1)

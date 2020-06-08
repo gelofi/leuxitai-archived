@@ -90,19 +90,8 @@ module.exports = {
       db.subtract(`money_${message.guild.id}_${user.id}`, 25000)
       message.channel.send(`${message.author} successfully bought **image** !\n**Cost**: ${coins} **25000**`)
      } else
-      
-    if(args[0] == "custom"){
-      
-      if(!args[1]) return message.reply("specify a custom item to buy!")
-     if(args[1] == item1) {
-     //if(item1 !== null) return message.reply("that item does not exist!")
-     if(money < item1cost) return message.reply("you don't have enough money to buy that item! :(")
-      db.set(`inventory1_${message.guild.id}_${user.id}`, item1)
-      db.subtract(`money_${message.guild.id}_${user.id}`, item1cost)
-      message.channel.send(`${message.author} successfully bought **${item1}** !\n**Cost**: ${coins} **${item1cost}**`)
-     } else
-     
-     if(args[0] == "booster") {
+       
+      if(args[0] == "booster") {
       if(money < 1000) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`booster_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 1000)
@@ -114,6 +103,17 @@ module.exports = {
       }, 604800000)
      } else
        
+    if(args[0] == "custom"){
+      
+      if(!args[1]) return message.reply("specify a custom item to buy!")
+     if(args[1] == item1) {
+     //if(item1 !== null) return message.reply("that item does not exist!")
+     if(money < item1cost) return message.reply("you don't have enough money to buy that item! :(")
+      db.set(`inventory1_${message.guild.id}_${user.id}`, item1)
+      db.subtract(`money_${message.guild.id}_${user.id}`, item1cost)
+      message.channel.send(`${message.author} successfully bought **${item1}** !\n**Cost**: ${coins} **${item1cost}**`)
+     } else
+     
     if(args[1] !== item1 && args[1] == item2) {
     // if(item2 !== null) return message.reply("that item does not exist!")
      if(money < item2cost) return message.reply("you don't have enough money to buy that item! :(")

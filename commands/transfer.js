@@ -53,8 +53,8 @@ module.exports = {
   .setDescription(`${check} Transferred ${coins} **${args[1]}** coins to <@${user.user.id}>`)
   .setFooter(`Receiver ID: ${user.user.id}\nTransferee ID: ${message.author.id}`)
   message.channel.send(embed5)
-  db.add(`money_${message.guild.id}_${user.id}`, args[1])
-  db.subtract(`money_${message.guild.id}_${message.author.id}`, args[1])
+  db.add(`money_${message.guild.id}_${user.id}`, parseInt(args[1]))
+  db.subtract(`money_${message.guild.id}_${message.author.id}`, parseInt(args[1]))
 
     }
 }

@@ -85,6 +85,24 @@ module.exports = {
   //end of ECO
         }
 
+      if(args[0] === "nospam"){
+        if(!args[1]) return message.reply("toggle what? On or Off?")[1] 
+        if(args[1] !== 'on' && args[1] !== 'off') return message.reply("wat? Toggle it ON, or OFF !")
+        await db.set(`antispam_${message.guild.id}`, args[1])
+        
+        message.channel.send(`Toggled the **Anti-spam System**  \`${args[1]}\`  successfully.`)
+          
+          var log = message.guild.channels.find(`name`, `${channel}`)
+          var embed = new Discord.RichEmbed()
+          .setAuthor(`Logs | Toggle`, message.guild.iconURL)
+          .setDescription(`${message.author.tag} turned ${args[1]} the **Anti-spam System**.`)
+          .setFooter(`Author ID: ${message.author.id}`)
+          .setTimestamp()
+          .setColor("#7289da")
+          log.send(embed)
+  //end of NOSPAM
+        }
+      
       if(args[0] === "imagecard"){
         if(!args[1]) return message.reply("toggle what? On or Off?")[1] 
         if(args[1] !== 'on' && args[1] !== 'off') return message.reply("wat? Toggle it ON, or OFF !")
@@ -100,7 +118,7 @@ module.exports = {
           .setTimestamp()
           .setColor("#7289da")
           log.send(embed)
-  //end of ECO
+  //end of IMGCARD
         }
 
       

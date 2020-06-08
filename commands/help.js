@@ -4,7 +4,7 @@ const db = require("quick.db");
 
 module.exports = {
   name: "help",
-  aliases: ["manual", "h", "commands"],
+  aliases: ["h", "commands"],
   description: "Sends all commands in the channel.",
   run: async (bot, message, args) => {
     let prefix;
@@ -243,6 +243,14 @@ module.exports = {
         )
         .addField("Aliases", "`delete`  `prune`");
       return message.channel.send(cmd);
+    } else if (args[0] === "antispam") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `antispam`")
+        .setDescription(
+          `change the settings for the antispam system.\nUsage: \`${prefix}antispam [seconds, msgcount] [count]\`\n\n**seconds** - the span of seconds in the influx of messages.\n**msgcount** - the message count in a span of the seconds.`
+        )
+        .addField("Aliases", "`nospam`  `anti-spam`");
+      return message.channel.send(cmd);
     } else if (args[0] === "avatar") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `avatar`")
@@ -253,7 +261,7 @@ module.exports = {
       return message.channel.send(cmd);
     } else if (args[0] === "toggle") {
       var cmd = new Discord.RichEmbed()
-        .setAuthor("Toggling Commands ON / OFF", message.guild.iconURL)
+        .setAuthor("Toggling Settings ON / OFF", message.guild.iconURL)
         .setDescription(
           "You can toggle commands below on or off.\nExample: `l.toggle xp off`\nDefault settings for all toggles are off."
         )
@@ -265,11 +273,15 @@ module.exports = {
           "• Level Cards (imagecard)",
           "Make the XP System have a rank card."
           )
+      .addField(
+          "• Anti-spam (nospam)",
+          "Protect your server from spammers."
+          )
         .addField(
           "• Economy System (eco)",
           "Disable or enable the economy system."
         )
-        .setFooter("More commands to come!")
+        .setFooter("More settings to come!")
         .setColor("#3654ff");
       message.channel.send(cmd);
     } else if (args[0] === "kick") {
@@ -360,6 +372,7 @@ module.exports = {
           `remind yourself the things you need to do.\nUsage: \`${prefix}remindme <time> <reminder>\``
         )
         .addField("Aliases", "`remind`  `reminder`");
+      message.channel.send(cmd);
     } else if (args[0] === "prefix") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `setprefix`")
@@ -423,6 +436,14 @@ module.exports = {
         .setDescription("sends a random fox image.")
         .addField("Aliases", "`kitsune`");
       return message.channel.send(cmd);
+    } else if (args[0] === "warnrole") {
+      const ping = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `warnrole`")
+        .setColor("#3654ff")
+        .setDescription("set up roles for the warning system.")
+      .addField("Usage", "To add roles:\n`l.warnrole add [warning level (w1, w2, w3, w4, w5)] [role name]` (do not mention!)\n\nTo delete a role:\n`l.warnrole delete [role_name]` (do not mention!)\n\n:warning: **Immediately add another role if you deleted one. Or else the warning system wouldn't work.**")
+        .addField("Aliases", "`warningrole`  `warnroles`  `warningroles`");
+      return message.channel.send(ping);
     } else if (args[0] === "pat") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `pat`")
@@ -603,7 +624,7 @@ module.exports = {
         )
         .addField(
           `${mod}  Moderation`,
-          "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `bannedword`, `modchannel`"
+          "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `bannedword`, `modchannel`, `warnrole`, `antispam`"
         )
         .addField(
           `${music}  Music`,
@@ -611,7 +632,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v13.5",
+          "Leuxitai - v14.3",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -657,7 +678,7 @@ module.exports = {
             )
               .addField(
                 `${mod}  Moderation`,
-                "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server.\n`modchannel` - change the mod log channel for moderation commands."
+                "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server.\n`modchannel` - change the mod log channel for moderation commands.\n`warnrole` - set up roles for the warning system.\n`antispam` - protect your server from spam attacks."
               )
               .addField(
                 `${music}  Music`,
@@ -668,7 +689,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v13.5",
+                "Leuxitai - v14.3",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")

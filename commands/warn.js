@@ -56,6 +56,21 @@ module.exports = {
 	}
 }
 
+    let w1 = await db.fetch(`warn1_${message.guild.id}`)
+    if(w1 == null) return message.reply("set up a warn role for W1 first!")
+      
+    let w2 = await db.fetch(`warn2_${message.guild.id}`)
+    if(w2 == null) return message.reply("set up a warn role for W2 first!")
+      
+    let w3 = await db.fetch(`warn3_${message.guild.id}`)
+    if(w3 == null) return message.reply("set up a warn role for W3 first!")
+      
+    let w4 = await db.fetch(`warn4_${message.guild.id}`)
+    if(w4 == null) return message.reply("set up a warn role for W4 first!")
+      
+    let w5 = await db.fetch(`warn5_${message.guild.id}`)
+    if(w5 == null) return message.reply("set up a warn role for W5 first!")
+
     if(!args[0]) return message.reply("please specify a member/user to warn! (Do not ping them!)")
       
     let user = getUserFromMention(args[0])// || bot.users.find("username", args[0]);
@@ -101,7 +116,18 @@ module.exports = {
       let mainrole = message.guild.roles.find(role => role.name === `${mainRole}`)
       let muterole = message.guild.roles.find(role => role.name === `${muteRole}`)
       
-      if(newarn === 2){
+      let warn1 = message.guild.roles.find(role => role.name === `${w1}`)
+      let warn2 = message.guild.roles.find(role => role.name === `${w2}`)
+      let warn3 = message.guild.roles.find(role => role.name === `${w3}`)
+      let warn4 = message.guild.roles.find(role => role.name === `${w4}`)
+      let warn5 = message.guild.roles.find(role => role.name === `${w5}`)
+      
+      if(newarn >= 1){
+        member.addRole(warn1)
+      }
+      
+      if(newarn >= 2){
+         member.addRole(warn2)
          member.removeRole(mainrole)
          member.addRole(muterole)
          message.channel.send(":warning: +**2m** mute.")
@@ -117,7 +143,8 @@ module.exports = {
          }, ms('2m'));
       }
       
-      if(newarn === 3){
+      if(newarn >= 3){
+        member.addRole(warn3)
          member.removeRole(mainrole)
          member.addRole(muterole)
          message.channel.send(":warning:  +**5m** mute.")
@@ -133,7 +160,8 @@ module.exports = {
            set.send(embed)
          }, ms('5m'));
       }
-      if(newarn === 4){
+      if(newarn >= 4){
+        member.addRole(warn4)
          member.removeRole(mainrole)
          member.addRole(muterole)
          message.channel.send(":warning:  +**5m** mute.")
@@ -151,6 +179,7 @@ module.exports = {
       }
       
       if(newarn === 5){
+        member.addrole(warn5)
          member.removeRole(mainrole)
          member.addRole(muterole)
          message.guild.member(user).ban(reason)

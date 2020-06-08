@@ -1,4 +1,4 @@
-# • This is the official Leuxitai Website.
+# • This is the official Leuxitai source code.
 The website is made to create a dashboard, for support,
 and advertising purposes.
 
