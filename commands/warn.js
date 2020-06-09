@@ -71,7 +71,7 @@ module.exports = {
     let w5 = await db.fetch(`warn5_${message.guild.id}`)
     if(w5 == null) return message.reply("set up a warn role for W5 first!")
 
-    if(!args[0]) return message.reply("please specify a member/user to warn! (Do not ping them!)")
+    if(!args[0]) return message.reply("please specify a member/user to warn!")
       
     let user = getUserFromMention(args[0])// || bot.users.find("username", args[0]);
         
@@ -86,7 +86,7 @@ module.exports = {
     }
         
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to warn members!");
-        if(!user) return message.reply("please specify a member/user to warn!");
+        //if(!user) return message.reply("please specify a member/user to warn!");
         let reason = args.slice(2).join(" ");
           if (!reason) reason = "No reason provided.";
 

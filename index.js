@@ -167,7 +167,7 @@ bot.on("message", async message => {
   if(message.guild){
   let swearWords = await db.fetch(`bannedwords_${message.guild.id}`)
 
-  if(swearWords == null) swearWords = [""]
+  if(swearWords == null) swearWords = ["‽"]
   
   if(swearWords.some(w =>
     message.content.toLowerCase().includes(w))){
@@ -696,4 +696,4 @@ bot.on("channelDelete", async function(Channel){
 
 //Leuxitai v14
 
-//bot.login(token);
+bot.login(token);

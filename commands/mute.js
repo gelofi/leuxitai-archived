@@ -43,7 +43,7 @@ module.exports = {
         
          if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("you do not have enough permissions to use this command!")
          let member = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
-         if (!member) return message.reply("I couldn't find that member!")
+         if (!member) return message.reply("specify a member to mute!")
       
          let mainrole = message.guild.roles.find(role => role.name === `${mainRole}`)
          let muterole = message.guild.roles.find(role => role.name === `${muteRole}`)
