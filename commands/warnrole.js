@@ -51,7 +51,7 @@ module.exports = {
         var addEmb = new Discord.RichEmbed()
         .setTitle("Logs | Warn role added!")
         .setThumbnail(message.guild.iconURL)
-        .setDescription(`**${role}** role has been added as the role for W1.`)
+        .setDescription(`**${warnrole}** role has been added as the role for W1.`)
         .setColor("#3654ff")
         .setFooter(`ID: ${message.author.id}`)
         .setTimestamp()
@@ -71,7 +71,7 @@ module.exports = {
         var addEmb = new Discord.RichEmbed()
         .setTitle("Logs | Warn role added!")
         .setThumbnail(message.guild.iconURL)
-        .setDescription(`**${role}** role has been added as the role for W2.`)
+        .setDescription(`**${warnrole}** role has been added as the role for W2.`)
         .setColor("#3654ff")
         .setFooter(`ID: ${message.author.id}`)
         .setTimestamp()
@@ -91,7 +91,7 @@ module.exports = {
         var addEmb = new Discord.RichEmbed()
         .setTitle("Logs | Warn role added!")
         .setThumbnail(message.guild.iconURL)
-        .setDescription(`**${role}** role has been added as the role for W3.`)
+        .setDescription(`**${warnrole}** role has been added as the role for W3.`)
         .setColor("#3654ff")
         .setFooter(`ID: ${message.author.id}`)
         .setTimestamp()
@@ -111,7 +111,7 @@ module.exports = {
         var addEmb = new Discord.RichEmbed()
         .setTitle("Logs | Warn role added!")
         .setThumbnail(message.guild.iconURL)
-        .setDescription(`**${role}** role has been added as the role for w4..`)
+        .setDescription(`**${warnrole}** role has been added as the role for W4.`)
         .setColor("#3654ff")
         .setFooter(`ID: ${message.author.id}`)
         .setTimestamp()
@@ -131,7 +131,7 @@ module.exports = {
         var addEmb = new Discord.RichEmbed()
         .setTitle("Logs | Warn role added!")
         .setThumbnail(message.guild.iconURL)
-        .setDescription(`**${role}** role has been added as the role for W5.`)
+        .setDescription(`**${warnrole}** role has been added as the role for W5.`)
         .setColor("#3654ff")
         .setFooter(`ID: ${message.author.id}`)
         .setTimestamp()
@@ -146,7 +146,7 @@ module.exports = {
     } else
       
       if(args[0] === "delete") {
-      if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you can't delete autoroles, because you don't have the **Manage Server** permission!")
+      if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you can't delete warn roles, because you don't have the **Manage Server** permission!")
       let therole = args.slice(1).join(" ")
         
       if(therole == `${w1}`) {

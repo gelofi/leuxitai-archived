@@ -122,8 +122,23 @@ module.exports = {
       let warn4 = message.guild.roles.find(role => role.name === `${w4}`)
       let warn5 = message.guild.roles.find(role => role.name === `${w5}`)
       
+      if(newarn === 0){
+        if(!message.member.roles.has(warn1)) return
+        member.removeRole(warn1)
+        if(!message.member.roles.has(warn2)) return
+        member.removeRole(warn2)
+        if(!message.member.roles.has(warn3)) return
+        member.removeRole(warn3)
+        if(!message.member.roles.has(warn4)) return
+        member.removeRole(warn4)
+        member.addRole(mainrole)
+        member.removeRole(muterole)
+      }
+      
       if(newarn >= 1){
         member.addRole(warn1)
+        if(!message.member.roles.has(warn2)) return
+        member.removeRole(warn2)
       }
       
       if(newarn >= 2){
@@ -141,6 +156,8 @@ module.exports = {
            .setDescription(`${member.user.tag} has been unmuted (2 minutes)`)
            set.send(embed)
          }, ms('2m'));
+        if(!message.member.roles.has(warn3)) return
+        member.removeRole(warn3)
       }
       
       if(newarn >= 3){
@@ -159,6 +176,8 @@ module.exports = {
            .setDescription(`${member.user.tag} has been unmuted (5 minutes)`)
            set.send(embed)
          }, ms('5m'));
+        if(!message.member.roles.has(warn4)) return
+        member.removeRole(warn4)
       }
       if(newarn >= 4){
         member.addRole(warn4)
