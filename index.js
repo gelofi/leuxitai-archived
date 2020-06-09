@@ -616,6 +616,8 @@ bot.on("roleDelete", async function(role){
 
 bot.on("channelCreate", async function(Channel){
     
+  if (Channel.type == "dm") return
+  
   let channel;
   
     let channels = await db.fetch(`channel_${Channel.guild.id}`)
@@ -639,6 +641,9 @@ bot.on("channelCreate", async function(Channel){
 });
 
 bot.on("channelUpdate", async function(oldChannel, newChannel){
+  
+  if (newChannel.channel.type == "dm") return
+  
     let channel;
   
     let channels = await db.fetch(`channel_${newChannel.guild.id}`)
@@ -665,6 +670,8 @@ bot.on("channelUpdate", async function(oldChannel, newChannel){
 
 bot.on("channelDelete", async function(Channel){
     
+  if (Channel.type == "dm") return
+  
   let channel;
   
     let channels = await db.fetch(`channel_${Channel.guild.id}`)
