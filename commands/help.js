@@ -522,6 +522,14 @@ module.exports = {
           `adds a role to the specified user.\nUsage: \`${prefix}role [add | remove] [@user] [role] (Do not mention!)\``
         );
       return message.channel.send(cmd);
+    } else if (args[0] === "warnprofile") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `warnprofile`")
+        .setDescription(
+          `view if a member has warns.\nUsage: \`${prefix}warnprofile <@user>\``
+        )
+        .addField("Aliases", "`wprofile`  `warningprofile`");
+      return message.channel.send(cmd);
     } else if (args[0] === "warn") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `warn`")
@@ -624,7 +632,7 @@ module.exports = {
         )
         .addField(
           `${mod}  Moderation`,
-          "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `bannedword`, `modchannel`, `warnrole`, `antispam`"
+          "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `bannedword`, `modchannel`, `warnrole`, `antispam`, `warnprofile`"
         )
         .addField(
           `${music}  Music`,
@@ -632,7 +640,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v14.3",
+          "Leuxitai - v14.7",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -678,7 +686,7 @@ module.exports = {
             )
               .addField(
                 `${mod}  Moderation`,
-                "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server.\n`modchannel` - change the mod log channel for moderation commands.\n`warnrole` - set up roles for the warning system.\n`antispam` - protect your server from spam attacks."
+                "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server.\n`modchannel` - change the mod log channel for moderation commands.\n`warnrole` - set up roles for the warning system.\n`antispam` - protect your server from spam attacks.\n`warnprofile` - check if a member has warns."
               )
               .addField(
                 `${music}  Music`,
@@ -689,7 +697,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v14.3",
+                "Leuxitai - v14.7",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")

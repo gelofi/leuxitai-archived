@@ -13,7 +13,7 @@ setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 270000);
 
-const bot = new Discord.Client({ disableEveryone: true, disableMentions: true });
+const bot = new Discord.Client({ disab0leEveryone: true, disableMentions: true });
 const { token } = require ("./config.js")
 const PREFIX = "l.";
 
@@ -137,7 +137,7 @@ bot.on("message", async message => {
   if (message.channel.type == "dm"){
     
   if (message.content.startsWith(PREFIX)) return message.author.send("You dared to try!")
-      
+      return
     }
   
   const { default_prefix } = require("./config.js")
@@ -642,7 +642,7 @@ bot.on("channelCreate", async function(Channel){
 
 bot.on("channelUpdate", async function(oldChannel, newChannel){
   
-  if (newChannel.type == "dm") return
+  if(newChannel.type === "dm") return
   
     let channel;
   
@@ -696,4 +696,4 @@ bot.on("channelDelete", async function(Channel){
 
 //Leuxitai v14
 
-//bot.login(token);
+bot.login(token);

@@ -21,7 +21,7 @@ module.exports = {
       
     if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
     
-    if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("You don't have enough permissions to use this command!\nMissing permissions: `Manage Members`")
+    if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have the **Manage Server** to use this command!")
       
     var user = message.mentions.users.first()
     if (!user) return message.reply('specify a user to reset their profile!')

@@ -43,11 +43,17 @@ module.exports = {
         const mod = message.author.tag;
         const member = message.mentions.members.first()
 
+        let newarno;
         let newarn = parseInt(db.fetch(`warn_${message.guild.id}_${user.id}`))
+        if(isNaN(newarn)){
+          newarno = "0";
+        } else {
+          newarno = newarn
+        }
         var warnEmb = new Discord.RichEmbed()
         .setTitle("Logs | Warn Profile")
         .setThumbnail(user.displayAvatarURL)
-        .setDescription(`Member: ${user.tag}\nWarns: ${newarn}`)
+        .setDescription(`Member: ${user.tag}\nWarns: ${newarno}`)
         .setColor("#3654ff")
         .setFooter(`ID: ${user.id}`)
         .setTimestamp()
