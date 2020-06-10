@@ -696,4 +696,4 @@ bot.on("channelDelete", async function(Channel){
 
 //Leuxitai v14
 
-bot.login(token);
+//bot.login(token);

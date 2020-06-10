@@ -45,6 +45,8 @@ let random = Math.floor(Math.random() * 37);
     if (!money) return message.reply("specify an amount to bet!"); 
     if (money > moneydb) return message.reply("you're betting more money than you have!");
     
+      if(message.content.includes("-")) return message.reply("no lose evasions!")
+      
     if (colour == "c" || colour.includes("cyan")) colour = 0;
     else if (colour == "r" || colour.includes("red")) colour = 1;
     else if (colour == "i" || colour.includes("indigo")) colour = 2;
