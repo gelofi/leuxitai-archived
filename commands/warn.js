@@ -86,11 +86,10 @@ module.exports = {
     }
         
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to warn members!");
-        //if(!user) return message.reply("please specify a member/user to warn!");
+        if(message.content.includes("-")) return message.reply("no negative warns!");
         let reason = args.slice(2).join(" ");
           if (!reason) reason = "No reason provided.";
 
-        //let user = message.mentions.users.first();
         const mod = message.author.tag;
         const member = message.mentions.members.first()
         if(!args[1]) return message.reply("specify a warn level!")

@@ -642,7 +642,7 @@ bot.on("channelCreate", async function(Channel){
 
 bot.on("channelUpdate", async function(oldChannel, newChannel){
   
-  if (newChannel.channel.type == "dm") return
+  if (newChannel.type == "dm") return
   
     let channel;
   

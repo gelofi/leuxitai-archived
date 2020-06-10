@@ -15,12 +15,10 @@ module.exports = {
     
     if(togglesxp == null){
       togglexp = 'off';
-      //return message.channel.send("That command is not enabled!");
     } else {
       togglexp = togglesxp;
     }
       
-    //if(togglexp !== 'on' || 'off') return
     if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
     
     if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("You don't have enough permissions to use this command!\nMissing permissions: `Manage Members`")
