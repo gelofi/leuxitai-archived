@@ -28,18 +28,21 @@ module.exports = {
       antispam = anti;
     }
     
+    if(!message.guild.me.hasPermission("MANAGE_GUILD")) {
+        return message.reply(`I don't have the **Manage Server** permission to execute this command!`)
+          }
+      
     let seconds = await db.fetch(`msgSec_${message.guild.id}`)
 
     let counter = await db.fetch(`msgCounter_${message.guild.id}`)
-    
-    if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have enough permissions to toggle commands!");
+
         if(!args[0]) return message.reply("please specify a setting to modify! (`seconds`, `msgcount`)");
         //if(!args[1].content.startsWith("o")) return message.reply("turn commands on or off!")
         if(args[1].length > 3) return message.reply(`that span/interval is too long!`)
       
         if(args[0] === "seconds"){
         if(!args[1]) return message.reply("what would be the seconds?")[1] 
-        await db.set(`msgSec_${message.guild.id}`, args[1])
+        await db.set(`msgSec_${message.guild.id}`, parseInt(args[1]))
        
         message.channel.send(`The span time for **anti-spam** has been set to \`${args[1]}\`  successfully.`)
           
@@ -57,7 +60,7 @@ module.exports = {
         if(args[0] === "msgcount"){
         if(!args[1]) return message.reply("what would be the message count?")[1] 
         if(isNaN(args[1])) return message.reply("that's not a number of messages!")
-        await db.set(`msgCounter_${message.guild.id}`, args[1])
+        await db.set(`msgCounter_${message.guild.id}`, parseInt(args[1]));
        
         message.channel.send(`The message count for **anti-spam** has been set to \`${args[1]}\`  successfully.`)
           

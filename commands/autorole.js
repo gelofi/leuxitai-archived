@@ -31,7 +31,11 @@ module.exports = {
     
     let tr3 = await db.fetch(`timedrole3_${message.guild.id}`)
     let tr3t = await db.fetch(`timedrole3time_${message.guild.id}`)
-
+ 
+    if(!message.guild.me.hasPermission("MANAGE_GUILD")) {
+        return message.reply(`I don't have the **Manage Server** permission to execute this command!`)
+          }
+      
     if(args[0] === "add") {
     if(!message.member.hasPermission("MANAGE_GUILD")) {
       return message.reply("you don't have the **Manage Server** permission to use this command!")

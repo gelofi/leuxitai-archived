@@ -55,7 +55,6 @@ module.exports = {
         .setAuthor(`Random Topic! ${message.author.username} says:`)
         .setDescription(topic[Math.round(Math.random() * (topic.length - 1))])
         .setColor(0x82e0aa)
-        message.delete().catch(O_o=>{})
         message.channel.send(topicEmbed); 
     }
 }

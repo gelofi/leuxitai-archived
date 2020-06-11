@@ -41,7 +41,12 @@ module.exports = {
             mainRole = mainRoles;
          }
         
-         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("you do not have enough permissions to use this command!")
+         if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you do not have the **Manage Server** permission to use this command!");
+      
+      if(!message.guild.me.hasPermission("MANAGE_GUILD")) {
+        return message.reply(`I don't have the **Manage Server** permission to execute this command!`)
+          }
+      
          let member = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
          if (!member) return message.reply("specify a member to mute!")
       

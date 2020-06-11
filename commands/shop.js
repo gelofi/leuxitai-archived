@@ -128,7 +128,7 @@ module.exports = {
     if(args[0] == "delete"){
       
     if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have the Manage Server permission to use this command!")
-    if(!args[1]) return message.reply("specify an item to delete!")
+    if(!args[1]) return message.reply("specify a custom item to delete!")
      if(args[1] == item1) {
       await db.delete(`item1_${message.guild.id}`)
       await db.delete(`item1desc_${message.guild.id}`)
@@ -148,7 +148,7 @@ module.exports = {
       message.channel.send(`**${args[1]}** has been deleted from the shop.`)
      }
      if(args[1] !== item1 && args[1] !== item2 && args[1] !== item3) {
-     message.reply("I couldn't find that item!")
+     message.reply("I couldn't find that custom item!")
       }
       
      } else {
@@ -158,7 +158,7 @@ module.exports = {
       .setAuthor(`${message.guild.name}'s Shop`, message.guild.iconURL)
       .setDescription(`Buy items using \`${prefix}buy [item name]\`\nBuy custom items using \`${prefix}buy custom [item]\``)
       .addField(`${item1} - ${coins} ${item1cost}`, `${item1desc}`)
-      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.\n• **chicken** ${coins} **150**\n- buy a chicken to play chickenfights!`)
       .setColor("#3654ff")
       message.channel.send(shop1)
 
@@ -170,7 +170,7 @@ module.exports = {
       .setDescription(`Buy items using \`${prefix}buy [item name]\`\nBuy custom items using \`${prefix}buy custom [item]\``)
       .addField(`${item1} - ${coins} ${item1cost}`, `${item1desc}`)
       .addField(`${item2} - ${coins} ${item2cost}`, `${item2desc}`)
-      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.\n• **chicken** ${coins} **150**\n- buy a chicken to play chickenfights!`)
       .setColor("#3654ff")
       message.channel.send(shop2)
 
@@ -183,7 +183,7 @@ module.exports = {
       .addField(`${item1} - ${coins} ${item1cost}`, `${item1desc}`)
       .addField(`${item2} - ${coins} ${item2cost}`, `${item2desc}`)
       .addField(`${item3} - ${coins} ${item3cost}`, `${item3desc}`)
-      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.\n• **chicken** ${coins} **150**\n- buy a chicken to play chickenfights!`)
       .setColor("#3654ff")
       message.channel.send(shopfull)
 
@@ -192,7 +192,7 @@ module.exports = {
       let noshop = new Discord.RichEmbed()
       .setAuthor(`${message.guild.name}'s Shop`, message.guild.iconURL)
       .setDescription("No custom items!\nAdd items!\n`shop [additem] [itemname] [itemcost] [itemdescription]\nIf you're gonna delete an item, please start on the last item you added.`")
-      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.`)
+      .addField("LeuxItems", `Items you can buy to flex, or earn more money.\n\n• **charm** ${coins} **10000**\n- increase working efficiency by 20%\n• **rob shield** ${coins} **7000**\n- decrease others' rob efficiency by 50%\nand your rob fine if caught by 50%\n• **image** ${coins} **25000**\n- unlock this command to manipulate images!\n• **booster** ${coins} **1000**\n- get 450 LeuxiCoins daily instead of 200!\nLasts for 7 days.\n• **chicken** ${coins} **150**\n- buy a chicken to play chickenfights!`)
       message.channel.send(noshop)
       }
      }

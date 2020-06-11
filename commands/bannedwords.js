@@ -4,7 +4,7 @@ const db = require ("quick.db")
 
 module.exports = {
     name: 'badwords',
-    aliases: ["bannedwords"],
+    aliases: ["bannedwords", "bannedword", "badword"],
     description: "Automodding bannedwords.",
     run: async (bot, message, args) => {
       
@@ -19,13 +19,17 @@ module.exports = {
       channel = channels;
     }
       
-
+    if(!message.guild.me.hasPermission("MANAGE_GUILD")) {
+        return message.reply(`I don't have the **Manage Server** permission to execute this command!`)
+          }
+      
     let bannedwords = await db.fetch(`bannedwords_${message.guild.id}`)
         
     let check = "<:leuxcheck:716819913901211658>";
     let no = "<:no:716819317852733480>";
     
       if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have the **Manage Server** permission to use this command!")
+  
       if(args[0] === "reset"){
         await db.delete(`bannedwords_${message.guild.id}`)
         message.channel.send(`${check} Banned words for **${message.guild.name}** has been cleared.`)

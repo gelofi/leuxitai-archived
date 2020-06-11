@@ -38,6 +38,5 @@ module.exports = {
                     .setDescription(answer[Math.round(Math.random() * (answer.length - 1))] + '.')
                     .setColor(0x85c1e9);
                 message.channel.send(wisdomEmbed);
-                message.delete().catch(O_o=>{})
     }
 }

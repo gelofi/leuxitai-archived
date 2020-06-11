@@ -86,6 +86,9 @@ module.exports = {
     }
         
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to warn members!");
+      if(!message.guild.me.hasPermission("ADMINISTRATOR")) {
+        return message.reply(`I don't have the **Administrator** permission to execute this command!`)
+          }
         if(message.content.includes("-")) return message.reply("no negative warns!");
         let reason = args.slice(2).join(" ");
           if (!reason) reason = "No reason provided.";

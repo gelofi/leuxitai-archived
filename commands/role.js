@@ -18,7 +18,7 @@ module.exports = {
         }
       
         if(!message.member.hasPermission('MANAGE_ROLES')) return message.reply("you don't have **Manage Roles** permissions to do this command!")
-
+        if(!message.guild.me.hasPermission("MANAGE_ROLES")) return message.reply(`I do not have the **Manage Roles** permission to use this command!`)
    var member = message.mentions.members.first();
        if(!member) return message.reply("who should I give the role to?");
    var roler = args.slice(2).join(" ")

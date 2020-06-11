@@ -91,6 +91,13 @@ module.exports = {
       message.channel.send(`${message.author} successfully bought **image** !\n**Cost**: ${coins} **25000**`)
      } else
        
+     if(args[0] == "chicken") {
+      if(money < 150) return message.reply("you don't have enough money to buy that item! :(")
+      db.set(`chicken_${message.guild.id}_${user.id}`, true)
+      db.subtract(`money_${message.guild.id}_${user.id}`, 150)
+      message.channel.send(`${message.author} successfully bought a **chicken** !\n**Cost**: ${coins} **150**`)
+     } else  
+       
       if(args[0] == "booster") {
       if(money < 1000) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`booster_${message.guild.id}_${user.id}`, true)

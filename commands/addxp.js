@@ -19,7 +19,8 @@ module.exports = {
     } else {
       togglexp = togglesxp;
     }
-      
+    
+      if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have enough permissions to give people XP!")
     //if(togglexp !== 'on' || 'off') return
     if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
     

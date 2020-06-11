@@ -8,6 +8,10 @@ module.exports = {
     description: "Changes the mod channel of the bot",
     run: async (bot, message, args) => {
       if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to change the logging channel!");
+      if(!message.guild.me.hasPermission("MANAGE_GUILD")) {
+        return message.reply(`I don't have the **Manage Server** permission to execute this command!`)
+          }
+      
         if(!args[0]) return message.reply("please specify a channel (without #) to set the new mod-log channel!");
         
         await db.set(`wchannel_${message.guild.id}`, args[0])

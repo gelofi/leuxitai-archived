@@ -23,6 +23,10 @@ module.exports = {
       channel = channels;
     }
 	   
+      if(!message.guild.me.hasPermission("ADMINISTRATOR")) {
+        return message.reply(`I don't have the **Administrator** permission to execute this command!`)
+          }
+      
     let w1 = await db.fetch(`warn1_${message.guild.id}`)
     let w2 = await db.fetch(`warn2_${message.guild.id}`)
     

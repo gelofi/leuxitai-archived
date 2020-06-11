@@ -87,6 +87,13 @@ module.exports = {
       booster = "0"
     }
       
+    let chicken = await db.fetch(`chicken_${message.guild.id}_${user.id}`)
+    if(chicken !== null){
+      chicken = "1"
+    } else {
+      chicken = "0"
+    }  
+      
   let invicon = "https://cdn.discordapp.com/attachments/717606800198729738/717606940821291058/1591160922175.png"
   let moneydb = await db.fetch(`money_${message.guild.id}_${user.id}`)
   if(moneydb == null) moneydb = "0"
@@ -99,7 +106,7 @@ module.exports = {
           .setDescription("**N/A** shows up if there are blank storages for custom items.")
           .setThumbnail(invicon)
           .addField(`Custom items`, `- **${itemsname1}** - ${items1}\n- **${itemsname2}** - ${items2}\n- **${itemsname3}** - ${items3}`)
-          .addField("LeuxItems", `**charm** - ${charm}\n**rob shield** - ${rob}\n**image** - ${dm}\n**booster** - ${booster}`)
+          .addField("LeuxItems", `**charm** - ${charm}\n**rob shield** - ${rob}\n**image** - ${dm}\n**booster** - ${booster}\n**chicken** - ${chicken}`)
           .setColor(message.member.displayHexColor)
           .setFooter(`Coins: ${moneydb}  | Bank: ${bank}`)
           message.channel.send(inv1)

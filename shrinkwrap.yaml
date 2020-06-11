@@ -2,8 +2,8 @@ dependencies:
   '@vitalets/google-translate-api': 3.0.0
   alexa-bot-api: 0.1.2
   ascii-table: 0.0.9
-  better-sqlite3: 7.0.1
-  canvacord: 2.0.1
+  better-sqlite3: 7.1.0
+  canvacord: 2.0.2
   cheerio: 1.0.0-rc.3
   cumberbatch-name: 1.5.1
   discord-leveling: 1.1.0
@@ -677,7 +677,7 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-4aV1zEknM9g1a6B0mVBx1oIlmYioEJ8gSS3J6EpN1b1bKYEE+N5lmpmXHKNKTi0qjHziSd7XrXwHl1kpqvEcHQ==
-  /better-sqlite3/7.0.1:
+  /better-sqlite3/7.1.0:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 5.3.4
@@ -685,7 +685,7 @@ packages:
     dev: false
     requiresBuild: true
     resolution:
-      integrity: sha512-fsVcoGXxnseNajbfFbth0BKnDWebPY6x77UWfrBHApCKq1yo41DlWnFsffOsLpjkQ4VKgDU5C3aUtiw3wGGU0Q==
+      integrity: sha512-FV/snQ8F/kyqhdxsevzbojVtMowDWOfe1A5N3lYu1KJwoho2t7JgITmdlSc7DkOh3Zq65I+ZyeNWXQrkLEDFTg==
   /bindings/1.5.0:
     dependencies:
       file-uri-to-path: 1.0.0
@@ -789,7 +789,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
-  /canvacord/2.0.1:
+  /canvacord/2.0.2:
     dependencies:
       '@jimp/custom': 0.13.0
       '@jimp/plugin-circle': /@jimp/plugin-circle/0.13.0/@jimp!custom@0.13.0
@@ -799,7 +799,7 @@ packages:
       node-fetch: 2.6.0
     dev: false
     resolution:
-      integrity: sha512-CfEKZiBmPElg/Npb/XEJglbboutZ0jp9hmGgHrSQWaSJOG0XjjEfN1+bcQifu4AggujWSc+ehxvGsUXClJiQ+w==
+      integrity: sha512-8locZnps6ipin1LjP3ap8yVrlf53Qr1Xcyr3rmLrqSQRk3VwhcQMf2EAgm9iWR3FGlL9rpYC2Zjyyvi6PDAkSg==
   /canvas/2.6.1:
     dependencies:
       nan: 2.14.1
@@ -3356,8 +3356,8 @@ specifiers:
   '@vitalets/google-translate-api': ^3.0.0
   alexa-bot-api: ^0.1.2
   ascii-table: ^0.0.9
-  better-sqlite3: ^7.0.1
-  canvacord: ^2.0.0
+  better-sqlite3: ^7.1.0
+  canvacord: ^2.0.2
   cheerio: ^1.0.0-rc.3
   cumberbatch-name: ^1.5.1
   discord-leveling: ^1.1.0

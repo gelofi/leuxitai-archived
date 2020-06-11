@@ -19,7 +19,8 @@ module.exports = {
     }
       
       if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("you don't have **Manage Messages** permission to use this command!");
-            
+      if(!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.reply(`I do not have the **Manage Messages** permissions to use this command!`)
+        
       if(!args[0]) return message.reply('put an amount of messages to delete! Maximum deleted messages are 100.');
       if(isNaN(args[0]) == true) return message.reply("that isn't a number!")
       let x = parseInt(args[0]) + 1
@@ -34,7 +35,7 @@ module.exports = {
        var set = message.guild.channels.find(`name`, `${channel}`)
        set.send(log)
       } catch (error){
-        message.channel.send("An error occurred! Please report this to the bot owner, Fizx26#5360\n if this happens occasionally.")
+        message.channel.send("An error occurred! Please report this to the bot owner, Fizx26#5360\nif this happens occasionally.")
       }
         
     }

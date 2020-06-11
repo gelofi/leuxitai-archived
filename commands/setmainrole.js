@@ -18,7 +18,10 @@ module.exports = {
           channel = channels;
         }
       
-      if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to change the logging channel!");
+      if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have the **Manage Server** permission to change the main role!");
+      if(!message.guild.me.hasPermission("MANAGE_GUILD")) {
+        return message.reply(`I don't have the **Manage Server** permission to execute this command!`)
+          }
         if(!args[0]) return message.reply("please specify a role (Don't mention!) to set the new main role!");
         
         await db.set(`mainRole_${message.guild.id}`, args.join(" "))

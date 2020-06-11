@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fizx26",
@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "novelcovid": "^1.2.7",
     "fs": "^0.0.2",
-    "better-sqlite3": "^7.0.1",
+    "better-sqlite3": "^7.1.0",
     "urban": "^0.3.2",
     "quick.db": "^7.1.1",
     "ascii-table": "^0.0.9",
@@ -32,7 +32,7 @@
     "alexa-bot-api": "^0.1.2",
     "discord-leveling": "^1.1.0",
     "parse-ms": "^2.0.0",
-    "canvacord": "^2.0.0"
+    "canvacord": "^2.0.2"
   },
   "devDependencies": {},
   "description": ""

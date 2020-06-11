@@ -18,6 +18,9 @@ module.exports = {
         Cloudy: ":white_sun_cloud: Cloudy",
         'Rain Showers': ":cloud_rain: Rain Showers"
       }
+        
+      if(!args[0]) return message.reply("specify a location!")
+        
       weather.find({search: args.join(" "), degreeType: "C"}, function(err, result) {
         if(err) message.channel.send(err)
 
