@@ -38,35 +38,35 @@ module.exports = {
       var cmd = new Discord.RichEmbed()
         .setAuthor("Economy System", message.guild.iconURL)
         .setDescription("Our little economy system can spice up your server.")
-        .addField("balance", "- fetches a user's money and bank information.")
+        .addField("balance", `- fetches a user's money and bank information.\nExample:\`l.balance [@user]\` or \`l.balance\``)
         .addField("daily", `- collect ${coins} **200** coins everyday!`)
         .addField("weekly", `- collect ${coins} **500** coins every week!`)
         .addField("work", `- work and earn ${coins} LeuxiCoins.`)
         .addField(
           "deposit",
-          `- deposit your cash to the bank, so you don't get robbed.`
+          `- deposit your cash to the bank, so you don't get robbed.\nExample:\`l.deposit [coins]\``
         )
         .addField(
           "withdraw",
-          `- withdraw coins from the bank to gamble or buy your needs`
+          `- withdraw coins from the bank to gamble or buy your needs\nExample:\`l.withdraw [coins]\``
         )
         .addField("beg", `- get small amount of coins in short amount of time.`)
-        .addField("transfer", `- give members money, if you have.`)
+        .addField("transfer", `- give members money, if you have.\nExample:\`l.transfer [@user]\``)
         .addField(
           "addmoney",
-          `- give members money, without harming your wallet.`
+          `- give members money, without harming your wallet.\nExample:\`l.addmoney [@user]\``
         )
         .addField(
           "removemoney",
-          `- remove money from abusive members, or just because you want to.`
+          `- remove money from abusive members, or just because you want to.\nExample:\`l.removemoney [@user]\``
         )
-        .addField("rob", `- rob members to get money from them. hehe`)
-        .addField("roulette", `- play the roulette, get coins!`)
+        .addField("rob", `- rob members to get money from them.\nExample:\`l.rob [@user]\``)
+        .addField("roulette", `- play the roulette, get coins!\nExample:\`l.roulette [bet]\``)
         .addField("shop", `- look at the shop, add items, or delete them.`)
-        .addField("buy", `- buy items from the shop!`)
+        .addField("buy", `- buy items from the shop!\nExample:\`l.buy [item]\` or \`l.buy custom [item]\``)
         .addField("crime", `- commit a crime to earn or lose coins.`)
         .addField("inventory", `- view your inventory contents.`)
-        .addField("chickenfight", `- buy a chicken and let it fight for you to win coins!`)
+        .addField("chickenfight", `- buy a chicken and let it fight for you to win coins!\nExample:\`l.chickenfight [bet]\``)
         .addField("_ _", "To add items in the shop, use the shop command.\nExample:\n`l.shop additem Item_Name [cost] [description]` (Keep item names 1 word as possible!)\nTo delete items, also use the shop command.\nExample:\n`l.shop delete Item_name`\n(You can only delete custom items!)")
         .setFooter("You can toggle the economy system if desired.")
         .setColor("#3654ff");
@@ -83,7 +83,13 @@ module.exports = {
         .setDescription("view your inventory content.")
         .addField("Aliases", "`inv`");
       return message.channel.send(cmd);
-    } else if (args[0] === "modlog") {
+    } else if (args[0] === "bannedword") {
+      const modlog = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `bannedword`")
+        .setDescription("check the server's banned words, or add, or reset.")
+        .addField("Aliases", "`modc`  `setmodchannel`")
+      return message.channel.send(modlog);
+    } else if (args[0] === "modchannel") {
       const modlog = new Discord.RichEmbed()
         .setAuthor("❓ Command: `modchannel`")
         .setDescription("change the moderation logs (warn, kick, ban, etc.)")
@@ -158,7 +164,7 @@ module.exports = {
         .setDescription("will send all commands in the channel.")
         .addField("Aliases", "`h`  `manual`");
       return message.channel.send(cmd);
-    } else if (args[1] === "8ball") {
+    } else if (args[0] === "8ball") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `8ball`")
         .setDescription(
@@ -319,13 +325,13 @@ module.exports = {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `points`")
         .setDescription("sends the statistics of your points/XP and level.")
-        .addField("Aliases", "`rank`  `profile`");
+        .addField("Aliases", "`rank`  `profile`  `rk`");
       message.channel.send(cmd);
     } else if (args[0] === "leaderboard") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `leaderboard`")
         .setDescription(
-          `sends the Top 10 leaderboard of the points system.\nUsage: \`${prefix}leaderboard <page>\``
+          `sends the Top 10 leaderboard of the points system.\nUsage: \`${prefix}leaderboard\``
         );
       message.channel.send(cmd);
     } else if (args[0] === "urban") {
@@ -352,6 +358,14 @@ module.exports = {
         )
         .addField("Aliases", "`xpset`  `xp`");
       return message.channel.send(changelogs);
+    } else if (args[0] === "addlevel") {
+      const changelogs = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `setlevel`")
+        .setDescription(
+          "adds levels to a specified user."
+        )
+        .addField("Aliases", "`setlvl`  `levelset`");
+      return message.channel.send(changelogs);
     } else if (args[0] === "setlevel") {
       const changelogs = new Discord.RichEmbed()
         .setAuthor("❓ Command: `setlevel`")
@@ -376,7 +390,7 @@ module.exports = {
       message.channel.send(cmd);
     } else if (args[0] === "prefix") {
       var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `setprefix`")
+        .setAuthor("❓ Command: `prefix`")
         .setDescription(
           `is used to change Leuxitai's prefix in your guild.\nUsage: \`${prefix}setprefix <new_prefix>\``
         )
@@ -425,7 +439,7 @@ module.exports = {
       message.channel.send(cmd);
     } else if (args[0] === "wallpaper") {
       var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `info`")
+        .setAuthor("❓ Command: `wallpaper`")
         .setDescription(
           "sends a random images from unsplash.com. Some are wallpaper worthy."
         )
@@ -601,11 +615,11 @@ module.exports = {
       const help = new Discord.RichEmbed()
         .setAuthor("Command List", bot.user.displayAvatarURL)
         .setDescription(
-          `**Use \`${prefix}help <command>\` (Letter L) to view the command information.\nClick 🔘 to expand the commands' description.**`
+          `**Use \`${prefix}help <command>\` to view the command information.\nFor \`Economy\` and \`Music\` commands, do \`${prefix}help <economy | music>\`.\nClick 🔘 to expand the commands' description.**`
         )
         .addField(
           `${info}  Information`,
-          "`help`, `support`, `ping`, `invite`, `weather`, `changelogs`"
+          "`help`, `support`, `ping`, `invite`, `weather`, `changelogs`, `manual`"
         )
         .addField(
           `${orbs}  Fun and Random`,
@@ -659,7 +673,7 @@ module.exports = {
               )
               .addField(
                 `${info}  Information`,
-                "`help` - shows all Leuxitai's commands.\n`support` - sends a server link to Leuxitai's server through DMs.\n`ping` - sends the API latency of the bot.\n`invite` - sends an invite to invite Leuxitai to your server through DMs.\n`weather` - sends the weather information at the desired location.\n`changelogs` - sends the latest changelogs through DMs."
+                "`help` - shows all Leuxitai's commands.\n`support` - sends a server link to Leuxitai's server through DMs.\n`ping` - sends the API latency of the bot.\n`invite` - sends an invite to invite Leuxitai to your server through DMs.\n`weather` - sends the weather information at the desired location.\n`changelogs` - sends the latest changelogs through DMs.\n`manual` - lost? Read the Leuxitai manual!"
               )
               .addField(
                 `${orbs}  Fun and Random`,

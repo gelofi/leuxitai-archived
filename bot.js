@@ -65,6 +65,7 @@ bot.on("guildDelete", guild => {
 bot.on("ready", async () => {
   
   // regular activity
+  console.log("Don't forget to modify stats.js !")
   console.log(`${bot.user.username} is now online!`);
   bot.user
     .setActivity(`${bot.guilds.size} servers | ${PREFIX}help`, {
