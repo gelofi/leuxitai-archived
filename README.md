@@ -1,14 +1,12 @@
 # • This is the official Leuxitai source code.
-The website is made to create a dashboard, for support,
-and advertising purposes.
-
+This project is private, so users won't copy.
 ## Add Leuxitai to your server now!
 
 Just click this link [here](https://tinyurl.com/leuxitai)!
 
 Thank you for your support.
 
-# • Leuxitai | v13.5
+# • Leuxitai | v15
 ## Features
 - Level System! Compete with your friends!
 - Moderation! Protect your server.

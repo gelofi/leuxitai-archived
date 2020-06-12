@@ -13,7 +13,7 @@ setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 270000);
 
-const bot = new Discord.Client({ disab0leEveryone: true, disableMentions: true });
+const bot = new Discord.Client({ disableEveryone: true, disableMentions: true });
 const { token } = require ("./config.js")
 const PREFIX = "l.";
 
