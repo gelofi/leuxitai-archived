@@ -224,7 +224,7 @@ module.exports = {
       if(w1 == null && w2 == null){
         let nulled = new Discord.RichEmbed()
         .setAuthor("Warn roles list", message.guild.iconURL)
-        .setDescription("There are no warning roles set for this server!\nSet an warn ole by using the `warnrole` command.\nExample: `l.warnrole add [warning level (w1, w2, w3, w4, w5)] [role_name]`\n\nIf you're going to delete an warn role, please add another one immediately, or the warning system won't work.")
+        .setDescription("There are no warning roles set for this server!\nSet a warnrole by using the `warnrole` command.\nExample: `l.warnrole add [warning level (w1, w2, w3, w4, w5)] [role_name]`\n\nIf you're going to delete an warn role, please add another one immediately, or the warning system won't work.")
         message.channel.send(nulled)
       }
     }
