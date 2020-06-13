@@ -1,12 +1,10 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
-const fs = require("fs");
-const ms = require("ms");
 
 module.exports = {
     name: 'warnprofile',
-    aliases: ["wprofile", "case", "wc"],
+    aliases: ["wprofile", "case", "warnc"],
     description: "fetches a warn info",
     run: async (bot, message, args) => {
 
@@ -51,7 +49,7 @@ module.exports = {
           newarno = newarn
         }
         var warnEmb = new Discord.RichEmbed()
-        .setTitle("Logs | Warn Profile")
+        .setTitle("Warn Profile")
         .setThumbnail(user.displayAvatarURL)
         .setDescription(`Member: ${user.tag}\nWarns: ${newarno}`)
         .setColor("#3654ff")

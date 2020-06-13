@@ -3,7 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 module.exports = {
     name: 'status',
-    aliases: ["stats"],
+    aliases: ["stats", "statistics"],
     description: "Repeats what the user said.",
     run: async (bot, message, args) => {
       

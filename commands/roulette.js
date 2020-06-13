@@ -61,18 +61,20 @@ module.exports = {
         "specify a color to bet on! (red, indigo, cyan, black, orange)"
       );
 
+    
+    
     if (random <= 30 && colour == 4) {
       // orange
       money = parseInt(money * 1.2);
       db.add(`money_${message.guild.id}_${user.id}`, money);
       let moneyEmbed0 = new Discord.RichEmbed()
-        .setColor("#000000")
+        .setColor("#f28500")
         .setAuthor(
           `${message.author.username} won!`,
           message.author.displayAvatarURL
         )
         .setDescription(
-          `<:narana:717574737148116993> You won ${money} coins!\nMultiplier: 12x`
+          `<:narana:717574737148116993> You won ${money} coins!\nMultiplier: 1.2x`
         );
       message.channel.send(moneyEmbed0);
     } else if (random <= 4 && colour == 3) {

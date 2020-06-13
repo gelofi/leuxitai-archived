@@ -125,13 +125,13 @@ module.exports = {
       let warn5 = message.guild.roles.find(role => role.name === `${w5}`)
       
       if(newarn === 0){
-        if(!message.member.roles.has(warn1)) return
+        if(!message.member.roles.has(warn1.id)) return
         member.removeRole(warn1)
-        if(!message.member.roles.has(warn2)) return
+        if(!message.member.roles.has(warn2.id)) return
         member.removeRole(warn2)
-        if(!message.member.roles.has(warn3)) return
+        if(!message.member.roles.has(warn3.id)) return
         member.removeRole(warn3)
-        if(!message.member.roles.has(warn4)) return
+        if(!message.member.roles.has(warn4.id)) return
         member.removeRole(warn4)
         member.addRole(mainrole)
         member.removeRole(muterole)

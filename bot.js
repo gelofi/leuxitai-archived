@@ -23,6 +23,7 @@ const leveling = require("discord-leveling");
 
 let cooldown = new Set();
 let cdseconds = 40;
+const talkedRecently = new Set();
 
 const usersMap = new Map();
 const LIMIT = 5;
@@ -114,7 +115,18 @@ bot.on("message", async message => {
   let antispam = await db.fetch(`antispam_${message.guild.id}`)
   if(antispam == null) antispam = "off"
   if(antispam !== "on") return
-    message.channel.bulkDelete(10 + msg)
+        
+        let channel = await db.fetch(`channel_${message.guild.id}`)
+        
+        var log = new Discord.RichEmbed()
+        .setTitle("Logs | Spamming!")
+        .setDescription(`${message.author} tried to spam in ${message.channel}.\n\n**Leuxitai** took care of it and purged **${msg}** messages.`)
+        .setColor("#1a40a1")
+        .setFooter(`Spammer ID: ${message.author.id}`)
+        .setTimestamp()
+        var set = message.guild.channels.find(`name`, `${channel}`)
+        set.send(log)
+        message.channel.bulkDelete(msg)
         message.reply("please don't spam!");
       } else {
         userData.msgCount = msgCount;
@@ -182,6 +194,13 @@ bot.on("message", async message => {
   //Fixes the prefix bug
   if (!message.content.startsWith(prefix)) return;
 
+  if (talkedRecently.has(message.author.id)) return;
+  
+  talkedRecently.add(message.author.id);
+  setTimeout(() => {
+  // Removes the user from the set after 0.8 seconds
+  talkedRecently.delete(message.author.id);
+   }, 800);
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
  
     // If message.member is uncached, cache it.
@@ -428,9 +447,8 @@ bot.on("messageDelete", async function(message){
     }
     try {
     var autoEmb = new Discord.RichEmbed()
-        .setTitle("Logs | Message deleted!")
-        .setThumbnail(message.author.displayAvatarURL)
-        .setDescription(`**${message.author.tag}**:\n${message}`)
+        .setAuthor(`${message.author.tag} | Message deleted!`, message.author.displayAvatarURL)
+        .setDescription(`${message}\n\nChannel: ${message.channel}`)
         .setColor("#3654ff")
         .setFooter(`Author ID: ${message.author.id}\nMessage ID: ${message.id}`)
         .setTimestamp()
@@ -460,7 +478,6 @@ bot.on("emojiCreate", async function(emoji){
 	   
     var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | Added emoji!")
-        .setThumbnail(emoji.guild.iconURL)
         .setDescription(`${emoji} **${emoji.name}**`)
         .setColor("#3654ff")
         .setFooter(`Emoji ID: ${emoji.id}`)
@@ -485,7 +502,6 @@ bot.on("emojiDelete", async function(emoji){
 	   
     var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | Emoji deleted!")
-        .setThumbnail(emoji.guild.iconURL)
         .setDescription(`${emoji} **${emoji.name}**`)
         .setColor("#ff3636")
         .setFooter(`Emoji ID: ${emoji.id}`)
@@ -510,7 +526,6 @@ bot.on("emojiUpdate", async (oldEmoji, newEmoji) => {
 	   
     var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | Emoji updated!")
-        .setThumbnail(newEmoji.guild.iconURL)
         .setDescription(`${newEmoji} ~~**${oldEmoji.name}**~~ -> **${newEmoji.name}**`)
         .setColor("#3654ff")
         .setFooter(`Emoji ID: ${newEmoji.id}`)
@@ -534,7 +549,7 @@ bot.on("messageUpdate", async function(oldMessage, newMessage){
     }
 	   
     var autoEmb = new Discord.RichEmbed()
-        .setAuthor(`Logs | Message edited!`)
+        .setAuthor(`Logs | Message edited!`, newMessage.author.displayAvatarURL)
         .setDescription(`**${newMessage.author.tag}**'s message was edited in ${newMessage.channel} | [Link](https://discordapp.com/channels/${newMessage.guild.id}/${newMessage.channel.id}/${newMessage.id})`)
         .addField(`Old Message`, `${oldMessage}`)
         .addField(`New Message`, `${newMessage}`)
@@ -572,15 +587,26 @@ bot.on("roleCreate", async function(role){
 
 bot.on("roleUpdate", async function(oldRole, newRole){
     let channel;
-  
     let channels = await db.fetch(`channel_${newRole.guild.id}`)
-    
     if(channels == null){
       return
     } else {
       channel = channels;
     }
-	   
+  
+  if(oldRole.permissions == newRole.permissions && oldRole.name == newRole.name && oldRole.hexColor == newRole.hexColor){
+    
+    var autoEmb = new Discord.RichEmbed()
+        .setTitle("Logs | Role edited!")
+        .setDescription(`${oldRole}'s hierarchy has been edited!`)
+        .setColor(newRole.color)
+        .setFooter(`Role ID: ${newRole.id}`)
+        .setTimestamp()
+        var set = newRole.guild.channels.find(`name`, `${channel}`)
+        set.send(autoEmb);
+    
+  } else {
+  
     var autoEmb = new Discord.RichEmbed()
         .setTitle("Logs | Role edited!")
         .setDescription(`~~${oldRole.name}~~  ->  ${newRole}\n**Color**:\n~~${oldRole.hexColor}~~ -> **${newRole.hexColor}**`)
@@ -589,9 +615,8 @@ bot.on("roleUpdate", async function(oldRole, newRole){
         .setFooter(`Role ID: ${newRole.id}`)
         .setTimestamp()
         var set = newRole.guild.channels.find(`name`, `${channel}`)
-        
         set.send(autoEmb);
-
+  }
 });
 
 bot.on("roleDelete", async function(role){
@@ -659,16 +684,26 @@ bot.on("channelUpdate", async function(oldChannel, newChannel){
 	   
    if(oldChannel.topic == "" || oldChannel.topic == null) oldChannel.topic = "No topic set."
    if(newChannel.topic == "" || newChannel.topic == null) newChannel.topic = "No topic set."
+  
+  if(oldChannel.name !== newChannel.name || oldChannel.topic !== newChannel.topic){
     var autoEmb = new Discord.RichEmbed()
-        .setTitle("Logs | Channel update!")
-        .setDescription(`~~**${oldChannel.name}**~~  -> ${newChannel}\n\n**Old Topic**:\n${oldChannel.topic}\n\n**New Topic**:\n${newChannel.topic}`)
+        .setTitle("Logs | Channel updated!")
+        .setDescription(`~~${oldChannel.name}~~ -> ${newChannel}\n**Old Topic**\n${oldChannel.topic}\n\n**New Topic**\n${newChannel.topic}`)
         .setColor("#3654ff")
         .setFooter(`Channel ID: ${newChannel.id}`)
         .setTimestamp()
         var set = newChannel.guild.channels.find(`name`, `${channel}`)
-        
         set.send(autoEmb);
-
+  } else {
+    var emb = new Discord.RichEmbed()
+    .setTitle("Logs | Channel updated!")
+    .setDescription(`${oldChannel}'s channel permissions has been updated!`)
+    .setColor("#7289da")
+    .setFooter(`Channel ID: ${newChannel.id}`)
+    .setTimestamp()
+    var set = newChannel.guild.channels.find(`name`, `${channel}`)
+    set.send(emb)
+  }
 });
 
 bot.on("channelDelete", async function(Channel){

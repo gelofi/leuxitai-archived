@@ -530,6 +530,22 @@ module.exports = {
           `unmutes a muted mentioned/specified user.\nUsage: \`${prefix}unmute <@user>\``
         );
       message.channel.send(cmd);
+    } else if (args[0] === "settings") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `settings`")
+        .setDescription(
+          `view all of Leuxitai's server settings.\nUsage: \`${prefix}warn <user> (Don't mention!) <warn level> <reason>\``
+        )
+        .addField("Aliases", "`serversettings`  `stgs`");
+      message.channel.send(cmd);
+    } else if (args[0] === "stats") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `stats`")
+        .setDescription(
+          `view Leuxitai's statistics and status.`
+        )
+        .addField("Aliases", "`status`  `statistics`");
+      message.channel.send(cmd);
     } else if (args[0] === "role") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `role`")
@@ -549,7 +565,7 @@ module.exports = {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `warn`")
         .setDescription(
-          `edits the warn profile of a specified user. No roles. No bans or kicks.\nUsage: \`${prefix}warn <user> (Don't mention!) <warn level> <reason>\``
+          `edits the warn profile of a specified user.\nUsage: \`${prefix}warn <user> (Don't mention!) <warn level> <reason>\``
         )
         .addField("Aliases", "`w`  `punish`  `rewarn`");
       message.channel.send(cmd);
@@ -619,7 +635,7 @@ module.exports = {
         )
         .addField(
           `${info}  Information`,
-          "`help`, `support`, `ping`, `invite`, `weather`, `changelogs`, `manual`"
+          "`help`, `support`, `ping`, `invite`, `weather`, `changelogs`, `manual`, `stats`, `settings`"
         )
         .addField(
           `${orbs}  Fun and Random`,
@@ -673,7 +689,7 @@ module.exports = {
               )
               .addField(
                 `${info}  Information`,
-                "`help` - shows all Leuxitai's commands.\n`support` - sends a server link to Leuxitai's server through DMs.\n`ping` - sends the API latency of the bot.\n`invite` - sends an invite to invite Leuxitai to your server through DMs.\n`weather` - sends the weather information at the desired location.\n`changelogs` - sends the latest changelogs through DMs.\n`manual` - lost? Read the Leuxitai manual!"
+                "`help` - shows all Leuxitai's commands.\n`support` - sends a server link to Leuxitai's server through DMs.\n`ping` - sends the API latency of the bot.\n`invite` - sends an invite to invite Leuxitai to your server through DMs.\n`weather` - sends the weather information at the desired location.\n`changelogs` - sends the latest changelogs through DMs.\n`manual` - lost? Read the Leuxitai manual!\n`stats` - view Leuxitai's statistics and uptime.\n`settings` - view Leuxitai's server settings."
               )
               .addField(
                 `${orbs}  Fun and Random`,
