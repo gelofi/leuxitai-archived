@@ -1,36 +1,48 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
-const leveling = require("discord-leveling");
 
 module.exports = {
     name: 'setxp',
-    aliases: ["xpset", "xp"],
-    description: "Points system for Leuxitai - XP Set",
+    aliases: ["sxp", "xpset", "xp~"],
+    description: "Points system for Leuxitai - Give",
     run: async (bot, message, args) => {
-    
+      
     let togglexp;
   
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
     
     if(togglesxp == null){
-      togglexp = 'off';
-      //return message.channel.send("That command is not enabled!");
+      togglexp = 'on';
     } else {
       togglexp = togglesxp;
     }
+   
+   if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
       
-      if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have enough permissions to set people's XP!")
-      
-    //if(togglexp !== 'on' || 'off') return
-    if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
-    
-    var amount = parseInt(args[0])
-    var user = message.mentions.users.first() || message.author
- 
-    if(!user) return message.reply("specify a user to set their XP!")
-    var output = await leveling.SetXp(user.id, amount)
-    message.channel.send(`**${user.tag}**'s XP has been set to ${amount} XP.`);
+    if(!message.member.hasPermission("MANAGE_GUILD"))
+      return message.reply("you do not have the **Manage Server** permission to use this command!");
 
+    const user = message.mentions.users.first()
+    if(!user) return message.reply("mention someone or put their ID!");
+
+    const pointsToSet = parseInt(args[1], 10);
+    if(!pointsToSet) 
+      return message.reply("put an amount of XP to give!")
+if(isNaN(pointsToSet)) return message.reply("that's not a number!")
+    // Ensure there is a points entry for this user.
+    bot.points.ensure(`${message.guild.id}-${user.id}`, {
+      user: message.author.id,
+      guild: message.guild.id,
+      points: 0,
+      totalpoints: 0,
+      level: 1
+    });
+
+    // And we save it!
+    bot.points.set(`${message.guild.id}-${user.id}`, pointsToSet, "points")
+    bot.points.set(`${message.guild.id}-${user.id}`, pointsToSet, "totalpoints")
+      
+    message.channel.send(`Set successfully!\n${user} has **${pointsToSet}** points now.`);
   }
 }

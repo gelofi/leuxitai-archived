@@ -1,40 +1,55 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
-const leveling = require("discord-leveling");
 
 module.exports = {
-    name: 'xpadd',
-    aliases: ["addxp", "xp+"],
-    description: "Points system for Leuxitai - XP Set",
+    name: 'give-xp',
+    aliases: ["g", "gxp", "addxp", "xp+"],
+    description: "Points system for Leuxitai - Give",
     run: async (bot, message, args) => {
-    
+      
     let togglexp;
   
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
     
     if(togglesxp == null){
-      togglexp = 'off';
-      //return message.channel.send("That command is not enabled!");
+      togglexp = 'on';
     } else {
       togglexp = togglesxp;
     }
-    
-      if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have enough permissions to give people XP!")
-    //if(togglexp !== 'on' || 'off') return
-    if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
-    
-    let user = message.mentions.users.first()
-    let amount = parseInt(args[0]);
+   
+   if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
       
-      if(isNaN(amount)) return message.reply("that's not a number!")
-    if(!user) return message.reply("specify a user to add XP to!")
-    try {
-      leveling.AddXp(user.id, amount)
-      message.channel.send(`:ticket: **${user.tag}** successfully received **${amount}** XP!`)
-    }
-      catch (error) {
-        message.channel.send(":warning: An error occurred!\n" + error)
-      }
+    if(!message.member.hasPermission("MANAGE_GUILD"))
+      return message.reply("you do not have the **Manage Server** permission to use this command!");
+
+    const user = message.mentions.users.first()
+    if(!user) return message.reply("mention someone or put their ID!");
+
+    const pointsToAdd = parseInt(args[1], 10);
+    if(!pointsToAdd) 
+      return message.reply("put an amount of XP to give!")
+if(isNaN(pointsToAdd)) return message.reply("that's not a number!")
+      
+    // Ensure there is a points entry for this user.
+    bot.points.ensure(`${message.guild.id}-${user.id}`, {
+      user: message.author.id,
+      guild: message.guild.id,
+      points: 0,
+      totalpoints: 0,
+      level: 1
+    });
+
+    // Get their current points.
+    let totalUserPoints = bot.points.get(`${message.guild.id}-${user.id}`, "totalpoints")
+    let userPoints = bot.points.get(`${message.guild.id}-${user.id}`, "points");
+    userPoints += pointsToAdd;
+    totalUserPoints += pointsToAdd;
+      
+    // And we save it!
+    bot.points.set(`${message.guild.id}-${user.id}`, userPoints, "points")
+    bot.points.set(`${message.guild.id}-${user.id}`, totalUserPoints, "totalpoints")
+      
+    message.channel.send(`Given successfully!\n${user} has received **${pointsToAdd}** points!\nNew XP: **${userPoints}** XP.`);
   }
 }

@@ -40,10 +40,11 @@ module.exports = {
     let random = Math.floor(Math.random() * 50);
 
     if (!colour)
-      return message.reply("specify a color to bet on! (red, indigo, cyan)");
+      return message.reply("specify a color to bet on! (red, indigo, cyan, black, orange)");
     colour = colour.toLowerCase();
+    if(!money) return message.reply("specify an amount to bet!")
     if (isNaN(money)) return message.reply("that's not a number!");
-    if (!money) return message.reply("specify an amount to bet!");
+    //if (!money) return message.reply("specify an amount to bet!");
     if (money > moneydb)
       return message.reply("you're betting more money than you have!");
 

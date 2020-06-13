@@ -27,7 +27,7 @@ module.exports = {
       let antispam = await db.fetch(`antispam_${message.guild.id}`)
       if(antispam == null) antispam = "off";
       let rank = await db.fetch(`rank_${message.guild.id}`)
-      if(rank == null) rank = "off";
+      if(rank == null) rank = "on";
       
       //Autoroles
       let tr1 = await db.fetch(`timedrole1_${message.guild.id}`)

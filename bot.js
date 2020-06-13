@@ -19,16 +19,19 @@ const PREFIX = "l.";
 
 const db = require('quick.db');
 const ms = require('ms');
-const leveling = require("discord-leveling");
 
 let cooldown = new Set();
-let cdseconds = 40;
+let cdseconds = 45;
 const talkedRecently = new Set();
 
 const usersMap = new Map();
 const LIMIT = 5;
 const TIME = 7;
 const DIFF = 3000;
+
+//New Leveling
+const Enmap = require("enmap");
+bot.points = new Enmap({name: "points"});
 
 // Collections
 bot.commands = new Collection();
@@ -201,6 +204,7 @@ bot.on("message", async message => {
   // Removes the user from the set after 0.8 seconds
   talkedRecently.delete(message.author.id);
    }, 800);
+  
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
  
     // If message.member is uncached, cache it.
@@ -222,45 +226,52 @@ bot.on("message", async message => {
   // Leveling
   if (message.guild) {
   
-  const ranXp = Math.floor(Math.random() * 14) + 1;
-    
-  var profile = await leveling.Fetch(message.author.id)
-  
   if(cooldown.has(message.author.id)) return
   if(message.author.bot) return
-  leveling.AddXp(message.author.id, ranXp)
-    
+
+  const key = `${message.guild.id}-${message.author.id}`;
+    if (message.author.bot) return;
+    // Triggers on new users we haven't seen before.
+    bot.points.ensure(`${message.guild.id}-${message.author.id}`, {
+      user: message.author.id,
+      guild: message.guild.id,
+      points: 0,
+      totalpoints: 0,
+      level: 1
+    });
+  const randomXP = Math.floor(Math.random() * 14) + 1;
+  bot.points.math(key, "+", randomXP, "points")
   //if(!message.member.hasPermission("ADMINISTRATOR")){
   cooldown.add(message.author.id)
-    
-  if (profile.xp + 10 > 500) {
   
-    let togglexp;
+    // Calculate the user's current level
+    const curLevel = Math.floor(0.1 * Math.sqrt(bot.points.get(key, "points")));
+    
+    let coins = "<:leuxicoin:715493556810416238>";
+  
+    let user = message.author;
+    let amount = 200;
+    
+    if (bot.points.get(key, "points") >= 500) {
+      
+      let togglexp;
   
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
     
     if(togglesxp == null){
       togglexp = 'on';
-      //return message.channel.send("That command is not enabled!");
     } else {
       togglexp = togglesxp;
     }
-      
-    if(togglexp !== 'on') return
-    if (profile.xp + 10 > 100) {
-    let coins = "<:leuxicoin:715493556810416238>";
-  
-    let user = message.author;
-      let amount = 200;
-      
-    await leveling.AddLevel(message.author.id, 1)
-    await leveling.SetXp(message.author.id, 0)
+
+      if(togglexp !== 'on') return
+      bot.points.inc(key, 1, "level");
+      bot.points.set(key, 0, "points");
+    
     db.add(`money_${message.guild.id}_${user.id}`, amount)
-    message.reply(`you leveled up to ${profile.level + 1}! GG!\n + ${coins} **200** LeuxiCoins to your wallet.`)
-    }
+    message.reply(`you leveled up to ${curLevel}! GG!\n + ${coins} **200** LeuxiCoins to your wallet.`)
     }
   }
-  
   setTimeout(() => {
     cooldown.delete(message.author.id)
   }, cdseconds * 1000)

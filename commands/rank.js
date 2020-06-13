@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
 const db = require("quick.db");
-const leveling = require("discord-leveling");
+
 const Canvacord = require("canvacord");
 const canva = new Canvacord.Canvas();
 
@@ -21,53 +21,52 @@ module.exports = {
       togglexp = togglesxp;
     }
     let rank = await db.fetch(`rank_${message.guild.id}`);
-    
-    if(rank == null) rank = "on"
+
+    if (rank == null) rank = "on";
     //if(togglexp !== 'on' || 'off') return
     if (togglexp !== "on")
       return message.channel.send("This command is not toggled on!");
 
     function getUserFromMention(mention) {
-	if (!mention) return;
+      if (!mention) return;
 
-	if (mention.startsWith('<@') && mention.endsWith('>')) {
-		mention = mention.slice(2, -1);
+      if (mention.startsWith("<@") && mention.endsWith(">")) {
+        mention = mention.slice(2, -1);
 
-		if (mention.startsWith('!')) {
-			mention = mention.slice(1);
-		}
+        if (mention.startsWith("!")) {
+          mention = mention.slice(1);
+        }
 
-		return bot.users.get(mention);
-	}
-}
+        return bot.users.get(mention);
+      }
+    }
+
     
-    let user = getUserFromMention(args[0]) || message.author
-    let author = message.author;
-    let output = await leveling.Fetch(user.id);
+    let needxp = 400;
+    let user = getUserFromMention(args[0]) || message.author;
   
     if (rank !== "on") {
-      
-      const points = new Discord.RichEmbed()
-        .setAuthor(`${user.username}'s profile`, user.displayAvatarURL)
-        .addField(`XP / Points`, `${output.xp}/500`)
-        .addField(`Level`, `${output.level}`)
-        .setColor("#ff6352")
-        .setFooter("Cooldown is 40 seconds.")
-        .setTimestamp();
-      message.channel.send(points);
-      
+      const key = `${message.guild.id}-${user.id}`;
+    const points = new Discord.RichEmbed()
+    .setAuthor(`${message.author.username}'s profile`, message.guild.iconURL)
+    .addField(`XP / Points`, bot.points.get(key, "points"), true)
+    .addField(`Level`, bot.points.get(key, "level"), true)
+    .addField(`Total XP`, bot.points.get(key, "totalpoints"), true)
+    .setColor("#ff6352")
+    .setThumbnail(message.author.displayAvatarURL)
+    .setFooter("Cooldown: 45 seconds")
+    .setTimestamp()
+    message.channel.send(points);
     } else {
-      let avatar = await canva.circle(user.avatarURL)
-      if(output.xp === 0) output.xp = "0"
-      if(output.level === 0) output.level = "0"
-      
+      const key = `${message.guild.id}-${user.id}`;
+      let avatar = await canva.circle(user.avatarURL);
       let card = await canva.rank({
         username: user.username,
         discrim: user.discriminator,
-        level: output.level,
-        rank: "?",
+        level: bot.points.get(key, "level"),
+        rank: "N᜵A",
         neededXP: 500,
-        currentXP: output.xp,
+        currentXP: bot.points.get(key, "points"),
         avatarURL: avatar
       });
       message.channel.sendFile(card, "rank.png");

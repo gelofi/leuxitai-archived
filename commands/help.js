@@ -4,7 +4,7 @@ const db = require("quick.db");
 
 module.exports = {
   name: "help",
-  aliases: ["h", "commands"],
+  aliases: ["h", "commands", "command"],
   description: "Sends all commands in the channel.",
   run: async (bot, message, args) => {
     let prefix;
@@ -123,6 +123,13 @@ module.exports = {
           `shows a weather on a desired location.\nUsage: \`${prefix}weather <location>\``
         );
       return message.channel.send(weather);
+    } else if (args[0] === "sync") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `sync`")
+        .setDescription(
+          "syncs the level system, and prunes users without an activity for a month."
+        );
+      message.channel.send(cmd);
     } else if (args[0] === "bannedwords") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `bannedwords`")
@@ -348,7 +355,7 @@ module.exports = {
         .setDescription(
           `is used to give someone points or XP.\nUsage: \`${prefix}give <@user> <no. of XP>\``
         )
-        .addField("Aliases", "`xpadd`  `xp+`");
+        .addField("Aliases", "`givexp`  `xp+`  `gxp`");
       message.channel.send(cmd);
     } else if (args[0] === "setxp") {
       const changelogs = new Discord.RichEmbed()
@@ -655,7 +662,7 @@ module.exports = {
         )
         .addField(
           `${levels}  Levels`,
-          "`points`, `leaderboard`, `addxp`, `setxp`, `setlevel`, `addlevel`, `xpreset`"
+          "`points`, `leaderboard`, `addxp`, `setxp`, `setlevel`, `addlevel`, `xpreset`, `sync`"
         )
         .addField(
           `${coins}  Economy`,
@@ -671,7 +678,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v15",
+          "Leuxitai - v15.5",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -709,7 +716,7 @@ module.exports = {
               )
               .addField(
                 `${levels}  Levels`,
-                "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user."
+                "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user.\n`sync` - syncs the level system, and prunes users without an activity for a month."
               )
             .addField(
               `${coins}  Economy`,
@@ -728,7 +735,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v15",
+                "Leuxitai - v15.5",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")

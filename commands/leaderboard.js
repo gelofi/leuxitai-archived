@@ -1,70 +1,85 @@
-const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
+const Discord = require("discord.js");
+const bot = new Discord.Client({ disableEveryone: true });
 const db = require("quick.db");
-const leveling = require("discord-leveling");
 
 module.exports = {
-    name: 'leaderboard',
-    aliases: ["lb", "top"],
-    description: "Points system for Leuxitai - Leaderboard",
-    run: async (bot, message, args) => {
-  
+  name: "leaderboard",
+  aliases: ["lb", "top"],
+  description: "Points system for Leuxitai - Leaderboard",
+  run: async (bot, message, args) => {
     let togglexp;
-  
-    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
-    
-    if(togglesxp == null){
-      togglexp = 'off';
+
+    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
+
+    if (togglesxp == null) {
+      togglexp = "on";
       //return message.channel.send("That command is not enabled!");
     } else {
       togglexp = togglesxp;
     }
-      
-      if(togglexp !== 'on') return message.channel.send("This command is not toggled on!")
-    
-      if (message.mentions.users.first()) {
-      var output = await leveling.Leaderboard({
-        search: message.mentions.members.first().id
-      });
-      message.channel.send(`**${message.mentions.users.first().tag}** is No. ${output.placement} on the leaderboards!`);
- 
-      //Searches for the top 3 and outputs it to the user.
+
+    if (togglexp !== "on")
+      return message.channel.send("This command is not toggled on!");
+    // Get a filtered list (for this guild only), and convert to an array while we're at it.
+    const filtered = bot.points
+      .filter(p => p.guild === message.guild.id)
+      .array();
+
+    // Sort it to get the top results... well... at the top. Y'know.
+    const sorted = filtered.sort((a, b) => b.points - a.points);
+
+    // Slice it, dice it, get the top 10 of it!
+    const top10 = sorted.splice(0, 10);
+    const top50 = sorted.splice(0, 50);
+    const top100 = sorted.splice(0, 100);
+    let index = 0;
+
+    if (args[0] === "50" || args[0] === "top50") {
+      const topp = new Discord.RichEmbed()
+        .setAuthor(
+          message.guild.name + " Leaderboard - 50",
+          message.guild.iconURL
+        )
+        .setColor(0x1b03a3);
+      for (const data of top50) {
+        topp.addField(
+          `\`${++index})\` ${bot.users.get(data.user).tag}`,
+          `~ **Level** ${data.level} (${data.points} XP)\n**Total XP:** ${data.totalpoints}`
+        );
+      }
+      message.author.send(topp);
+      message.reply("check your DMs!");
+    } else if (args[0] === "100" || args[0] === "top100") {
+      const toppp = new Discord.RichEmbed()
+        .setAuthor(
+          message.guild.name + " Leaderboard - Top 100",
+          message.guild.iconURL
+        )
+        .setColor(0x1b03a3);
+      for (const data of top100) {
+        toppp.addField(
+          `\`${++index}\` ${bot.users.get(data.user).tag}`,
+          `~ **Level** ${data.level} (${data.points} XP)\n**Total XP:** ${data.totalpoints}`
+        );
+      }
+      message.author.send(toppp);
+      message.reply("check your DMs!");
     } else {
- 
-      leveling.Leaderboard({
-        limit: 10 //Only takes top 3 ( Totally Optional )
-      }).then(async users => { //make sure it is async
- 
-        if (users[0]) var firstplace = await bot.fetchUser(users[0].userid) 
-        if (users[1]) var secondplace = await bot.fetchUser(users[1].userid)
-        if (users[2]) var thirdplace = await bot.fetchUser(users[2].userid)
-        if (users[3]) var four = await bot.fetchUser(users[3].userid) 
-        if (users[4]) var piv = await bot.fetchUser(users[4].userid)
-        if (users[5]) var ses = await bot.fetchUser(users[5].userid)
-        if (users[6]) var set = await bot.fetchUser(users[6].userid) 
-        if (users[7]) var otsch = await bot.fetchUser(users[7].userid)
-        if (users[8]) var syam = await bot.fetchUser(users[8].userid)
-        if (users[9]) var sampe = await bot.fetchUser(users[9].userid) 
-        
-        const lb = new Discord.RichEmbed()
-        .setAuthor(`Universal Leaderboard`, message.guild.iconURL)
-        .setDescription(`
-          \`1)\` **${firstplace && firstplace.tag || 'Nobody Yet'}** - Lvl. ${users[0] && users[0].level || 'N/A'} (${users[0] && users[0].xp || 'N/A'} XP)
-\`2)\` **${secondplace && secondplace.tag || 'Nobody Yet'}** - Lvl. ${users[1] && users[1].level || 'N/A'} (${users[1] && users[1].xp || 'N/A'} XP)
-\`3)\` **${thirdplace && thirdplace.tag || 'Nobody Yet'}** - Lvl. ${users[2] && users[2].level || 'N/A'} (${users[2] && users[2].xp || 'N/A'} XP)
-\`4)\` **${four && four.tag || 'Nobody Yet'}** - Lvl. ${users[3] && users[3].level || 'N/A'} (${users[3] && users[3].xp || 'N/A'} XP)
-\`5)\` **${piv && piv.tag || 'Nobody Yet'}** - Lvl. ${users[4] && users[4].level || 'N/A'} (${users[4] && users[4].xp || 'N/A'} XP)
-\`6)\` **${ses && ses.tag || 'Nobody Yet'}** - Lvl. ${users[5] && users[5].level || 'N/A'} (${users[5] && users[5].xp || 'N/A'} XP)
-\`7)\` **${set && set.tag || 'Nobody Yet'}** - Lvl. ${users[6] && users[6].level || 'N/A'} (${users[6] && users[6].xp || 'N/A'} XP)
-\`8)\` **${otsch && otsch.tag || 'Nobody Yet'}** - Lvl. ${users[7] && users[7].level || 'N/A'} (${users[7] && users[7].xp || 'N/A'} XP)
-\`9)\` **${syam && syam.tag || 'Nobody Yet'}** - Lvl. ${users[8] && users[8].level || 'N/A'} (${users[8] && users[8].xp || 'N/A'} XP)
-\`10)\` **${sampe && sampe.tag || 'Nobody Yet'}** - Lvl. ${users[9] && users[9].level || 'N/A'} (${users[9] && users[9].xp || 'N/A'} XP)
-`)
-        .setColor("#3654ff")
-        .setFooter("The leaderboard is a collection of top 10 users of all servers with Leuxitai XP System.")
-         message.channel.send(lb)
-      })
- 
+      // Now shake it and show it! (as a nice embed, too!)
+      const embed = new Discord.RichEmbed()
+        .setAuthor(
+          message.guild.name + " Leaderboard - Top 10",
+          message.guild.iconURL
+        )
+        .setColor(0x1b03a3)
+        .setFooter("You can also view Top 50, and Top 100.");
+      for (const data of top10) {
+        embed.addField(
+          `\`${++index})\` ${bot.users.get(data.user).tag}`,
+          `~ **Level** ${data.level} (${data.points} XP)\n**Total XP:** ${data.totalpoints}`
+        );
+      }
+      message.channel.send(embed);
     }
-}
-}
+  }
+};
