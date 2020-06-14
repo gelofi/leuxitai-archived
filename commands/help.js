@@ -608,7 +608,7 @@ module.exports = {
     } else if (args[0] === "music") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Music Commands")
-        .setDescription("${music}  All of music commands are here.")
+        .setDescription(`${music}  All of music commands are here.`)
         .addField(
           `play`,
           "When initiated, will play a song on a voice channel. You must join a channel first."
