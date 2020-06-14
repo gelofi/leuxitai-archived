@@ -17,7 +17,7 @@ const bot = new Discord.Client({
   disableEveryone: true,
   disableMentions: true
 });
-const client = bot
+
 const { token } = require("./config.js");
 const PREFIX = "l.";
 
@@ -897,19 +897,6 @@ bot.on("channelDelete", async function(Channel) {
 
   set.send(autoEmb);
 });
-
-function xp(message) {
-    if (!client.cooldown.has(`${message.author.id}`) || !(Date.now() - client.cooldown.get(`${message.author.id}`) > client.config.cooldown)) {
-        let xp = client.db.add(`xp_${message.author.id}`, 1);
-        let level = Math.floor(0.3 * Math.sqrt(xp));
-        let lvl = client.db.get(`level_${message.author.id}`) || client.db.set(`level_${message.author.id}`,1);;
-        if (level > lvl) {
-            let newLevel = client.db.set(`level_${message.author.id}`,level);
-            message.channel.send(`:tada: ${message.author.toString()}, You just advanced to level ${newLevel}!`);
-        }
-        client.cooldown.set(`${message.author.id}`, Date.now());
-    }
-}
 
 //Leuxitai v15
 
