@@ -586,6 +586,18 @@ module.exports = {
           `adds a role to the specified user.\nUsage: \`${prefix}role [add | remove] [@user] [role] (Do not mention!)\``
         );
       return message.channel.send(cmd);
+    } else if (args[0] === "uwu") {
+      const ping = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `uwu`")
+        .setDescription("turn messages into the uwu language.")
+        .addField("Aliases", "`owo`");
+      return message.channel.send(ping);
+    } else if (args[0] === "slots") {
+      const ping = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `slots`")
+        .setDescription("pull the slots lever, win or lose coins!")
+        .addField("Aliases", "`slot`  `sl`");
+      return message.channel.send(ping);
     } else if (args[0] === "warnprofile") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `warnprofile`")
@@ -672,7 +684,7 @@ module.exports = {
         )
         .addField(
           `${orbs}  Fun and Random`,
-          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`, `autocomplete`, `hangman`"
+          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`, `autocomplete`, `hangman`, `uwu`"
         )
         .addField(
           `:frame_photo:  Images`,
@@ -692,7 +704,7 @@ module.exports = {
         )
         .addField(
           `${coins}  Economy`,
-          "`work`, `beg`, `daily`, `balance`, `rob`, `roulette`, `weekly`, `deposit`, `withdraw`, `addmoney`, `removemoney`, `buy`, `shop`, `crime`, `inventory`, `chickenfight`"
+          "`work`, `beg`, `daily`, `balance`, `rob`, `roulette`, `weekly`, `deposit`, `withdraw`, `addmoney`, `removemoney`, `buy`, `shop`, `crime`, `inventory`, `chickenfight`, `slots`"
         )
         .addField(
           `${mod}  Moderation`,
@@ -726,7 +738,7 @@ module.exports = {
               )
               .addField(
                 `${orbs}  Fun and Random`,
-                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name.\n`autocomplete` - autocomplete a google search.\n`hangman` - play hangman using the Urban Dictionary"
+                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name.\n`autocomplete` - autocomplete a google search.\n`hangman` - play hangman using the Urban Dictionary\n`uwu` - turn messages and texts into the uwu language."
               )
               .addField(
                 `:frame_photo:  Images`,
@@ -746,7 +758,7 @@ module.exports = {
               )
             .addField(
               `${coins}  Economy`,
-              "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them.\n`crime` - commit a crime to earn or lose coins.\n`inventory` - view your inventory content.\n`chickenfight` - buy a chicken and bet money, you win or lose!" 
+              "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them.\n`crime` - commit a crime to earn or lose coins.\n`inventory` - view your inventory content.\n`chickenfight` - buy a chicken and bet money, you win or lose!\n`slots` - pull the slots lever, win or lose coins." 
             )
               .addField(
                 `${mod}  Moderation`,
