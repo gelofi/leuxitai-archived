@@ -32,7 +32,10 @@
     "alexa-bot-api": "^0.1.2",
     "parse-ms": "^2.0.0",
     "canvacord": "^2.0.2",
-    "enmap": "^5.3.1"
+    "enmap": "^5.3.1",
+    "node-superfetch": "^0.1.10",
+    "common-tags": "^1.8.0",
+    "moment": "^2.26.0"
   },
   "devDependencies": {},
   "description": ""

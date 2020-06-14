@@ -71,6 +71,24 @@ module.exports = {
         .setFooter("You can toggle the economy system if desired.")
         .setColor("#3654ff");
       message.channel.send(cmd);
+    } else if (args[0] === "hangman") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `hangman`")
+        .setDescription("play hangman using the Urban Dictionary.")
+        .addField("Aliases", "`hm`  `hangm`");
+      return message.channel.send(cmd);
+    } else if (args[0] === "toqr") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `toqr`")
+        .setDescription("convert a text or a URL to a QR code.")
+        .addField("Aliases", "`qr`  `qrcode`");
+      return message.channel.send(cmd);
+    } else if (args[0] === "autocomplete") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `autocomplete`")
+        .setDescription("autocomplete a google search.")
+        .addField("Aliases", "`google`  `auto`");
+      return message.channel.send(cmd);
     } else if (args[0] === "crime") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `crime`")
@@ -654,7 +672,7 @@ module.exports = {
         )
         .addField(
           `${orbs}  Fun and Random`,
-          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`"
+          "`coinflip`, `say`, `8ball`, `topic`, `wisdom`, `percent`, `cumberbatch`, `autocomplete`, `hangman`"
         )
         .addField(
           `:frame_photo:  Images`,
@@ -662,7 +680,7 @@ module.exports = {
         )
         .addField(
           `${tools}  Tools`,
-          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`, `slowmode`"
+          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`, `slowmode`, `toqr`"
         )
         .addField(
           `${settings}  Settings`,
@@ -686,7 +704,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v15.6",
+          "Leuxitai - v15.7",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -708,7 +726,7 @@ module.exports = {
               )
               .addField(
                 `${orbs}  Fun and Random`,
-                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name."
+                "`coinflip` - flips a coin, will send either heads, or tails.\n`say` - will repeat what the user said.\n`8ball` - ask a question, Leuxitai amswers it!\n`topic` -will send a random question for you to answer.\n`wisdom` - will send a random quote from famous artists or philosophers.\n`percent` - rates you by the argument in percentile.\n`cumberbatch` - sends a random cumberbatch name.\n`autocomplete` - autocomplete a google search.\n`hangman` - play hangman using the Urban Dictionary"
               )
               .addField(
                 `:frame_photo:  Images`,
@@ -716,7 +734,7 @@ module.exports = {
               )
               .addField(
                 `${tools}  Tools`,
-                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user.\n`slowmode` - sets a slowmode in the channel."
+                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user.\n`slowmode` - sets a slowmode in the channel.\n`toqr` - convert texts and URLs into a QR Code."
               )
               .addField(
                 `${settings}  Settings`,
@@ -743,7 +761,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v15.6",
+                "Leuxitai - v15.7",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")

@@ -5,15 +5,18 @@ dependencies:
   better-sqlite3: 7.1.0
   canvacord: 2.0.2
   cheerio: 1.0.0-rc.3
+  common-tags: 1.8.0
   cumberbatch-name: 1.5.1
   discord.js: 11.6.4
   enmap: 5.3.1
   express: 4.17.1
   express-glitch-keepalive: 0.2.0
   fs: 0.0.2
+  moment: 2.26.0
   ms: 2.1.2
   musakui: 1.0.0
   node-fetch: 2.6.0
+  node-superfetch: 0.1.10
   novelcovid: 1.2.7
   parse-ms: 2.1.0
   quick.db: 7.1.1
@@ -896,6 +899,12 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
+  /common-tags/1.8.0:
+    dev: false
+    engines:
+      node: '>=4.0.0'
+    resolution:
+      integrity: sha512-6P6g0uetGpW/sdyUy/iQQCbFF0kWVMSIVSyYz7Zgjcgh8mgw8PQzDNZeyZ5DQ2gM7LBoZPHmnjz8rUthkBG5tw==
   /component-emitter/1.3.0:
     dev: false
     resolution:
@@ -2079,6 +2088,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-2IUgKDhc3J7Uug+FxMXuqIyYzH7gJjXECKe/w43IGgQHTSj3InJi+yAA7T24L9bQMRKiUEHxEX37G5JpVUGLcQ==
+  /moment/2.26.0:
+    dev: false
+    resolution:
+      integrity: sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -3238,15 +3251,18 @@ specifiers:
   better-sqlite3: ^7.1.0
   canvacord: ^2.0.2
   cheerio: ^1.0.0-rc.3
+  common-tags: ^1.8.0
   cumberbatch-name: ^1.5.1
   discord.js: ^11.6.4
   enmap: ^5.3.1
   express: ^4.17.1
   express-glitch-keepalive: ^0.2.0
   fs: ^0.0.2
+  moment: ^2.26.0
   ms: ^2.1.2
   musakui: ^1.0.0
   node-fetch: ^2.6.0
+  node-superfetch: ^0.1.10
   novelcovid: ^1.2.7
   parse-ms: ^2.0.0
   quick.db: ^7.1.1
