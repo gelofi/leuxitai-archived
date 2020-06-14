@@ -83,11 +83,19 @@ module.exports = {
         .setDescription("view your inventory content.")
         .addField("Aliases", "`inv`");
       return message.channel.send(cmd);
+    } else if (args[0] === "levelroles") {
+      const modlog = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `levelroles`")
+      .setColor("#3654ff")
+        .setDescription("view the server's level roles, add or delete them.")
+      .addField("Usage", `To add level roles, do:\n\`${prefix}levelroles add L(level) [role_name]\` (do not mention!)\nExample\`l.levelroles add L5 Lvl 5\`\n\nTo delete roles, do:\n\`${prefix}levelroles delete [role_name]\` (do not mention!)\nExample:\n\`l.levelroles delete Level 5\`\n\nDo \`${prefix}levelroles\` to view the levels you can assign a role on.`)
+        .addField("Aliases", "`lvlrole`  `levelrole` `lr`")
+      return message.channel.send(modlog);
     } else if (args[0] === "bannedword") {
       const modlog = new Discord.RichEmbed()
         .setAuthor("❓ Command: `bannedword`")
         .setDescription("check the server's banned words, or add, or reset.")
-        .addField("Aliases", "`modc`  `setmodchannel`")
+        .addField("Aliases", "`badword`  `bannedwords`  `badwords`")
       return message.channel.send(modlog);
     } else if (args[0] === "modchannel") {
       const modlog = new Discord.RichEmbed()
@@ -662,7 +670,7 @@ module.exports = {
         )
         .addField(
           `${levels}  Levels`,
-          "`points`, `leaderboard`, `addxp`, `setxp`, `setlevel`, `addlevel`, `xpreset`, `sync`"
+          "`points`, `leaderboard`, `addxp`, `setxp`, `setlevel`, `addlevel`, `xpreset`, `sync`, `levelroles`"
         )
         .addField(
           `${coins}  Economy`,
@@ -678,7 +686,7 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v15.5",
+          "Leuxitai - v15.6",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -716,7 +724,7 @@ module.exports = {
               )
               .addField(
                 `${levels}  Levels`,
-                "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user.\n`sync` - syncs the level system, and prunes users without an activity for a month."
+                "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user.\n`sync` - syncs the level system, and prunes users without an activity for a month.\n`levelroles` - assign a reward role on a specific available level."
               )
             .addField(
               `${coins}  Economy`,
@@ -735,7 +743,7 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v15.5",
+                "Leuxitai - v15.6",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")

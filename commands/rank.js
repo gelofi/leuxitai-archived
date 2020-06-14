@@ -52,7 +52,7 @@ module.exports = {
     .addField(`XP / Points`, bot.points.get(key, "points"), true)
     .addField(`Level`, bot.points.get(key, "level"), true)
     .addField(`Total XP`, bot.points.get(key, "totalpoints"), true)
-    .setColor("#ff6352")
+    .setColor(message.member.displayHexColor)
     .setThumbnail(message.author.displayAvatarURL)
     .setFooter("Cooldown: 45 seconds")
     .setTimestamp()

@@ -45,8 +45,8 @@ if(isNaN(pointsToAdd)) return message.reply("that's not a number!")
     userLevel += pointsToAdd;
 
     // And we save it!
-    bot.points.set(`${message.guild.id}-${user.id}`, userLevel, "points")
+    bot.points.set(`${message.guild.id}-${user.id}`, userLevel, "level")
   
-    message.channel.send(`Given successfully!\n${user} has received **${pointsToAdd}** levels!\nNew Level: **${userLevel}** XP.`);
+    message.channel.send(`Given successfully!\n${user} has received **${pointsToAdd}** levels!\nNew Level: **${userLevel}**.`);
   }
 }

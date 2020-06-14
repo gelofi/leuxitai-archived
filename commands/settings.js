@@ -76,6 +76,7 @@ module.exports = {
       .addField("**Roles** (Required)", `**Mute Role** - ${mute}\n**Main Role** - ${main}`)
       .addField("**Autoroles** (Optional)", `**${tr1}** - ${tr1t}\n**${tr2}** - ${tr2t}\n**${tr3}** - ${tr3t}`)
       .addField("**Warn Roles** (Required)", `**W1** - ${w1}\n**W2** - ${w2}\n**W3** - ${w3}\n**W4** - ${w4}\n**W5** - ${w5}`)
+      .addField("**Level Roles**", "This list is long. Do `l.levelroles`.")
       .setFooter(`You can modify these toggles using other commands.\nDo ${prefix}manual to view the instructions.`)
       message.channel.send(settings)
     }
