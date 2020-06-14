@@ -99,7 +99,7 @@ module.exports = {
       const ping = new Discord.RichEmbed()
         .setAuthor("❓ Command: `ping`")
         .setDescription("sends the API latency on the bot.")
-        .addField("Aliases", "`p`  `pong`");
+        .addField("Aliases", "`pp`  `pong`");
       return message.channel.send(ping);
     } else if (args[0] === "invite") {
       const invite = new Discord.RichEmbed()

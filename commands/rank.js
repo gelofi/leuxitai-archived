@@ -64,7 +64,7 @@ module.exports = {
         username: user.username,
         discrim: user.discriminator,
         level: bot.points.get(key, "level"),
-        rank: "N᜵A",
+        rank: "N/A",
         neededXP: 500,
         currentXP: bot.points.get(key, "points"),
         avatarURL: avatar
