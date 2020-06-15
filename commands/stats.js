@@ -22,7 +22,7 @@ module.exports = {
         .addField("**Channels**", `${bot.channels.size}`, true)
         .addField("**Users**", `${bot.users.size}`, true)
         .addField("**Status**", "Online", true)
-        .addField("**Last Updated**", "June 12, 2020", true)
+        .addField("**Last Updated**", "June 15, 2020", true)
         .addField("**Uptime**", `${days}d ${hours}h ${minutes}m ${seconds}s`, true)
         message.channel.send(stats)
     }

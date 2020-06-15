@@ -11,7 +11,7 @@ app.get("/", (request, response) => {
 app.listen(process.env.PORT);
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 270000);
+}, 5000);
 
 const bot = new Discord.Client({
   disableEveryone: true,
@@ -898,6 +898,6 @@ bot.on("channelDelete", async function(Channel) {
   set.send(autoEmb);
 });
 
-//Leuxitai v15
+//Leuxitai v16
 
 bot.login(token);

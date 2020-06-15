@@ -1,5 +1,5 @@
 {
-  "name": "efa",
+  "name": "Leuxitai",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,6 @@
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "random-puppy": "^1.1.0",
-    "snekfetch": "^4.0.4",
     "superagent": "^5.2.2",
     "weather-js": "^2.0.0",
     "express-glitch-keepalive": "^0.2.0",

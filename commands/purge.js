@@ -21,8 +21,9 @@ module.exports = {
       if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("you don't have **Manage Messages** permission to use this command!");
       if(!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.reply(`I do not have the **Manage Messages** permissions to use this command!`)
         
-      if(!args[0]) return message.reply('put an amount of messages to delete! Maximum deleted messages are 100.');
+      if(!args[0]) return message.reply('put an amount of messages to delete! Maximum deleted messages are 99.');
       if(isNaN(args[0]) == true) return message.reply("that isn't a number!")
+      if(args[0] < 1 || args[0] > 99) return message.reply("only 2 - 99 messages can be purged per command!")
       let x = parseInt(args[0]) + 1
       try {
       message.channel.bulkDelete(x)

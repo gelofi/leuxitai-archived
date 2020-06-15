@@ -22,7 +22,6 @@ dependencies:
   quick.db: 7.1.1
   random-animals-api: 1.2.0
   random-puppy: 1.1.0
-  snekfetch: 4.0.4
   superagent: 5.2.2
   urban: 0.3.2
   weather-js: 2.0.0
@@ -2766,11 +2765,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-NjxjITIj04Ffqid5lqr7XdgwM7X61c/Dns073Ly170bPQHLm6jkmelye/eglS++1nfTWktpP6Y2bFXjdPlQqdw==
-  /snekfetch/4.0.4:
-    deprecated: use node-fetch instead
-    dev: false
-    resolution:
-      integrity: sha512-dyycG9fvwtSJqKPfMVOpXt+60qvMGe7vWLwOJDiSJaiAx+hs2EnFChG2bXCWn7ulz+zGzrHdN9/yeEb0YqEPww==
   /spdx-correct/3.1.1:
     dependencies:
       spdx-expression-parse: 3.0.1
@@ -3268,7 +3262,6 @@ specifiers:
   quick.db: ^7.1.1
   random-animals-api: ^1.2.0
   random-puppy: ^1.1.0
-  snekfetch: ^4.0.4
   superagent: ^5.2.2
   urban: ^0.3.2
   weather-js: ^2.0.0

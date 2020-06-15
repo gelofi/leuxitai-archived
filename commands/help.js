@@ -21,14 +21,14 @@ module.exports = {
     let no = "<:no:716819317852733480>";
     let coins = "<:leuxicoin:715493556810416238>";
 
-    let tools = "<:leuxtools:718999433735307354>"
-    let orbs = "<:orbs:718999124594393168>"
-    let mod = "<:moderation:718998264304762981>"
-    let settings = "<:settings:718996699011481600>"
-    let levels = "<:levels:718996631370072224>"
-    let music = "<:music:718996574797037599>"
-    let info = "<:info:719001493604139009>"
-    
+    let tools = "<:leuxtools:718999433735307354>";
+    let orbs = "<:orbs:718999124594393168>";
+    let mod = "<:moderation:718998264304762981>";
+    let settings = "<:settings:718996699011481600>";
+    let levels = "<:levels:718996631370072224>";
+    let music = "<:music:718996574797037599>";
+    let info = "<:info:719001493604139009>";
+
     if (args[0] === "support") {
       const support = new Discord.RichEmbed()
         .setAuthor("❓ Command: `support`")
@@ -38,7 +38,10 @@ module.exports = {
       var cmd = new Discord.RichEmbed()
         .setAuthor("Economy System", message.guild.iconURL)
         .setDescription("Our little economy system can spice up your server.")
-        .addField("balance", `- fetches a user's money and bank information.\nExample:\`l.balance [@user]\` or \`l.balance\``)
+        .addField(
+          "balance",
+          `- fetches a user's money and bank information.\nExample:\`l.balance [@user]\` or \`l.balance\``
+        )
         .addField("daily", `- collect ${coins} **200** coins everyday!`)
         .addField("weekly", `- collect ${coins} **500** coins every week!`)
         .addField("work", `- work and earn ${coins} LeuxiCoins.`)
@@ -51,7 +54,10 @@ module.exports = {
           `- withdraw coins from the bank to gamble or buy your needs\nExample:\`l.withdraw [coins]\``
         )
         .addField("beg", `- get small amount of coins in short amount of time.`)
-        .addField("transfer", `- give members money, if you have.\nExample:\`l.transfer [@user]\``)
+        .addField(
+          "transfer",
+          `- give members money, if you have.\nExample:\`l.transfer [@user]\``
+        )
         .addField(
           "addmoney",
           `- give members money, without harming your wallet.\nExample:\`l.addmoney [@user]\``
@@ -60,14 +66,29 @@ module.exports = {
           "removemoney",
           `- remove money from abusive members, or just because you want to.\nExample:\`l.removemoney [@user]\``
         )
-        .addField("rob", `- rob members to get money from them.\nExample:\`l.rob [@user]\``)
-        .addField("roulette", `- play the roulette, get coins!\nExample:\`l.roulette [bet]\``)
+        .addField(
+          "rob",
+          `- rob members to get money from them.\nExample:\`l.rob [@user]\``
+        )
+        .addField(
+          "roulette",
+          `- play the roulette, get coins!\nExample:\`l.roulette [bet]\``
+        )
         .addField("shop", `- look at the shop, add items, or delete them.`)
-        .addField("buy", `- buy items from the shop!\nExample:\`l.buy [item]\` or \`l.buy custom [item]\``)
+        .addField(
+          "buy",
+          `- buy items from the shop!\nExample:\`l.buy [item]\` or \`l.buy custom [item]\``
+        )
         .addField("crime", `- commit a crime to earn or lose coins.`)
         .addField("inventory", `- view your inventory contents.`)
-        .addField("chickenfight", `- buy a chicken and let it fight for you to win coins!\nExample:\`l.chickenfight [bet]\``)
-        .addField("_ _", "To add items in the shop, use the shop command.\nExample:\n`l.shop additem Item_Name [cost] [description]` (Keep item names 1 word as possible!)\nTo delete items, also use the shop command.\nExample:\n`l.shop delete Item_name`\n(You can only delete custom items!)")
+        .addField(
+          "chickenfight",
+          `- buy a chicken and let it fight for you to win coins!\nExample:\`l.chickenfight [bet]\``
+        )
+        .addField(
+          "_ _",
+          "To add items in the shop, use the shop command.\nExample:\n`l.shop additem Item_Name [cost] [description]` (Keep item names 1 word as possible!)\nTo delete items, also use the shop command.\nExample:\n`l.shop delete Item_name`\n(You can only delete custom items!)"
+        )
         .setFooter("You can toggle the economy system if desired.")
         .setColor("#3654ff");
       message.channel.send(cmd);
@@ -104,22 +125,25 @@ module.exports = {
     } else if (args[0] === "levelroles") {
       const modlog = new Discord.RichEmbed()
         .setAuthor("❓ Command: `levelroles`")
-      .setColor("#3654ff")
+        .setColor("#3654ff")
         .setDescription("view the server's level roles, add or delete them.")
-      .addField("Usage", `To add level roles, do:\n\`${prefix}levelroles add L(level) [role_name]\` (do not mention!)\nExample\`l.levelroles add L5 Lvl 5\`\n\nTo delete roles, do:\n\`${prefix}levelroles delete [role_name]\` (do not mention!)\nExample:\n\`l.levelroles delete Level 5\`\n\nDo \`${prefix}levelroles\` to view the levels you can assign a role on.`)
-        .addField("Aliases", "`lvlrole`  `levelrole` `lr`")
+        .addField(
+          "Usage",
+          `To add level roles, do:\n\`${prefix}levelroles add L(level) [role_name]\` (do not mention!)\nExample\`l.levelroles add L5 Lvl 5\`\n\nTo delete roles, do:\n\`${prefix}levelroles delete [role_name]\` (do not mention!)\nExample:\n\`l.levelroles delete Level 5\`\n\nDo \`${prefix}levelroles\` to view the levels you can assign a role on.`
+        )
+        .addField("Aliases", "`lvlrole`  `levelrole` `lr`");
       return message.channel.send(modlog);
     } else if (args[0] === "bannedword") {
       const modlog = new Discord.RichEmbed()
         .setAuthor("❓ Command: `bannedword`")
         .setDescription("check the server's banned words, or add, or reset.")
-        .addField("Aliases", "`badword`  `bannedwords`  `badwords`")
+        .addField("Aliases", "`badword`  `bannedwords`  `badwords`");
       return message.channel.send(modlog);
     } else if (args[0] === "modchannel") {
       const modlog = new Discord.RichEmbed()
         .setAuthor("❓ Command: `modchannel`")
         .setDescription("change the moderation logs (warn, kick, ban, etc.)")
-        .addField("Aliases", "`modc`  `setmodchannel`")
+        .addField("Aliases", "`modc`  `setmodchannel`");
       return message.channel.send(modlog);
     } else if (args[0] === "ping") {
       const ping = new Discord.RichEmbed()
@@ -312,11 +336,8 @@ module.exports = {
         .addField(
           "• Level Cards (imagecard)",
           "Make the XP System have a rank card."
-          )
-      .addField(
-          "• Anti-spam (nospam)",
-          "Protect your server from spammers."
-          )
+        )
+        .addField("• Anti-spam (nospam)", "Protect your server from spammers.")
         .addField(
           "• Economy System (eco)",
           "Disable or enable the economy system."
@@ -394,9 +415,7 @@ module.exports = {
     } else if (args[0] === "addlevel") {
       const changelogs = new Discord.RichEmbed()
         .setAuthor("❓ Command: `setlevel`")
-        .setDescription(
-          "adds levels to a specified user."
-        )
+        .setDescription("adds levels to a specified user.")
         .addField("Aliases", "`setlvl`  `levelset`");
       return message.channel.send(changelogs);
     } else if (args[0] === "setlevel") {
@@ -438,35 +457,31 @@ module.exports = {
       message.channel.send(cmd);
     } else if (args[0] === "image") {
       var cmd = new Discord.RichEmbed()
-        .setAuthor("Manipulating images // Manual", message.author.displayAvatarURL)
+        .setAuthor(
+          "Manipulating images // Manual",
+          message.author.displayAvatarURL
+        )
         .setDescription(
           `Provide an action and an image to edit it.\nYou must buy this command from the shop.`
-          )
+        )
+        .addField("trigger", "edits the image into a wiggling trigger GIF.")
+        .addField("trash", "idk trash the image maybe? 😳")
+        .addField("delete", "put that image in the recycle bin smh")
+        .addField("greyscale", "edit the image with a greyscale filter.")
         .addField(
-          "trigger",
-          "edits the image into a wiggling trigger GIF."
+          "sepia",
+          "make our photos HOT 🔥\nadds a sepia filter to your image."
         )
         .addField(
-          "trash",
-          "idk trash the image maybe? 😳"
-          )
-      .addField(
-      "delete",
-      "put that image in the recycle bin smh"
-      )
-      .addField(
-      "greyscale",
-      "edit the image with a greyscale filter."
-      )
-      .addField("sepia", 
-       "make our photos HOT 🔥\nadds a sepia filter to your image.")
-      .addField("blur", "make your photo blurry. don't forget to specify a blur level!")
-      .addField("invert", "invert all colors from your image.")
-      .addField("gay", "make your photo more colorful like a rainbow.")
-      .addField("beautiful", "what a beautiful image.")
-      .addField("rip", "2020 - 2020\nadd your photo to a tombstone.")
-      .addField("circle", "crop a photo into a circle.")
-      .addField("jail", "put that image behind bars! (literally)")
+          "blur",
+          "make your photo blurry. don't forget to specify a blur level!"
+        )
+        .addField("invert", "invert all colors from your image.")
+        .addField("gay", "make your photo more colorful like a rainbow.")
+        .addField("beautiful", "what a beautiful image.")
+        .addField("rip", "2020 - 2020\nadd your photo to a tombstone.")
+        .addField("circle", "crop a photo into a circle.")
+        .addField("jail", "put that image behind bars! (literally)")
         .setFooter("More actions to come!")
         .setColor("#3654ff");
       message.channel.send(cmd);
@@ -489,7 +504,10 @@ module.exports = {
         .setAuthor("❓ Command: `warnrole`")
         .setColor("#3654ff")
         .setDescription("set up roles for the warning system.")
-      .addField("Usage", "To add roles:\n`l.warnrole add [warning level (w1, w2, w3, w4, w5)] [role name]` (do not mention!)\n\nTo delete a role:\n`l.warnrole delete [role_name]` (do not mention!)\n\n:warning: **Immediately add another role if you deleted one. Or else the warning system wouldn't work.**")
+        .addField(
+          "Usage",
+          "To add roles:\n`l.warnrole add [warning level (w1, w2, w3, w4, w5)] [role name]` (do not mention!)\n\nTo delete a role:\n`l.warnrole delete [role_name]` (do not mention!)\n\n:warning: **Immediately add another role if you deleted one. Or else the warning system wouldn't work.**"
+        )
         .addField("Aliases", "`warningrole`  `warnroles`  `warningroles`");
       return message.channel.send(ping);
     } else if (args[0] === "pat") {
@@ -511,6 +529,12 @@ module.exports = {
           "syncs the level system, and prunes users without an activity for a month."
         );
       message.channel.send(cmd);
+    } else if (args[0] === "emoji") {
+      const ping = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `emoji`")
+        .setDescription("view, add, or clone emojis.")
+        .addField("Aliases", "`emote`");
+      return message.channel.send(ping);
     } else if (args[0] === "translate") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `translate`")
@@ -574,9 +598,7 @@ module.exports = {
     } else if (args[0] === "stats") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `stats`")
-        .setDescription(
-          `view Leuxitai's statistics and status.`
-        )
+        .setDescription(`view Leuxitai's statistics and status.`)
         .addField("Aliases", "`status`  `statistics`");
       message.channel.send(cmd);
     } else if (args[0] === "role") {
@@ -692,7 +714,7 @@ module.exports = {
         )
         .addField(
           `${tools}  Tools`,
-          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`, `slowmode`, `toqr`"
+          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`, `slowmode`, `toqr`, `emoji`"
         )
         .addField(
           `${settings}  Settings`,
@@ -746,7 +768,7 @@ module.exports = {
               )
               .addField(
                 `${tools}  Tools`,
-                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user.\n`slowmode` - sets a slowmode in the channel.\n`toqr` - convert texts and URLs into a QR Code."
+                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user.\n`slowmode` - sets a slowmode in the channel.\n`toqr` - convert texts and URLs into a QR Code.\n`emoji` - view, add, or clone emojis."
               )
               .addField(
                 `${settings}  Settings`,
@@ -756,10 +778,10 @@ module.exports = {
                 `${levels}  Levels`,
                 "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user.\n`sync` - syncs the level system, and prunes users without an activity for a month.\n`levelroles` - assign a reward role on a specific available level."
               )
-            .addField(
-              `${coins}  Economy`,
-              "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them.\n`crime` - commit a crime to earn or lose coins.\n`inventory` - view your inventory content.\n`chickenfight` - buy a chicken and bet money, you win or lose!\n`slots` - pull the slots lever, win or lose coins." 
-            )
+              .addField(
+                `${coins}  Economy`,
+                "`work` - work and earn LeuxiCoins\n`beg` - beg for money, earn money\n`daily` - collect daily rewards everyday!\n`balance` - fetches user money and bank info.\n`rob` - rob people, earn LeuxiCoins.\n`roulette` - play roulette, get rewarded.\n`weekly`- collect your weekly rewards.\n`deposit` - deposit your money to not get robbed.\n`withdraw` - withdraw coins to gamble or buy things.\n`addmoney` - add money to members without harming your wallet.\n`removemoney` - remove members' money as a punishment, etc.\n`buy` - buy items from the shop.\n`shop` - look at the shop, add items, or delete them.\n`crime` - commit a crime to earn or lose coins.\n`inventory` - view your inventory content.\n`chickenfight` - buy a chicken and bet money, you win or lose!\n`slots` - pull the slots lever, win or lose coins."
+              )
               .addField(
                 `${mod}  Moderation`,
                 "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server.\n`modchannel` - change the mod log channel for moderation commands.\n`warnrole` - set up roles for the warning system.\n`antispam` - protect your server from spam attacks.\n`warnprofile` - check if a member has warns."

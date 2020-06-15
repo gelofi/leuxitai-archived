@@ -13,21 +13,24 @@ module.exports = {
       
       channel.fetchMessages({ limit: 2 }).then(messages => {
         let lastMessage = messages.last();
-        return message.channel.send(uwu(lastMessage.content));
+        return message.channel.send(uwu(lastMessage.content) + ` ${faces[Math.floor(Math.random() * faces.length)]}`);
       });
     } else {
-      return message.channel.send(uwu(args.join(" ")));
+      return message.channel.send(uwu(args.join(" ")) + ` ${faces[Math.floor(Math.random() * faces.length)]}`);
     }
 
     function uwu(text) {
       return text
+      .toLowerCase()
         .replace(/(?:r|l)/g, "w")
         .replace(/(?:R|L)/g, "W")
+        .replace(/th/g, "d")
+        .replace(/TH/g, "D")
         .replace(/n([aeiou])/g, "ny$1")
         .replace(/N([aeiou])/g, "Ny$1")
         .replace(/N([AEIOU])/g, "NY$1")
         .replace(/ove/g, "uv")
-        .replace(/!+/g, ` ${faces[Math.floor(Math.random() * faces.length)]} `)
+        .replace(/!+/g, `!!!`)
         .trim();
     }
   }
