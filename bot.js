@@ -10,8 +10,8 @@ app.get("/", (request, response) => {
 });
 app.listen(process.env.PORT);
 setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 5000);
+  http.get(`http://leux16.glitch.me//`);
+}, 2000);
 
 const bot = new Discord.Client({
   disableEveryone: true,

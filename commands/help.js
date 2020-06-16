@@ -85,6 +85,7 @@ module.exports = {
           "chickenfight",
           `- buy a chicken and let it fight for you to win coins!\nExample:\`l.chickenfight [bet]\``
         )
+      .addField("slots", "pull the slots lever, win or lose coins!")
         .addField(
           "_ _",
           "To add items in the shop, use the shop command.\nExample:\n`l.shop additem Item_Name [cost] [description]` (Keep item names 1 word as possible!)\nTo delete items, also use the shop command.\nExample:\n`l.shop delete Item_name`\n(You can only delete custom items!)"
@@ -614,12 +615,6 @@ module.exports = {
         .setDescription("turn messages into the uwu language.")
         .addField("Aliases", "`owo`");
       return message.channel.send(ping);
-    } else if (args[0] === "slots") {
-      const ping = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `slots`")
-        .setDescription("pull the slots lever, win or lose coins!")
-        .addField("Aliases", "`slot`  `sl`");
-      return message.channel.send(ping);
     } else if (args[0] === "warnprofile") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `warnprofile`")
@@ -632,8 +627,9 @@ module.exports = {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `warn`")
         .setDescription(
-          `edits the warn profile of a specified user.\nUsage: \`${prefix}warn <user> (Don't mention!) <warn level> <reason>\``
+          `edits the warn profile of a specified user.\nUsage: \`${prefix}warn <@user> <warn level> <reason>\``
         )
+        .addField("Tip", "5 warns will grant a ban. 4 and 3 warns will grant a 5 minute mute. 2 warns will grant a 2 minute mute.")
         .addField("Aliases", "`w`  `punish`  `rewarn`");
       message.channel.send(cmd);
     } else if (args[0] === "embed") {
