@@ -3,7 +3,7 @@ const bot = new Discord.Client({ disableEveryone: true });
 const db = require("quick.db");
 
 const Canvacord = require("canvacord");
-const canva = new Canvacord.Canvas();
+const canva = new Canvacord();
 
 module.exports = {
   name: "points",
