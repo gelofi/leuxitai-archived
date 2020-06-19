@@ -1,18 +1,18 @@
 dependencies:
+  '@fizuku/canvacord': 2.0.53
   '@vitalets/google-translate-api': 3.0.0
   alexa-bot-api: 0.1.2
   ascii-table: 0.0.9
   better-sqlite3: 7.1.0
-  canvacord: 2.0.2
   cheerio: 1.0.0-rc.3
   common-tags: 1.8.0
   cumberbatch-name: 1.5.1
   discord.js: 11.6.4
-  enmap: 5.3.1
   express: 4.17.1
   express-glitch-keepalive: 0.2.0
   fs: 0.0.2
-  moment: 2.26.0
+  mathjs: 6.6.5
+  moment: 2.27.0
   ms: 2.1.2
   musakui: 1.0.0
   node-fetch: 2.6.0
@@ -22,6 +22,7 @@ dependencies:
   quick.db: 7.1.1
   random-animals-api: 1.2.0
   random-puppy: 1.1.0
+  rex.db: 1.0.0
   superagent: 5.2.2
   urban: 0.3.2
   weather-js: 2.0.0
@@ -50,6 +51,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-6sF3uQw2ivImfVIl62RZ7MXhO2tap69WeWK57vAaimT6AZbE4FbqjdEJIN1UqoD6wI6B+1n9UiagafH1sxjOtg==
+  /@fizuku/canvacord/2.0.53:
+    dependencies:
+      '@jimp/custom': 0.13.0
+      '@jimp/plugin-circle': /@jimp/plugin-circle/0.13.0/@jimp!custom@0.13.0
+      canvas: 2.6.1
+      gifencoder: 2.0.1
+      jimp: 0.12.1
+    dev: false
+    resolution:
+      integrity: sha512-3oiCom0j83CLwFGvb0oA9yf5EqG0dFYVLIc5ytiRqQpMBrb2gqgfdnee992WqOv4tDCYEaaD3JKbnnPMtf7gqg==
   /@jimp/bmp/0.12.1/@jimp!custom@0.12.1:
     dependencies:
       '@babel/runtime': 7.10.2
@@ -778,17 +789,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
-  /canvacord/2.0.2:
-    dependencies:
-      '@jimp/custom': 0.13.0
-      '@jimp/plugin-circle': /@jimp/plugin-circle/0.13.0/@jimp!custom@0.13.0
-      canvas: 2.6.1
-      gifencoder: 2.0.1
-      jimp: 0.12.1
-      node-fetch: 2.6.0
-    dev: false
-    resolution:
-      integrity: sha512-8locZnps6ipin1LjP3ap8yVrlf53Qr1Xcyr3rmLrqSQRk3VwhcQMf2EAgm9iWR3FGlL9rpYC2Zjyyvi6PDAkSg==
   /canvas/2.6.1:
     dependencies:
       nan: 2.14.1
@@ -904,6 +904,10 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-6P6g0uetGpW/sdyUy/iQQCbFF0kWVMSIVSyYz7Zgjcgh8mgw8PQzDNZeyZ5DQ2gM7LBoZPHmnjz8rUthkBG5tw==
+  /complex.js/2.0.11:
+    dev: false
+    resolution:
+      integrity: sha512-6IArJLApNtdg1P1dFtn3dnyzoZBEF0MwMnrfF1exSBRpZYoy4yieMkpZhQDC0uwctw48vii0CFVyHfpgZ/DfGw==
   /component-emitter/1.3.0:
     dev: false
     resolution:
@@ -1046,6 +1050,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
+  /decimal.js/10.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-vDPw+rDgn3bZe1+F/pyEwb1oMG2XTlRVgAa6B4KccTEpYgF8w6eQllVbQcfIJnZyvzFtFpxnpGtx8dd7DJp/Rw==
   /decompress-response/3.3.0:
     dependencies:
       mimic-response: 1.0.1
@@ -1215,15 +1223,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
-  /enmap/5.3.1:
-    dependencies:
-      lodash: 4.17.15
-      on-change: 2.0.1
-    dev: false
-    peerDependencies:
-      better-sqlite3: ^7.0.1
-    resolution:
-      integrity: sha512-s/tJwhUWebf7Scip9RyOY0hzOUKfqab3CdcSr+Dkn5Z8qKtIoIsS8hKqWnYvSYZXVBKP2WIzaBWn+0qRXWNYhA==
   /entities/1.1.2:
     dev: false
     resolution:
@@ -1242,6 +1241,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
+  /escape-latex/1.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-nV5aVWW1K0wEiUIEdZ4erkGGH8mDxGyxSeqPzRNtWP7ataw+/olFObw7hujFWlVjNsaDFw5VZ5NzVSIqRgfTiw==
   /escape-string-regexp/1.0.5:
     dev: false
     engines:
@@ -1417,6 +1420,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
+  /fraction.js/4.0.12:
+    dev: false
+    resolution:
+      integrity: sha512-8Z1K0VTG4hzYY7kA/1sj4/r1/RWLBD3xwReT/RCrUCbzPszjNQCCsy3ktkU/eaEqX3MYa4pY37a52eiBlPMlhA==
   /fresh/0.5.2:
     dev: false
     engines:
@@ -1792,6 +1799,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
+  /javascript-natural-sort/0.7.1:
+    dev: false
+    resolution:
+      integrity: sha1-+eIwPUUH9tdDVac2ZNFED7Wg71k=
   /jimp/0.12.1:
     dependencies:
       '@babel/runtime': 7.10.2
@@ -1918,6 +1929,22 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-glc9y00wgtwcDmp7GaE/0b0OnxpNJsVf3ael/An6Fe2Q51LLwN1er6sdomLRzz5h0+yMpiYLhWYF5R7HeqVd4g==
+  /mathjs/6.6.5:
+    dependencies:
+      complex.js: 2.0.11
+      decimal.js: 10.2.0
+      escape-latex: 1.2.0
+      fraction.js: 4.0.12
+      javascript-natural-sort: 0.7.1
+      seed-random: 2.2.0
+      tiny-emitter: 2.1.0
+      typed-function: 1.1.1
+    dev: false
+    engines:
+      node: '>= 8'
+    hasBin: true
+    resolution:
+      integrity: sha512-jvRqk7eoEHBcx/lskmy05m+8M7xDHAJcJzRJoqIsqExtlTHPDQO0Zv85g5F0rasDAXF+DLog/70hcqCJijSzPQ==
   /md5/2.2.1:
     dependencies:
       charenc: 0.0.2
@@ -2087,10 +2114,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-2IUgKDhc3J7Uug+FxMXuqIyYzH7gJjXECKe/w43IGgQHTSj3InJi+yAA7T24L9bQMRKiUEHxEX37G5JpVUGLcQ==
-  /moment/2.26.0:
+  /moment/2.27.0:
     dev: false
     resolution:
-      integrity: sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
+      integrity: sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -2259,12 +2286,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-LMJTtvgc/nugXj0Vcrrs68Mn2D1r0zf630VNtqtpI1FEO7e+O9FP4gqs9AcnBaSEeoHIPm28u6qgPR0oyEpGSw==
-  /on-change/2.0.1:
-    dev: false
-    engines:
-      node: '>=10'
-    resolution:
-      integrity: sha512-M/XA/VXeR3ElAlyYBv2Bow0BtNt6qKI8mNmBI+cw+wyjatoZ3tJQPq6RNYWCaV81uKKbm3svROi6TDS3TtWVzQ==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -2668,6 +2689,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-kYcg7ztjHFZCvgaPFa3lpG9Loec=
+  /rex.db/1.0.0:
+    dependencies:
+      better-sqlite3: 7.1.0
+      lodash: 4.17.15
+    dev: false
+    resolution:
+      integrity: sha512-AhsJ9Nf1dDU2nGID/59S1QaXfXhHzYGVWdh/g09X1Fqjo/0RBF1sDE8E1wl6KbytK8XfmNJUtWb6gNPr7WoiGg==
   /rimraf/2.7.1:
     dependencies:
       glob: 7.1.6
@@ -2691,6 +2719,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
+  /seed-random/2.2.0:
+    dev: false
+    resolution:
+      integrity: sha1-KpsZ4lCoFwmSMaW5mk2vgLf77VQ=
   /semver/5.7.1:
     dev: false
     hasBin: true
@@ -2962,6 +2994,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-IH3DYDL1wMUwmIlVmMrmesw5lZD6N+ZOAFWEyLrtpoL9Bcrs9u7M/vyOnHzDD2SMs4irLkVjqxZbHrXStS/Nmw==
+  /tiny-emitter/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
   /tinycolor2/1.4.1:
     dev: false
     resolution:
@@ -3040,6 +3076,12 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
+  /typed-function/1.1.1:
+    dev: false
+    engines:
+      node: '>= 6'
+    resolution:
+      integrity: sha512-RbN7MaTQBZLJYzDENHPA0nUmWT0Ex80KHItprrgbTPufYhIlTePvCXZxyQK7wgn19FW5bnuaBIKcBb5mRWjB1Q==
   /unique-random-array/1.0.1:
     dependencies:
       unique-random: 1.0.0
@@ -3239,20 +3281,20 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  '@fizuku/canvacord': ^2.0.53
   '@vitalets/google-translate-api': ^3.0.0
   alexa-bot-api: ^0.1.2
   ascii-table: ^0.0.9
   better-sqlite3: ^7.1.0
-  canvacord: ^2.0.2
   cheerio: ^1.0.0-rc.3
   common-tags: ^1.8.0
   cumberbatch-name: ^1.5.1
   discord.js: ^11.6.4
-  enmap: ^5.3.1
   express: ^4.17.1
   express-glitch-keepalive: ^0.2.0
   fs: ^0.0.2
-  moment: ^2.26.0
+  mathjs: ^6.6.5
+  moment: ^2.27.0
   ms: ^2.1.2
   musakui: ^1.0.0
   node-fetch: ^2.6.0
@@ -3262,6 +3304,7 @@ specifiers:
   quick.db: ^7.1.1
   random-animals-api: ^1.2.0
   random-puppy: ^1.1.0
+  rex.db: ^1.0.0
   superagent: ^5.2.2
   urban: ^0.3.2
   weather-js: ^2.0.0

@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
 const db = require("quick.db");
+const { stripIndent } = require("common-tags")
 
 module.exports = {
   name: "help",
@@ -405,26 +406,10 @@ module.exports = {
         )
         .addField("Aliases", "`givexp`  `xp+`  `gxp`");
       message.channel.send(cmd);
-    } else if (args[0] === "setxp") {
-      const changelogs = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `setxp`")
-        .setDescription(
-          "resets the XP of the specified user to the desired amount."
-        )
-        .addField("Aliases", "`xpset`  `xp`");
-      return message.channel.send(changelogs);
     } else if (args[0] === "addlevel") {
       const changelogs = new Discord.RichEmbed()
         .setAuthor("❓ Command: `setlevel`")
         .setDescription("adds levels to a specified user.")
-        .addField("Aliases", "`setlvl`  `levelset`");
-      return message.channel.send(changelogs);
-    } else if (args[0] === "setlevel") {
-      const changelogs = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `setlevel`")
-        .setDescription(
-          "resets the level of the specified user to the desired amount."
-        )
         .addField("Aliases", "`setlvl`  `levelset`");
       return message.channel.send(changelogs);
     } else if (args[0] === "xpreset") {
@@ -483,6 +468,8 @@ module.exports = {
         .addField("rip", "2020 - 2020\nadd your photo to a tombstone.")
         .addField("circle", "crop a photo into a circle.")
         .addField("jail", "put that image behind bars! (literally)")
+        .addField("dither", "apply a dither effect on your image.")
+        .addField("pixelize", "pixelize your image, define a level of pixelation!")
         .setFooter("More actions to come!")
         .setColor("#3654ff");
       message.channel.send(cmd);
@@ -523,17 +510,18 @@ module.exports = {
         .setAuthor("❓ Command: `bird`")
         .setDescription("sends a random bird image.");
       message.channel.send(cmd);
-    } else if (args[0] === "sync") {
-      var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `sync`")
-        .setDescription(
-          "syncs the level system, and prunes users without an activity for a month."
-        );
-      message.channel.send(cmd);
     } else if (args[0] === "emoji") {
       const ping = new Discord.RichEmbed()
         .setAuthor("❓ Command: `emoji`")
         .setDescription("view, add, or clone emojis.")
+      .addField("Usage", stripIndent`
+                To add emojis:
+                \`${prefix}emoji add [url] [name]\`
+                To clone emojis:
+                \`${prefix}emoji clone [static | animated] [custom-emoji] [name]\`
+                To view emojis:
+                \`${prefix}emoji view [static | animated] [custom-emoji]\`
+`)
         .addField("Aliases", "`emote`");
       return message.channel.send(ping);
     } else if (args[0] === "translate") {
@@ -544,6 +532,14 @@ module.exports = {
         )
         .addField("Aliases", "`tl`");
       return message.channel.send(cmd);
+    } else if (args[0] === "math") {
+      var cmd = new Discord.RichEmbed()
+        .setAuthor("❓ Command: `math`")
+        .setDescription(
+          `calculate and evaluate conversions, etc.\nUsage: \`${prefix}math [input]]\``
+        )
+        .addField("Aliases", "`calc`  `calculate`");
+      message.channel.send(cmd);
     } else if (args[0] === "percent") {
       var cmd = new Discord.RichEmbed()
         .setAuthor("❓ Command: `percent`")
@@ -710,7 +706,7 @@ module.exports = {
         )
         .addField(
           `${tools}  Tools`,
-          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`, `slowmode`, `toqr`, `emoji`"
+          "`info`, `avatar`, `poll`, `reddit`, `urban`, `translate`, `embed`, `remindme`, `role`, `slowmode`, `toqr`, `emoji`, `math`"
         )
         .addField(
           `${settings}  Settings`,
@@ -718,7 +714,7 @@ module.exports = {
         )
         .addField(
           `${levels}  Levels`,
-          "`points`, `leaderboard`, `addxp`, `setxp`, `setlevel`, `addlevel`, `xpreset`, `sync`, `levelroles`"
+          "`points`, `leaderboard`, `addxp`, `addlevel`, `xpreset`, `levelroles`"
         )
         .addField(
           `${coins}  Economy`,
@@ -734,8 +730,8 @@ module.exports = {
         )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v15.7",
-          `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
+          "Leuxitai - v16",
+          `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, or get support)`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
         .setColor(0x3654ff);
@@ -764,7 +760,7 @@ module.exports = {
               )
               .addField(
                 `${tools}  Tools`,
-                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user.\n`slowmode` - sets a slowmode in the channel.\n`toqr` - convert texts and URLs into a QR Code.\n`emoji` - view, add, or clone emojis."
+                "`info` - collects the information of the server, you, or mentioned user.\n`avatar` - fetches the avatar of a user.\n`poll` - will initiate a poll, and react in the message.\n`reddit` - gets a random image from a post from a desired subreddit.\n`urban` - fetches a word from Urban Dictionary.\n`translate` - translate the given text to the desired language\n`embed` - turn your message into an embed!\n`remindme` - remind yourself the things you need to do.\n`role` - adds or removes a role from a user.\n`slowmode` - sets a slowmode in the channel.\n`toqr` - convert texts and URLs into a QR Code.\n`emoji` - view, add, or clone emojis.\n`math` - calculate and evaluate conversions, etc"
               )
               .addField(
                 `${settings}  Settings`,
@@ -772,7 +768,7 @@ module.exports = {
               )
               .addField(
                 `${levels}  Levels`,
-                "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`setxp` - resets the XP of the user to the desired amount.\n`setlevel` - resets the level of the user to the desired level.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets the XP profile of the specified user.\n`sync` - syncs the level system, and prunes users without an activity for a month.\n`levelroles` - assign a reward role on a specific available level."
+                "`points` - sends your level and point count.\n`leaderboard` - sends the leaderboard of the level system in a server.\n`addxp` - gives a member a desired amount of points.\n`addlevel` - adds a level to the specified user.\n`xpreset` - resets your XP profile.\n`levelroles` - assign a reward role on a specific available level."
               )
               .addField(
                 `${coins}  Economy`,
@@ -791,8 +787,8 @@ module.exports = {
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v15.7",
-                `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, dashboard [TBM])`
+                "Leuxitai - v16",
+                `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, or get support)`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
               .setColor(0x3654ff);

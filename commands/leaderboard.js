@@ -20,66 +20,33 @@ module.exports = {
 
     if (togglexp !== "on")
       return message.channel.send("This command is not toggled on!");
-    // Get a filtered list (for this guild only), and convert to an array while we're at it.
-    const filtered = bot.points
-      .filter(p => p.guild === message.guild.id)
-      .array();
+    let data = bot.dblevels.all().filter(i => i.ID.startsWith(`xp_${message.guild.id}`)).sort((a, b) => b.data - a.data);
+    if (data.length < 1) return message.channel.send("No leaderboard");
+    data.length = 20;
+    let lb = [];
+    for (let i in data)  {
+        let id = data[i].ID.split("_")[2];
+        let user = await bot.users.get(`${id}`);
+        user = user ? user.tag : "Unknown User#0000";
+        let rank = data.indexOf(data[i]) + 1;
+        let level = bot.dblevels.get(`level_${message.guild.id}_${id}`);
+        let xp = data[i].data;
+        let xpreq = Math.floor(Math.pow(level / 0.1, 2));
+        lb.push({
+            user: { id, tag: user },
+            rank,
+            level,
+            xp,
+            xpreq
+        });
+    };
 
-    // Sort it to get the top results... well... at the top. Y'know.
-    const sorted = filtered.sort((a, b) => b.points - a.points);
-
-    // Slice it, dice it, get the top 10 of it!
-    const top10 = sorted.splice(0, 10);
-    const top50 = sorted.splice(0, 50);
-    const top100 = sorted.splice(0, 100);
-    let index = 0;
-
-    if (args[0] === "50" || args[0] === "top50") {
-      const topp = new Discord.RichEmbed()
-        .setAuthor(
-          message.guild.name + " Leaderboard - 50",
-          message.guild.iconURL
-        )
-        .setColor(0x1b03a3);
-      for (const data of top50) {
-        topp.addField(
-          `\`${++index})\` ${bot.users.get(data.user).tag}`,
-          `~ **Level** ${data.level} (${data.points} XP)\n**Total XP:** ${data.totalpoints}`
-        );
-      }
-      message.author.send(topp);
-      message.reply("check your DMs!");
-    } else if (args[0] === "100" || args[0] === "top100") {
-      const toppp = new Discord.RichEmbed()
-        .setAuthor(
-          message.guild.name + " Leaderboard - Top 100",
-          message.guild.iconURL
-        )
-        .setColor(0x1b03a3);
-      for (const data of top100) {
-        toppp.addField(
-          `\`${++index}\` ${bot.users.get(data.user).tag}`,
-          `~ **Level** ${data.level} (${data.points} XP)\n**Total XP:** ${data.totalpoints}`
-        );
-      }
-      message.author.send(toppp);
-      message.reply("check your DMs!");
-    } else {
-      // Now shake it and show it! (as a nice embed, too!)
-      const embed = new Discord.RichEmbed()
-        .setAuthor(
-          message.guild.name + " Leaderboard - Top 10",
-          message.guild.iconURL
-        )
-        .setColor(0x1b03a3)
-        .setFooter("You can also view Top 50, and Top 100.");
-      for (const data of top10) {
-        embed.addField(
-          `\`${++index})\` ${bot.users.get(data.user).tag}`,
-          `~ **Level** ${data.level} (${data.points} XP)\n**Total XP:** ${data.totalpoints}`
-        );
-      }
-      message.channel.send(embed);
-    }
+    const embed = new Discord.RichEmbed()
+    .setTitle("Leaderboard")
+    .setColor("RANDOM")
+    lb.forEach(d => {
+        embed.addField(`${d.rank}. ${d.user.tag}`, `**Level** - ${d.level}\n**XP** - ${d.xp} / ${d.xpreq}`);
+    });
+    return message.channel.send(embed);
   }
 };

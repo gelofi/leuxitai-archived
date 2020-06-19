@@ -23,24 +23,25 @@ module.exports = {
     if(!message.member.hasPermission("MANAGE_GUILD"))
       return message.reply("you do not have the **Manage Server** permission to use this command!");
 
-    const user = message.mentions.users.first()
-    if(!user) return message.reply("mention someone to reset their XP Stats!");
+    const user = message.author;
+    
+    message.channel.send('Are you sure to reset your XP profile?\nReply `YES` if you are now sure.\nThis menu will end in 30 seconds.')
+    .then(() => {
+    message.channel.awaitMessages(response => response.content === 'YES', {
+      maxMatches: 1,
+      time: 30000,
+      errors: ['time'],
+      })
+      .then((collected) => {
+      bot.dblevels.set(`level_${message.guild.id}_${user.id}`, 1)
+      bot.dblevels.set(`xp_${message.guild.id}_${user.id}`, 1)
+      message.channel.send(`Successfully reset the XP Profile for ${user}.`)
+        })
+        .catch((err) => {
+          message.channel.send('XP Reset menu has been canceled.');
+          });
+      });
 
-    const pointsToSet = 0;
-    // Ensure there is a points entry for this user.
-    bot.points.ensure(`${message.guild.id}-${user.id}`, {
-      user: message.author.id,
-      guild: message.guild.id,
-      points: 0,
-      totalpoints: 0,
-      level: 1
-    });
-
-    // And we save it!
-    bot.points.set(`${message.guild.id}-${user.id}`, pointsToSet, "points")
-    bot.points.set(`${message.guild.id}-${user.id}`, pointsToSet, "totalpoints")
-    bot.points.set(`${message.guild.id}-${user.id}`, 1, "level")
-      
-    message.channel.send(`Set successfully!\n${user} has **${pointsToSet}** points now.`);
+    
   }
 }

@@ -20,7 +20,7 @@ module.exports = {
   if(req === "animated" || req === "gif"){
   message.channel.send("https://cdn.discordapp.com/emojis/" + emote + ".gif")
   }
-  if(req === "png" || req === "inanimated" || req === "normal"){
+  if(req === "static" || req === "inanimated" || req === "normal"){
    message.channel.send("https://cdn.discordapp.com/emojis/" + emote + ".png")
   	}
   }
@@ -37,7 +37,7 @@ module.exports = {
 
   	let emote = args[2]
    emote = emote.replace(/:/g, "").replace(/</g, "").replace(/>/g, "").replace(/[a-z]/g, "").replace(/[A-Z]/g, "")
-  	if(req === "png" || req === "inanimated" || req === "normal"){
+  	if(req === "static" || req === "inanimated" || req === "normal"){
   		if(!args[3]) return message.reply("input a name for that cloned emoji!")
   	message.guild.createEmoji(`https://cdn.discordapp.com/emojis/${emote}.png`, args[3])
   	.then(emoji =>
@@ -58,8 +58,7 @@ module.exports = {
   	if(!args[2]) return message.reply("input a link of an image file!")
 
   	let emote = args[2]
-   // emote = emote.replace(/:/g, "").replace(/</g, "").replace(/>/g, "").replace(/[a-z]/g, "").replace(/[A-Z]/g, "")
-  
+    
   	if(!args[3]) return message.reply("input a name for that new emoji!")
   	message.guild.createEmoji(emote, `${args[3]}`)
   	.then(emoji =>

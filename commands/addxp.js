@@ -9,47 +9,34 @@ module.exports = {
     run: async (bot, message, args) => {
       
     let togglexp;
-  
-    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
-    
-    if(togglesxp == null){
-      togglexp = 'on';
+
+    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
+
+    if (togglesxp == null) {
+      togglexp = "on";
     } else {
       togglexp = togglesxp;
     }
-   
-   if(togglexp !== 'on') return message.channel.send("This command is not toggled on!");
-      
-    if(!message.member.hasPermission("MANAGE_GUILD"))
-      return message.reply("you do not have the **Manage Server** permission to use this command!");
 
-    const user = message.mentions.users.first()
-    if(!user) return message.reply("mention someone or put their ID!");
+    if (togglexp !== "on")
+      return message.channel.send("This command is not toggled on!");
+
+    if (!message.member.hasPermission("MANAGE_GUILD"))
+      return message.reply(
+        "you do not have the **Manage Server** permission to use this command!"
+      );
+
+    const user = message.mentions.users.first();
+    if (!user) return message.reply("mention someone!");
 
     const pointsToAdd = parseInt(args[1], 10);
-    if(!pointsToAdd) 
-      return message.reply("put an amount of XP to give!")
-if(isNaN(pointsToAdd)) return message.reply("that's not a number!")
-      
-    // Ensure there is a points entry for this user.
-    bot.points.ensure(`${message.guild.id}-${user.id}`, {
-      user: message.author.id,
-      guild: message.guild.id,
-      points: 0,
-      totalpoints: 0,
-      level: 1
-    });
+    if (!pointsToAdd) return message.reply("put an amount of XP to give!");
+    if (isNaN(pointsToAdd)) return message.reply("that's not a number!");
 
-    // Get their current points.
-    let totalUserPoints = bot.points.get(`${message.guild.id}-${user.id}`, "totalpoints")
-    let userPoints = bot.points.get(`${message.guild.id}-${user.id}`, "points");
-    userPoints += pointsToAdd;
-    totalUserPoints += pointsToAdd;
-      
-    // And we save it!
-    bot.points.set(`${message.guild.id}-${user.id}`, userPoints, "points")
-    bot.points.set(`${message.guild.id}-${user.id}`, totalUserPoints, "totalpoints")
-      
-    message.channel.send(`Given successfully!\n${user} has received **${pointsToAdd}** points!\nNew XP: **${userPoints}** XP.`);
+    await bot.dblevels.math(`xp_${message.guild.id}_${user.id}`, "+", pointsToAdd);
+    let exp = bot.dblevels.get(`xp_${message.guild.id}_${user.id}`);
+    message.channel.send(
+      `Given successfully!\n${user} has received **${pointsToAdd}** XP!\nNew XP: **${exp}**.`
+    );
   }
 }

@@ -14,7 +14,7 @@ module.exports = {
         
         musakui(`${args[0]}`)
          .then(result => {
-         //if(nsfw !== "off" && result.nsfw == true) return message.channel.send("")
+
          if(!message.channel.nsfw && result.nsfw == true) return message.channel.send("Failed! The fetched post was NSFW, this channel isn't an NSFW channel!");
         
           const reddit = new Discord.RichEmbed()
@@ -25,6 +25,7 @@ module.exports = {
                message.channel.send(reddit)
         }).catch(error => {
            message.channel.send("I can't find that subreddit!");
-        })
+        });
+      
         }
 }

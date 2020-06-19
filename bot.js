@@ -24,8 +24,10 @@ const PREFIX = "l.";
 const db = require("quick.db");
 const ms = require("ms");
 
-let cooldown = new Set();
-let cdseconds = 45;
+bot.cooldown = new Discord.Collection();
+bot.config = {
+    cooldown: 45000
+};
 const talkedRecently = new Set();
 
 const usersMap = new Map();
@@ -33,11 +35,9 @@ const LIMIT = 5;
 const TIME = 7;
 const DIFF = 3000;
 
-//New Leveling
-const Enmap = require("enmap");
-bot.points = new Enmap({ name: "points" });
-
 // Collections
+bot.dblevels = require("rex.db");
+bot.dblevels.init("./levels")
 bot.commands = new Collection();
 bot.aliases = new Collection();
 
@@ -231,74 +231,27 @@ bot.on("message", async message => {
   // Leveling
   if (message.guild) {
     
-    let L5 = await db.fetch(`level5_${message.guild.id}`)
-    let L10 = await db.fetch(`level10_${message.guild.id}`)
-    let L15 = await db.fetch(`level15_${message.guild.id}`)
-    let L20 = await db.fetch(`level20_${message.guild.id}`)
-    let L25 = await db.fetch(`level25_${message.guild.id}`)
-    let L30 = await db.fetch(`level30_${message.guild.id}`)
-    let L35 = await db.fetch(`level35_${message.guild.id}`)
-    let L40 = await db.fetch(`level40_${message.guild.id}`)
-    let L45 = await db.fetch(`level45_${message.guild.id}`)
-    let L50 = await db.fetch(`level50_${message.guild.id}`)
-    let L55 = await db.fetch(`level55_${message.guild.id}`)
-    let L60 = await db.fetch(`level60_${message.guild.id}`)
-    let L70 = await db.fetch(`level70_${message.guild.id}`)
-    let L80 = await db.fetch(`level80_${message.guild.id}`)
-    let L90 = await db.fetch(`level90_${message.guild.id}`)
-    let L100 = await db.fetch(`level100_${message.guild.id}`)
-
+    if(message.author.bot) return;
     
-    if (cooldown.has(message.author.id)) return;
-    if (message.author.bot) return;
+    xp(message);
+    
+      let L5 = await db.fetch(`level5_${message.guild.id}`)
+      let L10 = await db.fetch(`level10_${message.guild.id}`)
+      let L15 = await db.fetch(`level15_${message.guild.id}`)
+      let L20 = await db.fetch(`level20_${message.guild.id}`)
+      let L25 = await db.fetch(`level25_${message.guild.id}`)
+      let L30 = await db.fetch(`level30_${message.guild.id}`)
+      let L35 = await db.fetch(`level35_${message.guild.id}`)
+      let L40 = await db.fetch(`level40_${message.guild.id}`)
+      let L45 = await db.fetch(`level45_${message.guild.id}`)
+      let L50 = await db.fetch(`level50_${message.guild.id}`)
+      let L55 = await db.fetch(`level55_${message.guild.id}`)
+      let L60 = await db.fetch(`level60_${message.guild.id}`)
+      let L70 = await db.fetch(`level70_${message.guild.id}`)
+      let L80 = await db.fetch(`level80_${message.guild.id}`)
+      let L90 = await db.fetch(`level90_${message.guild.id}`)
+      let L100 = await db.fetch(`level100_${message.guild.id}`)
 
-    const key = `${message.guild.id}-${message.author.id}`;
-    if (message.author.bot) return;
-    // Triggers on new users we haven't seen before.
-    bot.points.ensure(`${message.guild.id}-${message.author.id}`, {
-      user: message.author.id,
-      guild: message.guild.id,
-      points: 0,
-      totalpoints: 0,
-      level: 1
-    });
-    const randomXP = Math.floor(Math.random() * 14) + 1;
-    bot.points.math(key, "+", randomXP, "points");
-    bot.points.math(key, "+", randomXP, "totalpoints");
-
-    //if(!message.member.hasPermission("ADMINISTRATOR")){
-    cooldown.add(message.author.id);
-
-    // Calculate the user's current level
-    const curLevel = Math.floor(0.1 * Math.sqrt(bot.points.get(key, "points")));
-
-    let coins = "<:leuxicoin:715493556810416238>";
-
-    let user = message.author;
-    let amount = 200;
-
-    if (bot.points.get(key, "points") > 500) {
-      let togglexp;
-
-      let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
-
-      if (togglesxp == null) {
-        togglexp = "on";
-      } else {
-        togglexp = togglesxp;
-      }
-
-      if (togglexp !== "on") return;
-      bot.points.math(key, "+", 1, "level");
-      bot.points.set(key, 0, "points");
-
-      db.add(`money_${message.guild.id}_${user.id}`, amount);
-      message.reply(
-        `you leveled up to ${curLevel}! GG!\n + ${coins} **200** LeuxiCoins to your wallet.`
-      );
-      
-      let level = bot.points.get(key, "level")
-      
       //Roles Level
       let l5 = message.guild.roles.find(role => role.name === `${L5}`)
       let l10 = message.guild.roles.find(role => role.name === `${L10}`)
@@ -317,97 +270,99 @@ bot.on("message", async message => {
       let l90 = message.guild.roles.find(role => role.name === `${L90}`)
       let l100 = message.guild.roles.find(role => role.name === `${L100}`)
 
-      if(level == 5){
+      let leveling = bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`)
+      
+      if(leveling == 5){
         if(L5 == null) return
         if(!l5) return
       message.member.addRole(l5.id)
       }
       
-      if(level == 10){
+      if(leveling == 10){
         if(L10 == null) return
         if(!l10) return
       message.member.addRole(l10.id)
       }
       
-      if(level == 15){
+      if(leveling == 15){
         if(L15 == null) return
         if(!l15) return
       message.member.addRole(l15.id)
       }
       
-      if(level == 20){
+      if(leveling == 20){
         if(L20 == null) return
         if(!l20) return
       message.member.addRole(l20.id)
       }
       
-      if(level == 25){
+      if(leveling == 25){
         if(L25 == null) return
         if(!l25) return
       message.member.addRole(l25.id)
       }
       
-      if(level == 30){
+      if(leveling == 30){
         if(L30 == null) return
         if(!l30) return
       message.member.addRole(l30.id)
       }
       
-      if(level == 35){
+      if(leveling == 35){
         if(L35 == null) return
         if(!l35) return
       message.member.addRole(l35.id)
       }
       
-      if(level == 40){
+      if(leveling == 40){
         if(L40 == null) return
         if(!l40) return
       message.member.addRole(l40.id)
       }
       
-      if(level == 45){
+      if(leveling == 45){
         if(L45 == null) return
         if(!l45) return
       message.member.addRole(l45.id)
       }
       
-      if(level == 50){
+      if(leveling == 50){
         if(L50 == null) return
         if(!l50) return
       message.member.addRole(l50.id)
       }
       
-      if(level == 55){
+      if(leveling == 55){
         if(L55 == null) return
         if(!l55) return
       message.member.addRole(l55.id)
       }
       
-      if(level == 60){
+      if(leveling == 60){
         if(L60 == null) return
         if(!l60) return
       message.member.addRole(l60.id)
       }
       
-      if(level == 70){
+      if(leveling == 70){
         if(L70 == null) return
         if(!l70) return
       message.member.addRole(l70.id)
       }
       
-      if(level == 80){
+      if(leveling == 80){
         if(L80 == null) return
         if(!l80) return
       message.member.addRole(l80.id)
       }
       
-      if(level == 90){
+      if(leveling == 90){
         if(L90 == null) return
         if(!l90) return
       message.member.addRole(l90.id)
       }
       
-      if(level == 100){
+      if(leveling == 100){
         if(L100 == null) return
         if(!l100) return
       message.member.addRole(l100.id)
@@ -415,11 +370,6 @@ bot.on("message", async message => {
       
       
     }
-  };
-  
-  setTimeout(() => {
-    cooldown.delete(message.author.id);
-  }, cdseconds * 1000);
 });
 
 bot.on("guildMemberAdd", async function(member) {
@@ -897,6 +847,23 @@ bot.on("channelDelete", async function(Channel) {
 
   set.send(autoEmb);
 });
+
+function xp(message) {
+    let coins = "<:leuxicoin:715493556810416238>";
+    if (!bot.cooldown.has(`${message.author.id}`) || !(Date.now() - bot.cooldown.get(`${message.author.id}`) > bot.config.cooldown)) {
+        let xp = bot.dblevels.math(`xp_${message.guild.id}_${message.author.id}`,  "+", 1);
+        let level = Math.floor(0.3 * Math.sqrt(xp));
+        let lvl = bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`) || bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, 1);;
+        if (level > lvl) {
+            let newLevel = bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, level);
+            db.add(`money_${message.guild.id}_${message.author.id}`, 200);
+      message.reply(
+        `you leveled up to ${newLevel}! GG!\n + ${coins} **200** LeuxiCoins to your wallet.`
+      );
+        }
+        bot.cooldown.set(`${message.author.id}`, Date.now());
+    }
+}
 
 //Leuxitai v16
 

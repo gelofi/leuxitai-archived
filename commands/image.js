@@ -1,8 +1,8 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
-const Canvacord = require("canvacord")
-const canva = new Canvacord();
+const Canva = require("@fizuku/canvacord")
+const canva = new Canva()
 
 module.exports = {
     name: 'image',
@@ -134,6 +134,28 @@ module.exports = {
      message.channel.send(":warning: An error occured!\n\n```" + error + "```")
         }
     }
+      
+      if(want === "dither"){
+     try {
+        let image = await canva.dither(img.url);
+        message.channel.sendFile(image,'dithered.png');
+      } catch (error) {
+     message.channel.send(":warning: An error occured!\n\n```" + error + "```")
+        }
+    }
+      
+      if(want === "pixelize"){
+        if(!args[1]) return message.reply("specify a pixelation level!")
+        if(isNaN(args[1])) return message.reply("that's not a number!")
+        
+     try {
+        let image = await canva.pixelate(img.url, args[1]);
+        message.channel.sendFile(image,'pixelized.png');
+      } catch (error) {
+     message.channel.send(":warning: An error occured!\n\n```" + error + "```")
+        }
+    }
+      
       
     }
 }

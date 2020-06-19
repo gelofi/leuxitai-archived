@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
 const db = require("quick.db");
 
-const Canvacord = require("canvacord");
+const Canvacord = require("@fizuku/canvacord");
 const canva = new Canvacord();
 
 module.exports = {
@@ -41,17 +41,27 @@ module.exports = {
       }
     }
 
+  let user = getUserFromMention(args[0]) || message.author;
     
-    let needxp = 400;
-    let user = getUserFromMention(args[0]) || message.author;
-  
+  let level = bot.dblevels.get(`level_${message.guild.id}_${user.id}`) || 0;
+  level = level.toString();
+  let exp = bot.dblevels.get(`xp_${message.guild.id}_${user.id}`) || 0;
+  let neededXP = Math.floor(Math.pow(level / 0.1, 2));
+    
+    let every = bot.dblevels
+    .all()
+    .filter(i => i.ID.startsWith("xp_"))
+    .sort((a, b) => b.data - a.data);
+  let ranking = every.map(x => x.ID).indexOf(`xp_${message.guild.id}_${user.id}`) + 1;
+  ranking = ranking.toString();
+    
     if (rank !== "on") {
-      const key = `${message.guild.id}-${user.id}`;
+ 
     const points = new Discord.RichEmbed()
     .setAuthor(`${message.author.username}'s profile`, message.guild.iconURL)
-    .addField(`XP / Points`, bot.points.get(key, "points"), true)
-    .addField(`Level`, bot.points.get(key, "level"), true)
-    .addField(`Total XP`, bot.points.get(key, "totalpoints"), true)
+    .addField(`XP / Points`, exp.toString(), true)
+    .addField(`Level`, level, true)
+    .addField(`Rank`, ranking, true)
     .setColor(message.member.displayHexColor)
     .setThumbnail(message.author.displayAvatarURL)
     .setFooter("Cooldown: 45 seconds")
@@ -63,11 +73,12 @@ module.exports = {
       let card = await canva.rank({
         username: user.username,
         discrim: user.discriminator,
-        level: bot.points.get(key, "level"),
-        rank: "N/A",
-        neededXP: 500,
-        currentXP: bot.points.get(key, "points"),
-        avatarURL: avatar
+        level: level,
+        rank: ranking,
+        neededXP: neededXP.toString(),
+        currentXP: exp.toString(),
+        avatarURL: avatar,
+        color: message.member.displayHexColor
       });
       message.channel.sendFile(card, "rank.png");
     }
