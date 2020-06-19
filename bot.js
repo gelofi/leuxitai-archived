@@ -867,4 +867,4 @@ function xp(message) {
 
 //Leuxitai v16
 
-//bot.login(token);
+bot.login(token);
