@@ -50,7 +50,7 @@ module.exports = {
     
     let every = bot.dblevels
     .all()
-    .filter(i => i.ID.startsWith("xp_"))
+    .filter(i => i.ID.startsWith(`xp_${message.guild.id}_`))
     .sort((a, b) => b.data - a.data);
   let ranking = every.map(x => x.ID).indexOf(`xp_${message.guild.id}_${user.id}`) + 1;
   ranking = ranking.toString();
