@@ -854,11 +854,11 @@ function xp(message) {
         let xp = bot.dblevels.math(`xp_${message.guild.id}_${message.author.id}`,  "+", randomXP);
         let level = Math.floor(0.3 * Math.sqrt(xp));
         let lvl = bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`) || bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, 1);;
-        if (level > lvl) {
-            let newLevel = bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, level);
+        if (lvl < level) {
+            bot.dblevels.math(`level_${message.guild.id}_${message.author.id}`, "+", 1);
             db.add(`money_${message.guild.id}_${message.author.id}`, 200);
       message.reply(
-        `you leveled up to ${newLevel}! GG!\n + ${coins} **200** LeuxiCoins to your wallet.`
+        `you leveled up to ${lvl + 1}! GG!\n + ${coins} **200** LeuxiCoins to your wallet.`
       );
         }
   setTimeout(() => {
