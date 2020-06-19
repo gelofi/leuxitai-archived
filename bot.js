@@ -851,10 +851,11 @@ function xp(message) {
     if (bot.cooldown.has(`${message.author.id}`)) return
     bot.cooldown.add(message.author.id)
     const randomXP = Math.floor(Math.random() * 14) + 1;
-        let xp = bot.dblevels.math(`xp_${message.guild.id}_${message.author.id}`,  "+", randomXP);
-        let level = Math.floor(0.3 * Math.sqrt(xp));
-        let lvl = bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`) || bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, 1);;
-        if (lvl < level) {
+         bot.dblevels.math(`xp_${message.guild.id}_${message.author.id}`,  "+", randomXP);
+        let nexp = Math.floor(Math.pow(level / 0.1, 2));
+        //let level = Math.floor(0.3 * Math.sqrt(xp));
+        let exp = bot.dblevels.get(`xp_${message.guild.id}_${message.author.id}`) || bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, 1);;
+        if (exp < nexp) {
             bot.dblevels.math(`level_${message.guild.id}_${message.author.id}`, "+", 1);
             db.add(`money_${message.guild.id}_${message.author.id}`, 200);
       message.reply(
