@@ -856,7 +856,7 @@ async function xp(message) {
         let nexp = Math.floor(Math.pow(level / 0.1, 2));
         //let level = Math.floor(0.3 * Math.sqrt(xp));
         let exp = await bot.dblevels.get(`xp_${message.guild.id}_${message.author.id}`) || bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, 1);;
-        if (exp < nexp) {
+        if (exp > nexp) {
             await bot.dblevels.math(`level_${message.guild.id}_${message.author.id}`, "+", 1);
             let newLevel = await bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`)
             await db.add(`money_${message.guild.id}_${message.author.id}`, 200);
