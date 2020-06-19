@@ -863,7 +863,7 @@ async function xp(message) {
       let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
 
       if (togglesxp == null) {
-        togglexp = "on";
+        togglexp = "off";
       } else {
         togglexp = togglesxp;
       }
