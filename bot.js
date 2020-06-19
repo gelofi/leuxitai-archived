@@ -846,19 +846,19 @@ bot.on("channelDelete", async function(Channel) {
   set.send(autoEmb);
 });
 
-function xp(message) {
+async function xp(message) {
     let coins = "<:leuxicoin:715493556810416238>";
     if (bot.cooldown.has(`${message.author.id}`)) return
     bot.cooldown.add(message.author.id)
     const randomXP = Math.floor(Math.random() * 14) + 1;
-        let xp = bot.dblevels.math(`xp_${message.guild.id}_${message.author.id}`,  "+", randomXP);
+        await bot.dblevels.math(`xp_${message.guild.id}_${message.author.id}`,  "+", randomXP);
         let nexp = Math.floor(Math.pow(level / 0.1, 2));
         //let level = Math.floor(0.3 * Math.sqrt(xp));
-        let exp = bot.dblevels.get(`xp_${message.guild.id}_${message.author.id}`) || bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, 1);;
+        let exp = await bot.dblevels.get(`xp_${message.guild.id}_${message.author.id}`) || bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, 1);;
         if (exp < nexp) {
-            bot.dblevels.math(`level_${message.guild.id}_${message.author.id}`, "+", 1);
-            let newLevel = bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`)
-            db.add(`money_${message.guild.id}_${message.author.id}`, 200);
+            await bot.dblevels.math(`level_${message.guild.id}_${message.author.id}`, "+", 1);
+            let newLevel = await bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`)
+            await db.add(`money_${message.guild.id}_${message.author.id}`, 200);
       message.reply(
         `you leveled up to ${newLevel}! GG!\n + ${coins} **200** LeuxiCoins to your wallet.`
       );
