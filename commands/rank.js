@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
 const db = require("quick.db");
+const abbr = require("number-abbreviate")
+var str = require("str_shorten")
 
 const Canvacord = require("@fizuku/canvacord");
 const canva = new Canvacord();
@@ -43,9 +45,9 @@ module.exports = {
 
   let user = getUserFromMention(args[0]) || message.author;
     
-  let level = bot.dblevels.get(`level_${message.guild.id}_${user.id}`) || 0;
+  let level = bot.dblevels.get(`level_${message.guild.id}_${user.id}`) || 1;
   level = level.toString();
-  let exp = bot.dblevels.get(`xp_${message.guild.id}_${user.id}`) || 0;
+  let exp = bot.dblevels.get(`xp_${message.guild.id}_${user.id}`) || 1;
   let neededXP = Math.floor(Math.pow(level / 0.1, 2));
     
     let every = bot.dblevels
@@ -71,12 +73,12 @@ module.exports = {
       const key = `${message.guild.id}-${user.id}`;
       let avatar = await canva.circle(user.avatarURL);
       let card = await canva.rank({
-        username: user.username,
+        username: str(user.username, 15),
         discrim: user.discriminator,
         level: level,
         rank: ranking,
-        neededXP: neededXP.toString(),
-        currentXP: exp.toString(),
+        neededXP: abbr(neededXP.toString(), 2),
+        currentXP: abbr(exp.toString(), 2),
         avatarURL: avatar,
         color: message.member.displayHexColor
       });

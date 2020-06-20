@@ -42,7 +42,7 @@ module.exports = {
     };
 
     const embed = new Discord.RichEmbed()
-    .setTitle("Leaderboard")
+    .setAuthor(`${message.guild.name} Leaderboard`, message.guild.iconURL)
     .setColor("RANDOM")
     lb.forEach(d => {
         embed.addField(`${d.rank}. ${d.user.tag}`, `**Level** - ${d.level}\n**XP** - ${d.xp} / ${d.xpreq}`);
