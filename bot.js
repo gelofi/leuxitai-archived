@@ -194,38 +194,6 @@ bot.on("message", async message => {
     }
   }
 
-  //Fixes the prefix bug
-  if (!message.content.startsWith(prefix)) return;
-
-  if (talkedRecently.has(message.author.id)) return;
-
-  talkedRecently.add(message.author.id);
-  setTimeout(() => {
-    // Removes the user from the set after 0.8 seconds
-    talkedRecently.delete(message.author.id);
-  }, 800);
-
-  const args = message.content
-    .slice(prefix.length)
-    .trim()
-    .split(/ +/g);
-
-  // If message.member is uncached, cache it.
-  if (!message.member)
-    message.member = await message.guild.fetchMember(message);
-
-  const cmd = args.shift().toLowerCase();
-
-  if (cmd.length === 0) return;
-
-  // Get the command
-  let command = bot.commands.get(cmd);
-  // If none is found, try to find it by alias
-  if (!command) command = bot.commands.get(bot.aliases.get(cmd));
-
-  // If a command is finally found, run the command
-  if (command) command.run(bot, message, args);
-
   // Leveling
   if (message.guild) {
     
@@ -365,9 +333,42 @@ bot.on("message", async message => {
         if(!l100) return
       message.member.addRole(l100.id)
       }
-      
-      
+    
     }
+
+
+  //Fixes the prefix bug
+  if (!message.content.startsWith(prefix)) return;
+
+  if (talkedRecently.has(message.author.id)) return;
+
+  talkedRecently.add(message.author.id);
+  setTimeout(() => {
+    // Removes the user from the set after 0.8 seconds
+    talkedRecently.delete(message.author.id);
+  }, 800);
+
+  const args = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/g);
+
+  // If message.member is uncached, cache it.
+  if (!message.member)
+    message.member = await message.guild.fetchMember(message);
+
+  const cmd = args.shift().toLowerCase();
+
+  if (cmd.length === 0) return;
+
+  // Get the command
+  let command = bot.commands.get(cmd);
+  // If none is found, try to find it by alias
+  if (!command) command = bot.commands.get(bot.aliases.get(cmd));
+
+  // If a command is finally found, run the command
+  if (command) command.run(bot, message, args);
+
 });
 
 bot.on("guildMemberAdd", async function(member) {
