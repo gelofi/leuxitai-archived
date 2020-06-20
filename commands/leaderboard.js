@@ -12,7 +12,7 @@ module.exports = {
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
 
     if (togglesxp == null) {
-      togglexp = "on";
+      togglexp = "off";
       //return message.channel.send("That command is not enabled!");
     } else {
       togglexp = togglesxp;
