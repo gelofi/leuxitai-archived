@@ -849,9 +849,19 @@ bot.on("channelDelete", async function(Channel) {
 
 async function xp(message) {
     let coins = "<:leuxicoin:715493556810416238>";
-    let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
+    let togglexp;
+
+      let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
+
+      if (togglesxp == null) {
+        togglexp = "off";
+      } else {
+        togglexp = togglesxp;
+      }
+
+    if (togglexp !== "on") return;
     if (bot.cooldown.has(message.author.id)) return;
-    if (togglesxp !== "on") return;
+ 
     bot.cooldown.add(message.author.id)
     const randomXP = Math.floor(Math.random() * 14) + 1;
         await bot.dblevels.math(`xp_${message.guild.id}_${message.author.id}`,  "+", randomXP);
