@@ -8,7 +8,7 @@ module.exports = {
     description: "Add a server to the subscribers.",
     run: async (bot, message, args) => {
       
-    if(!message.author.id === "563351780944248843") return
+    if(message.author.id !== "563351780944248843") return
       
     let plus = await db.fetch(`plus_${args[1]}`)
     let pluse = await db.fetch(`plus_${message.guild.id}`)
@@ -16,7 +16,7 @@ module.exports = {
     let check = "<:leuxcheck:716819913901211658>";
     let no = "<:no:716819317852733480>";
     
-      if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have the **Manage Server** permission to use this command!")
+      //if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have the **Manage Server** permission to use this command!")
   
       if(!args[0]) return message.reply("remove, or add this server to the Leuxitai Plus list?");
       
