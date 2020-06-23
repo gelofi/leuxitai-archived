@@ -1,18 +1,6 @@
 const Discord = require("discord.js");
 const { Client, Attachment, Collection } = require("discord.js");
 
-const http = require("http");
-const express = require("express");
-const app = express();
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Received");
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://leux16.glitch.me//`);
-}, 2000);
-
 const bot = new Discord.Client({
   disableEveryone: true,
   disableMentions: true
@@ -35,7 +23,9 @@ const DIFF = 3000;
 
 // Collections
 bot.dblevels = require("rex.db");
-bot.dblevels.init("./levels")
+bot.dblevels.init("./levels");
+bot.dbplus = require("rex.db");
+bot.dbplus.init("./plusubscriber")
 bot.commands = new Collection();
 bot.aliases = new Collection();
 
@@ -83,7 +73,6 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
   //Fixes the bot bug
   if (message.author.bot) return;
-
   if (message.guild) {
     //Fixes the bot bug
     if (message.author.bot) return;
@@ -884,6 +873,17 @@ async function xp(message) {
   }, 45 * 1000);
 }
 
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 5000);
 
 //Leuxitai v16
 

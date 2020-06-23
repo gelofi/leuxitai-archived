@@ -70,7 +70,6 @@ module.exports = {
     .setTimestamp()
     message.channel.send(points);
     } else {
-      const key = `${message.guild.id}-${user.id}`;
       let avatar = await canva.circle(user.avatarURL);
       let card = await canva.rank({
         username: str(user.username, 15),

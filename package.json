@@ -37,7 +37,8 @@
     "mathjs": "^6.6.5",
     "rex.db": "^1.0.0",
     "str_shorten": "^1.0.18",
-    "number-abbreviate": "^2.0.0"
+    "number-abbreviate": "^2.0.0",
+    "canvacord": "^3.0.0"
   },
   "devDependencies": {},
   "description": ""

@@ -6,6 +6,7 @@ const ms = require("parse-ms");
 module.exports = {
     name: 'buy',
     aliases: ["get"],
+    category: "eco",
     description: "buy items.",
     run: async (bot, message, args, util) => {
   

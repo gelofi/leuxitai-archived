@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db")
-const prefix = require(".././config.js")
+const prefix = require("./../../config.js")
 
 module.exports = {
     name: 'setprefix',
