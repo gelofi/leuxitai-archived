@@ -24,8 +24,6 @@ const DIFF = 3000;
 // Collections
 bot.dblevels = require("rex.db");
 bot.dblevels.init("./levels");
-bot.dbplus = require("rex.db");
-bot.dbplus.init("./plusubscriber")
 bot.commands = new Collection();
 bot.aliases = new Collection();
 
@@ -887,4 +885,4 @@ setInterval(() => {
 
 //Leuxitai v16
 
-bot.login(token);
+//bot.login(token);
