@@ -72,6 +72,8 @@ module.exports = {
     if(!args[0]) return message.reply("specify an item to buy!")
 
      if(args[0] == "charm") {
+      let charm = await db.fetch(`charm_${message.guild.id}_${user.id}`)
+      if(charm == true) return message.reply("you already bought this item!")
       if(money < 10000) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`charm_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 10000)
@@ -79,6 +81,8 @@ module.exports = {
      } else
      
      if(args.join(" ") == "rob shield") {
+      let shield = await db.fetch(`robshield_${message.guild.id}_${user.id}`)
+      if(shield == true) return message.reply("you already bought this item!")
       if(money < 7000) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`robshield_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 7000)
@@ -86,6 +90,8 @@ module.exports = {
      } else
     
      if(args[0] == "image") {
+      let image = await db.fetch(`dm_${message.guild.id}_${user.id}`)
+      if(image == true) return message.reply("you already bought this item!")
       if(money < 25000) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`dm_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 25000)
@@ -93,6 +99,8 @@ module.exports = {
      } else
        
      if(args[0] == "chicken") {
+      let chicken = await db.fetch(`chicken_${message.guild.id}_${user.id}`)
+      if(chicken == true) return message.reply("you already have a chicken!")
       if(money < 150) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`chicken_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 150)
@@ -100,6 +108,8 @@ module.exports = {
      } else  
        
       if(args[0] == "booster") {
+      let boost = await db.fetch(`booster_${message.guild.id}_${user.id}`)
+      if(boost == true) return message.reply("you already have a booster!")
       if(money < 1000) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`booster_${message.guild.id}_${user.id}`, true)
       db.subtract(`money_${message.guild.id}_${user.id}`, 1000)
@@ -131,7 +141,7 @@ module.exports = {
      } else
 
      if(args[1] !== item1 && args[1] !== item2 && args[1] == item3) {
-    // if(item3 !== null) return message.reply("that item does not exist!")
+     //if(item3 == item3) return message.reply("that item does not exist!")
      if(money < item3cost) return message.reply("you don't have enough money to buy that item! :(")
       db.set(`inventory3_${message.guild.id}_${user.id}`, item3)
       db.subtract(`money_${message.guild.id}_${user.id}`, item3cost)

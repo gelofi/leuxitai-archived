@@ -883,6 +883,6 @@ setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 5000);
 
-//Leuxitai v16
+//Leuxitai v16.5
 
 bot.login(token);

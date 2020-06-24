@@ -19,11 +19,11 @@ module.exports = {
   let no = "<:no:716819317852733480>"
   let coins = "<:leuxicoin:715493556810416238>"
   
-  let img = message.mentions.users.first().avatarURL || message.attachments.first().url  
-  if(!img) return message.reply("provide an image/@user to edit!")
   let want = args[0]
   if(!want) return message.reply("specify an action to be done in the image!")
-    if(want === "trigger"){
+  let img = message.mentions.users.first().avatarURL || message.attachments.first().url  
+  if(!img) return message.reply("provide an image/@user to edit!")
+     if(want === "trigger"){
      try {
         let image = await canva.trigger(img);
         message.channel.sendFile(image,'triggered.gif');
