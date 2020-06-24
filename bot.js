@@ -885,4 +885,4 @@ setInterval(() => {
 
 //Leuxitai v16
 
-bot.login(token);
+//bot.login(token);

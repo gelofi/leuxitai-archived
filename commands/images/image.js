@@ -17,8 +17,7 @@ module.exports = {
     
   let check = "<:leuxcheck:716819913901211658>"
   let no = "<:no:716819317852733480>"
-  let coins = "<:leuxicoin:715493556810416238>";
-
+  let coins = "<:leuxicoin:715493556810416238>"
   
   let img = message.mentions.users.first().avatarURL || message.attachments.first().url  
   if(!img) return message.reply("provide an image/@user to edit!")
