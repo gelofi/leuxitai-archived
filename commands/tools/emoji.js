@@ -54,13 +54,12 @@ module.exports = {
   	}
       
     if(query === "add"){
-  	if(!req) return message.reply("what emoji will be added?")
-  	if(!args[2]) return message.reply("input a link of an image file!")
+  	if(!req) return message.reply("input a link of an image file!")
 
   	let emote = args[2]
     
-  	if(!args[3]) return message.reply("input a name for that new emoji!")
-  	message.guild.createEmoji(emote, `${args[3]}`)
+  	if(!args[2]) return message.reply("input a name for that new emoji!")
+  	message.guild.createEmoji(req, `${emote}`)
   	.then(emoji =>
   		message.channel.send(`**Created emoji**: ${emoji} ${emoji.name}`))
   	

@@ -37,11 +37,15 @@
     "node-superfetch": "^0.1.10",
     "common-tags": "^1.8.0",
     "moment": "^2.27.0",
-    "mathjs": "^6.6.5",
+    "mathjs": "^7.0.2",
     "rex.db": "^1.0.0",
     "str_shorten": "^1.0.18",
     "number-abbreviate": "^2.0.0",
-    "canvacord": "^3.0.0"
+    "canvacord": "^3.0.4",
+    "simple-youtube-api": "^5.2.1",
+    "ytdl-core": "^3.1.1",
+    "solenolyrics": "^5.0.0",
+    "opusscript": "^0.0.7"
   },
   "devDependencies": {},
   "description": ""

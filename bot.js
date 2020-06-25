@@ -1,3 +1,15 @@
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://leuxitai16.glitch.me/`);
+}, 3000);
+
 const Discord = require("discord.js");
 const { Client, Attachment, Collection } = require("discord.js");
 
@@ -5,14 +17,20 @@ const bot = new Discord.Client({
   disableEveryone: true,
   disableMentions: true
 });
+const alexa = require ("alexa-bot-api")
+let ai = new alexa("aw2plm")
 
-const { token } = require("./config.js");
+const { token, youtube } = require("./config.js");
 const PREFIX = "l.";
 
 const db = require("quick.db");
 const ms = require("ms");
 
 bot.cooldown = new Set();
+
+const YT = require("simple-youtube-api");
+bot.queue = new Map();
+bot.yt = new YT(youtube);
 
 const talkedRecently = new Set();
 
@@ -69,6 +87,23 @@ bot.on("ready", async () => {
 
 // Regular Commands
 bot.on("message", async message => {
+  
+    const argo = message.content
+    .slice(PREFIX.length)
+    .trim()
+    .split(/ +/g);
+  
+  if (message.channel.type == "dm") {
+    if (message.author.bot) return;
+    if (message.content.startsWith(PREFIX)) {
+      message.channel.send("Commands are disabled in DMs!");
+      return;
+    } else
+      ai.getReply(argo.join(" "))
+      .then(reply => message.channel.send(reply));
+      return;
+  }
+  
   //Fixes the bot bug
   if (message.author.bot) return;
   if (message.guild) {
@@ -135,13 +170,6 @@ bot.on("message", async message => {
         timer: fn
       });
     }
-  }
-
-  //Fixes DM bugs
-  if (message.channel.type == "dm") {
-    if (message.content.startsWith(PREFIX))
-      return message.author.send("You dared to try!");
-    return;
   }
 
   const { default_prefix } = require("./config.js");
@@ -354,7 +382,7 @@ bot.on("message", async message => {
   if (!command) command = bot.commands.get(bot.aliases.get(cmd));
 
   // If a command is finally found, run the command
-  if (command) command.run(bot, message, args);
+  if (command) command.run(bot, message, args, play, handleVideo, Discord);
 
 });
 
@@ -871,17 +899,97 @@ async function xp(message) {
   }, 45 * 1000);
 }
 
-const http = require('http');
-const express = require('express');
-const app = express();
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Received");
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 5000);
+async function handleVideo(video, message, voiceChannel, playlist = false) {
+  const serverQueue = bot.queue.get(message.guild.id);
+  console.log(video);
+
+  const song = {
+    thumbnail: video.thumbnails.high.url,
+    id: video.id,
+    channel: video.channel.title,
+    duration: video.duration,
+    title: video.raw.snippet.title,
+    url: `https://www.youtube.com/watch?v=${video.id}`
+  };
+  if (!serverQueue) {
+    const queueConstruct = {
+      textChannel: message.channel,
+      voiceChannel: voiceChannel,
+      connection: null,
+      songs: [],
+      volume: 10,
+      playing: true
+    };
+    bot.queue.set(message.guild.id, queueConstruct);
+
+    queueConstruct.songs.push(song);
+
+    try {
+      var connection = await voiceChannel.join();
+      queueConstruct.connection = connection;
+      play(message.guild, queueConstruct.songs[0]);
+    } catch (error) {
+      console.error(`I could not join the voice channel: ${error}`);
+      bot.queue.delete(message.guild.id);
+      return message.channel.send(`I could not join the voice channel: ${error}`);
+    }
+  } else {
+    serverQueue.songs.push(song);
+    console.log(serverQueue.songs);
+    if (playlist) return undefined;
+    var embed = new Discord.RichEmbed()
+      .setAuthor("Song added to queue", message.author.displayAvatarURL)
+      .setDescription(`**[${song.title}](${song.url})**`)
+      .setThumbnail(song.thumbnail)
+      .addField("Channel", `${song.channel}`)
+      .addField(
+        "Duration",
+        `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``
+      )
+      .setColor("#57a5ff")
+      .setFooter(`${message.author.tag} added this song to the queue`);
+
+    return message.channel.send(embed);
+  }
+  return undefined;
+}
+
+const ytdl = require("ytdl-core");
+function play(guild, song) {
+  const serverQueue = bot.queue.get(guild.id);
+
+  if (!song) {
+    serverQueue.voiceChannel.leave();
+    bot.queue.delete(guild.id);
+    return;
+  }
+  console.log(serverQueue.songs);
+
+  const dispatcher = serverQueue.connection
+    .playStream(ytdl(song.url), { bitrate: 192000 /* 192kbps */ })
+    .on("end", reason => {
+      if (reason === "Stream is not generating quickly enough.");
+      else console.log(reason);
+      serverQueue.songs.shift();
+      play(guild, serverQueue.songs[0]);
+    })
+    .on("error", error => console.error(error));
+  dispatcher.setVolumeLogarithmic(serverQueue.volume / 10);
+
+  var embed = new Discord.RichEmbed()
+    .setAuthor("Playing now")
+    .setThumbnail(song.thumbnail)
+    .setDescription(`[${song.title}](${song.url})`)
+    .addField("Channel", `${song.channel}`)
+    .addField(
+      "Duration",
+      `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``
+    )
+    .setColor("#456dff")
+    .setFooter(`Current volume: ${serverQueue.volume} | Have fun listening!`);
+
+  serverQueue.textChannel.send(embed);
+}
 
 //Leuxitai v16.5
 

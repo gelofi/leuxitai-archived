@@ -7,7 +7,7 @@ let table = new ascii("Commands");
 table.setHeading("Command", "Load status");
 
 module.exports = (bot) => {
-  
+
 var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();

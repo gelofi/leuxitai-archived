@@ -434,13 +434,6 @@ module.exports = {
         )
         .addField("Aliases", "`setprefix`  `sp`");
       message.channel.send(cmd);
-    } else if (args[0] === "musicprefix") {
-      var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Command: `musicprefix`")
-        .setDescription(
-          `is used to change the prefix of Leuxitai's music module.\nUsage: \`${prefix}musicprefix <new_prefix>\``
-        );
-      message.channel.send(cmd);
     } else if (args[0] === "image") {
       var cmd = new Discord.RichEmbed()
         .setAuthor(
@@ -710,7 +703,7 @@ module.exports = {
         )
         .addField(
           `${settings}  Settings`,
-          "`prefix`, `musicprefix`, `logchannel`, `setmainrole`, `setmuterole`, `toggle`, `autorole`"
+          "`prefix`, `logchannel`, `setmainrole`, `setmuterole`, `toggle`, `autorole`"
         )
         .addField(
           `${levels}  Levels`,
@@ -764,7 +757,7 @@ module.exports = {
               )
               .addField(
                 `${settings}  Settings`,
-                "`prefix` - change Leuxitai's prefix in this server.\n`musicprefix` - change Leuxitai's music module prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.\n`toggle` - toggles commands on or off\n`autorole` - automatically adds role when a new user joins."
+                "`prefix` - change Leuxitai's prefix in this server.\n`logchannel` - changes the log channel for kicking, banning, changing prefixes, etc..\n`setmainrole` - will set your main role in your server.\n`setmuterole` - changes the default mute role for your server.\n`toggle` - toggles commands on or off\n`autorole` - automatically adds role when a new user joins."
               )
               .addField(
                 `${levels}  Levels`,

@@ -41,12 +41,11 @@ module.exports = {
         .setDescription(`My prefix for this guild is now changed to \`${args[0]}\` successfully.`)
         .setColor("#3654ff")
         .setFooter("You can mention me for me to send my prefix in this server.")
-        message.channel.send(embedp).then (message.channel.send(
-          `Due to Leuxitai's music module in another project, you need to change the music module's prefix too!\nType \`${prefix}musicprefix\` to change the prefix for the music module.`
-        ))
-        
+        message.channel.send(embedp)
+  
         var log = new Discord.RichEmbed()
         .setTitle("Logs | Settings updated ✓")
+        .setColor("#3654ff")
         .setDescription(`New guild prefix is now \`${args[0]}\``)
         .setFooter(`Author ID: ${message.author.id}`)
         .setTimestamp();
