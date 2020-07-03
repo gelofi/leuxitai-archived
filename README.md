@@ -6,7 +6,7 @@ Just click this link [here](https://tinyurl.com/leuxitai)!
 
 Thank you for your support.
 
-# • Leuxitai | v15
+# • Leuxitai | v16.7p
 ## Features
 - Level System! Compete with your friends!
 - Moderation! Protect your server.
