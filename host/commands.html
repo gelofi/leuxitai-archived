@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Leuxitai - Commands List</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.com/5146d8ee-579d-477b-84ee-020fe3ddbcc7%2Fdownload.png?v=1590218481277"
+    />
+    <link
+      href="http://allfont.net/allfont.css?fonts=league-spartan"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/commands.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+    <meta property="og:title" content="Leuxitai - Website" />
+    <meta
+      property="og:description"
+      content="Introducing: Leuxitai! Leuxitai is your new multi-purpose Discord bot, with over 50 commands, including music support!"
+    />
+    <meta name="theme-color" content="#3654ff" />
+    <meta
+      property="og:image"
+      content="https://cdn.glitch.com/5146d8ee-579d-477b-84ee-020fe3ddbcc7%2Fdownload.png?v=1590218481277"
+    />
+    <meta property="og:url" content="https://leuxitai.glitch.me"/>
+  </head>
+
+  <body>
+    <style>
+      .noDec {
+        text-decoration: none;
+        color: #2f2f2f;
+      }
+      code {
+        font-family: Consolas, "courier new";
+        color: #7289da;
+        background-color: #2f2f2f;
+        padding: 2px;
+        font-size: 105%;
+      }
+      
+      /* CSS files add styling rules to your content */
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+.w500 {
+  font-weight: 500;
+}
+.w550 {
+  font-weight: 550;
+}
+.w650 {
+  font-weight: 650;
+}
+.w800 {
+  font-weight: 800;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #23272A;
+  font-family: helvetica, arial, sans-serif, "Montserrat", "League Spartan Bold";
+
+  margin: 0;
+  height: 100%;
+}
+
+h1 {
+  font-family: Montserrat;
+  font-size: 10px;
+  margin-top: -75px;
+  margin-left: 100px;
+  color: #2f2f2f;
+}
+
+h2 {
+  font-family: Montserrat;
+  font-size: 70px;
+  text-align: left;
+  margin-left: 20px;
+  line-height: 90px;
+  color: #fafafa;
+}
+
+.content {
+  padding: 20px;
+  min-height: 100%;
+  margin: 0 auto -50px;
+}
+
+.footer {
+  margin-top: auto;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #3654ff;
+  color: white;
+  text-align: center;
+}
+
+/*@media screen and (min-width: 800px) {
+  .footer {
+        position: fixed;
+        left: 0;         
+        bottom: 0;
+        width: 100%;
+        height: 30%;
+        background-color: #3654ff;
+        color: white;
+        text-align: center;
+    }
+}*/
+
+p {
+  color: #fafafa;
+  font-family: "Montserrat";
+  font-size: 25px;
+  line-height: 40px;
+  text-align: left;
+}
+table, th, td {
+  border: 5px solid #23272A;
+  border-collapse: collapse;
+}
+th, td {
+  color: #fafafa;
+  padding: 15px;
+}
+td {
+  font-weight: 500;
+}
+caption {
+  color: #fafafa;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+nav{
+  height: 80px;
+  width: 100%;
+}
+label.logo{
+  color: #f2f2f2;
+  font-size: 33px;
+  line-height: 80px;
+  margin-left: 130px;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+}
+nav ul{
+  float: right;
+  margin-right: 40px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 2px;
+}
+nav ul li a{
+  color: #f2f2f2;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  /* text-transform: uppercase; */
+  font-family: 'Montserrat', sans-serif;
+}
+a.active,a:hover{
+  background: #3654ff;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 27px;
+    padding-left: 25px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+    margin-right: 40px;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+section{
+  background: url(bg1.jpg) no-repeat;
+  background-size: cover;
+  height: calc(100vh - 80px);
+}
+
+      
+    </style>
+
+     <nav>
+      <div style="margin-left: 40px; margin-top: 5px;">
+      <a href="https://leuxitai.glitch.me">
+        <img
+          src="https://cdn.glitch.com/5146d8ee-579d-477b-84ee-020fe3ddbcc7%2Fdownload.png?v=1590218481277"
+          alt="Leuxitai"
+          style="width:70px; height:70px; position: absolute; top: 30px;"
+        />
+      </a>
+    </div>
+      <div>&nbsp</div>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">Leuxitai</label>
+      
+      <ul>
+<li><a href="https://leuxitai.glitch.me/">Home</a></li>
+<li><a class="active" href="https://leuxitai.glitch.me/commands">Commands</a></li>
+<li><a href="https://leuxitai.glitch.me/plus">Plus</a></li>
+<li><a href="https://leuxitai.glitch.me/changelogs">Changelogs</a></li>
+</ul>
+</nav>
+
+    <div>
+      &nbsp
+    </div>
+    <div class="content">
+      <h2 class="w800" style="margin-left: 30px;">Commands List</h2>
+      <p class="w650" style="margin-left: 30px; font-size: 22px">
+        &nbsp<br>
+        The command list is updated every major update.
+      </p>
+      <p class="w500" style="margin-left: 30px; font-size: 20px">
+        You can also view the commands list by doing <code>l.help</code> on your
+        server.<br />
+        Assume the prefix is your custom prefix.<br>&nbsp
+      </p>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Information Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>help</td>
+          <td>
+            Sends the command list in the channel.<br />Sends a detailed help
+            description of a specific command.
+          </td>
+          <td>l.help [command]</td>
+          <td><code>h</code></td>
+        </tr>
+        <tr>
+          <td>support</td>
+          <td>sends a server link to Leuxitai's server through DMs.</td>
+          <td>l.support</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>ping</td>
+          <td>sends the API latency of the bot.</td>
+          <td>l.ping</td>
+          <td><code>p</code></td>
+        </tr>
+        <tr>
+          <td>invite</td>
+          <td>
+            sends an invite to invite Leuxitai to your server through DMs.
+          </td>
+          <td>l.invite</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>weather</td>
+          <td>sends the weather information at the desired location.</td>
+          <td>l.weather [place]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>changelogs</td>
+          <td>sends the changelog link to the website.</td>
+          <td>l.changelogs</td>
+          <td><code>chlog</code> <code>changelog</code></td>
+        </tr>
+        <tr>
+          <td>manual</td>
+          <td>sends the instruction manual for Leuxitai.</td>
+          <td>l.manual</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>stats</td>
+          <td>sends the status, and statistics of Leuxitai.</td>
+          <td>l.stats</td>
+          <td><code>status</code> <code>statistics</code></td>
+        </tr>
+        <tr>
+          <td>settings</td>
+          <td>view Leuxitai's server settings.</td>
+          <td>l.settings</td>
+          <td>None</td>
+        </tr>
+      </table>
+
+      &nbsp
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Fun and Random Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>coinflip</td>
+          <td>flips a coin, will send either heads, or tails.</td>
+          <td>l.coinflip</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>say</td>
+          <td>will repeat what the user said, then deletes it.</td>
+          <td>l.say [message]</td>
+          <td><code>msg</code></td>
+        </tr>
+        <tr>
+          <td>8ball</td>
+          <td>ask a question, Leuxitai amswers it!</td>
+          <td>l.8ball [question]</td>
+          <td><code>8b</code></td>
+        </tr>
+        <tr>
+          <td>topic</td>
+          <td>will send a random question for you to answer.</td>
+          <td>l.topic</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>wisdom</td>
+          <td>will send a random quote from famous artists or philosophers.</td>
+          <td>l.wisdom</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>percent</td>
+          <td>rates you by the argument in percentile.</td>
+          <td>l.percent [adjective, etc]</td>
+          <td><code>%</code> <code>percentile</code></td>
+        </tr>
+        <tr>
+          <td>cumberbatch</td>
+          <td>gives you a random cumberbatch name.</td>
+          <td>l.cumberbatch</td>
+          <td><code>cb</code></td>
+        </tr>
+        <tr>
+          <td>autocomplete</td>
+          <td>autocompletes a google search.</td>
+          <td>l.autocomplete [query]</td>
+          <td><code>auto</code></td>
+        </tr>
+        <tr>
+          <td>hangman</td>
+          <td>Initiate a hangman game, powered by Urban Dictionary</td>
+          <td>l.hangman</td>
+          <td><code>hm</code></td>
+        </tr>
+        <tr>
+          <td>uwu</td>
+          <td>turn sentences into UWU language.</td>
+          <td>l.uwu [text]</td>
+          <td><code>owo</code></td>
+        </tr>
+      </table>
+
+      &nbsp
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Image Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>cat</td>
+          <td>sends a random cat image.</td>
+          <td>l.cat</td>
+          <td><code>catto</code></td>
+        </tr>
+        <tr>
+          <td>dog</td>
+          <td>sends a random dog image.</td>
+          <td>l.dog</td>
+          <td><code>doggo</code><code>puppy</code></td>
+        </tr>
+        <tr>
+          <td>meme</td>
+          <td>sends a random meme from random meme subreddits.</td>
+          <td>l.meme</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>anime</td>
+          <td>sends a random anime GIF from random r/animegifs.</td>
+          <td>l.anime</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>hug</td>
+          <td>mention someone and hug them!</td>
+          <td>l.hug [user (ping them)]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>wallpaper</td>
+          <td>gets a random image from Unsplash.com</td>
+          <td>l.wallpaper</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>fox</td>
+          <td>sends a random fox image</td>
+          <td>l.fox</td>
+          <td><code>kitsune</code></td>
+        </tr>
+        <tr>
+          <td>pat</td>
+          <td>mention someone to pat them!</td>
+          <td>l.pat [user (ping them)]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>bird</td>
+          <td>sends a random birbo image</td>
+          <td>l.bird</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>shiba</td>
+          <td>sends a random shiba inu image.</td>
+          <td>l.shiba</td>
+          <td><code>shibe</code></td>
+        </tr>
+        <tr>
+          <td>image</td>
+          <td>edits an image, to greyscale, sepia, invert, and more!</td>
+          <td>Do <code>l.help image</code> for more.</td>
+          <td><code>imagedit</code></td>
+        </tr>
+      </table>
+
+      &nbsp
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Tool Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>info</td>
+          <td>
+            collects the information of the server, you, or a mentioned user.
+          </td>
+          <td>l.info [server | me | (pinged user)]</td>
+          <td><code>information</code></td>
+        </tr>
+        <tr>
+          <td>avatar</td>
+          <td>sends the avatar of a user.</td>
+          <td>l.avatar [me | (pinged user)]</td>
+          <td><code>av</code></td>
+        </tr>
+        <tr>
+          <td>poll</td>
+          <td>initiates a poll, and reacts to your message.</td>
+          <td>l.poll [question] or<br />l.poll ab [question]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>reddit</td>
+          <td>gets a random post from a desired subreddit..</td>
+          <td>l.reddit [subreddit]</td>
+          <td><code>redditfetch</code></td>
+        </tr>
+        <tr>
+          <td>urban</td>
+          <td>fetches a word from Urban Dictionary.</td>
+          <td>l.urban [word] or<br />l.urban</td>
+          <td><code>urbandict</code></td>
+        </tr>
+        <tr>
+          <td>translate</td>
+          <td>translates the text to the specified language.</td>
+          <td>l.translate [language] [text]</td>
+          <td>
+            <code>tl</code>
+          </td>
+        </tr>
+        <tr>
+          <td>embed</td>
+          <td>turns the message into embeds.</td>
+          <td>Do <code>l.help embed</code> for more.</td>
+          <td><code>emb</code></td>
+        </tr>
+        <tr>
+          <td>remindme</td>
+          <td>reminds you the text you put in the specified timer.</td>
+          <td>l.remindme [time] [text]</td>
+          <td><code>remind</code></td>
+        </tr>
+        <tr>
+          <td>role</td>
+          <td>adds or removes a role to/from the user.</td>
+          <td>l.role [add | remove] [@user] [role (Do not mention!)]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>slowmode</td>
+          <td>sets up a slowmode in the channel.</td>
+          <td>l.slowmode [time]</td>
+          <td><code>slow</code></td>
+        </tr>
+        <tr>
+          <td>toqr</td>
+          <td>convert text and URLs to QR code.</td>
+          <td>l.toqr [text | URL]</td>
+          <td><code>qr</code> <code>qr-code</code></td>
+        </tr>
+        <tr>
+          <td>emoji</td>
+          <td>view, clone, or add emojis in your guild.</td>
+          <td>Do <code>l.help emoji</code> for more.</td>
+          <td><code>emote</code></td>
+        </tr>
+        <tr>
+          <td>math</td>
+          <td>evaluate conversions and calculations.</td>
+          <td>l.math [calculation]</td>
+          <td><code>calc</code></td>
+        </tr>
+      </table>
+
+      &nbsp
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Settings Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>prefix</td>
+          <td>change Leuxitai's prefix in your server.</td>
+          <td>l.prefix [newPrefix]</td>
+          <td><code>setprefix</code></td>
+        </tr>
+        <tr>
+          <td>logchannel</td>
+          <td>changes the log channel for kicking, banning, muting, etc.</td>
+          <td>l.logchannel [channel (Do not mention!)]</td>
+          <td><code>lc</code> <code>logc</code></td>
+        </tr>
+        <tr>
+          <td>setmainrole</td>
+          <td>will set your server's main role.</td>
+          <td>l.setmainrole [role (Do not mention!)]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>setmuterole</td>
+          <td>sets up a mute role for your server.</td>
+          <td>l.setmuterole [role (Do not mention!)]</td>
+          <td><code>smr</code></td>
+        </tr>
+        <tr>
+          <td>toggle</td>
+          <td>toggles a command, on or off.</td>
+          <td>l.toggle [module] [on/off]</td>
+          <td><code>tg</code></td>
+        </tr>
+        <tr>
+          <td>autorole</td>
+          <td>automatically gives a role in a specified time if a new member joins.</td>
+          <td>l.autorole add [time] [role]<br>l.autorole delete [role]</td>
+          <td><code>timedroles</code></td>
+        </tr>
+      </table>
+
+      &nbsp
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Level System Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>points</td>
+          <td>sends your point count and level.</td>
+          <td>l.points</td>
+          <td><code>rank</code> <code>level</code></td>
+        </tr>
+        <tr>
+          <td>leaderboard</td>
+          <td>sends the server leaderboard.</td>
+          <td>l.leaderboard [page]</td>
+          <td><code>lb</code> <code>top</code></td>
+        </tr>
+        <tr>
+          <td>addxp</td>
+          <td>gives points to the mentioned user.</td>
+          <td>l.addxp [user] [XP]</td>
+          <td><code>xpadd</code> <code>xp+</code></td>
+        </tr>
+        <tr>
+          <td>addlevel</td>
+          <td>adds a level to the user's profile.</td>
+          <td>l.addlevel [user] [no. of lvl]</td>
+          <td><code>level+</code> <code>leveladd</code></td>
+        </tr>
+        <tr>
+          <td>xpreset</td>
+          <td>reset a user's XP and Level profile.</td>
+          <td>l.xpreset [user]</td>
+          <td><code>resetxp</code></td>
+        </tr>
+        <tr>
+          <td>levelroles</td>
+          <td>set up level role rewards for the XP System.</td>
+          <td>Do <code>l.help levelroles</code> for more.</td>
+          <td><code>levelrole</code> <code>lvlroles</code></td>
+        </tr>
+      </table>
+
+      &nbsp
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Economy Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>work</td>
+          <td>work to earn LeuxiCoins.</td>
+          <td>l.work</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>daily</td>
+          <td>claim your daily rewards.</td>
+          <td>l.daily</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>weekly</td>
+          <td>collect your weekly rewards.</td>
+          <td>l.weekly</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>beg</td>
+          <td>beg for coins.</td>
+          <td>l.beg</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>rob</td>
+          <td>rob coins from a specified user.</td>
+          <td>l.rob [@user]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>balance</td>
+          <td>view your or others' wallet balance..</td>
+          <td>l.balance [@user (optional)]</td>
+          <td><code>bal</code></td>
+        </tr>
+        <tr>
+          <td>roulette</td>
+          <td>bet for a color in the roulette.</td>
+          <td>l.roulette [color] [bet]</td>
+          <td><code>rou</code></td>
+        </tr>
+        <tr>
+          <td>deposit</td>
+          <td>deposits your coins to your bank. Avoid robs.</td>
+          <td>l.deposit[amount of coins]</td>
+          <td><code>dep</code></td>
+        </tr>
+        <tr>
+          <td>withdraw</td>
+          <td>withdraw coins from your bank to buy items.</td>
+          <td>l.withdraw [amount of coins]</td>
+          <td><code>with</code></td>
+        </tr>
+        <tr>
+          <td>addmoney</td>
+          <td>adds money to the user.</td>
+          <td>l.addmoney [@user] [amount]</td>
+          <td><code>moneyadd</code></td>
+        </tr>
+        <tr>
+          <td>removemoney</td>
+          <td>removes money from the user.</td>
+          <td>l.removemoney [@user] [amount]</td>
+          <td><code>money-</code></td>
+        </tr>
+        <tr>
+          <td>buy</td>
+          <td>buy LeuxItems or custom items.</td>
+          <td>l.buy [item]<br>l.buy custom [item]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>shop</td>
+          <td>view the shop, add custom items or delete custom items</td>
+          <td>l.shop (optional [add | delete] [item])</td>
+          <td><code>store</code></td>
+        </tr>
+        <tr>
+          <td>crime</td>
+          <td>commit a crime. Earn or lose money.</td>
+          <td>l.crime</td>
+          <td><code>violate</code></td>
+        </tr>
+        <tr>
+          <td>inventory</td>
+          <td>view your inventory.</td>
+          <td>l.inv</td>
+          <td><code>inv</code></td>
+        </tr>
+        <tr>
+          <td>transfer</td>
+          <td>transfer your money to other users.</td>
+          <td>l.transfer [@user] [coins]</td>
+          <td><code>inv</code></td>
+        </tr>
+      </table>
+      
+      &nbsp
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Moderation Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>mute</td>
+          <td>temporarily mutes a user for a desired time.</td>
+          <td>l.mute</td>
+          <td><code>ssh</code> <code>shutup</code></td>
+        </tr>
+        <tr>
+          <td>kick</td>
+          <td>kicks the mentioned user from the server.</td>
+          <td>l.kick [user] [reaosn]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>ban</td>
+          <td>bans the mentioned user from the server.</td>
+          <td>l.ban [user] [reason]</td>
+          <td><code>wee</code></td>
+        </tr>
+        <tr>
+          <td>purge</td>
+          <td>
+            used to bulk delete messages, purges a desired number of messages.
+          </td>
+          <td>l.purge [no. of messages]</td>
+          <td><code>delete</code></td>
+        </tr>
+        <tr>
+          <td>unmute</td>
+          <td>unmutes a specified muted user.</td>
+          <td>l.unmute [user]</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>warn</td>
+          <td>edits a warn profile of a user.</td>
+          <td>l.warn [user] [warn level] [reason]</td>
+          <td><code>w</code></td>
+        </tr>
+        <tr>
+          <td>bannedwords</td>
+          <td>add a banned word to your server.<br>automatically deletes a message if a<br>banned word is detected.</td>
+          <td>l.bannedwords add [word]<br>l.bannedwords reset</td>
+          <td><code>badwords</code></td>
+        </tr>
+        <tr>
+          <td>modchannel</td>
+          <td>changes the log channel for moderation commands.</td>
+          <td>l.modchannel [channel name] (don't tag the channel!)</td>
+          <td><code>setmodchannel</code> <code>modc</code></td>
+        </tr>
+        <tr>
+          <td>warnprofile</td>
+          <td>view the warning profile of a user.</td>
+          <td>l.warnprofile [@user]</td>
+          <td><code>wprofile</code> <code>warnp</code></td>
+        </tr>
+        <tr>
+          <td>antispam</td>
+          <td>change antispam settings.</td>
+          <td>Do <code>l.help antispam</code> for more.</td>
+          <td><code>nospam</code></td>
+        </tr>
+        <tr>
+          <td>warnrole</td>
+          <td>set up warning roles for the guild. Required.</td>
+          <td>Do <code>l.help warnrole</code> for more.</td>
+          <td>None</td>
+        </tr>
+      </table>
+
+      &nbsp
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Music Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>play</td>
+          <td>plays the song you put.</td>
+          <td>l.play [song name]</td>
+          <td><code>p</code></td>
+        </tr>
+        <tr>
+          <td>pause</td>
+          <td>pauses the current song playing.</td>
+          <td>l.pause</td>
+          <td><code>pau</code></td>
+        </tr>
+        <tr>
+          <td>resume</td>
+          <td>resumes the current song, if paused.</td>
+          <td>l.resume</td>
+          <td><code>res</code></td>
+        </tr>
+        <tr>
+          <td>skip</td>
+          <td>skips the current song to the next one.</td>
+          <td>l.skip</td>
+          <td><code>s</code></td>
+        </tr>
+        <tr>
+          <td>nowplaying</td>
+          <td>sends the data of the current song playing.</td>
+          <td>l.nowplaying</td>
+          <td><code>np</code></td>
+        </tr>
+        <tr>
+          <td>volume</td>
+          <td>sends the current volume, increase it or decrease it.</td>
+          <td>l.volume [volume no.]</td>
+          <td><code>vol</code></td>
+        </tr>
+        <tr>
+          <td>queue</td>
+          <td>sends the server's song queue.</td>
+          <td>l.queue</td>
+          <td><code>q</code></td>
+        </tr>
+        <tr>
+          <td>lyrics</td>
+          <td>sends the current song's lyrics.</td>
+          <td>l.lyrics [song]</td>
+          <td><code>ly</code></td>
+        </tr>
+        <tr>
+          <td>disconnect</td>
+          <td>
+            stops the music playback and disconnects Leuxitai from the voice
+            channel
+          </td>
+          <td>l.disconnect</td>
+          <td><code>dc</code> <code>leave</code> <code>stop</code></td>
+        </tr>
+      </table>
+
+      &nbsp
+      <table
+        style="width: 95%; background-color: #a83d3d; margin-left:auto; margin-right:auto"
+      >
+        <caption class="w650">
+          Event Commands<br />&nbsp
+        </caption>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Usage</th>
+          <th>Aliases</th>
+        </tr>
+        <tr>
+          <td>coronavirus</td>
+          <td>fetches recent coronavirus statistics.</td>
+          <td>l.coronavirus [country | worldwide]</td>
+          <td><code>covid</code> <code>covid19</code></td>
+        </tr>
+      </table>
+      <div>&nbsp</div>
+      <div>&nbsp</div>
+      <div>&nbsp</div>
+    </div>
+      <div style="background-color: #1e2866; padding: 20px; width: 100%; right: 0;">
+        <p class="w550" style="margin-left: 20px; font-size: 20px; text-align: left;">
+          Copyright © Fizx 2020 | FizxCreations.
+        </p>
+        <p class="w500" style="margin-left: 20px; font-size: 15px; line-height: 25px;">
+          Special thanks to people below!<br/>
+          alone photographer#0350<br/>
+          Nxzyz#6909
+        </p>
+    </div>
+  </body>
+</html>

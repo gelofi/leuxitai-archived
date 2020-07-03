@@ -1,14 +1,12 @@
-# • This is the official Leuxitai Website.
-The website is made to create a dashboard, for support,
-and advertising purposes.
-
+# • This is the official Leuxitai source code.
+This project is private, so users won't copy.
 ## Add Leuxitai to your server now!
 
 Just click this link [here](https://tinyurl.com/leuxitai)!
 
 Thank you for your support.
 
-# • Leuxitai | v10.1
+# • Leuxitai | v15
 ## Features
 - Level System! Compete with your friends!
 - Moderation! Protect your server.
@@ -25,5 +23,7 @@ If you need support, just join our server, click [here](https://discord.gg/4VXEX
 
 If you want to support me, and support Leuxitai's further development, do `l.support`
 on your server.
+
+Fizx26#5360 | FizxCreations.
 
 # Copyright © Fizx 2020

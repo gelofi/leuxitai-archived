@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Leuxitai - Changelogs</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.com/5146d8ee-579d-477b-84ee-020fe3ddbcc7%2Fdownload.png?v=1590218481277"
+    />
+    <link
+      href="http://allfont.net/allfont.css?fonts=league-spartan"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/changelogs.css" />
+
+    <!-- import the webpage's javascript file -->
+    <meta name="theme-color" content="#3654ff" />
+    <script src="/script.js" defer></script>
+    <meta property="og:title" content="Leuxitai - Changelogs" />
+    <meta
+      property="og:description"
+      content="View the most recent update of Leuxitai here!"
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.glitch.com/5146d8ee-579d-477b-84ee-020fe3ddbcc7%2Fdownload.png?v=1590218481277"
+    />
+    <meta property="og:url" content="https://leuxitai-dashboard.glitch.me/" />
+  </head>
+
+  <body>
+    <style>
+      .noDec {
+        text-decoration: none;
+        color: #2f2f2f;
+      }
+      
+      /* CSS files add styling rules to your content */
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+.w500 {
+  font-weight: 500;
+}
+.w550 {
+  font-weight: 550;
+}
+.w650 {
+  font-weight: 650;
+}
+.w800 {
+  font-weight: 800;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #23272A;
+  font-family: helvetica, arial, sans-serif, "Montserrat", "League Spartan Bold";
+
+  margin: 0;
+  height: 100%;
+}
+
+h1 {
+  font-family: Montserrat;
+  font-size: 10px;
+  margin-top: -75px;
+  margin-left: 100px;
+  color: #2f2f2f;
+}
+
+h2 {
+  font-family: Montserrat;
+  font-size: 70px;
+  text-align: left;
+  margin-left: 20px;
+  line-height: 90px;
+  color: #fafafa;
+}
+
+.content {
+  padding: 20px;
+  min-height: 100%;
+  margin: 0 auto -50px;
+}
+
+.footer {
+  margin-top: auto;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #3654ff;
+  color: white;
+  text-align: center;
+}
+
+/*@media screen and (min-width: 800px) {
+  .footer {
+        position: fixed;
+        left: 0;         
+        bottom: 0;
+        width: 100%;
+        height: 30%;
+        background-color: #3654ff;
+        color: white;
+        text-align: center;
+    }
+}*/
+
+p {
+  color: #fafafa;
+  font-family: "Montserrat";
+  font-size: 25px;
+  line-height: 40px;
+  text-align: left;
+}
+table, th, td {
+  border: 5px solid #23272A;
+  border-collapse: collapse;
+}
+th, td {
+  color: #fafafa;
+  padding: 15px;
+  text-align: left;
+}
+td {
+  font-weight: 500;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+nav{
+  height: 80px;
+  width: 100%;
+}
+label.logo{
+  color: #f2f2f2;
+  font-size: 33px;
+  line-height: 80px;
+  margin-left: 130px;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+}
+nav ul{
+  float: right;
+  margin-right: 40px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 2px;
+}
+nav ul li a{
+  color: #f2f2f2;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  /* text-transform: uppercase; */
+  font-family: 'Montserrat', sans-serif;
+}
+a.active,a:hover{
+  background: #3654ff;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 27px;
+    padding-left: 25px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+    margin-right: 40px;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+section{
+  background: url(bg1.jpg) no-repeat;
+  background-size: cover;
+  height: calc(100vh - 80px);
+}
+
+      
+    </style>
+
+    <nav>
+      <div style="margin-left: 40px; margin-top: 5px;">
+        <a href="https://leuxitai.glitch.me">
+          <img
+            src="https://cdn.glitch.com/5146d8ee-579d-477b-84ee-020fe3ddbcc7%2Fdownload.png?v=1590218481277"
+            alt="Leuxitai"
+            style="width:70px; height:70px; position: absolute; top: 30px;"
+          />
+        </a>
+      </div>
+      <div>&nbsp</div>
+      <input type="checkbox" id="check" />
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">Leuxitai</label>
+
+      <ul>
+        <li><a href="https://leuxitai.glitch.me/">Home</a></li>
+        <li><a href="https://leuxitai.glitch.me/commands">Commands</a></li>
+        <li>
+          <a href="https://leuxitai.glitch.me/plus">Plus</a>
+        </li>
+        <li>
+          <a class="active" href="https://leuxitai.glitch.me/changelogs"
+            >Changelogs</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div>
+      &nbsp
+    </div>
+    <div class="content">
+      <h2 class="w800" style="font-size: 80px">Changelogs</h2>
+      <div>
+        &nbsp
+      </div>
+      <p class="w650" style="margin-left: 20px;">
+        The latest update is version <code>16.5</code>.
+      </p>
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v16.5 // 6-26-2020</th>
+        </tr>
+        <tr>
+          <td>
+- Hosting<br />
+-- Leuxitai is hosted on Glitch back again.<br />
+--- the way to support Leuxitai is by visiting this website.<br />
+---- https://leuxitai16.glitch.me/
+<br />&nbsp<br />
+- No more musicprefix<br />
+-- yes, the prefix will now work on the music commands without you having to set another prefix too.
+<br />&nbsp<br />
+- image is now a free command.<br />
+-- you do not need to buy it to use it.
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+      
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v16.0 // 6-19-2020</th>
+        </tr>
+        <tr>
+          <td>
+            - New Command: l.math<br />
+            -- evaluate equations, conversions, calculations, etc.<br />
+            - New image manipulations: dither pixelize<br />
+            -- you can now apply a dither effect and pixelize your images.
+            <br />&nbsp<br />
+            - Better XP System<br />
+            -- you can now view your rank in the rank card.<br />
+            --- the rank card has improved! it has colors now. (gets your role
+            color)<br />
+            ---- of course, it is reset again.<br />
+            ----- people cannot reset your XP now. Only you can.<br />
+            ------ you cannot set xp and levels anymore. Only add.
+            <br />&nbsp<br />
+            - Leuxitai now uses a custom image manipulating module<br />
+            -- yes. I forged an image manipulating module for personal use for
+            Leuxitai, now I can govern it better. This will include having a
+            welcomer photo soon (if you want)
+            <br />&nbsp<br />
+            - The XP System is isolated<br />
+            -- formerly, the XP system is in Enmap, then in the whole
+            database.<br />
+            --- now, the XP system is seperated in case of level corruptions,
+            your server settings won't be affected.
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v15.6 // 6-14-2020</th>
+        </tr>
+        <tr>
+          <td>
+            - New command: l.levelroles -- view your role rewards for the XP
+            System<br />
+            --- cannot be toggled off, you can still add roles even if XP system
+            is toggled off<br />
+            ---- however, even if you set it up and XP system is toggled off,
+            roles will not be given
+            <br />&nbsp<br />
+            - Updated Level System!<br />
+            -- level system database has been reset to 0. Now it is guild
+            based.<br />
+            --- you can have level roles now.<br />
+            ---- this also prevents cheating (adding levels) and being top 1 on
+            Global Leaderboards
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v15.5 // 6-14-2020</th>
+        </tr>
+        <tr>
+          <td>
+            - Updated Level System<br />
+            -- now it's Guild based, the next update will have level roles!
+            <br />&nbsp<br />
+            - Fixed Leuxitai's stupidity<br />
+            -- formerly says one is not a number
+            <br />&nbsp<br />
+            - Command Comeback: sync<br />
+            -- synchronize the level system in your server.
+            <br />&nbsp<br />
+            - Updated roulette !<br />
+            -- you can now bet orange. Better chances.
+            <br />&nbsp<br />
+            - Added aliases to Music Commands<br />
+            -- view the commands' list for more.
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v15.b // 6-13-2020</th>
+        </tr>
+        <tr>
+          <td>
+            - Improved Anti-spam<br />
+            -- it will now log who tried to spam, and now Leuxitai will purge
+            the spam messages too!
+            <br />&nbsp<br />
+            - Fixed typos<br />
+            -- grammar police has arrived. I have proofread all reported typos
+            and fixed them.
+            <br />&nbsp<br />
+            - Improved Logging<br />
+            -- Now it will log whether a role changed it's hierarchy, and
+            channels that got it's permissions changed.
+            <br />&nbsp<br />
+            - New Roulette color: orange (unlisted) (beta)<br />
+            -- if you want more winning chances, go for orange.
+            <br />&nbsp<br />
+            - New Command - l.settings<br />
+            -- now you can see which settings are set, on, or off. Everyone can
+            see it but not everyone could change server settings.
+            <br />&nbsp<br />
+            - New command: l.stats<br />
+            -- view Leuxitai's statistics and uptime.
+            <br />&nbsp<br />
+            - New Command: l.manual<br />
+            -- if you're lost you can just read the manual.
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v15.1 // 6-11-2020</th>
+        </tr>
+        <tr>
+          <td>
+            - Updated the whole CODE!<br />
+            -- now Leuxitai doesn't break and crash when it has 0 permission!<br />
+            - if you don't put Leuxitai on Administrator you won't get all
+            commands unlocked.
+            <br />&nbsp<br />
+            - New Command: l.chickenfight<br />
+            -- you can now buy a chicken, bet, and earn or lose the
+            chickenfight.<br />
+            - you can't fight if you don't have a chicken.
+            <br />&nbsp<br />
+            - Early Sharding!<br />
+            Leuxitai's sharding isn't turned on yet, but will be turned on when
+            Leuxitai hits 2,000 servers. Looks impossible, but okay.<br />
+            - also I added a secret command here but you can't use it lololol
+            <br />&nbsp<br />
+            - Updated Anti-spam automod<br />
+            I cleaned a lot from the code and found errors. They are now
+            fixed.<br />
+            - now Anti-spam can purge messages if someone spams. Please don't
+            try on this server.
+            <br />&nbsp<br />
+            - New command: l.warnprofile<br />
+            you can now view the warning profile of members. Just ping them.<br />
+            - members without the Manage Server cannot view warning profiles for
+            privacy, or warn mocking.
+            <br />&nbsp<br />
+            - Fixed Level System loop holes<br />
+            previously, anyone can reset, add, or remove XP or Levels from
+            anyone.<br />
+            - this will not work anymore. I found this very annoying too.
+            <br />&nbsp<br />
+            - Fixed commands' loop holes.<br />
+            previously, you can try l.roulette red -100 and if you lose, you get
+            100 coins.<br />
+            - this has been fixed on rob, and chickenfight too.
+            <br />&nbsp<br />
+            - Edited commands: l.topic and l.wisdom<br />
+            it will not delete your message now. For this commands are forked
+            from Moonessine it has been like that for a year.<br />
+            - previously it breaks the code, then crashes.
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v14.3.3 // 6-9-2020</th>
+        </tr>
+        <tr>
+          <td>
+            - Updated Warnings!<br />
+            -- you can now pardon people using the warn command (previously not
+            working on l.warn @user 0 reason)
+            <br />&nbsp<br />
+            - Fixed Music Module - lyrics<br />
+            -- the `lyrics` command has been fixed! You still can't search
+            lyrics if the query is not the current song.
+            <br />&nbsp<br />
+            - Fixed Channels error!<br />
+            -- previously encountering an error when DMing Leuxitai, fixed
+            now<br />
+            --- will not emit an event if the channel are DMs
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v14.0 // 6-8-2020</th>
+        </tr>
+        <tr>
+          <td>
+            — Fixed Economy System!<br />
+            - previously adding a string and an integer, resulting the user to
+            get locked in 0 balance.
+            <br />&nbsp<br />
+            — Improvement for Moderation!<br />
+            - you can now add roles to punish/embarrass that dummy member that
+            breaks the rules<br />
+            -- of course this comes with more logging<br />
+            --- bannedwords previously not working if the banned word is in ALL
+            CAPS<br />
+            tl;dr it is case sensitive back then
+            <br />&nbsp<br />
+            — New LeuxItem! booster<br />
+            -- buy this item to boost your daily rewards from 200 to 450 !
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v13.5 // 6-7-2020</th>
+        </tr>
+        <tr>
+          <td>
+            — Updated XP System!<br />
+            - you can now toggle image rank cards!
+            <br />&nbsp<br />
+            — More emojis!<br />
+            - custom emojis on embeds, etc! More!
+            <br />&nbsp<br />
+            — Updated Logging<br />
+            - more logging information! Links, role change, emojis, channels,
+            etc. — :More Image commands!<br />
+            - you can now crop images into circle, edit it to jail, etc.!
+            <br />&nbsp<br />
+            — Removed command: dm<br />
+            - because this command could be used in malicious intentions, it is
+            removed.
+            <br />&nbsp<br />
+            — Advanced Moderation<br />
+            - you can now add banned words, set up a separate moderation log
+            channel, and automatically ban a user in 5 warns! Cool!
+            <br />&nbsp<br />
+            — Autoroles slot!<br />
+            - added 1 autorole slot! You can now have three autoroles.
+            <br />&nbsp<br />
+            — Defaults set!<br />
+            - image cards has been set ON to default
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v13.3 // 6-6-2020</th>
+        </tr>
+        <tr>
+          <td>
+            — More LOGGING<br />
+            - it will now log message link, permission ID (with link), and
+            channel updating will now not say 'null'
+            <br />&nbsp<br />
+            — Level Cards!<br />
+            - yes, canvacord updated today so I had to update it. You can toggle
+            this with the toggle command. (duh). Go check l.help toggle
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v13.0 // 6-5-2020</th>
+        </tr>
+        <tr>
+          <td>
+            — New command:- modchannel<br />
+            - change the mod logging channel for moderation commands.
+            <br />&nbsp<br />
+            — Advanced logging<br />
+            - it will now log emojis, roles, and channels! (but please also use
+            a logging bot these are in beta)
+            <br />&nbsp<br />
+            — Minor tweaks in some commands.
+            <br />&nbsp<br />
+            — Updated warning system!<br />
+            - previously not autobanning and auto muting...
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v12.3 // 6-4-2020</th>
+        </tr>
+        <tr>
+          <td>
+            New features include: — New Command: bannedword<br />
+            - yeah this is automod, Leuxitai will delete and log messages that
+            has the banned word<br />
+            - still in development so tag me if there are bugs
+            <br />&nbsp<br />
+            — Updated command: purge<br />
+            - last time it purges messages, -1 so if you put l.purge 6 it will
+            purge 5<br />
+            - fixed now
+            <br />&nbsp<br />
+            — Minor tweaks to the slowmode and purge command.
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        &nbsp
+      </div>
+
+      <table
+        style="width: 95%; background-color: #364e78; margin-left:auto; margin-right:auto"
+      >
+        <tr>
+          <th>Update v12.0 // 6-3-2020</th>
+        </tr>
+        <tr>
+          <td>
+            — image command<br />
+            - aight i got bored I added image manipulation
+            <br />&nbsp<br />
+            — Updated commands: - shop<br />
+            - dm is REMOVED due to top.gg not wanting it
+            <br />&nbsp<br />
+            — Removed command: - dm<br />
+            - smh read above 😳
+            <br />&nbsp<br />
+            — Logging has improved!<br />
+            - it will now log when users leave and join<br />
+            - + more logging (slowmode, autorole)
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
