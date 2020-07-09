@@ -40,7 +40,7 @@ No monthly fees, only one-time payment!
 
 [Click here to subscribe!](https://www.paypal.me/fizx26)
 Don't forget to add a note with your server's ID.
-**[Leuxitai+](https://leuxitai.glitch.me/plus)** will be activated in 8 - 10 hours.
+**[Leuxitai+](https://leux.glitch.me/plus)** will be activated in 8 - 10 hours.
 `)
       if(plus == "subscriber"){
         sub.setFooter("This server is already subscribed to Leuxitai+.")
