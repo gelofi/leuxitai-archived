@@ -1,5 +1,3 @@
-const solenolyrics= require("solenolyrics"); 
-
 module.exports = {
     name: 'volume',
     aliases: ["vol"],
@@ -22,9 +20,9 @@ module.exports = {
         `The current volume is **${serverQueue.volume}**.`
       );
     serverQueue.volume = args[0];
-    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 4);
+    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 4);
     return message.channel
-      .send(`Volume set to **${args[1]}**.`)
+      .send(`Volume set to **${args[0]}**.`)
       .then(message.react("🔊"));
     }
 }
