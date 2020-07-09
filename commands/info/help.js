@@ -745,7 +745,7 @@ module.exports = {
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
           "Leuxitai - v16.7",
-          `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, or get support)`
+          `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leux.glitch.me) (See changelogs, commands list, or get support)`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
         .setColor(0x3654ff);
@@ -802,7 +802,7 @@ module.exports = {
               )
               .addField(
                 "Leuxitai - v16.7",
-                `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leuxitai.glitch.me) (See changelogs, commands list, or get support)`
+                `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leux.glitch.me) (See changelogs, commands list, or get support)`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
               .setColor(0x3654ff);
