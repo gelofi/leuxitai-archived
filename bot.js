@@ -30,6 +30,7 @@ app.listen(process.env.PORT);
 
 setInterval(() => {
   http.get(`http://leuxitai.herokuapp.com/hosting`);
+  console.log(Date.now() + " ping received! Wake up, Dyno!")
 }, 120000);
 
 const Discord = require("discord.js");
