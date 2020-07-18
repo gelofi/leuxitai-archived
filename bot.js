@@ -747,7 +747,7 @@ bot.on("roleUpdate", async function(oldRole, newRole) {
       .setTimestamp();
     var set = newRole.guild.channels.find(`name`, `${channel}`);
     set.send(autoEmb);
-  }
+  
 });
 
 bot.on("roleDelete", async function(role) {
