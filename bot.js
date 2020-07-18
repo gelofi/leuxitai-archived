@@ -28,13 +28,14 @@ app.get("/changelogs", (request, response) => {
 
 app.listen(process.env.PORT);
 
+setInterval(() => {
+  http.get(`http://leuxitai.herokuapp.com/hosting`);
+}, 120000);
+
 const Discord = require("discord.js");
 const { Client, Attachment, Collection } = require("discord.js");
 
-const bot = new Discord.Client({
-  disableEveryone: true,
-  disableMentions: true
-});
+const bot = new Discord.Client({ disableEveryone: true });
 const alexa = require ("alexa-bot-api")
 let ai = new alexa("aw2plm")
 
@@ -45,10 +46,6 @@ const db = require("quick.db");
 const ms = require("ms");
 
 bot.cooldown = new Set();
-
-const YT = require("simple-youtube-api");
-bot.queue = new Map();
-bot.yt = new YT(youtube);
 
 const talkedRecently = new Set();
 
@@ -107,10 +104,7 @@ bot.on("ready", async () => {
 // Regular Commands
 bot.on("message", async message => {
   
-    const argo = message.content
-    .slice(PREFIX.length)
-    .trim()
-    .split(/ +/g);
+    const argo = message.content.slice(PREFIX.length).trim().split(/ +/g);
   
   if (message.channel.type == "dm") {
     if (message.author.bot) return;
@@ -401,7 +395,7 @@ bot.on("message", async message => {
   if (!command) command = bot.commands.get(bot.aliases.get(cmd));
 
   // If a command is finally found, run the command
-  if (command) command.run(bot, message, args, play, handleVideo, Discord);
+  if (command) command.run(bot, message, args, Discord);
 
 });
 
@@ -691,6 +685,7 @@ bot.on("messageUpdate", async function(oldMessage, newMessage) {
     channel = channels;
   }
 
+  if(oldMessage === newMessage) return
   var autoEmb = new Discord.RichEmbed()
     .setAuthor(`Logs | Message edited!`, newMessage.author.displayAvatarURL)
     .setDescription(
@@ -736,20 +731,7 @@ bot.on("roleUpdate", async function(oldRole, newRole) {
     channel = channels;
   }
 
-  if (
-    oldRole.permissions == newRole.permissions &&
-    oldRole.name == newRole.name &&
-    oldRole.hexColor == newRole.hexColor
-  ) {
-    var autoEmb = new Discord.RichEmbed()
-      .setTitle("Logs | Role edited!")
-      .setDescription(`${oldRole}'s hierarchy has been edited!`)
-      .setColor(newRole.color)
-      .setFooter(`Role ID: ${newRole.id}`)
-      .setTimestamp();
-    var set = newRole.guild.channels.find(`name`, `${channel}`);
-    set.send(autoEmb);
-  } else {
+  if (oldRole.permissions == newRole.permissions && oldRole.name == newRole.name && oldRole.hexColor == newRole.hexColor) return
     var autoEmb = new Discord.RichEmbed()
       .setTitle("Logs | Role edited!")
       .setDescription(
@@ -916,98 +898,6 @@ async function xp(message) {
   setTimeout(() => {
         bot.cooldown.delete(message.author.id);
   }, 45 * 1000);
-}
-
-async function handleVideo(video, message, voiceChannel, playlist = false) {
-  const serverQueue = bot.queue.get(message.guild.id);
-  console.log(video);
-
-  const song = {
-    thumbnail: video.thumbnails.high.url,
-    id: video.id,
-    channel: video.channel.title,
-    duration: video.duration,
-    title: video.raw.snippet.title,
-    url: `https://www.youtube.com/watch?v=${video.id}`
-  };
-  if (!serverQueue) {
-    const queueConstruct = {
-      textChannel: message.channel,
-      voiceChannel: voiceChannel,
-      connection: null,
-      songs: [],
-      volume: 10,
-      playing: true
-    };
-    bot.queue.set(message.guild.id, queueConstruct);
-
-    queueConstruct.songs.push(song);
-
-    try {
-      var connection = await voiceChannel.join();
-      queueConstruct.connection = connection;
-      play(message.guild, queueConstruct.songs[0]);
-    } catch (error) {
-      console.error(`I could not join the voice channel: ${error}`);
-      bot.queue.delete(message.guild.id);
-      return message.channel.send(`I could not join the voice channel: ${error}`);
-    }
-  } else {
-    serverQueue.songs.push(song);
-    console.log(serverQueue.songs);
-    if (playlist) return undefined;
-    var embed = new Discord.RichEmbed()
-      .setAuthor("Song added to queue", message.author.displayAvatarURL)
-      .setDescription(`**[${song.title}](${song.url})**`)
-      .setThumbnail(song.thumbnail)
-      .addField("Channel", `${song.channel}`)
-      .addField(
-        "Duration",
-        `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``
-      )
-      .setColor("#57a5ff")
-      .setFooter(`${message.author.tag} added this song to the queue`);
-
-    return message.channel.send(embed);
-  }
-  return undefined;
-}
-
-const ytdl = require("ytdl-core");
-function play(guild, song) {
-  const serverQueue = bot.queue.get(guild.id);
-
-  if (!song) {
-    serverQueue.voiceChannel.leave();
-    bot.queue.delete(guild.id);
-    return;
-  }
-  console.log(serverQueue.songs);
-
-  const dispatcher = serverQueue.connection
-    .playStream(ytdl(song.url), { bitrate: 192000 /* 192kbps */ })
-    .on("end", reason => {
-      if (reason === "Stream is not generating quickly enough.");
-      else console.log(reason);
-      serverQueue.songs.shift();
-      play(guild, serverQueue.songs[0]);
-    })
-    .on("error", error => console.error(error));
-  dispatcher.setVolumeLogarithmic(serverQueue.volume / 10);
-
-  var embed = new Discord.RichEmbed()
-    .setAuthor("Playing now")
-    .setThumbnail(song.thumbnail)
-    .setDescription(`[${song.title}](${song.url})`)
-    .addField("Channel", `${song.channel}`)
-    .addField(
-      "Duration",
-      `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``
-    )
-    .setColor("#456dff")
-    .setFooter(`Current volume: ${serverQueue.volume} | Have fun listening!`);
-
-  serverQueue.textChannel.send(embed);
 }
 
 //Leuxitai v16.5
