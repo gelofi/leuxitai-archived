@@ -669,42 +669,11 @@ module.exports = {
           "You can also create a simple embed without these modifications."
         );
       message.channel.send(embed);
-    } else if (args[0] === "music") {
-      var cmd = new Discord.RichEmbed()
-        .setAuthor("❓ Music Commands")
-      .setColor("#3654ff")
-        .setDescription(`${music}  All of music commands are here.`)
-        .addField(
-          `play`,
-          "When initiated, will play a song on a voice channel. You must join a channel first."
-        )
-      .addField(`search`, "Search for a song, choose over top 10 songs to play.")
-        .addField(`skip`, "Will skip the current song playing.")
-        .addField(`pause`, "Will pause the current song playing.")
-        .addField(`resume`, "Will resume the current song playing, if paused.")
-        .addField(`np`, "Checks the current song playing.")
-        .addField(
-          `volume`,
-          "Will check the volume of the song, increase or decrease it."
-        )
-        .addField(
-          `queue`,
-          "Checks the current song playing, and the next songs that will play."
-        )
-        .addField(
-          `disconnect`,
-          "Will stop the all songs in the queue and disconnects from the voice channel."
-        )
-        .addField(
-          `lyrics`,
-          "Sends the lyrics of the current song playing, if there is one."
-        );
-      message.channel.send(cmd);
     } else {
       const help = new Discord.RichEmbed()
         .setAuthor("Command List", bot.user.displayAvatarURL)
         .setDescription(
-          `**Use \`${prefix}help <command>\` to view the command information.\nFor \`Economy\` and \`Music\` commands, do \`${prefix}help <economy | music>\`.\nClick 🔘 to expand the commands' description.**`
+          `**Use \`${prefix}help <command>\` to view the command information.\nFor \`Economy\` commands, do \`${prefix}help <economy>\`.\nClick 🔘 to expand the commands' description.**`
         )
         .addField(
           `${info}  Information`,
@@ -738,13 +707,9 @@ module.exports = {
           `${mod}  Moderation`,
           "`mute`, `kick`, `ban`, `purge`, `unmute`, `warn`, `bannedword`, `modchannel`, `warnrole`, `antispam`, `warnprofile`"
         )
-        .addField(
-          `${music}  Music`,
-          "`play`, `search`, `pause`, `resume`, `skip`, `np`, `volume`, `queue`, `lyrics`, `disconnect`"
-        )
         .addField(`:calendar_spiral:  Event Commands`, "`coronavirus`")
         .addField(
-          "Leuxitai - v16.7",
+          "Leuxitai - v16.8a",
           `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leux.glitch.me) (See changelogs, commands list, or get support)`
         )
         .setFooter("FizxCreations. | twitter.com/Fizx26S")
@@ -793,15 +758,11 @@ module.exports = {
                 "`mute` - temporarily mutes a user for a defined time.\n`kick` - kicks the mentioned user from the server.\n`ban` - bans the mentioned user from the server\n`purge` - used in bulk deleting messages, purges an amount of messages desired.\n`unmute` - unmutes a muted user\n`warn` - edits the warning profile of a user.\n`bannedword` - adds a banned word to your server.\n`modchannel` - change the mod log channel for moderation commands.\n`warnrole` - set up roles for the warning system.\n`antispam` - protect your server from spam attacks.\n`warnprofile` - check if a member has warns."
               )
               .addField(
-                `${music}  Music`,
-                "`play`- plays the song you put.\n`search` - search top 10 songs to play.\n`pause` - will pause the current song playing\n`resume` - will resume the current song playing if paused.\n`skip` - will skip the current song to the next song.\n`np` - will send the current song playing in queue.\n`volume` - will send the current volume, which you can increase or decrease.\n`queue` - sends the song queue in the server.\n`lyrics` - sends the lyrics of the current song, if there is. Buggy.\n`disconnect` - disconnects from the voice channel and stops music playback."
-              )
-              .addField(
                 `:calendar_spiral:  Event Commands`,
                 "`coronavirus` - sends the coronavirus statistics, worldwide or a country."
               )
               .addField(
-                "Leuxitai - v16.7",
+                "Leuxitai - v16.8a",
                 `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Visit our website!](https://leux.glitch.me) (See changelogs, commands list, or get support)`
               )
               .setFooter("FizxCreations. | twitter.com/Fizx26S")
