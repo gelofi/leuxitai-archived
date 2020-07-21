@@ -27,8 +27,8 @@ module.exports = {
   let coins = "<:leuxicoin:715493556810416238>";
   let user = message.author;
 
-  let member = db.fetch(`money_${message.guild.id}_${user.id}`)
-  let member2 = db.fetch(`bank_${message.guild.id}_${user.id}`)
+  let member = await db.fetch(`money_${message.guild.id}_${user.id}`)
+  let member2 = await db.fetch(`bank_${message.guild.id}_${user.id}`)
 
   if(!args[0]) return message.reply("specify an amount of coins to withdraw!")
 
