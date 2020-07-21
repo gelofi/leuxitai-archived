@@ -23,6 +23,7 @@ module.exports = {
          if(args[0]){
            try {
            urban(args.slice(0).join(" ")).first(json => {
+            if(json == undefined) return message.channel.send(`:x: No search results for \`${args[0]}\``)
              const search = new Discord.RichEmbed()
              .setTitle(json.word)
              .setDescription(json.definition)
