@@ -68,7 +68,7 @@ module.exports = {
    
     let user = message.author;
 
-    let money = db.fetch(`money_${message.guild.id}_${user.id}`)
+    let money = await db.fetch(`money_${message.guild.id}_${user.id}`)
       //if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you don't have the Manage Server permission to use this command!")
     if(!args[0]) return message.reply("specify an item to buy!")
 
