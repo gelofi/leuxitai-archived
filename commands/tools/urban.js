@@ -21,6 +21,7 @@ module.exports = {
       }
       
          if(args[0]){
+           try {
            urban(args.slice(0).join(" ")).first(json => {
              const search = new Discord.RichEmbed()
              .setTitle(json.word)
@@ -29,7 +30,10 @@ module.exports = {
              .setColor("#1a1c33")
              .setFooter(`Written by ${json.author}\nUpvotes: ${json.thumbs_up}   |   Downvotes: ${json.thumbs_down}`);
              message.channel.send(search)
-           })
+           });
+           } catch (err) {
+            message.channel.send(`:x: No search results for `${args[0]}`)
+           }
          }
           
     },
