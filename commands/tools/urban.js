@@ -32,7 +32,7 @@ module.exports = {
              message.channel.send(search)
            });
            } catch (err) {
-            message.channel.send(`:x: No search results for `${args[0]}`)
+            message.channel.send(`:x: No search results for \`${args[0]}\``)
            }
          }
           
