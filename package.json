@@ -26,6 +26,7 @@
     "better-sqlite3": "^7.1.0",
     "urban": "^0.3.2",
     "quick.db": "^7.1.1",
+    "quickmongo": "^1.0.2",
     "ascii-table": "^0.0.9",
     "@vitalets/google-translate-api": "^3.0.0",
     "musakui": "^1.0.0",
