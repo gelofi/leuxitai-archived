@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db");
 
 module.exports = {
     name: 'xpreset',
@@ -8,11 +6,13 @@ module.exports = {
     description: "Points system for Leuxitai - Give",
     run: async (bot, message, args) => {
       
+    const db = bot.db
+
     let togglexp;
   
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
     
-    if(togglesxp == null){
+    if(togglesxp == undefined){
       togglexp = 'on';
     } else {
       togglexp = togglesxp;

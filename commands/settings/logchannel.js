@@ -1,12 +1,13 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db")
 
 module.exports = {
     name: 'logchannel',
     aliases: ["setchannel", "lc", "logc", "setlogchannel"],
     description: "Changes the log channel of the bot",
     run: async (bot, message, args) => {
+
+      const db = bot.db
+
       if(!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you don't have enough permissions to change the logging channel!");
       
       if(!message.guild.me.hasPermission("MANAGE_GUILD")) {

@@ -1,19 +1,19 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db");
 const ms = require("parse-ms");
 
 module.exports = {
     name: 'work',
     aliases: ["job"],
     description: "Repeats what the user said.",
-    run: async (bot, message, args, util) => {
+    run: async (bot, message, args) => {
   
-      let eco;
+    const db = bot.db
+
+    let eco;
   
     let econ = await db.fetch(`eco_${message.guild.id}`)
     
-    if(econ == null){
+    if(econ == null || econ == undefined){
       eco = 'off';
       //return message.channel.send("That command is not enabled!");
     } else {

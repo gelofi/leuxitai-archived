@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db")
 const ms = require("ms")
 
 module.exports = {
@@ -9,11 +7,13 @@ module.exports = {
     description: "Mutes a person",
     run: async (bot, message, args) => {
       
+        const db = bot.db
+
         let channel;
   
         let channels = await db.fetch(`wchannel_${message.guild.id}`)
     
-        if(channels == null){
+        if(channels == undefined){
            channel = message.channel.name;
         } else {
            channel = channels;

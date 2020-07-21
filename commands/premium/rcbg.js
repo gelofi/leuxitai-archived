@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
 const { stripIndents } = require("common-tags");
 
@@ -9,7 +8,7 @@ module.exports = {
     description: "Repeats what the user said.",
     run: async (bot, message, args) => {
       
-      let plus = await db.fetch(`plus_${message.guild.id}`)
+      /*let plus = await db.fetch(`plus_${message.guild.id}`)
       let lp = "<:leuxitailight:720799037145612349>"
       
       let noplus = new Discord.RichEmbed()
@@ -23,7 +22,7 @@ Do \`l.plus\` to discover Leuxitai+ features!
       .setFooter("Leuxitai+ is one-time payment only. Get more features with a subscription!")
       
       if(plus !== "subscriber")
-        return message.channel.send(noplus)
+        return message.channel.send(noplus)*/
       
       let bg = `rcbg_${message.guild.id}_${message.author.id}`
       let rcbg = await db.fetch(bg)

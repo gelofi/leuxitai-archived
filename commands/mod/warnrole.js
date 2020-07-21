@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db");
 const ms = require("ms")
 
 module.exports = {
@@ -9,6 +7,8 @@ module.exports = {
     description: "warning roles for the warning system",
     run: async (bot, message, args) => {
         
+    const db = bot.db
+
     let check = "<:leuxcheck:716819913901211658>";
     let no = "<:no:716819317852733480>";
     let coins = "<:leuxicoin:715493556810416238>";
@@ -17,7 +17,7 @@ module.exports = {
   
     let channels = await db.fetch(`channel_${message.guild.id}`)
     
-    if(channels == null){
+    if(channels == undefined){
       channel = message.channel.name;
     } else {
       channel = channels;

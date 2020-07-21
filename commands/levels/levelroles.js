@@ -1,6 +1,4 @@
 const Discord = require("discord.js");
-const bot = new Discord.Client({ disableEveryone: true });
-const db = require("quick.db");
 const ms = require("ms");
 
 module.exports = {
@@ -8,6 +6,9 @@ module.exports = {
   aliases: ["levelroles", "lvlrole", "lvlroles", "lr"],
   description: "warning roles for the warning system",
   run: async (bot, message, args) => {
+
+    const db = bot.db
+
     let check = "<:leuxcheck:716819913901211658>";
     let no = "<:no:716819317852733480>";
     let coins = "<:leuxicoin:715493556810416238>";
@@ -16,7 +17,7 @@ module.exports = {
 
     let channels = await db.fetch(`channel_${message.guild.id}`);
 
-    if (channels == null) {
+    if (channels == undefined) {
       channel = message.channel.name;
     } else {
       channel = channels;
@@ -29,37 +30,37 @@ module.exports = {
     }
 
     let L5 = await db.fetch(`level5_${message.guild.id}`);
-    if (L5 == null) L5 = "Not set.";
+    if (L5 == undefined) L5 = "Not set.";
     let L10 = await db.fetch(`level10_${message.guild.id}`);
-    if (L10 == null) L10 = "Not set.";
+    if (L10 == undefined) L10 = "Not set.";
     let L15 = await db.fetch(`level15_${message.guild.id}`);
-    if (L15 == null) L15 = "Not set.";
+    if (L15 == undefined) L15 = "Not set.";
     let L20 = await db.fetch(`level20_${message.guild.id}`);
-    if (L20 == null) L20 = "Not set.";
+    if (L20 == undefined) L20 = "Not set.";
     let L25 = await db.fetch(`level25_${message.guild.id}`);
-    if (L25 == null) L25 = "Not set.";
+    if (L25 == undefined) L25 = "Not set.";
     let L30 = await db.fetch(`level30_${message.guild.id}`);
-    if (L30 == null) L30 = "Not set.";
+    if (L30 == undefined) L30 = "Not set.";
     let L35 = await db.fetch(`level35_${message.guild.id}`);
-    if (L35 == null) L35 = "Not set.";
+    if (L35 == undefined) L35 = "Not set.";
     let L40 = await db.fetch(`level40_${message.guild.id}`);
-    if (L40 == null) L40 = "Not set.";
+    if (L40 == undefined) L40 = "Not set.";
     let L45 = await db.fetch(`level45_${message.guild.id}`);
-    if (L45 == null) L45 = "Not set.";
+    if (L45 == undefined) L45 = "Not set.";
     let L50 = await db.fetch(`level50_${message.guild.id}`);
-    if (L50 == null) L50 = "Not set.";
+    if (L50 == undefined) L50 = "Not set.";
     let L55 = await db.fetch(`level55_${message.guild.id}`);
-    if (L55 == null) L55 = "Not set.";
+    if (L55 == undefined) L55 = "Not set.";
     let L60 = await db.fetch(`level60_${message.guild.id}`);
-    if (L60 == null) L60 = "Not set.";
+    if (L60 == undefined) L60 = "Not set.";
     let L70 = await db.fetch(`level70_${message.guild.id}`);
-    if (L70 == null) L70 = "Not set.";
+    if (L70 == undefined) L70 = "Not set.";
     let L80 = await db.fetch(`level80_${message.guild.id}`);
-    if (L80 == null) L80 = "Not set.";
+    if (L80 == undefined) L80 = "Not set.";
     let L90 = await db.fetch(`level90_${message.guild.id}`);
-    if (L90 == null) L90 = "Not set.";
+    if (L90 == undefined) L90 = "Not set.";
     let L100 = await db.fetch(`level100_${message.guild.id}`);
-    if (L100 == null) L100 = "Not set.";
+    if (L100 == undefined) L100 = "Not set.";
 
     if (args[0] === "add") {
       if (!message.member.hasPermission("MANAGE_GUILD")) {

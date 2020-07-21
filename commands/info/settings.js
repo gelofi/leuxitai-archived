@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db");
 
 module.exports = {
     name: 'settings',
@@ -8,48 +6,50 @@ module.exports = {
     description: "Send the server's settings.",
     run: async (bot, message, args) => {
       
+      const db = bot.db
+
       let set = {
-        "off":"Off",
-        "on":"On"
+        "off": "Off",
+        "on": "On"
       }
       
       //Channels
       let logc = await db.fetch(`channel_${message.guild.id}`)
-      if(logc == null) logc = "Not set.";
+      if(logc == undefined) logc = "Not set.";
       let modc = await db.fetch(`wchannel_${message.guild.id}`)
-      if(modc == null) modc = "Not set.";
+      if(modc == undefined) modc = "Not set.";
       
       //Toggles
       let levels = await db.fetch(`togglexp_${message.guild.id}`)
-      if(levels == null) levels = "off";
+      if(levels == undefined) levels = "off";
       let economy = await db.fetch(`eco_${message.guild.id}`)
-      if(economy == null) economy = "off";
+      if(economy == undefined) economy = "off";
       let antispam = await db.fetch(`antispam_${message.guild.id}`)
-      if(antispam == null) antispam = "off";
+      if(antispam == undefined) antispam = "off";
       let rank = await db.fetch(`rank_${message.guild.id}`)
-      if(rank == null) rank = "on";
+      if(rank == undefined) rank = "on";
       
       //Warn Roles
       let w1 = await db.fetch(`warn1_${message.guild.id}`)
-      if(w1 == null) w1 = "Not set.";
+      if(w1 == undefined) w1 = "Not set.";
       let w2 = await db.fetch(`warn2_${message.guild.id}`)
-      if(w2 == null) w2 = "Not set.";
+      if(w2 == undefined) w2 = "Not set.";
       let w3 = await db.fetch(`warn3_${message.guild.id}`)
-      if(w3 == null) w3 = "Not set.";
+      if(w3 == undefined) w3 = "Not set.";
       let w4 = await db.fetch(`warn4_${message.guild.id}`)
-      if(w4 == null) w4 = "Not set.";
+      if(w4 == undefined) w4 = "Not set.";
       let w5 = await db.fetch(`warn5_${message.guild.id}`)
-      if(w5 == null) w5 = "Not set.";
+      if(w5 == undefined) w5 = "Not set.";
         
       //Mute Roles
       let main = await db.fetch(`mainRole_${message.guild.id}`)
-      if(main == null) main = "Not set.";
+      if(main == undefined) main = "Not set.";
       let mute = await db.fetch(`muteRole_${message.guild.id}`)
-      if(mute == null) mute = "Not set.";
+      if(mute == undefined) mute = "Not set.";
       
       //Prefix
       let prefix = await db.fetch(`prefix_${message.guild.id}`)
-      if(prefix == null) prefix = "l."
+      if(prefix == undefined) prefix = "l."
       
       let settings = new Discord.RichEmbed()
       .setAuthor(`${message.guild.name} - Settings`)

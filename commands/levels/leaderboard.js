@@ -1,17 +1,18 @@
 const Discord = require("discord.js");
-const bot = new Discord.Client({ disableEveryone: true });
-const db = require("quick.db");
 
 module.exports = {
   name: "leaderboard",
   aliases: ["lb", "top"],
   description: "Points system for Leuxitai - Leaderboard",
   run: async (bot, message, args) => {
+
+    const db = bot.db
+
     let togglexp;
 
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
 
-    if (togglesxp == null) {
+    if (togglesxp == undefined) {
       togglexp = "off";
       //return message.channel.send("That command is not enabled!");
     } else {

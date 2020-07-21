@@ -1,15 +1,26 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
 const { stripIndents } = require('common-tags');
 const slots = ['🍇', '🍊', '🍐', '🍒', '🍋', '🍌', '🔔'];
-const db = require("quick.db");
 
 module.exports = {
     name: 'slots',
     aliases: ["sl", "slot"],
     description: "Slots for Economy Module.",
     run: async (bot, message, args) => {
-        
+      
+    const db = bot.db
+
+    let eco;
+  
+    let econ = await db.fetch(`eco_${message.guild.id}`)
+    
+    if(econ == null || econ == undefined){
+      eco = 'off';
+      //return message.channel.send("That command is not enabled!");
+    } else {
+      eco = econ;
+    }
+
       let money = await db.fetch(`money_${message.guild.id}_${message.author.id}`)
       
       if(!args[0]) return message.reply("bet money on the slots!")

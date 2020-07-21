@@ -1,7 +1,4 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db")
-const prefix = require("./../../config.js")
 
 module.exports = {
     name: 'setprefix',
@@ -9,11 +6,13 @@ module.exports = {
     description: "Changes the prefix of the bot",
     run: async (bot, message, args) => {
       
+    const db = bot.db
+
     let channel;
   
     let channels = await db.fetch(`channel_${message.guild.id}`)
     
-    if(channels == null){
+    if(channels == undefined){
       channel = message.channel.name;
     } else {
       channel = channels;
@@ -21,7 +20,7 @@ module.exports = {
       
     let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`)
-    if(prefixes == null){
+    if(prefixes == undefined){
       prefix = 'l.';
     } else {
       prefix = prefixes;

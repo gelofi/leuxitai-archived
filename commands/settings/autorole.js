@@ -1,6 +1,4 @@
 const Discord = require("discord.js");
-const bot = new Discord.Client({ disableEveryone: true });
-const db = require("quick.db");
 const ms = require("ms");
 const { stripIndents } = require("common-tags");
 
@@ -12,6 +10,8 @@ module.exports = {
     let check = "<:leuxcheck:716819913901211658>";
     let no = "<:no:716819317852733480>";
     let coins = "<:leuxicoin:715493556810416238>";
+
+    const db = bot.db
 
     let channel;
 
@@ -65,7 +65,7 @@ module.exports = {
           "please specify a role to be given! (Do not mention the role!)"
         );
 
-      if (tr1 == null) {
+      if (tr1 == undefined) {
         await db.set(`timedrole1_${message.guild.id}`, role);
         await db.set(`timedrole1time_${message.guild.id}`, time);
         let settr1 = new Discord.RichEmbed()
@@ -88,7 +88,7 @@ module.exports = {
           .setTimestamp();
         var set = message.guild.channels.find(`name`, `${channel}`);
         set.send(addEmb);
-      } else if (tr1 !== null && tr2 == null) {
+      } else if (tr1 !== undefined && tr2 == undefined) {
         await db.set(`timedrole2_${message.guild.id}`, role);
         await db.set(`timedrole2time_${message.guild.id}`, time);
         let settr2 = new Discord.RichEmbed()
@@ -111,7 +111,7 @@ module.exports = {
           .setTimestamp();
         var set = message.guild.channels.find(`name`, `${channel}`);
         set.send(addEmb);
-      } else if (tr1 !== null && tr2 !== null && tr3 == null) {
+      } else if (tr1 !== undefined && tr2 !== undefined && tr3 == undefined) {
         await db.set(`timedrole3_${message.guild.id}`, role);
         await db.set(`timedrole3time_${message.guild.id}`, time);
         let settr3 = new Discord.RichEmbed()
@@ -135,7 +135,7 @@ module.exports = {
         var set = message.guild.channels.find(`name`, `${channel}`);
         set.send(addEmb);
       } else if (plus == "subscriber") {
-        if (tr1 !== null && tr2 !== null && tr3 !== null && tr4 == null) {
+        if (tr1 !== undefined && tr2 !== undefined && tr3 !== undefined && tr4 == undefined) {
           await db.set(`timedrole4_${message.guild.id}`, role);
           await db.set(`timedrole4time_${message.guild.id}`, time);
           let settr4 = new Discord.RichEmbed()
@@ -159,11 +159,11 @@ module.exports = {
           var set = message.guild.channels.find(`name`, `${channel}`);
           set.send(addEmb);
         } else if (
-          tr1 !== null &&
-          tr2 !== null &&
-          tr3 !== null &&
-          tr4 !== null &&
-          tr5 == null
+          tr1 !== undefined &&
+          tr2 !== undefined &&
+          tr3 !== undefined &&
+          tr4 !== undefined &&
+          tr5 == undefined
         ) {
           await db.set(`timedrole5_${message.guild.id}`, role);
           await db.set(`timedrole5time_${message.guild.id}`, time);
@@ -248,15 +248,15 @@ module.exports = {
       }
     } else {
       
-        if (tr1 == null) {
+        if (tr1 == undefined) {
           tr1 = "N/A";
           tr1t = "N/A";
         }
-        if (tr2 == null) {
+        if (tr2 == undefined) {
           tr2 = "N/A";
           tr2t = "N/A";
         }
-        if (tr3 == null) {
+        if (tr3 == undefined) {
           tr3 = "N/A";
           tr3t = "N/A";
         }
@@ -298,23 +298,23 @@ module.exports = {
         
       if (plus == "subscriber") {
           
-          if (tr1 == null) {
+          if (tr1 == undefined) {
             tr1 = "N/A";
             tr1t = "N/A";
           }
-          if (tr2 == null) {
+          if (tr2 == undefined) {
             tr2 = "N/A"
             tr2t = "N/A";
           }
-          if (tr3 == null) {
+          if (tr3 == undefined) {
             tr3 = "N/A"
             tr3t = "N/A";
           }
-          if (tr4 == null) {
+          if (tr4 == undefined) {
             tr4 = "N/A"
             tr4t = "N/A";
           }
-          if (tr5 == null) {
+          if (tr5 == undefined) {
             tr5 = "N/A"
             tr5t = "N/A";
           }
@@ -368,7 +368,7 @@ module.exports = {
       } else {
        return message.channel.send(autoroles)
       }
-      if (tr1 == null) {
+      if (tr1 == undefined) {
         let nulled = new Discord.RichEmbed()
           .setAuthor("Autoroles list", message.guild.iconURL)
           .setDescription(

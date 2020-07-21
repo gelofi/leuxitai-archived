@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db");
 const ms = require("parse-ms");
 
 module.exports = {
@@ -9,14 +7,17 @@ module.exports = {
     category: "eco",
     description: "buy items.",
     run: async (bot, message, args, util) => {
-  
+
+    const db = bot.db
+
     let prefix = await db.fetch(`prefix_${message.guild.id}`)
     if(prefix == null) prefix = "l.";
+    
     let eco;
   
     let econ = await db.fetch(`eco_${message.guild.id}`)
     
-    if(econ == null){
+    if(econ == null || econ == undefined){
       eco = 'off';
       //return message.channel.send("That command is not enabled!");
     } else {

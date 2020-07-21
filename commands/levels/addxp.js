@@ -7,12 +7,14 @@ module.exports = {
     aliases: ["g", "gxp", "addxp", "xp+"],
     description: "Points system for Leuxitai - Give",
     run: async (bot, message, args) => {
+
+    const db = bot.db
       
     let togglexp;
 
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
 
-    if (togglesxp == null) {
+    if (togglesxp == undefined) {
       togglexp = "on";
     } else {
       togglexp = togglesxp;

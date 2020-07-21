@@ -19,7 +19,7 @@ module.exports = {
         `[Add me to your server!](https://tinyurl.com/leuxitai) (in ${bot.guilds.size} servers now) \n[Join our server!](https://discord.gg/4VXEXWP) (Get notifications about updates, changelogs, etc.)\n[Leuxitai Website](https://leux.glitch.me) - Official Website!`
       )
       .setColor("#3444f7")
-      .setFooter("Leuxitai Update v16.8", bot.user.displayAvatarURL);
+      .setFooter("Leuxitai Update v16.8a", bot.user.displayAvatarURL);
     message.channel.send("Check your DMs!");
     message.author.send(changelogs);
   }

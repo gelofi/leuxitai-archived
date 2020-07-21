@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
-const bot = new Discord.Client({ disableEveryone: true });
-const db = require("quick.db");
+
 const abbr = require("number-abbreviate")
 var str = require("str_shorten")
 
@@ -16,6 +15,9 @@ module.exports = {
   aliases: ["rank", "profile", "rk", "level"],
   description: "Points system for Leuxitai",
   run: async (bot, message, args) => {
+
+    const db = bot.db
+    
     let togglexp;
 
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
@@ -37,14 +39,13 @@ module.exports = {
   let rcbg = await db.fetch(`rcbg_${message.guild.id}_${user.id}`);
     
   if(user.bot) return message.reply("bots don't get XP and aren't eligible for ranking.")
-  let level = bot.dblevels.get(`level_${message.guild.id}_${user.id}`) || 1;
+  let level = await bot.dblevels.get(`level_${message.guild.id}_${user.id}`) || 1;
   level = level.toString();
-  let exp = bot.dblevels.get(`xp_${message.guild.id}_${user.id}`) || 1;
+  let exp = await bot.dblevels.fetch(`xp_${message.guild.id}_${user.id}`) || 1;
   let neededXP = Math.floor(Math.pow(level / 0.1, 2));
     
-    let every = bot.dblevels
-    .all()
-    .filter(i => i.ID.startsWith(`xp_${message.guild.id}_`))
+    let every = await bot.dblevels.all()
+    every = every.filter(i => i.ID.startsWith(`xp_${message.guild.id}_`))
     .sort((a, b) => b.data - a.data);
   let ranking = every.map(x => x.ID).indexOf(`xp_${message.guild.id}_${user.id}`) + 1;
   ranking = ranking.toString();
@@ -53,7 +54,7 @@ module.exports = {
  
     const points = new Discord.RichEmbed()
     .setAuthor(`${message.author.username}'s profile`, message.guild.iconURL)
-    .addField(`XP / Points`, exp.toString(), true)
+    .addField(`XP / Points`, (exp).toString(), true)
     .addField(`Level`, level, true)
     .addField(`Rank`, ranking, true)
     .setColor(message.member.displayHexColor)
@@ -69,7 +70,7 @@ module.exports = {
         level: level,
         rank: ranking,
         neededXP: ab.abbreviate(neededXP.toString(), 2),
-        currentXP: ab.abbreviate(exp.toString(), 2),
+        currentXP: ab.abbreviate((exp).toString(), 2),
         avatarURL: avatar,
         color: message.member.displayHexColor
       });
@@ -80,7 +81,7 @@ module.exports = {
         level: level,
         rank: ranking,
         neededXP: neededXP.toString(),
-        currentXP: exp.toString(),
+        currentXP: (exp).toString(),
         avatarURL: avatar,
         color: message.member.displayHexColor,
         background: rcbg,

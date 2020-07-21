@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db")
 const ms = require("ms")
 
 module.exports = {
@@ -9,11 +7,13 @@ module.exports = {
     description: "Unmutes a person",
     run: async (bot, message, args) => {
       
+        const db = bot.db
+
         let channel;
   
         let channels = await db.fetch(`wchannel_${message.guild.id}`)
     
-        if(channels == null){
+        if(channels == undefined){
            channel = message.channel.name;
         } else {
            channel = channels;
@@ -23,8 +23,8 @@ module.exports = {
   
          let muteRoles = await db.fetch(`muteRole_${message.guild.id}`)
     
-         if(muteRoles == null) return message.reply("setup a mute role first!\nMake sure the role you will assign have right permissions.\nThe default role for mute command is `Mute`.");
-         if(muteRoles == null){
+         if(muteRoles == undefined) return message.reply("setup a mute role first!\nMake sure the role you will assign have right permissions.\nThe default role for mute command is `Mute`.");
+         if(muteRoles == undefined){
             muteRole = "Muted";
          } else {
             muteRole = muteRoles;
@@ -34,8 +34,8 @@ module.exports = {
   
          let mainRoles = await db.fetch(`mainRole_${message.guild.id}`)
     
-         if(mainRoles == null) return message.reply("setup a main role first!\nMake sure the role you will assign have right permissions.\nThe default main role is `Member`.")
-         if(mainRoles == null){
+         if(mainRoles == undefined) return message.reply("setup a main role first!\nMake sure the role you will assign have right permissions.\nThe default main role is `Member`.")
+         if(mainRoles == undefined){
             mainRole = "Member";
          } else {
             mainRole = mainRoles;

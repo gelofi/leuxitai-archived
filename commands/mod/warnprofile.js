@@ -1,12 +1,12 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db");
 
 module.exports = {
     name: 'warnprofile',
     aliases: ["wprofile", "case", "warnc"],
     description: "fetches a warn info",
     run: async (bot, message, args) => {
+
+      const db = bot.db;
 
       function getUserFromMention(mention) {
 	if (!mention) return;
@@ -30,7 +30,7 @@ module.exports = {
 
     let warns = await db.fetch(`warn_${message.guild.id}_${user.id}`);
     
-    if(warns == null){
+    if(warns == undefined){
       warn = 0;
     } else {
       warn = warns;

@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db")
 
 module.exports = {
     name: 'toggle',
@@ -8,11 +6,13 @@ module.exports = {
     description: "Changes the prefix of the bot",
     run: async (bot, message, args) => {
   
+    const db = bot.db
+
     let channel;
   
     let channels = await db.fetch(`channel_${message.guild.id}`)
     
-    if(channels == null){
+    if(channels == undefined){
       channel = message.channel.name;
     } else {
       channel = channels;
@@ -22,7 +22,7 @@ module.exports = {
   
     let togglesxp = await db.fetch(`togglexp_${message.guild.id}`)
     
-    if(togglesxp == null){
+    if(togglesxp == undefined){
       togglexp = 'off';
       //return message.channel.send("That command is not enabled!");
     } else {
@@ -33,7 +33,7 @@ module.exports = {
   
     let econ = await db.fetch(`eco_${message.guild.id}`)
     
-    if(econ == null){
+    if(econ == undefined){
       eco = 'off';
       //return message.channel.send("That command is not enabled!");
     } else {

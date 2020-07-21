@@ -13,7 +13,7 @@ module.exports = {
       let resp;
       
       try {
-        resp = math.eval(input)
+        resp = math.eval(eval(input))
       } catch (err) {
         return message.channel.send("Hmm... that's a weird input, I cannot calculate that.")
       }
