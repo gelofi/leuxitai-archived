@@ -4,7 +4,6 @@ const blankEmoji = '⚪️';
 const playerOneEmoji = '🔴';
 const playerTwoEmoji = '🟡';
 const nums = ["1️⃣", '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣'];
-const db = require("quick.db")
 const { RichEmbed } = require("discord.js");
 
 module.exports = {
@@ -13,7 +12,9 @@ module.exports = {
     description: "Connect four game on Discord.",
     run: async (bot, message, args) => {
       
-      /*let plus = await db.fetch(`plus_${message.guild.id}`)
+      const db = bot.db
+
+      let plus = await db.fetch(`plus_${message.guild.id}`)
       let lp = "<:leuxitailight:720799037145612349>"
       
       let noplus = new RichEmbed()
@@ -27,7 +28,7 @@ Do \`l.plus\` to discover Leuxitai+ features.
       .setFooter("Leuxitai+ is one-time payment only. Get more features with a subscription!")
       
       if(plus !== "subscriber")
-        return message.channel.send(noplus)*/
+        return message.channel.send(noplus)
       
       let msg = message
       let opponent = message.mentions.users.first()
