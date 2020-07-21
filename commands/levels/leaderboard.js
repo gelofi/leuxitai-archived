@@ -21,7 +21,8 @@ module.exports = {
 
     if (togglexp !== "on")
       return message.channel.send("This command is not toggled on!");
-    let data = await bot.dblevels.all().filter(i => i.ID.startsWith(`xp_${message.guild.id}`)).sort((a, b) => b.data - a.data);
+    let data = await bot.dblevels.all()
+    data = data.filter(i => i.ID.startsWith(`xp_${message.guild.id}`)).sort((a, b) => b.data - a.data);
     if (data.length < 1) return message.channel.send("No leaderboard");
     data.length = 20;
     let lb = [];
