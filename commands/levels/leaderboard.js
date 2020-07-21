@@ -21,7 +21,7 @@ module.exports = {
 
     if (togglexp !== "on")
       return message.channel.send("This command is not toggled on!");
-    let data = bot.dblevels.all().filter(i => i.ID.startsWith(`xp_${message.guild.id}`)).sort((a, b) => b.data - a.data);
+    let data = await bot.dblevels.all().filter(i => i.ID.startsWith(`xp_${message.guild.id}`)).sort((a, b) => b.data - a.data);
     if (data.length < 1) return message.channel.send("No leaderboard");
     data.length = 20;
     let lb = [];
@@ -30,7 +30,7 @@ module.exports = {
         let user = await bot.users.get(`${id}`);
         user = user ? user.tag : "Unknown User#0000";
         let rank = data.indexOf(data[i]) + 1;
-        let level = bot.dblevels.get(`level_${message.guild.id}_${id}`);
+        let level = await bot.dblevels.get(`level_${message.guild.id}_${id}`);
         let xp = data[i].data;
         let xpreq = Math.floor(Math.pow(level / 0.1, 2));
         lb.push({
