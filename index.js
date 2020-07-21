@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { Client, Collection } = require("discord.js");
-
+let timeConnection = Date.now()
 const bot = new Discord.Client({
   disableEveryone: true
 });
@@ -12,12 +12,11 @@ const PREFIX = "l.";
 
 //const db = require("quick.db");
 const { Database } = require("quickmongo");
-bot.db = new Database("mongodb+srv://leux-db:dbleuxmongo@leux.3a5g8.mongodb.net/leuxitai-db?retryWrites=true&w=majority");
+bot.db = new Database("mongodb+srv://leux-db:dbleuxmongo@leux.3a5g8.mongodb.net/levels-db?retryWrites=true&w=majority");
 const db = bot.db
 
 db.on("ready", () => {
-  let timeConnection = Date.now()
-  console.log(timeConnection - Date.now() + " connected to MongoDB.")
+  console.log(timeConnection - Date.now() + "ms - Connected to MongoDB.")
 });
 
 const ms = require("ms");
