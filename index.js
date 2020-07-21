@@ -1,25 +1,8 @@
-const http = require('http');
-const express = require('express');
-const app = express();
-
-app.get("/", (request, response) => {
-  console.log(Date.now() + " ping received!")
-  response.sendFile(__dirname + "/host/hosting.html")
-})
-
-app.listen(3000, ()=>{console.log("Server is Ready!")});
-
-setInterval(() => {
-  http.get(`http://bountifulbrilliantmatter--hydrocreac.repl.co/`);
-  console.log(Date.now() + " ping received! Wake up, Dyno!")
-}, 120000);
-
 const Discord = require("discord.js");
 const { Client, Collection } = require("discord.js");
 
 const bot = new Discord.Client({
-  disableEveryone: true,
-  disableMentions: true
+  disableEveryone: true
 });
 const alexa = require ("alexa-bot-api")
 let ai = new alexa("aw2plm")
