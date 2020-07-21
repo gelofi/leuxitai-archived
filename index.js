@@ -863,7 +863,7 @@ async function xp(message) {
 
       let togglesxp = await db.fetch(`togglexp_${message.guild.id}`);
 
-      if (togglesxp == null) {
+      if (togglesxp == undefined) {
         togglexp = "off";
       } else {
         togglexp = togglesxp;
@@ -875,7 +875,7 @@ async function xp(message) {
     bot.cooldown.add(message.author.id)
     const randomXP = Math.floor(Math.random() * 14) + 1;
         await bot.dblevels.math(`xp_${message.guild.id}_${message.author.id}`,  "+", randomXP);
-        let level = bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`)
+        let level = await bot.dblevels.get(`level_${message.guild.id}_${message.author.id}`)
         let nexp = Math.floor(Math.pow(level / 0.1, 2));
         //let level = Math.floor(0.3 * Math.sqrt(xp));
         let exp = await bot.dblevels.get(`xp_${message.guild.id}_${message.author.id}`) || bot.dblevels.set(`level_${message.guild.id}_${message.author.id}`, 1);;
