@@ -28,7 +28,7 @@ module.exports = {
   
   let user = message.mentions.members.first()// || bot.users.find("username", args[0]);
 
-  let member = db.fetch(`money_${message.guild.id}_${message.author.id}`)
+  let member = await db.fetch(`money_${message.guild.id}_${message.author.id}`)
 
   if (!user) {
       return message.reply(`specify a member to transfer your money!`)
