@@ -1,6 +1,5 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client({disableEveryone: true});
-const db = require ("quick.db")
 
 module.exports = {
     name: 'pluscribe',
@@ -8,6 +7,8 @@ module.exports = {
     description: "Add a server to the subscribers.",
     run: async (bot, message, args) => {
       
+    const db = bot.db
+
     let plus = await db.fetch(`plus_${args[1]}`)
     
     let check = "<:leuxcheck:716819913901211658>";
