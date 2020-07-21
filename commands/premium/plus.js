@@ -1,12 +1,14 @@
 const Discord = require('discord.js')
 const { stripIndents } = require("common-tags")
-const db = require("quick.db")
+
 module.exports = {
     name: 'plus',
     aliases: ["leuxitai+", "premium"],
     description: "Discover Leuxitai+ subscription features.",
     run: async (bot, message, args) => {
       
+      const db = bot.db
+
       let plus = await db.fetch(`plus_${message.guild.id}`)
       
       let sub = new Discord.RichEmbed()
