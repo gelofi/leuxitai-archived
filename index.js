@@ -14,6 +14,12 @@ const PREFIX = "l.";
 const { Database } = require("quickmongo");
 bot.db = new Database("mongodb+srv://leux-db:dbleuxmongo@leux.3a5g8.mongodb.net/leuxitai-db?retryWrites=true&w=majority");
 const db = bot.db
+
+db.on("ready", () => {
+  let timeConnection = Date.now()
+  console.log(timeConnection - Date.now() + " connected to MongoDB.")
+});
+
 const ms = require("ms");
 
 bot.cooldown = new Set();
