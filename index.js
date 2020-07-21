@@ -31,7 +31,7 @@ const DIFF = 3000;
 
 // Collections
 bot.playing = new Set();
-bot.dblevels = new Database("mongodb+srv://leux-db:dbleuxmongo@leux.3a5g8.mongodb.net/levels-db?retryWrites=true&w=majority");
+bot.dblevels = bot.db
 bot.commands = new Collection();
 bot.aliases = new Collection();
 
