@@ -1,10 +1,5 @@
-# • This is the official Leuxitai source code.
-This project is private, so users won't copy.
-## Add Leuxitai to your server now!
-
-Just click this link [here](https://tinyurl.com/leuxitai)!
-
-Thank you for your support.
+# • This is the Leuxitai source code.
+This project is discontinued and deprecated.
 
 # • Leuxitai | v16.7p
 ## Features
@@ -16,14 +11,5 @@ Thank you for your support.
 - Logging! Just set your log channel, you're good to go!
 - Event Commands! Our event right now is `coronavirus`.
 - Other tools! Such as weather, urban dictionary, and translate commands!
-
-## Support
-
-If you need support, just join our server, click [here](https://discord.gg/4VXEXWP)!
-
-If you want to support me, and support Leuxitai's further development, do `l.support`
-on your server.
-
-Fizx26#5360 | FizxCreations.
 
 # Copyright © Fizx 2020
