@@ -12,4 +12,4 @@ This project is discontinued and deprecated.
 - Event Commands! Our event right now is `coronavirus`.
 - Other tools! Such as weather, urban dictionary, and translate commands!
 
-# Copyright © Fizx 2020
+# Copyright © Gelofi 2020
